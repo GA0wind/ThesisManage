@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>公告</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/share.css">
+    <link rel="stylesheet" href="../static/css/bulletin.css">
+
+
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/share.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid main">
+        <!--顶部-->
+        <div class="row">
+            <!-- 顶部logo等 -->
+            <div class="col-md-offset-1 col-md-11 row">
+                <div class="container-fluid col-md-12">
+                    <img src="../static/images/nculogo.png" alt="" class="logo">
+                    <span class="ncu hidden-xs">南昌大学</span>
+                    <span class="user col-md-offset-7">
+                        甘容辉<span class="hidden-xs">(8000116251)</span> &nbsp;&nbsp;&nbsp;<a href="">注销</a>
+                    </span>
+                    <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
+                    <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
+                </div>
+
+            </div>
+        </div>
+        <!-- 顶部导航条 -->
+        <div class="row">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container-fluid">
+                    <div class="visible-xs-block menu clearfix">
+                        <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navigation">
+                            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">公告</a></li>
+                            <li><a href="#">师生互选</a></li>
+                            <li><a href="#">过程管理</a></li>
+                            <li><a href="#">答辩</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row big-main">
+            <div class="row">
+                <!-- 已提交的课题 -->
+                <div class="col-md-offset-1 col-md-9 common view">
+                    <p class="title">公告
+                        <a class="pull-right view-publish" th:if="${session.user.role == 'admin'}"
+                            href="/bulletin/publish">发布公告</a>
+                    </p>
+
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="bulletin : ${pagination.data}">
+                            <a href="" th:text="${bulletin.title}">毕设开始了</a>
+                            <span class="view-time">
+                                <span th:text="${bulletin.gmtModified}">2020-11-11</span>&nbsp;&nbsp;
+                                <a href="">删除</a>&nbsp;/&nbsp;<a href="">修改</a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

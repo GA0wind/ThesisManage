@@ -1,0 +1,29 @@
+
+e
+java:S1192"NDefine a constant instead of duplicating this literal "blindTrialNo" 12 times.(Œ«£à
+j
+java:S1192‘"SDefine a constant instead of duplicating this literal "blindTrialComment" 12 times.(‚°á›
+a	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºşÿÿÿÿ
+S
+java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s
+_
+java:S1192Ó"HDefine a constant instead of duplicating this literal "isPass" 10 times.(Â‚ò 
+i
+java:S1192Ÿ"MDefine a constant instead of duplicating this literal "gmtModified" 10 times.(Ñö™‘ùÿÿÿÿ
+a	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ
+`
+java:S1192×"IDefine a constant instead of duplicating this literal "trialNo" 12 times.(šãç
+g
+java:S1192ã"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñıÿÿÿÿ
+m
+java:S1192Õ"QDefine a constant instead of duplicating this literal "blindTrialGrade" 10 times.(€ãáüÿÿÿÿ
+Z
+java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ
+b
+java:S1192"KDefine a constant instead of duplicating this literal "projectNo" 12 times.(ıÓø‹
+[	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
+
+w
+java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì
+d
+java:S1192"NDefine a constant instead of duplicating this literal "trialComment" 12 times.(Ü¶“B

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/share.css">
+
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/share.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid main">
+        <!--顶部-->
+        <div th:insert="~{head :: head}"></div>
+
+        <div class="row ">
+            <!-- 左侧菜单 -->
+            <div th:insert="~{left-menu :: left-menu}"></div>
+
+            <!-- 已提交的课题 -->
+            <div class="row">
+                <div class="col-md-7 common view">
+
+                    <p class="title">我申报的课题</p>
+
+                    <hr>
+                    <div class="table-responsive view">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="project-name">课题名</th>
+                                    <th>题目类型</th>
+                                    <th>申报时间</th>
+                                    <th>审核状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>小米111111111111111带我去案发时付费安保费噶王府井大V怪异诶1111111111111111111</td>
+                                    <td>未知</td>
+                                    <td>2010-11-11</td>
+                                    <td class="no-pass">审核通过</td>
+                                    <td><a href="">撤销</a> <a href="">复核</a></td>
+                                </tr>
+                                <tr>
+                                    <td>小米111111111111111带我去案发时付费安保费噶王府井大V怪异诶1111111111111111111</td>
+                                    <td>未知</td>
+                                    <td>2010-11-11</td>
+                                    <td class="no-pass">审核通过</td>
+                                    <td><a href="">撤销</a> <a href="">复核</a></td>
+                                </tr>
+                                <tr>
+                                    <td>小米111111111111111带我去案发时付费安保费噶王府井大V怪异诶1111111111111111111</td>
+                                    <td>未知</td>
+                                    <td>2010-11-11</td>
+                                    <td class="no-pass">审核通过</td>
+                                    <td><a href="">撤销</a> <a href="">复核</a></td>
+                                </tr>
+                                <tr>
+                                    <td>小米111111111111111带我去案发时付费安保费噶王府井大V怪异诶1111111111111111111</td>
+                                    <td>未知</td>
+                                    <td>2010-11-11</td>
+                                    <td class="no-pass">审核通过</td>
+                                    <td><a href="">撤销</a> <a href="">复核</a></td>
+                                </tr>
+                                <tr>
+                                    <td>小米111111111111111带我去案发时付费安保费噶王府井大V怪异诶1111111111111111111</td>
+                                    <td>未知</td>
+                                    <td>2010-11-11</td>
+                                    <td class="no-pass">审核通过</td>
+                                    <td><a href="">撤销</a> <a href="">复核</a></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tfoot>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="more">首页</a>&nbsp;&nbsp;
+                                            <a href="#" class="more">上一页</a>&nbsp;&nbsp;
+                                            <input class="pagination-num" type="text" value="1" size="2">&nbsp;&nbsp;
+                                            <a href="#" class="more">下一页</a>&nbsp;&nbsp;
+                                            <a href="#" class="more">尾页</a>&nbsp;&nbsp;
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button type="button" onclick="showProPost()">课题申请</button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 提交课题弹出框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">课题申报</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-md-12 common">
+                        <form class="form-inline form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="project-title">课题名称&nbsp;&nbsp;</label>
+                                    <input type="text" class="form-control" id="project-title">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="project-description">课题内容&nbsp;&nbsp;</label>
+                                    <textarea class="form-control" rows="3" id="project-description"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="project-type">课题类型&nbsp;&nbsp;</label>
+                                    <input type="text" class="form-control" id="project-type">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="project-file">课题文件&nbsp;&nbsp;</label>
+                                    <input type="file" class="form-control" id="project-file">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-success">提交</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+</body>
+
+</html>

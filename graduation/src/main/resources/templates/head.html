@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="head">
+  <div class="row">
+    <!-- 顶部logo等 -->
+    <div class="col-md-offset-1 col-md-11 row">
+      <div class="container-fluid col-md-12">
+        <img src="../static/images/nculogo.png" alt="" class="logo">
+        <span class="ncu hidden-xs">南昌大学</span>
+        <span class="user col-md-offset-7">
+          <span th:text="${session.user.name}">甘容辉</span>
+          <span class="hidden-xs">
+          (<span th:text="${session.user.accountNo}">8000116251</span>)
+          </span> &nbsp;&nbsp;&nbsp;
+          <a href="/logout">注销</a>
+         </span>
+        <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
+        <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
+      </div>
+
+    </div>
+  </div>
+  <!-- 顶部导航条 -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="visible-xs-block menu clearfix">
+          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navigation">
+            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
+            <li><a href="#">公告</a></li>
+            <li><a href="#">师生互选</a></li>
+            <li><a href="#">过程管理</a></li>
+            <li><a href="#">答辩</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+</body>
+
+</html>

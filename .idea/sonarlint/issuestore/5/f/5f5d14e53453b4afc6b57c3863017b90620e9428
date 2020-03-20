@@ -1,0 +1,21 @@
+
+[
+java:S1192"GDefine a constant instead of duplicating this literal "tname" 12 times.(šÀËô
+^	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ
+X	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
+
+d
+java:S1192"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñýÿÿÿÿ
+W
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ
+f
+java:S1192"MDefine a constant instead of duplicating this literal "gmtModified" 10 times.(Ñö™‘ùÿÿÿÿ
+^	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºþÿÿÿÿ
+Q
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(Á½¼s
+^
+java:S1192"JDefine a constant instead of duplicating this literal "password" 12 times.(­â›Î
+t
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì
+]
+java:S1192"IDefine a constant instead of duplicating this literal "college" 12 times.(Ç¶€ç

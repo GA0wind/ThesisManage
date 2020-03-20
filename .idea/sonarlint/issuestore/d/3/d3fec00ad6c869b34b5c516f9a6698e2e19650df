@@ -1,0 +1,19 @@
+
+j
+java:S44880"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(–û‚ùÿÿÿÿ8Éé.
+L
+java:S1481;"/Remove this unused "verifyCode" local variable.(¬ôˆ8¡æ¥’.
+e
+java:S4488#"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ûæ¥8Éé.
+j	java:S100$"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥Óœú8Éé.
+^
+java:S2441K"<Make "UserVO" serializable or don't store it in the session.(ö Æ¦úÿÿÿÿ8—ŒÙ’.
+l
+java:S44887"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ãèïûÿÿÿÿ8Éé.
+E
+java:S1148,"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Éé.
+X	java:S125<"<This block of commented-out lines of code should be removed.(ş¯œ8¡æ¥’.
+[
+java:S1854;">Remove this useless assignment to local variable "verifyCode".(¬ôˆ8¡æ¥’.
+^
+java:S2441T"<Make "UserVO" serializable or don't store it in the session.(ö Æ¦úÿÿÿÿ8œ›½.

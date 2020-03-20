@@ -1,0 +1,142 @@
+
+.ncu {
+  color: black;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 楷体;
+  vertical-align: middle;
+}
+
+.left-navigation .col-md-3 .list-group>.active{
+  background-color:#143270;
+}
+
+.big-main{
+  padding-left: 60px;
+}
+
+@media (min-width: 768px) {
+
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+  }
+  .system-name {
+    color: black;
+    margin-left: 30px;
+    vertical-align: middle;
+    font-size: 24px;
+  }
+  .user {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 18px;
+    color: black;
+  }
+  .user a {
+    margin-left: 10px;
+  }
+  .navbar-default {
+    border: none;
+    padding-left: 130px;
+    background-color: #143270;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: white;
+  }
+  .navbar-default .navbar-nav > li > a:hover {
+    background-color: #9d7702;
+    color: black;
+  }
+  .navbar-default .navbar-nav > .active > a {
+    color: black;
+  }
+  .subMenu-title{
+    font-weight: 800;
+  }
+
+  .common{
+    padding:10px 20px;
+    border: 1px solid #cecece;
+    margin-bottom: 20px;
+  }
+  .common .title{
+    font-size: 20px;
+    font-weight: 800;
+  }
+  
+  .common .view .table{
+    font-size: 14px;
+    table-layout: fixed;
+  }
+  .common .view .table thead tr .project-name{
+    width: 370px;
+  }
+  .common .view .table .pass{
+    color: #17eb10;
+  }
+  .common .view .table .no-pass{
+    color: red;
+  }
+  
+  .common .form-inline .row{
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .common .form-inline .form-group{
+    margin-right: 20px;
+  }
+  
+
+  .common .form-inline .form-control{
+    width: 100%;
+  }
+  .common .form-inline textarea{
+    min-width: 491px;
+    max-width: 491px;
+  }
+  .common .form .btn{
+    margin-top: 25px;
+    width: 100px;
+  }
+}
+@media (max-width: 768px) {
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+  .user {
+    float: right;
+    font-size: 14px;
+    text-align: right;
+    color: black;
+    margin-top: 10px;
+  }
+  .user a {
+    font-size: 14px;
+  }
+  .system-name {
+    color: black;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+  .navbar-default {
+    border: none;
+    padding-left: 5px;
+    background-color: #143270;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: black;
+  }
+  .navbar-default .navbar-nav > li > a:hover {
+    background-color: #9d7702;
+    color: #949494;
+  }
+  .navbar-default .navbar-nav > .active > a {
+    color: black;
+  }
+}
