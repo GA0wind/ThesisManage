@@ -15,13 +15,13 @@ public enum EmBulletinError implements CommonError   {
     BULLETIN_FILE_TYPE_IS_EMPTY(2004,"文件类型为空, 下载失败, 请重试"),
     ;
 
-    EmBulletinError(int errCode, String errMsg)
+    EmBulletinError(Integer errCode, String errMsg)
     {
         this.errCode = errCode;
         this.errMsg = errMsg;
     }
 
-    private int errCode;
+    private Integer errCode;
     private String errMsg;
 
     @Override

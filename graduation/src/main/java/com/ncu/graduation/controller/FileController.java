@@ -83,6 +83,7 @@ public class FileController {
   }
 
   @GetMapping("/download")
+  @ResponseBody
   public Object downloadFile(@RequestParam("filePath") String fileName,
       String fileType,
       HttpServletResponse response) {
@@ -90,13 +91,13 @@ public class FileController {
     if (emfileType == null) {
       return ResultDTO.errorOf(EmBulletinError.BULLETIN_FILE_TYPE_IS_EMPTY);
     }
-    String trueFileName = emfileType.getPreUrl() + fileName.split("_")[1];
+    String trueFileName = emfileType.getPreUrl() + fileName;
     File file = new File(trueFileName);
     if (file.exists()) {
       response.setContentType("application/octet-stream");
       try {
         response.setHeader("Content-Disposition",
-            "attachment;fileName=" + URLEncoder.encode(fileName, "utf8"));
+            "attachment;fileName=" + URLEncoder.encode(fileName.split("#",2)[1], "utf8"));
       } catch (UnsupportedEncodingException e) {
         e.printStackTrace();
       }

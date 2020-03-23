@@ -22,7 +22,7 @@ public class FileSave {
         String path = fileTypeEnum.getPreUrl();
         String fileTempName = file.getOriginalFilename();
         //加个时间戳，尽量避免文件名称重复
-        String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + fileTempName;
+        String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "#" + fileTempName;
         File dest = new File(path, fileName);
 
         //判断文件是否已经存在

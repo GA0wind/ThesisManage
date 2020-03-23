@@ -1,13 +1,18 @@
 package com.ncu.graduation.service;
 
 
+import com.ncu.graduation.dto.BulletinDTO;
 import com.ncu.graduation.dto.PaginationDTO;
+import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmBulletinError;
 import com.ncu.graduation.mapper.BulletinMapper;
 import com.ncu.graduation.model.Bulletin;
 import com.ncu.graduation.model.BulletinExample;
+import com.ncu.graduation.util.FileSave;
 import com.ncu.graduation.vo.BulletinVO;
+import com.ncu.graduation.vo.UserVO;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
@@ -52,11 +57,44 @@ public class BulletinService {
     }
 
     public Bulletin getById(Long id) {
-        return bulletinMapper.selectByPrimaryKey(id);
+        Bulletin bulletin = bulletinMapper.selectByPrimaryKey(id);
+        String[] strings = bulletin.getFilePath().split("/");
+        bulletin.setFilePath(strings[strings.length - 1]);
+        return bulletin;
     }
 
-    public void createOrUpdate(Bulletin bulletin) {
-        if (bulletin.getId() == null) {
+    public void createOrUpdate(BulletinDTO bulletinDTO, UserVO userVO) {
+
+        //判断是修改还是删除
+        if (bulletinDTO.getId() != null) {
+
+            //判断是否有新文件
+            if (bulletinDTO.getFile() == null || bulletinDTO.getFile().isEmpty()){
+                bulletinDTO.setFile(null);
+            } else{
+                String oldFilePath = FileTypeEnum.BULLETIN.getPreUrl()+bulletinDTO.getOldFilePath();
+                File file = new File(oldFilePath);
+                //删除旧文件
+                file.delete();
+            }
+        }
+
+//        保存文件
+        String fileUrl = null;
+        if (bulletinDTO.getFile() != null && !bulletinDTO.getFile().isEmpty()) {
+            fileUrl = FileSave.fileSave(bulletinDTO.getFile(), FileTypeEnum.BULLETIN);
+        }
+
+        //构建持久层bulletin
+        Bulletin bulletin = new Bulletin();
+        bulletin.setTitle(bulletinDTO.getTitle());
+        bulletin.setDescription(bulletinDTO.getDesc());
+        bulletin.setFilePath(fileUrl);
+        bulletin.setSchoolYear(userVO.getSchoolYear());
+        bulletin.setCreatorNo(userVO.getAccountNo());
+
+
+        if (bulletinDTO.getId() == null) {
             bulletin.setGmtCreate(new Date());
             bulletin.setGmtModified(bulletin.getGmtCreate());
             bulletinMapper.insertSelective(bulletin);
@@ -68,4 +106,8 @@ public class BulletinService {
             }
         }
     }
+
+  public void delete(Long id) {
+        bulletinMapper.deleteByPrimaryKey(id);
+  }
 }

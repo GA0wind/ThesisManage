@@ -72,7 +72,7 @@
     table-layout: fixed;
   }
   .common .view .table thead tr .project-name{
-    width: 370px;
+    width: 500px;
   }
   .common .view .table .pass{
     color: #17eb10;

@@ -40,7 +40,6 @@ public class UserController {
         try {
             ImageIO.write(verifyCode.getImage(), "png", response.getOutputStream());
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }
@@ -85,6 +84,6 @@ public class UserController {
         }
         List<Menu> menus = userService.getMenu(loginDTO);
         model.addAttribute("menus",menus);
-        return new ModelAndView("project") ;
+        return new ModelAndView("myProject") ;
     }
 }

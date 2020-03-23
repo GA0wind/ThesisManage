@@ -33,7 +33,6 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-
         <table schema="graduation" tableName="student" domainObjectName="Student" ></table>
         <table schema="graduation" tableName="teacher" domainObjectName="Teacher" ></table>
         <table schema="graduation" tableName="project" domainObjectName="Project" ></table>

@@ -1,23 +1,25 @@
 
-`
-java:S1192™"IDefine a constant instead of duplicating this literal "content" 12 times.(æ©Í¦
-w
-java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì
-g
-java:S1192÷"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñıÿÿÿÿ
-a	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ
-S
-java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s
-i
-java:S1192³"MDefine a constant instead of duplicating this literal "gmtModified" 10 times.(Ñö™‘ùÿÿÿÿ
-h
-java:S1192ë"LDefine a constant instead of duplicating this literal "selectorNo" 12 times.(¸Š›Óÿÿÿÿÿ
-[	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
+f
+java:S1192"MDefine a constant instead of duplicating this literal "gmtModified" 10 times.(Ñö™‘ùÿÿÿÿ
+^
+java:S1192"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©
+Q
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(Á½¼s
+W
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ
+^	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºşÿÿÿÿ
+d
+java:S1192"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñıÿÿÿÿ
+^	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ
+X	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
 
-Z
-java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ
-b
-java:S1192¥"KDefine a constant instead of duplicating this literal "creatorNo" 12 times.(´Š¥
-a	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºşÿÿÿÿ
-a
-java:S1192ß"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©
+t
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì
+f
+java:S1192"KDefine a constant instead of duplicating this literal "studentNo" 12 times.(‹êš¿8ß£“ï.
+l
+java:S1192"LDefine a constant instead of duplicating this literal "schoolYear" 12 times.(œÆÏÆûÿÿÿÿ8ß£“ï.
+k
+java:S1192"KDefine a constant instead of duplicating this literal "teacherNo" 12 times.(¦ç“¢şÿÿÿÿ8ß£“ï.
+c
+java:S1192"HDefine a constant instead of duplicating this literal "isPass" 10 times.(Â‚ò 8ß£“ï.

@@ -7,6 +7,8 @@ import com.ncu.graduation.model.Bulletin;
 import com.ncu.graduation.service.BulletinService;
 import com.ncu.graduation.util.FileSave;
 import com.ncu.graduation.vo.UserVO;
+import java.io.File;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,47 +40,42 @@ public class BulletinController {
   public String bulletin(@PathVariable("id") String id,
       Model model) {
     Bulletin bulletin = bulletinService.getById(Long.parseLong(id));
-    String[] strings = bulletin.getFilePath().split("/");
-    bulletin.setFilePath(strings[strings.length - 1]);
     model.addAttribute("bulletin", bulletin);
     return "bulletin";
   }
 
-  @GetMapping("/bulletin/publish/{id}")
-  public String modified(@PathVariable(name = "id") Long id,
-      Model model) {
-    Bulletin bulletin = bulletinService.getById(id);
-    model.addAttribute("title", bulletin.getTitle());
-    model.addAttribute("description", bulletin.getDescription());
-    model.addAttribute("fileUrl", bulletin.getFilePath());
-    return "bulletin-publish";
-  }
+
 
   @GetMapping("/bulletin/publish")
   public String publish() {
     return "bulletin-publish";
   }
 
+
   @PostMapping("/bulletin/publish")
   public String doPublish(@Valid BulletinDTO bulletinDTO,
       HttpServletRequest request) {
-//        文件传输
-    String fileUrl = null;
-    if (bulletinDTO.getFile() != null && !bulletinDTO.getFile().isEmpty()) {
-      fileUrl = FileSave.fileSave(bulletinDTO.getFile(), FileTypeEnum.BULLETIN);
-    }
-
     UserVO userVO = (UserVO) request.getSession().getAttribute("user");
-    Bulletin bulletin = new Bulletin();
-    if (bulletinDTO.getId() != null) {
-      bulletin.setId(Long.parseLong(bulletinDTO.getId()));
-    }
-    bulletin.setTitle(bulletinDTO.getTitle());
-    bulletin.setDescription(bulletinDTO.getDesc());
-    bulletin.setFilePath(fileUrl);
-    bulletin.setSchoolYear(userVO.getSchoolYear());
-    bulletin.setCreatorNo(userVO.getAccountNo());
-    bulletinService.createOrUpdate(bulletin);
+    bulletinService.createOrUpdate(bulletinDTO,userVO);
     return "redirect:/bulletinView";
+  }
+
+
+  @GetMapping("/bulletin/modify/{id}")
+  public String modified(@PathVariable(name = "id") Long id,
+      Model model) {
+    //数据回显
+    Bulletin bulletin = bulletinService.getById(id);
+    model.addAttribute("id", bulletin.getId());
+    model.addAttribute("title", bulletin.getTitle());
+    model.addAttribute("description", bulletin.getDescription());
+    model.addAttribute("filePath", bulletin.getFilePath());
+    return "bulletin-publish";
+  }
+
+  @GetMapping("/bulletin/delete/{id}")
+  public String delete(@PathVariable(name = "id") Long id) {
+    bulletinService.delete(id);
+    return "bulletinView";
   }
 }

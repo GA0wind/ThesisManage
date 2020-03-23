@@ -18,6 +18,6 @@ public class BulletinDTO {
   private String title;
   @NotBlank(message = "内容能为空")
   private String desc;
-
+  private String oldFilePath;
   private MultipartFile file;
 }

@@ -13,13 +13,13 @@ public enum EmUserOperatorError implements CommonError   {
 
   ;
 
-  EmUserOperatorError(int errCode, String errMsg)
+  EmUserOperatorError(Integer errCode, String errMsg)
   {
     this.errCode = errCode;
     this.errMsg = errMsg;
   }
 
-  private int errCode;
+  private Integer errCode;
   private String errMsg;
 
   @Override

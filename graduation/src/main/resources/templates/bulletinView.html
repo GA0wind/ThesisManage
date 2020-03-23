@@ -5,14 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>公告</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../static/css/share.css">
-    <link rel="stylesheet" href="../static/css/bulletin.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/share.css">
+    <link rel="stylesheet" href="/css/bulletin.css">
 
 
-    <script src="../static/js/jquery-3.4.1.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/share.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/share.js"></script>
 
 </head>
 
@@ -23,7 +23,7 @@
             <!-- 顶部logo等 -->
             <div class="col-md-offset-1 col-md-11 row">
                 <div class="container-fluid col-md-12">
-                    <img src="../static/images/nculogo.png" alt="" class="logo">
+                    <img src="/images/nculogo.png" alt="" class="logo">
                     <span class="ncu hidden-xs">南昌大学</span>
                     <span class="user col-md-offset-7">
                         甘容辉<span class="hidden-xs">(8000116251)</span> &nbsp;&nbsp;&nbsp;<a href="">注销</a>
@@ -66,10 +66,13 @@
                     <hr>
                     <ul class="list-group">
                         <li class="list-group-item" th:each="bulletin : ${pagination.data}">
-                            <a href="" th:text="${bulletin.title}">毕设开始了</a>
+                            <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}">毕设开始了</a>
                             <span class="view-time">
                                 <span th:text="${bulletin.gmtModified}">2020-11-11</span>&nbsp;&nbsp;
-                                <a href="">删除</a>&nbsp;/&nbsp;<a href="">修改</a>
+                                <span th:if="session.role != 'admin'">
+                                    <a th:href="@{'/bulletin/delete/'+${bulletin.id}}">删除</a>&nbsp;/&nbsp;
+                                    <a th:href="@{'/bulletin/modify/'+${bulletin.id}}">修改</a>
+                                </span>
                             </span>
                         </li>
                     </ul>

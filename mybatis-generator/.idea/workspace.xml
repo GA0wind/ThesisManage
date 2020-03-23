@@ -1,7 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64f53fab-8b20-402e-adc6-3a774d105ac2" name="Default Changelist" comment="" />
+    <list default="true" id="64f53fab-8b20-402e-adc6-3a774d105ac2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/AOP/ProjectPlayAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectApplyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/BlindTrialDistribution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/myProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project-info.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/0/f/0fbc764d4bb22505e1c51962162d549862cb5b6f" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/0/f/0fbc764d4bb22505e1c51962162d549862cb5b6f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/7/176dffd183a497c982dff957ac568b331531c14b" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/7/176dffd183a497c982dff957ac568b331531c14b" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/3/c/3c217105e7dec396a5a2d644fcced47717ca6503" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/3/c/3c217105e7dec396a5a2d644fcced47717ca6503" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/d/3/d3fec00ad6c869b34b5c516f9a6698e2e19650df" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/d/3/d3fec00ad6c869b34b5c516f9a6698e2e19650df" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/GraduationProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/GraduationProjectApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/BulletinDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/BulletinDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmBulletinError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmBulletinError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/BulletinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/BulletinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/FileSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/FileSave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectApplyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/share.css" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/share.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin-publish.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin-publish.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletinView.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletinView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/head.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Bulletin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Bulletin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/BulletinExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/BulletinExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/MenuExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectApply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectApply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/StudentExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/StudentExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/TeacherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/TeacherExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/BulletinMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/BulletinMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProjectApplyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProjectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProjectPlanMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProjectPlanMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProjectSelectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProjectSelectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeacherMapper.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,21 +92,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="20" selection-start-line="14" selection-start-column="17" selection-end-line="15" selection-end-column="20" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="627">
+              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ProjectMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -61,17 +153,20 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="601" />
-    <option name="y" value="112" />
-    <option name="width" value="1940" />
-    <option name="height" value="1100" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="37" />
+    <option name="y" value="29" />
+    <option name="width" value="1739" />
+    <option name="height" value="1040" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -129,28 +224,6 @@
               <item name="mybatis-generator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ncu" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="graduation-mybatis-generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mybatis-generator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ncu" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="graduation-mybatis-generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mybatis-generator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -165,14 +238,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../graduation" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -208,16 +280,21 @@
       <workItem from="1584256688371" duration="1684000" />
       <workItem from="1584285545083" duration="3256000" />
       <workItem from="1584717488212" duration="651000" />
+      <workItem from="1584796971851" duration="1147000" />
+      <workItem from="1584800909371" duration="1474000" />
+      <workItem from="1584863897062" duration="1833000" />
+      <workItem from="1584891077556" duration="1507000" />
+      <workItem from="1584940170665" duration="2539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5591000" />
+    <option name="totallyTimeSpent" value="14091000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25586355" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26918977" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
@@ -227,7 +304,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2751817" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23596674" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -257,13 +334,24 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="627">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ProjectMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="20" selection-start-line="14" selection-start-column="17" selection-end-line="15" selection-end-column="20" />
         </state>
       </provider>
     </entry>
