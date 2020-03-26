@@ -24,7 +24,6 @@
 <script>
   function download(e) {
     var dataUrl = $(e).attr('data-filePath');
-
     $.ajax({
       url: '/download?filePath=' + dataUrl + '&fileType='+'bulletin',
       success:function () {
@@ -35,6 +34,14 @@
       }
     })
   }
+
+  // $(document).ready(function(){
+  //   var bulletin = $("#bulletin-view").innerText;
+  //   $("#bulletin-view").html("");
+  //   $("#bulletin-view").append(bulletin);
+  // });
+
+
 </script>
 
 <body>
@@ -86,27 +93,17 @@
                 th:text="${#dates.format(bulletin.gmtModified,'yyyy-MM-dd')}"></span></span>
           </div>
           <hr>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="bulletin-view">
-          <textarea style="display: none;" th:text="${bulletin.description}">
-          </textarea>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="bulletin-view" th:utext="${bulletin.description}">
           </div>
           <div>
             <p>
               &nbsp;&nbsp;附件
-              <span class="hide" th:text="${#strings.arraySplit(bulletin.filePath,'#')[0]}"></span>
               <a th:href="@{/download(filePath=${bulletin.filePath},fileType='bulletin')}"><span th:text="${#strings.arraySplit(bulletin.filePath,'#')[1]}"></span></a>
               &nbsp;&nbsp;
               <a th:href="@{/readOnline(filePath=${bulletin.filePath},fileType='bulletin')}">在线浏览</a>
-
             </p>
-
           </div>
         </div>
-        <script type="text/javascript">
-          $(function () {
-            editormd.markdownToHTML("bulletin-view", {});
-          });
-        </script>
       </div>
     </div>
   </div>

@@ -15,6 +15,10 @@ public enum EmProjectError implements CommonError{
   UNKNOWN_ERROR(10002,"未知错误"),
 
   PROJECT_NO_NOT_EXIST(40001,"课题编号不存在"),
+  PROJECT_SELECT_OVER_MAX_NUM(50001,"已选课题选择数量大于可选择最大数量"),
+  PROJECT_SELECT_REPEAT(50002,"不能重复选择课题"),
+  PROJECT_WAS_SELECTED_OVER_MAX_NUM(50002,"该课题被选择数量大于可被选择最大数量"),
+
   ;
   private Integer errCode;
   private String errMsg;
@@ -39,4 +43,5 @@ public enum EmProjectError implements CommonError{
     this.errMsg = errMsg;
     return this;
   }
+
 }

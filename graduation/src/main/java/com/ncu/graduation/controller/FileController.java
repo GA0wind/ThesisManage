@@ -44,13 +44,14 @@ public class FileController {
     // 存放在这个路径下：该路径是该工程目录下的static文件下：(注：该文件可能需要自己创建)
     // 放在static下的原因是，存放的是静态文件资源，即通过浏览器输入本地服务器地址，加文件名时是可以访问到的
     String path =
-        Objects.requireNonNull(ClassUtils.getDefaultClassLoader()).getResource("").getPath()
+        Objects.requireNonNull(
+            Objects.requireNonNull(ClassUtils.getDefaultClassLoader()).getResource("")).getPath()
             + "static/images/markdown/";
 
     ImageDTO imageDTO = new ImageDTO();
-    imageDTO.setSuccess(0);
     if (file.isEmpty()) {
-      imageDTO.setMessage(EmBulletinError.BULLETIN_FILE_IS_EMPTY.getErrMsg());
+      imageDTO.setErrno(1);
+//      imageDTO.setMessage(EmBulletinError.BULLETIN_FILE_IS_EMPTY.getErrMsg());
       return imageDTO;
     }
     String fileTempName = file.getOriginalFilename();
@@ -60,7 +61,8 @@ public class FileController {
     File dest = new File(path, fileName);
     //判断文件是否已经存在
     if (dest.exists()) {
-      imageDTO.setMessage(EmBulletinError.BULLETIN_FILE_IS_EXIST.getErrMsg());
+      imageDTO.setErrno(2);
+//      imageDTO.setMessage(EmBulletinError.BULLETIN_FILE_IS_EXIST.getErrMsg());
       return imageDTO;
     }
     //判断文件父目录是否存在
@@ -70,15 +72,16 @@ public class FileController {
     try {
       //保存文件
       file.transferTo(dest);
-      imageDTO.setSuccess(1);
     } catch (IOException e) {
       e.printStackTrace();
-      System.out.println(e.getMessage());
-      imageDTO.setMessage(EmBulletinError.UNKNOWN_ERROR.getErrMsg());
+      imageDTO.setErrno(3);
+//      imageDTO.setMessage(EmBulletinError.UNKNOWN_ERROR.getErrMsg());
       return imageDTO;
     }
-    imageDTO.setMessage(fileName);
-    imageDTO.setUrl("/images/markdown/" + fileName);
+    imageDTO.setErrno(0);
+    String[] url = new String[1];
+    url[0] = "/images/markdown/" + fileName;
+    imageDTO.setData(url);
     return imageDTO;
   }
 
@@ -87,17 +90,20 @@ public class FileController {
   public Object downloadFile(@RequestParam("filePath") String fileName,
       String fileType,
       HttpServletResponse response) {
+    //判断文件类型
     FileTypeEnum emfileType = FileTypeEnum.judgeType(fileType);
     if (emfileType == null) {
       return ResultDTO.errorOf(EmBulletinError.BULLETIN_FILE_TYPE_IS_EMPTY);
     }
+    //设置完整文件路径
     String trueFileName = emfileType.getPreUrl() + fileName;
+
     File file = new File(trueFileName);
     if (file.exists()) {
       response.setContentType("application/octet-stream");
       try {
         response.setHeader("Content-Disposition",
-            "attachment;fileName=" + URLEncoder.encode(fileName.split("#",2)[1], "utf8"));
+            "attachment;fileName=" + URLEncoder.encode(fileName.split("#", 2)[1], "utf8"));
       } catch (UnsupportedEncodingException e) {
         e.printStackTrace();
       }

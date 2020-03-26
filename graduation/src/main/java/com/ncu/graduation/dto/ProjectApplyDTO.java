@@ -14,11 +14,14 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Data
 public class ProjectApplyDTO {
-  private String id;
+
+  private String pno;
   @NotBlank(message = "标题不能为空")
-  private String name;
+  private String pname;
   @NotBlank(message = "内容能为空")
-  private String desc;
+  private String content;
+
+  private String oldFilePath;
 
   private String type;
   @NotNull(message = "申请文件不能为空")

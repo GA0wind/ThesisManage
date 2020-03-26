@@ -15,6 +15,7 @@ public class UserVO {
   private String accountNo;
   private String name;
   private String role;
+  private String college;
   private String schoolYear;
 
 }

@@ -16,6 +16,7 @@ body {
 
 .login-logo img {
   vertical-align: middle;
+  height: 80px
 }
 
 .login-logo h2 {

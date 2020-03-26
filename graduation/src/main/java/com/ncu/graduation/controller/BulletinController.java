@@ -29,7 +29,7 @@ public class BulletinController {
   public String bulletin(HttpServletRequest request,
       Model model,
       @RequestParam(name = "page", defaultValue = "1") Integer page,
-      @RequestParam(name = "size", defaultValue = "5") Integer size) {
+      @RequestParam(name = "size", defaultValue = "10") Integer size) {
     UserVO userVO = (UserVO) request.getSession().getAttribute("user");
     PaginationDTO paginationDTO = bulletinService.list(page, size, userVO.getSchoolYear());
     model.addAttribute("pagination", paginationDTO);
@@ -57,7 +57,7 @@ public class BulletinController {
       HttpServletRequest request) {
     UserVO userVO = (UserVO) request.getSession().getAttribute("user");
     bulletinService.createOrUpdate(bulletinDTO,userVO);
-    return "redirect:/bulletinView";
+    return "redirect:/bulletin";
   }
 
 

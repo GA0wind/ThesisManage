@@ -19,7 +19,7 @@ public enum UserRoleEnum {
         return this.role;
     }
 
-    static public boolean  isRole(String role){
+    public static boolean isRole(String role){
         for (UserRoleEnum value : UserRoleEnum.values()) {
             if (role.equals(value.getRole())){
                 return true;

@@ -2,47 +2,542 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f53fab-8b20-402e-adc6-3a774d105ac2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/AOP/ProjectPlayAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectApplyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/BlindTrialDistribution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/myProject.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project-info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/0/f/0fbc764d4bb22505e1c51962162d549862cb5b6f" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/0/f/0fbc764d4bb22505e1c51962162d549862cb5b6f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/7/176dffd183a497c982dff957ac568b331531c14b" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/7/176dffd183a497c982dff957ac568b331531c14b" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/3/c/3c217105e7dec396a5a2d644fcced47717ca6503" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/3/c/3c217105e7dec396a5a2d644fcced47717ca6503" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/d/3/d3fec00ad6c869b34b5c516f9a6698e2e19650df" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/d/3/d3fec00ad6c869b34b5c516f9a6698e2e19650df" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectSelectController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectVerifyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/enums/CollegeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectExtMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TeacherExtMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectSelectService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/BlindDistribution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/ExcelOperate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectSelectVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectViewVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectExtMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TeacherExtMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/wangEditor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/wangEditor.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project-select.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/verifyProject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/GraduationProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/GraduationProjectApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/BulletinDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/BulletinDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmBulletinError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmBulletinError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ImageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ImageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectApplyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectApplyDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/enums/UserRoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/enums/UserRoleEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Bulletin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Bulletin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/BulletinExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/BulletinExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/MenuExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApply.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/StudentExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/StudentExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TeacherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TeacherExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/BulletinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/BulletinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/FileSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/FileSave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/UserVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/UserVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/BulletinMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/BulletinMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectApplyMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/share.css" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/share.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectPlanMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectPlanMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectSelectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectSelectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TeacherMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/editormd.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/editormd.preview.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/code.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/loading.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/loading@2x.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/loading@3x.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-favicon-16x16.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-favicon-24x24.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-favicon-32x32.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-favicon-48x48.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-favicon-64x64.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-114x114.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-120x120.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-144x144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-180x180.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-240x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-24x24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-320x320.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-48x48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-57x57.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-64x64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-72x72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/editormd-logo-96x96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/images/logos/vi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/editormd.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/jquery-3.4.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/jquery-3.4.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/jqueryForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/jqueryForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/AUTHORS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/comment/comment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/comment/continuecomment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/dialog/dialog.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/dialog/dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/display/fullscreen.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/display/fullscreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/display/panel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/display/placeholder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/display/rulers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/edit/closebrackets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/edit/closetag.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/edit/continuelist.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/edit/matchbrackets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/edit/matchtags.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/edit/trailingspace.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/brace-fold.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/comment-fold.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/foldcode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/foldgutter.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/foldgutter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/indent-fold.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/markdown-fold.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/fold/xml-fold.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/anyword-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/css-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/html-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/javascript-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/show-hint.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/show-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/sql-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/hint/xml-hint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/coffeescript-lint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/css-lint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/javascript-lint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/json-lint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/lint.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/lint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/lint/yaml-lint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/merge/merge.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/merge/merge.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/mode/loadmode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/mode/multiplex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/mode/multiplex_test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/mode/overlay.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/mode/simple.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/runmode/colorize.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/runmode/runmode-standalone.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/runmode/runmode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/runmode/runmode.node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/scroll/annotatescrollbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/scroll/scrollpastend.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/scroll/simplescrollbars.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/scroll/simplescrollbars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/search/match-highlighter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/search/matchesonscrollbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/search/matchesonscrollbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/search/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/search/searchcursor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/selection/active-line.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/selection/mark-selection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/selection/selection-pointer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/tern/tern.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/tern/tern.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/tern/worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addon/wrap/hardwrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/addons.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/codemirror.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/codemirror.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/lib/codemirror.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/lib/codemirror.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/apl/apl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/apl/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/asterisk/asterisk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/asterisk/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/clike/clike.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/clike/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/clike/scala.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/clojure/clojure.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/clojure/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/cobol/cobol.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/cobol/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/coffeescript/coffeescript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/coffeescript/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/commonlisp/commonlisp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/commonlisp/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/css.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/less.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/less_test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/scss.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/scss_test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/css/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/cypher/cypher.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/cypher/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/d/d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/d/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dart/dart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dart/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/diff/diff.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/diff/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/django/django.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/django/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dockerfile/dockerfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dockerfile/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dtd/dtd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dtd/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dylan/dylan.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/dylan/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ebnf/ebnf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ebnf/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ecl/ecl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ecl/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/eiffel/eiffel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/eiffel/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/erlang/erlang.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/erlang/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/forth/forth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/forth/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/fortran/fortran.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/fortran/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gas/gas.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gas/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gfm/gfm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gfm/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gfm/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gherkin/gherkin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/gherkin/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/go/go.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/go/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/groovy/groovy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/groovy/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haml/haml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haml/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haml/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haskell/haskell.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haskell/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haxe/haxe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/haxe/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/htmlembedded/htmlembedded.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/htmlembedded/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/htmlmixed/htmlmixed.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/htmlmixed/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/http/http.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/http/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/idl/idl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/idl/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/jade/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/jade/jade.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/javascript/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/javascript/javascript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/javascript/json-ld.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/javascript/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/javascript/typescript.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/jinja2/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/jinja2/jinja2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/julia/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/julia/julia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/kotlin/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/kotlin/kotlin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/livescript/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/livescript/livescript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/lua/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/lua/lua.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/markdown/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/markdown/markdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/markdown/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/meta.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/mirc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/mirc/mirc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/mllike/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/mllike/mllike.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/modelica/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/modelica/modelica.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/nginx/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/nginx/nginx.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ntriples/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ntriples/ntriples.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/octave/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/octave/octave.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/pascal/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/pascal/pascal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/pegjs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/pegjs/pegjs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/perl/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/perl/perl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/php/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/php/php.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/php/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/pig/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/pig/pig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/properties/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/properties/properties.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/puppet/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/puppet/puppet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/python/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/python/python.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/q/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/q/q.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/r/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/r/r.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rpm/changes/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rpm/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rpm/rpm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rst/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rst/rst.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ruby/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ruby/ruby.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/ruby/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rust/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/rust/rust.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sass/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sass/sass.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/scheme/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/scheme/scheme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/shell/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/shell/shell.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/shell/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sieve/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sieve/sieve.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/slim/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/slim/slim.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/slim/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/smalltalk/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/smalltalk/smalltalk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/smarty/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/smarty/smarty.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/smartymixed/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/smartymixed/smartymixed.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/solr/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/solr/solr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/soy/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/soy/soy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sparql/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sparql/sparql.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/spreadsheet/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/spreadsheet/spreadsheet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sql/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/sql/sql.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/stex/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/stex/stex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/stex/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/stylus/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/stylus/stylus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tcl/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tcl/tcl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/textile/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/textile/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/textile/textile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tiddlywiki/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tiddlywiki/tiddlywiki.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tiddlywiki/tiddlywiki.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tiki/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tiki/tiki.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tiki/tiki.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/toml/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/toml/toml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tornado/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/tornado/tornado.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/turtle/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/turtle/turtle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/vb/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/vb/vb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/vbscript/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/vbscript/vbscript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/velocity/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/velocity/velocity.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/verilog/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/verilog/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/verilog/verilog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/xml/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/xml/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/xml/xml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/xquery/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/xquery/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/xquery/xquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/yaml/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/yaml/yaml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/z80/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/mode/z80/z80.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/modes.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/3024-day.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/3024-night.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/ambiance-mobile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/ambiance.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/base16-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/base16-light.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/blackboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/cobalt.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/colorforth.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/eclipse.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/elegant.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/erlang-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/lesser-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/mbo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/mdn-like.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/midnight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/monokai.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/neat.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/neo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/night.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/paraiso-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/paraiso-light.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/pastel-on-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/rubyblue.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/solarized.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/the-matrix.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/tomorrow-night-bright.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/tomorrow-night-eighties.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/twilight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/vibrant-ink.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/xq-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/xq-light.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/codemirror/theme/zenburn.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/flowchart.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/jquery.flowchart.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/marked.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/prettify.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/raphael.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/sequence-diagram.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/lib/underscore.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/code-block-dialog/code-block-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/emoji-dialog/emoji-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/emoji-dialog/emoji.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/goto-line-dialog/goto-line-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/help-dialog/help-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/help-dialog/help.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/html-entities-dialog/html-entities-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/html-entities-dialog/html-entities.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/image-dialog/image-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/link-dialog/link-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/plugin-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/preformatted-text-dialog/preformatted-text-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/reference-link-dialog/reference-link-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/table-dialog/table-dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/js/plugins/test-plugin/test-plugin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/debugger.js" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/debugger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ach/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ach/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ar/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ar/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ast/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ast/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/az/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/az/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/be/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/be/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bg/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bg/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bn/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bo/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/br/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/br/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/brx/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/brx/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bs/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/bs/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ca/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ca/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/cak/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/cak/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/cs/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/cs/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/cy/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/cy/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/da/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/da/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/de/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/de/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/dsb/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/dsb/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/el/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/el/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/en-CA/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/en-CA/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/en-GB/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/en-GB/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/en-US/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/en-US/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/eo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/eo/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-AR/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-AR/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-CL/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-CL/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-ES/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-ES/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-MX/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/es-MX/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/et/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/et/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/eu/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/eu/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fa/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fa/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ff/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ff/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fi/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fi/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fr/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fy-NL/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/fy-NL/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gd/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gd/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gl/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gn/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gu-IN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/gu-IN/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/he/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/he/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hi-IN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hi-IN/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hr/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hsb/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hsb/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hu/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hu/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hy-AM/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/hy-AM/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ia/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ia/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/id/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/id/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/is/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/is/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ja/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ja/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ka/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ka/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/kab/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/kab/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/kk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/kk/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/kn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/kn/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ko/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ko/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lij/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lij/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lo/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lt/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lt/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ltg/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ltg/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lv/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/lv/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/mk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/mk/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/mr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/mr/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ms/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ms/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/my/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/my/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/nb-NO/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/nb-NO/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/nl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/nl/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/nn-NO/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/nn-NO/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/oc/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/oc/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pa-IN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pa-IN/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pl/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pt-BR/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pt-BR/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pt-PT/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/pt-PT/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/rm/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/rm/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ro/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ro/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ru/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ru/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/scn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/scn/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/si/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/si/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sk/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sl/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sq/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sq/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sr/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sv-SE/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/sv-SE/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ta/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ta/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/te/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/te/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/th/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/th/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/tl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/tl/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/tr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/tr/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/trs/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/trs/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/uk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/uk/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ur/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/ur/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/vi/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/vi/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/zh-CN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/zh-CN/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/zh-TW/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/locale/zh-TW/viewer.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/viewer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/pdf/web/viewer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin-publish.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin-publish.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletinView.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletinView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/head.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/myProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/myProject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project-info.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project-info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/test/java/com/ncu/graduation/GraduationProjectApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/test/java/com/ncu/graduation/GraduationProjectApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" afterDir="false" />
@@ -68,7 +563,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/StudentExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/StudentExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/TeacherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/TeacherExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/BulletinMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/BulletinMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProjectApplyMapper.xml" afterDir="false" />
@@ -77,6 +571,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProjectSelectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProjectSelectMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeacherMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ProjectApplyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ProjectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ProjectSelectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ProjectSelectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/StudentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/TeacherMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -92,11 +592,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="20" selection-start-line="14" selection-start-column="17" selection-end-line="15" selection-end-column="20" />
+            <state relative-caret-position="323">
+              <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -104,8 +604,75 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state relative-caret-position="651">
+              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Project.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+              <folding>
+                <element signature="e#4037#4038#0" expanded="true" />
+                <element signature="e#4062#4063#0" expanded="true" />
+                <element signature="e#4342#4343#0" expanded="true" />
+                <element signature="e#4370#4371#0" expanded="true" />
+                <element signature="e#4648#4649#0" expanded="true" />
+                <element signature="e#4674#4675#0" expanded="true" />
+                <element signature="e#4961#4962#0" expanded="true" />
+                <element signature="e#5019#5020#0" expanded="true" />
+                <element signature="e#5303#5304#0" expanded="true" />
+                <element signature="e#5331#5332#0" expanded="true" />
+                <element signature="e#5628#5629#0" expanded="true" />
+                <element signature="e#5692#5693#0" expanded="true" />
+                <element signature="e#5973#5974#0" expanded="true" />
+                <element signature="e#6000#6001#0" expanded="true" />
+                <element signature="e#6292#6293#0" expanded="true" />
+                <element signature="e#6353#6354#0" expanded="true" />
+                <element signature="e#6643#6644#0" expanded="true" />
+                <element signature="e#6673#6674#0" expanded="true" />
+                <element signature="e#7345#7346#0" expanded="true" />
+                <element signature="e#7376#7377#0" expanded="true" />
+                <element signature="e#8041#8042#0" expanded="true" />
+                <element signature="e#8067#8068#0" expanded="true" />
+                <element signature="e#8354#8355#0" expanded="true" />
+                <element signature="e#8412#8413#0" expanded="true" />
+                <element signature="e#8696#8697#0" expanded="true" />
+                <element signature="e#8724#8725#0" expanded="true" />
+                <element signature="e#9021#9022#0" expanded="true" />
+                <element signature="e#9085#9086#0" expanded="true" />
+                <element signature="e#9363#9364#0" expanded="true" />
+                <element signature="e#9389#9390#0" expanded="true" />
+                <element signature="e#9676#9677#0" expanded="true" />
+                <element signature="e#9734#9735#0" expanded="true" />
+                <element signature="e#10018#10019#0" expanded="true" />
+                <element signature="e#10046#10047#0" expanded="true" />
+                <element signature="e#10343#10344#0" expanded="true" />
+                <element signature="e#10407#10408#0" expanded="true" />
+                <element signature="e#10688#10689#0" expanded="true" />
+                <element signature="e#10715#10716#0" expanded="true" />
+                <element signature="e#11007#11008#0" expanded="true" />
+                <element signature="e#11068#11069#0" expanded="true" />
+                <element signature="e#11355#11356#0" expanded="true" />
+                <element signature="e#11384#11385#0" expanded="true" />
+                <element signature="e#11686#11687#0" expanded="true" />
+                <element signature="e#11722#11723#0" expanded="true" />
+                <element signature="e#12023#12024#0" expanded="true" />
+                <element signature="e#12056#12057#0" expanded="true" />
+                <element signature="e#12755#12756#0" expanded="true" />
+                <element signature="e#12787#12788#0" expanded="true" />
+                <element signature="e#13104#13105#0" expanded="true" />
+                <element signature="e#13146#13147#0" expanded="true" />
+                <element signature="e#13448#13449#0" expanded="true" />
+                <element signature="e#13482#13483#0" expanded="true" />
+                <element signature="e#13809#13810#0" expanded="true" />
+                <element signature="e#13855#13856#0" expanded="true" />
+                <element signature="e#14145#14146#0" expanded="true" />
+                <element signature="e#14175#14176#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,8 +680,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ProjectMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+            <state relative-caret-position="532">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -128,6 +695,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -153,9 +721,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="37" />
-    <option name="y" value="29" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="948" />
+    <option name="y" value="89" />
     <option name="width" value="1739" />
     <option name="height" value="1040" />
   </component>
@@ -224,6 +792,28 @@
               <item name="mybatis-generator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ncu" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-mybatis-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mybatis-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ncu" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-mybatis-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mybatis-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -285,16 +875,23 @@
       <workItem from="1584863897062" duration="1833000" />
       <workItem from="1584891077556" duration="1507000" />
       <workItem from="1584940170665" duration="2539000" />
+      <workItem from="1585021406516" duration="1549000" />
+      <workItem from="1585039718236" duration="688000" />
+      <workItem from="1585044896089" duration="583000" />
+      <workItem from="1585131140632" duration="3923000" />
+      <workItem from="1585153864079" duration="508000" />
+      <workItem from="1585210532019" duration="3557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14091000" />
+    <option name="totallyTimeSpent" value="24899000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26918977" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23027718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
@@ -321,7 +918,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.21375267" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.1705757" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="BPMNPalette" order="6" />
@@ -334,24 +931,89 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        <state relative-caret-position="323">
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ProjectMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        <state relative-caret-position="532">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="20" selection-start-line="14" selection-start-column="17" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="651">
+          <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+          <folding>
+            <element signature="e#4037#4038#0" expanded="true" />
+            <element signature="e#4062#4063#0" expanded="true" />
+            <element signature="e#4342#4343#0" expanded="true" />
+            <element signature="e#4370#4371#0" expanded="true" />
+            <element signature="e#4648#4649#0" expanded="true" />
+            <element signature="e#4674#4675#0" expanded="true" />
+            <element signature="e#4961#4962#0" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5303#5304#0" expanded="true" />
+            <element signature="e#5331#5332#0" expanded="true" />
+            <element signature="e#5628#5629#0" expanded="true" />
+            <element signature="e#5692#5693#0" expanded="true" />
+            <element signature="e#5973#5974#0" expanded="true" />
+            <element signature="e#6000#6001#0" expanded="true" />
+            <element signature="e#6292#6293#0" expanded="true" />
+            <element signature="e#6353#6354#0" expanded="true" />
+            <element signature="e#6643#6644#0" expanded="true" />
+            <element signature="e#6673#6674#0" expanded="true" />
+            <element signature="e#7345#7346#0" expanded="true" />
+            <element signature="e#7376#7377#0" expanded="true" />
+            <element signature="e#8041#8042#0" expanded="true" />
+            <element signature="e#8067#8068#0" expanded="true" />
+            <element signature="e#8354#8355#0" expanded="true" />
+            <element signature="e#8412#8413#0" expanded="true" />
+            <element signature="e#8696#8697#0" expanded="true" />
+            <element signature="e#8724#8725#0" expanded="true" />
+            <element signature="e#9021#9022#0" expanded="true" />
+            <element signature="e#9085#9086#0" expanded="true" />
+            <element signature="e#9363#9364#0" expanded="true" />
+            <element signature="e#9389#9390#0" expanded="true" />
+            <element signature="e#9676#9677#0" expanded="true" />
+            <element signature="e#9734#9735#0" expanded="true" />
+            <element signature="e#10018#10019#0" expanded="true" />
+            <element signature="e#10046#10047#0" expanded="true" />
+            <element signature="e#10343#10344#0" expanded="true" />
+            <element signature="e#10407#10408#0" expanded="true" />
+            <element signature="e#10688#10689#0" expanded="true" />
+            <element signature="e#10715#10716#0" expanded="true" />
+            <element signature="e#11007#11008#0" expanded="true" />
+            <element signature="e#11068#11069#0" expanded="true" />
+            <element signature="e#11355#11356#0" expanded="true" />
+            <element signature="e#11384#11385#0" expanded="true" />
+            <element signature="e#11686#11687#0" expanded="true" />
+            <element signature="e#11722#11723#0" expanded="true" />
+            <element signature="e#12023#12024#0" expanded="true" />
+            <element signature="e#12056#12057#0" expanded="true" />
+            <element signature="e#12755#12756#0" expanded="true" />
+            <element signature="e#12787#12788#0" expanded="true" />
+            <element signature="e#13104#13105#0" expanded="true" />
+            <element signature="e#13146#13147#0" expanded="true" />
+            <element signature="e#13448#13449#0" expanded="true" />
+            <element signature="e#13482#13483#0" expanded="true" />
+            <element signature="e#13809#13810#0" expanded="true" />
+            <element signature="e#13855#13856#0" expanded="true" />
+            <element signature="e#14145#14146#0" expanded="true" />
+            <element signature="e#14175#14176#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

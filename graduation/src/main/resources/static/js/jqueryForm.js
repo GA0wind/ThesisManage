@@ -17,7 +17,7 @@
     // using AMD; register as anon module
     define(['jquery'], factory);
   } else {
-    // no AMD; invoke directly
+    // pno AMD; invoke directly
     factory( (typeof(jQuery) != 'undefined') ? jQuery : window.Zepto );
   }
 }
@@ -95,7 +95,7 @@
 
     // fast fail if nothing selected (http://dev.jquery.com/ticket/2752)
     if (!this.length) {
-      log('ajaxSubmit: skipping submit process - no element selected');
+      log('ajaxSubmit: skipping submit process - pno element selected');
       return this;
     }
 
@@ -383,7 +383,7 @@
         }
       }
       else {
-        $io = $('<iframe name="' + id + '" src="'+ s.iframeSrc +'" />');
+        $io = $('<iframe pname="' + id + '" src="'+ s.iframeSrc +'" />');
         $io.css({ position: 'absolute', top: '-1000px', left: '-1000px' });
       }
       io = $io[0];
@@ -497,8 +497,8 @@
       }
 
       // Rails CSRF hack (thanks to Yvan Barthelemy)
-      var csrf_token = $('meta[name=csrf-token]').attr('content');
-      var csrf_param = $('meta[name=csrf-param]').attr('content');
+      var csrf_token = $('meta[pname=csrf-token]').attr('content');
+      var csrf_param = $('meta[pname=csrf-param]').attr('content');
       if (csrf_param && csrf_token) {
         s.extraData = s.extraData || {};
         s.extraData[csrf_param] = csrf_token;
@@ -559,14 +559,14 @@
           if (s.extraData) {
             for (var n in s.extraData) {
               if (s.extraData.hasOwnProperty(n)) {
-                // if using the $.param format that allows for multiple values with the same name
+                // if using the $.param format that allows for multiple values with the same pname
                 if($.isPlainObject(s.extraData[n]) && s.extraData[n].hasOwnProperty('name') && s.extraData[n].hasOwnProperty('value')) {
                   extraInputs.push(
-                      $('<input type="hidden" name="'+s.extraData[n].name+'">').val(s.extraData[n].value)
+                      $('<input type="hidden" pname="'+s.extraData[n].name+'">').val(s.extraData[n].value)
                       .appendTo(form)[0]);
                 } else {
                   extraInputs.push(
-                      $('<input type="hidden" name="'+n+'">').val(s.extraData[n])
+                      $('<input type="hidden" pname="'+n+'">').val(s.extraData[n])
                       .appendTo(form)[0]);
                 }
               }
@@ -588,7 +588,7 @@
           try {
             form.submit();
           } catch(err) {
-            // just in case form has element with name/id of 'submit'
+            // just in case form has element with pname/id of 'submit'
             var submitFn = document.createElement('form').submit;
             submitFn.apply(form);
           }
@@ -840,7 +840,7 @@
    *
    * 1: This method will include coordinates for <input type="image" /> elements (if the element
    *    is used to submit the form).
-   * 2. This method will include the submit element's name/value data (for the element that was
+   * 2. This method will include the submit element's pname/value data (for the element that was
    *    used to submit the form).
    * 3. This method binds the submit() method to the form for you.
    *
@@ -931,10 +931,10 @@
   /**
    * formToArray() gathers form element data into an array of objects that can
    * be passed to any of the following ajax functions: $.get, $.post, or load.
-   * Each object in the array has both a 'name' and 'value' property.  An example of
+   * Each object in the array has both a 'pname' and 'value' property.  An example of
    * an array for a simple login form might be:
    *
-   * [ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ]
+   * [ { pname: 'username', value: 'jresig' }, { pname: 'password', value: 'secret' } ]
    *
    * It is this array that is passed to pre-submit callback functions provided to the
    * ajaxSubmit() and ajaxForm() methods.
@@ -1065,16 +1065,16 @@
    * Returns the value(s) of the element in the matched set.  For example, consider the following form:
    *
    *  <form><fieldset>
-   *      <input name="A" type="text" />
-   *      <input name="A" type="text" />
-   *      <input name="B" type="checkbox" value="B1" />
-   *      <input name="B" type="checkbox" value="B2"/>
-   *      <input name="C" type="radio" value="C1" />
-   *      <input name="C" type="radio" value="C2" />
+   *      <input pname="A" type="text" />
+   *      <input pname="A" type="text" />
+   *      <input pname="B" type="checkbox" value="B1" />
+   *      <input pname="B" type="checkbox" value="B2"/>
+   *      <input pname="C" type="radio" value="C1" />
+   *      <input pname="C" type="radio" value="C2" />
    *  </fieldset></form>
    *
    *  var v = $('input[type=text]').fieldValue();
-   *  // if no values are entered into the text inputs
+   *  // if pno values are entered into the text inputs
    *  v == ['','']
    *  // if values entered into the text inputs are 'foo' and 'bar'
    *  v == ['foo','bar']
@@ -1096,7 +1096,7 @@
    * The default value of the successful argument is true.  If this value is false the value(s)
    * for each element is returned.
    *
-   * Note: This method *always* returns an array.  If no valid value can be determined the
+   * Note: This method *always* returns an array.  If pno valid value can be determined the
    *    array will be empty, otherwise it will contain one or more values.
    */
   $.fn.fieldValue = function(successful) {
@@ -1213,7 +1213,7 @@
    */
   $.fn.resetForm = function() {
     return this.each(function() {
-      // guard against an input with the name of 'reset'
+      // guard against an input with the pname of 'reset'
       // note that IE reports the reset function as an 'object'
       if (typeof this.reset == 'function' || (typeof this.reset == 'object' && !this.reset.nodeType)) {
         this.reset();

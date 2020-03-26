@@ -40,7 +40,7 @@ public class FileSave {
             e.printStackTrace();
             throw new CommonException(EmBulletinError.BULLETIN_FILE_UPLOAD_FAIL);
         }
-        return path+fileName;
+        return fileName;
     }
 
 

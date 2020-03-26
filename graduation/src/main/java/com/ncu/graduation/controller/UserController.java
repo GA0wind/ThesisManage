@@ -32,7 +32,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/verifyCode", method = RequestMethod.GET)
+    @GetMapping(value = "/verifyCode")
     public void GetVerifyCode(HttpServletRequest request,
                               HttpServletResponse response) {
         VerifyCode verifyCode = VerifyCode.print();
@@ -44,14 +44,14 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String login(Model model) {
         List<String> schoolYear = userService.getSchoolYear();
         model.addAttribute("schoolYears",schoolYear);
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     public Object login(@Valid LoginDTO loginDTO,
                         HttpServletRequest request,
                         Model model) {
@@ -71,6 +71,7 @@ public class UserController {
             userVO.setRole(teacher.getRole());
             userVO.setSchoolYear(loginDTO.getSchoolYear());
             userVO.setAccountNo(teacher.getTno());
+            userVO.setCollege(teacher.getCollege());
             request.getSession().setAttribute("user", userVO);
         }
         if (UserRoleEnum.STUDENT.getRole().equals(loginDTO.getRole())) {
@@ -80,10 +81,11 @@ public class UserController {
             userVO.setRole(UserRoleEnum.STUDENT.getRole());
             userVO.setSchoolYear(student.getSchoolYear());
             userVO.setAccountNo(student.getSno());
+            userVO.setCollege(student.getCollege());
             request.getSession().setAttribute("user", userVO);
         }
         List<Menu> menus = userService.getMenu(loginDTO);
         model.addAttribute("menus",menus);
-        return new ModelAndView("myProject") ;
+        return "redirect:/myProject" ;
     }
 }

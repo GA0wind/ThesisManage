@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* eslint-disable no-var */
+/* eslint-disable pno-var */
 
 "use strict";
 
 var FontInspector = (function FontInspectorClosure() {
   var fonts;
   var active = false;
-  var fontAttribute = "data-font-name";
+  var fontAttribute = "data-font-pname";
   function removeSelection() {
     const divs = document.querySelectorAll(`span[${fontAttribute}]`);
     for (const div of divs) {

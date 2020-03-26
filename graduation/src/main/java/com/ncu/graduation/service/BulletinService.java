@@ -1,6 +1,9 @@
 package com.ncu.graduation.service;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 import com.ncu.graduation.dto.BulletinDTO;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.enums.FileTypeEnum;
@@ -29,21 +32,27 @@ public class BulletinService {
     @Autowired
     private BulletinMapper bulletinMapper;
 
+    /**
+     * 获取公告列表
+     * @param page
+     * @param size
+     * @param schoolYear
+     * @return
+     */
     public PaginationDTO list(Integer page, Integer size, String schoolYear){
         PaginationDTO<BulletinVO> paginationDTO = new PaginationDTO<>();
 
+        //获取公告总数
         BulletinExample bulletinExample = new BulletinExample();
         bulletinExample.createCriteria().andSchoolYearEqualTo(schoolYear);
-
-        Integer totalCount = (int) bulletinMapper.countByExample(bulletinExample);
-
-        paginationDTO.setPagination(totalCount, page, size);
-
-        int offset = size * (page - 1);
-
+        //获取公告并将公告排序
         bulletinExample.setOrderByClause("gmt_modified desc");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        List<Bulletin> bulletins = bulletinMapper.selectByExampleWithRowbounds(bulletinExample, new RowBounds(offset, size));
+        PageMethod.startPage(page,size);
+        List<Bulletin> bulletins = bulletinMapper.selectByExample(bulletinExample);
+        PageInfo<Bulletin> pageInfo = new PageInfo<>(bulletins);
+        paginationDTO.setPagination((int)pageInfo.getTotal(),page,size);
+        //转换为VO
         List<BulletinVO> bulletinVOs = new ArrayList<>();
         for (Bulletin bulletin : bulletins) {
             BulletinVO bulletinVO = new BulletinVO();
@@ -56,13 +65,20 @@ public class BulletinService {
         return paginationDTO;
     }
 
+    /**
+     * 获取公告
+     * @param id
+     * @return
+     */
     public Bulletin getById(Long id) {
-        Bulletin bulletin = bulletinMapper.selectByPrimaryKey(id);
-        String[] strings = bulletin.getFilePath().split("/");
-        bulletin.setFilePath(strings[strings.length - 1]);
-        return bulletin;
+        return bulletinMapper.selectByPrimaryKey(id);
     }
 
+    /**
+     * 发布或修改
+     * @param bulletinDTO
+     * @param userVO
+     */
     public void createOrUpdate(BulletinDTO bulletinDTO, UserVO userVO) {
 
         //判断是修改还是删除
@@ -92,13 +108,12 @@ public class BulletinService {
         bulletin.setFilePath(fileUrl);
         bulletin.setSchoolYear(userVO.getSchoolYear());
         bulletin.setCreatorNo(userVO.getAccountNo());
-
-
         if (bulletinDTO.getId() == null) {
             bulletin.setGmtCreate(new Date());
             bulletin.setGmtModified(bulletin.getGmtCreate());
             bulletinMapper.insertSelective(bulletin);
         } else {
+            bulletin.setId(Long.parseLong(bulletinDTO.getId()));
             bulletin.setGmtModified(new Date());
             int updated = bulletinMapper.updateByPrimaryKeySelective(bulletin);
             if (updated != 1) {
@@ -107,6 +122,10 @@ public class BulletinService {
         }
     }
 
+    /**
+     * 删除公告
+     * @param id
+     */
   public void delete(Long id) {
         bulletinMapper.deleteByPrimaryKey(id);
   }

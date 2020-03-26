@@ -5178,7 +5178,7 @@ class PDFDocumentProperties {
         unit,
         name,
         orientation
-      }, "{{width}} × {{height}} {{unit}} (" + (name ? "{{name}}, " : "") + "{{orientation}})");
+      }, "{{width}} × {{height}} {{unit}} (" + (name ? "{{pname}}, " : "") + "{{orientation}})");
     });
   }
 
@@ -11892,7 +11892,7 @@ class BasePreferences {
     if (defaultValue === undefined) {
       throw new Error(`Set preference: "${name}" is undefined.`);
     } else if (value === undefined) {
-      throw new Error("Set preference: no value is specified.");
+      throw new Error("Set preference: pno value is specified.");
     }
 
     const valueType = typeof value;
@@ -12299,7 +12299,7 @@ document.webL10n = function (window, document, undefined) {
 
         callback();
       } else {
-        console.log('no resource to load, early way out');
+        console.log('pno resource to load, early way out');
       }
 
       gReadyState = 'complete';
