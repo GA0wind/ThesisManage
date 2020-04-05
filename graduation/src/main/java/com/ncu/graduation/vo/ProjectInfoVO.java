@@ -1,9 +1,7 @@
 package com.ncu.graduation.vo;
 
 import com.ncu.graduation.model.ProjectApply;
-import com.ncu.graduation.model.Student;
-import com.ncu.graduation.model.Teacher;
-import java.util.Date;
+import com.ncu.graduation.model.ProjectSelectResult;
 import lombok.Data;
 
 /**
@@ -16,16 +14,6 @@ import lombok.Data;
 
 @Data
 public class ProjectInfoVO {
-  private String pno;
-  private String pname;
-  private String sno;
-  private String sname;
-  private String tno;
-  private String tname;
-  private String content;
-  private String filePath;
-  private String type;
-  private String tags;
-  private String schoolYear;
-  private Byte isPass;
+  private ProjectApply projectApply;
+  private ProjectSelectResult projectSelectResult;
 }

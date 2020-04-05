@@ -4,7 +4,6 @@ import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.service.ProjectSelectService;
 import com.ncu.graduation.vo.ProjectSelectVO;
-import com.ncu.graduation.vo.ProjectViewVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -12,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author ：grh
@@ -27,6 +26,7 @@ public class ProjectSelectController {
 
   @Autowired
   private ProjectSelectService projectSelectService;
+
   /**
    * 获取可选的课题
    */
@@ -35,19 +35,20 @@ public class ProjectSelectController {
       @RequestParam(name = "page", defaultValue = "1") Integer page,
       @RequestParam(name = "size", defaultValue = "10") Integer size) {
     UserVO user = (UserVO) session.getAttribute("user");
-    PaginationDTO<ProjectViewVO> selectiveProject = projectSelectService
+    PaginationDTO<ProjectSelectVO> selectiveProject = projectSelectService
         .getSelectiveProject(page, size, user);
     model.addAttribute("projects", selectiveProject);
-    return "project-select";
+    return "select/project-select";
   }
 
   /**
    * 师生双选, 选择课题
    */
-  @GetMapping("/project/select/{no}")
-  public ResultDTO projectSelect(@PathVariable("no") String no, HttpSession session) {
+  @ResponseBody
+  @GetMapping("/project/select")
+  public ResultDTO projectSelect(@RequestParam("pno") String pno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    projectSelectService.selectProject(user, no);
+    projectSelectService.selectProject(user, pno);
     return ResultDTO.okOf();
   }
 
@@ -59,16 +60,11 @@ public class ProjectSelectController {
     UserVO user = (UserVO) session.getAttribute("user");
     List<ProjectSelectVO> mySelectState = projectSelectService.getMySelectState(user);
     model.addAttribute("projectSelects", mySelectState);
-    return "mySelectState";
+    return "select/mySelectState";
   }
 
   /**
    * 我的课题的选题情况
-   * @param session
-   * @param model
-   * @param page
-   * @param size
-   * @return
    */
   @GetMapping("/myProject/selectState")
   public String myProjectSelectState(HttpSession session, Model model,
@@ -78,22 +74,32 @@ public class ProjectSelectController {
     PaginationDTO<ProjectSelectVO> myProjectSelectState = projectSelectService
         .getMyProjectSelectState(page, size, user);
     model.addAttribute("projectSelects", myProjectSelectState);
-    return "mySelectState";
+    return "select/myProjectSelectState";
   }
 
   /**
    * 确认选题人
-   * @param session
-   * @param selectNo
-   * @param pno
-   * @return
    */
+  @ResponseBody
   @GetMapping("/project/select/confirm")
   public ResultDTO confirmSelect(HttpSession session,
       @RequestParam("selectNo") String selectNo,
-      @RequestParam("pno") String pno) {
+      @RequestParam("selectName") String selectName,
+      @RequestParam("pno") String pno,
+      @RequestParam("pname") String pname) {
     UserVO user = (UserVO) session.getAttribute("user");
-    projectSelectService.confirmProjectSelector(user,selectNo,pno);
+    projectSelectService.confirmProjectSelector(user, selectNo, selectName, pno, pname);
+    return ResultDTO.okOf();
+  }
+
+  /**
+   * 拒绝选题人
+   */
+  @ResponseBody
+  @GetMapping("/project/select/refuse")
+  public ResultDTO refuseSelect(@RequestParam("selectNo") String selectNo,
+      @RequestParam("pno") String pno) {
+    projectSelectService.refuseProjectSelector(selectNo, pno);
     return ResultDTO.okOf();
   }
 }

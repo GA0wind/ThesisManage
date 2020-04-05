@@ -17,5 +17,6 @@ public class UserVO {
   private String role;
   private String college;
   private String schoolYear;
-
+  private Byte leadNumber;
+  private Integer group;
 }

@@ -2,6 +2,7 @@ package com.ncu.graduation.mapper;
 
 import com.ncu.graduation.util.BlindDistribution.ProjectTwotuple;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author ：grh
@@ -13,4 +14,5 @@ import java.util.List;
 public interface ProjectExtMapper {
 
   List<ProjectTwotuple> getProjectNoAndTno();
+
 }

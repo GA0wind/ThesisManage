@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+
+  <script>
+    function projectApplyVerify() {
+      $('#projectApplyVerify').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("审核成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert("审核失败, 请重试");
+          }
+        },
+
+      });
+    }
+
+    function getProject(e) {
+      var pno = $(e).attr('data-pno');
+      $.ajax({
+        url: '/project/simple/' + pno,
+        dataType: 'json',
+        success: function (data) {
+
+          $("#project-pno").val(data.data.pno + "");
+          $("#project-pname").val(data.data.pname + "");
+          $("#project-content").val(data.data.content + "");
+          $("#project-type").val(data.data.type + "");
+          if (data.data.isPass != 2) {
+            $("#verify-grade").val(data.data.blindTrialGrade + "");
+            $("#verify-comment").val(data.data.blindTrialComment + "");
+            $("#verify-grade").attr('readonly','');
+            $("#verify-comment").attr('readonly','');
+            $("#verifySubmit").remove();
+          }
+
+          //如果文件有的话
+          var filePath = data.data.filePath + "";
+          $("#oldFilePath").val(filePath + "");
+          var filePathUrl = filePath.replace("#", "%23");
+          $("#old-file").removeClass("hide");
+          $("#old-file").append(" <p>\n"
+              + "&nbsp;&nbsp;已提交附件\n"
+              + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
+              + filePath.split('#')[1] + "</span></a>\n"
+              + "&nbsp;&nbsp;\n"
+              + "<a href=\"/readOnline?filePath=" + filePathUrl
+              + "&fileType=project\">在线浏览</a>\n"
+              + "\n"
+              + "</p>");
+
+          $('#myModal').modal({
+            keyboard: false
+          });
+        },
+        error: function (data) {
+          alert(data.message)
+        }
+      })
+    }
+
+    //移除添加的文件数据
+    $('#myModal').on('hidden.bs.modal', function (e) {
+      $("#old-file").addClass("hide");
+      $("#old-file").empty();
+    })
+  </script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div class="row">
+    <!-- 顶部logo等 -->
+    <div class="col-md-offset-1 col-md-11 row">
+      <div class="container-fluid col-md-12">
+        <img src="/images/nculogo.png" alt="" class="logo">
+        <span class="ncu hidden-xs">南昌大学</span>
+        <span class="user col-md-offset-7">
+                        <span th:text="${session.user.name}">甘容辉</span>
+                        <span class="hidden-xs">
+                            (<span th:text="${session.user.accountNo}">8000116251</span>)
+                        </span> &nbsp;&nbsp;&nbsp;
+                        <a href="/logout">注销</a>
+                    </span>
+        <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
+        <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
+      </div>
+
+    </div>
+  </div>
+  <!-- 顶部导航条 -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="visible-xs-block menu clearfix">
+          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navigation">
+            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
+            <li><a href="#">公告</a></li>
+            <li><a href="#">师生互选</a></li>
+            <li><a href="#">过程管理</a></li>
+            <li><a href="#">答辩</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="row ">
+    <!-- 左侧菜单 -->
+    <div class="col-md-offset-1 col-md-3 subMenu">
+      <h4 class="subMenu-title">师生互选</h4>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">课题申报</a>
+        <a href="#" class="list-group-item">选择课题</a>
+        <a href="#" class="list-group-item">查看任务书</a>
+        <a href="#" class="list-group-item">发布公告</a>
+        <a href="#" class="list-group-item">查看公告</a>
+      </div>
+    </div>
+
+    <!-- 已提交的课题 -->
+    <div class="row">
+      <div class="col-md-7 common view">
+
+        <p class="title">我的课题</p>
+
+        <hr>
+        <div class="table-responsive view">
+          <table class="table">
+            <thead>
+            <tr>
+              <th class="project-name">课题名</th>
+              <th>题目类型</th>
+              <th>审核情况</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project:${projects.data}">
+              <td th:text="${project.pname}"></td>
+              <td th:text="${project.type}">未知</td>
+              <td th:text="${project.isPass} == 2 ? '未审核':'已审核'"></td>
+              <td>
+                <a th:if="${project.isPass} == 2" onclick="getProject(this)"
+                   th:data-pno="${project.pno}">审核</a>
+                <a th:if="${project.isPass} != 2" onclick="getProject(this)"
+                   th:data-pno="${project.pno}">查看</a>
+              </td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+              <td>
+                <div th:if="${projects.totalPage} > 1">
+                  <a href="#" class="more">首页</a>&nbsp;&nbsp;
+                  <a href="#" class="more">上一页</a>&nbsp;&nbsp;
+                  <input class="pagination-num" type="text" value="1" size="2">&nbsp;&nbsp;
+                  <a href="#" class="more">下一页</a>&nbsp;&nbsp;
+                  <a href="#" class="more">尾页</a>&nbsp;&nbsp;
+                </div>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- 课题信息弹出框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">课题信息</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="projectApplyVerify" class="form-inline form" action="/project/verify"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" id="project-pno" name="dno">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-pname">课题名称&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-pname" name="pname" readonly>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-content">课题内容&nbsp;&nbsp;</label>
+                <textarea class="form-control" rows="3" id="project-content"
+                          name="content" readonly></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">课题类型&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-type" name="type" readonly>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 hide" id="old-file">
+                <input class="hide" type="text" id="oldFilePath" name="oldFilePath">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>通过&nbsp;&nbsp;</label>
+                <select class="form-control" name="isPass">
+                  <option value="1">通过</option>
+                  <option value="0">不通过</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评分&nbsp;&nbsp;</label>
+                <input id="verify-grade" type="text" class="form-control" name="score">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评语&nbsp;&nbsp;</label>
+                <input id="verify-comment" type="text" class="form-control" name="comment">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="verifySubmit" type="button" class="btn btn-success"
+                onclick="projectApplyVerify()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+
+</html>

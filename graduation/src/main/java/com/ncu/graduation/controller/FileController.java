@@ -9,6 +9,7 @@ import com.ncu.graduation.util.ConverstPDF;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -135,7 +136,7 @@ public class FileController {
     return ResultDTO.errorOf(EmBulletinError.UNKNOWN_ERROR.getErrCode(), "下载失败");
   }
 
-
+  @ResponseBody
   @GetMapping("/readOnline")
   public Object readonline(@RequestParam("filePath") String fileName, String fileType,
       HttpServletResponse response) {
@@ -145,8 +146,30 @@ public class FileController {
     }
     String trueFileName = emfileType.getPreUrl() + fileName;
     File file = new File(trueFileName);
-    ByteArrayOutputStream baos = converstPDF.officeToPDF(file);
-
+    ByteArrayOutputStream baos ;
+    if (!trueFileName.endsWith(".pdf")) {
+      baos = converstPDF.officeToPDF(file);
+    } else {
+      FileInputStream fis = null;
+      try {
+        fis = new FileInputStream(file);
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      }
+      baos = new ByteArrayOutputStream();
+      byte[] buff = new byte[1024];
+      int len = -1;
+      while(true) {
+        try {
+          if (!((len = fis.read(buff)) != -1)){
+            break;
+          }
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        baos.write(buff, 0, len);
+      }
+    }
     response.setContentType("application/pdf");
     //输出流
     OutputStream os = null;
@@ -162,11 +185,8 @@ public class FileController {
       } catch (IOException e) {
         e.printStackTrace();
       }
-
     }
     return new ModelAndView("/pdf");
-
-
   }
 
 

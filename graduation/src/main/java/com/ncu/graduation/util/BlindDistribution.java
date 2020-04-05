@@ -1,5 +1,6 @@
 package com.ncu.graduation.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import lombok.Data;
@@ -28,11 +29,6 @@ public class BlindDistribution {
    */
   private List<ProjectTwotuple> project;
 
-  /**
-   * 评审个数的波动范围
-   */
-  private int offset = 2;
-
   @Data
   public static class TeacherTwotuple {
 
@@ -45,10 +41,15 @@ public class BlindDistribution {
 
     String pno;
     String tno;
+
+    public ProjectTwotuple(String pno, String tno) {
+      this.pno = pno;
+      this.tno = tno;
+    }
   }
 
 
-  //除课题申请外的盲审
+  //开题报告盲审
   public List<ProjectTwotuple> distribution() {
     Random random = new Random();
     for (int i = 0; i < project.size(); i++) {
@@ -62,19 +63,31 @@ public class BlindDistribution {
     }
     return project;
   }
-//  //课题申请的盲审, 随机均分
-//  public static List<ProjectTwotuple> avgDistribution() {
-//
-//    for (; start <project.size() ; start++) {
-//      int index = start + offset;
-//      if (index >teacher.size()){
-//        index = index - teacher.size();
-//      }
-//      project.get(start).tno = teacher.get(index).tno;
-//    }
-//
-//    return project;
-//  }
+
+
+  //课题申请的盲审, 随机均分
+  public List<ProjectTwotuple> avgDistribution() {
+    List<ProjectTwotuple> result = new ArrayList<>();
+    int i = 0;
+    Random random = new Random();
+    for (int j = project.size(); j > 0 ; j--,i++) {
+      if (i == teacher.size()){
+        i = 0;
+      }
+      int index = random.nextInt(project.size());
+
+      while (project.get(index).getTno().equals(teacher.get(i).getTno())){
+        index = random.nextInt(project.size());
+      }
+      ProjectTwotuple projectTwotuple= project.get(index);
+      projectTwotuple.setTno(teacher.get(i).getTno());
+      result.add(projectTwotuple);
+      project.remove(index);
+    }
+    return result;
+  }
+
+
 
 
   /**
@@ -82,22 +95,22 @@ public class BlindDistribution {
    */
 
   public void init(List<TeacherTwotuple> teacher, List<ProjectTwotuple> project) {
-    this.teacher = teacher;
-    this.project = project;
-    int totalCount = project.size();
-    int avg = totalCount / teacher.size();
-    Random random = new Random();
-    for (TeacherTwotuple teacherTwotuple : teacher) {
-      teacherTwotuple.leadStudentNum = random.nextInt(offset * 2) + avg - 2;
-      totalCount -= teacherTwotuple.leadStudentNum;
-    }
-    if (totalCount > 0) {
-      for (int i = 0; i < totalCount; i++) {
-        int x = random.nextInt(teacher.size());
-        teacher.get(x).leadStudentNum++;
-        totalCount--;
-      }
-    }
+//    this.teacher = teacher;
+//    this.project = project;
+//    int totalCount = project.size();
+//    int avg = totalCount / teacher.size();
+//    Random random = new Random();
+//    for (TeacherTwotuple teacherTwotuple : teacher) {
+//      teacherTwotuple.leadStudentNum = random.nextInt(offset * 2) + avg - 2;
+//      totalCount -= teacherTwotuple.leadStudentNum;
+//    }
+//    if (totalCount > 0) {
+//      for (int i = 0; i < totalCount; i++) {
+//        int x = random.nextInt(teacher.size());
+//        teacher.get(x).leadStudentNum++;
+//        totalCount--;
+//      }
+//    }
   }
 
 

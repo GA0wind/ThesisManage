@@ -4,12 +4,12 @@ import com.ncu.graduation.dto.LoginDTO;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmUserOperatorError;
-import com.ncu.graduation.mapper.MenuMapper;
 import com.ncu.graduation.mapper.ProjectPlanMapper;
 import com.ncu.graduation.mapper.StudentMapper;
 import com.ncu.graduation.mapper.TeacherMapper;
 import com.ncu.graduation.model.*;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,6 @@ public class UserService {
 
   @Autowired
   private TeacherMapper teacherMapper;
-
-  @Autowired
-  private MenuMapper menuMapper;
 
   @Autowired
   private ProjectPlanMapper projectPlanMapper;
@@ -67,10 +64,5 @@ public class UserService {
   }
 
 
-  public List<Menu> getMenu(LoginDTO loginDTO) {
-    MenuExample menuExample = new MenuExample();
-    menuExample.createCriteria().andRoleEqualTo(loginDTO.getRole());
-    return menuMapper.selectByExample(menuExample);
-  }
 
 }

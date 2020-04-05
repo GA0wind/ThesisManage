@@ -1,7 +1,8 @@
-package com.welab.springbootuser.advice;
+package com.ncu.graduation.advice;
 
 
 import com.ncu.graduation.dto.ResultDTO;
+import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmBulletinError;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
@@ -17,7 +18,8 @@ public class CustomizeExceptionHandler {
 
 
     @ResponseBody
-    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
+    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class,
+        CommonException.class})
     public Object validationExceptionHandler(Exception exception) {
 
         BindingResult bindResult = null;
@@ -36,11 +38,11 @@ public class CustomizeExceptionHandler {
         return ResultDTO.errorOf(EmBulletinError.PARAMETER_VALIDATION_ERROR.getErrCode(), msg);
     }
 
-    @ExceptionHandler(value = Exception.class)
-    public Object exceptionHandler(Exception exception, Model model) {
-        model.addAttribute("errmsg", exception.getMessage());
-        return new ModelAndView("error");
-    }
+//    @ExceptionHandler(value = Exception.class)
+//    public Object exceptionHandler(Exception exception, Model model) {
+//        model.addAttribute("errmsg", exception.getMessage());
+//        return new ModelAndView("error");
+//    }
 
 
 }

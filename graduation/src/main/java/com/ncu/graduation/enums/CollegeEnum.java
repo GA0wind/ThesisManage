@@ -8,8 +8,8 @@ package com.ncu.graduation.enums;
  * @version: 0.0.1
  */
 public enum CollegeEnum {
-  SOFTWARE_COLLEGE("10000","软件学院"),
-  ART_COLLEGE("20000","艺术学院"),
+  SOFTWARE_COLLEGE("1000","软件学院"),
+  ART_COLLEGE("2000","艺术学院"),
       ;
 
   private String collegeCode;

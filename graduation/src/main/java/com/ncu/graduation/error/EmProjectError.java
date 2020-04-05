@@ -18,7 +18,9 @@ public enum EmProjectError implements CommonError{
   PROJECT_SELECT_OVER_MAX_NUM(50001,"已选课题选择数量大于可选择最大数量"),
   PROJECT_SELECT_REPEAT(50002,"不能重复选择课题"),
   PROJECT_WAS_SELECTED_OVER_MAX_NUM(50002,"该课题被选择数量大于可被选择最大数量"),
-
+  TEACHER_LEAD_STUDENT_NUM_IS_ENOUGH(50003,"指导学生数已达上限"),
+  STUDENT_ONLY_ONE_PROJECT(50004,"已选定课题, 无法更改"),
+  NO_PROJECT(50003,"你没有课题"),
   ;
   private Integer errCode;
   private String errMsg;

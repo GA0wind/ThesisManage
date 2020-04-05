@@ -8,6 +8,7 @@ import com.ncu.graduation.model.ProjectApplyExample;
 import com.ncu.graduation.util.BlindDistribution;
 import com.ncu.graduation.util.BlindDistribution.ProjectTwotuple;
 import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -104,6 +105,12 @@ private ProjectApplyMapper projectApplyMapper;
   @Test
   void getInfoFromExcel(){
     new File("D://User.xlsx");
+  }
+
+  @Test
+  void getUUID(){
+    String uuid = UUID.randomUUID().toString().replaceAll("-","");
+    System.out.println(uuid);
   }
 
 }

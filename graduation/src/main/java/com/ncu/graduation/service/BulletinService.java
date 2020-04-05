@@ -1,7 +1,6 @@
 package com.ncu.graduation.service;
 
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import com.ncu.graduation.dto.BulletinDTO;
@@ -17,8 +16,7 @@ import com.ncu.graduation.vo.BulletinVO;
 import com.ncu.graduation.vo.UserVO;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +44,7 @@ public class BulletinService {
         BulletinExample bulletinExample = new BulletinExample();
         bulletinExample.createCriteria().andSchoolYearEqualTo(schoolYear);
         //获取公告并将公告排序
-        bulletinExample.setOrderByClause("gmt_modified desc");
+        bulletinExample.setOrderByClause("gmt_modified content");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         PageMethod.startPage(page,size);
         List<Bulletin> bulletins = bulletinMapper.selectByExample(bulletinExample);
@@ -82,7 +80,7 @@ public class BulletinService {
     public void createOrUpdate(BulletinDTO bulletinDTO, UserVO userVO) {
 
         //判断是修改还是删除
-        if (bulletinDTO.getId() != null) {
+        if (!StringUtils.isBlank(bulletinDTO.getId())) {
 
             //判断是否有新文件
             if (bulletinDTO.getFile() == null || bulletinDTO.getFile().isEmpty()){
@@ -104,7 +102,7 @@ public class BulletinService {
         //构建持久层bulletin
         Bulletin bulletin = new Bulletin();
         bulletin.setTitle(bulletinDTO.getTitle());
-        bulletin.setDescription(bulletinDTO.getDesc());
+        bulletin.setContent(bulletinDTO.getContent());
         bulletin.setFilePath(fileUrl);
         bulletin.setSchoolYear(userVO.getSchoolYear());
         bulletin.setCreatorNo(userVO.getAccountNo());

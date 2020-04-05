@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>开题报告</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+  <script src="/js/moment.min.js"></script>
+
+
+
+
+  <script>
+    function thesisVerify() {
+      $('#thesisVerifyForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("审核成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert("审核失败, 请重试");
+          }
+        },
+
+      });
+    }
+
+    function getProject(e) {
+      var pno = $(e).attr('data-pno');
+      var dno = $(e).attr('data-dno');
+      var filePath = $(e).attr('data-filePath');
+      var isBlind = $(e).attr('data-isBlind');
+
+      $("#dno").val(dno);
+      $("#filePath").val(filePath);
+      $("#isBlind").val(isBlind);
+
+      $.ajax({
+        url: '/project/simple/' + pno,
+        dataType: 'json',
+        success: function (data) {
+
+          $("#project-pno").val(data.data.pno + "");
+          $("#project-pname").val(data.data.pname + "");
+          $("#project-content").val(data.data.content + "");
+          $("#project-type").val(data.data.type + "");
+          var filePath = data.data.filePath + "";
+          $("#oldFilePath").val(filePath + "");
+          var filePathUrl = filePath.replace("#", "%23");
+          $("#old-file").removeClass("hide");
+          $("#old-file").append(" <p>\n"
+              + "&nbsp;&nbsp;课题文档\n"
+              + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
+              + filePath.split('#')[1] + "</span></a>\n"
+              + "&nbsp;&nbsp;\n"
+              + "<a href=\"/readOnline?filePath=" + filePathUrl
+              + "&fileType=project\">在线浏览</a>\n"
+              + "\n"
+              + "</p>");
+
+          if (isBlind == 1 && $(e).attr('data-blindGrade') != null) {
+            $("#verify-grade").val($(e).attr('data-blindGrade'));
+            $("#verify-comment").val($(e).attr('data-blindComment'));
+            $("#verify-grade").attr('readonly', '');
+            $("#verify-comment").attr('readonly', '');
+            $("#verifySubmit").remove();
+          }
+          $('#myModal').modal({
+            keyboard: false
+          });
+        },
+        error: function (data) {
+          alert(data.message)
+        }
+      })
+    }
+
+    //移除添加的文件数据
+    $('#myModal').on('hidden.bs.modal', function (e) {
+      $("#old-file").addClass("hide");
+      $("#old-file").empty();
+    })
+
+    //获取论文记录
+    function getThesisRecord(e) {
+      var thesisNo = $(e).attr('data-thesisNo');
+      $.ajax({
+        url: '/stuThesis/record?thesisNo=' + thesisNo,
+        dataType: 'json',
+        success: function (data) {
+
+          $.each(data.data, function (i, data) {
+            $("#thesisRecordTable").append(
+                "<tr>" +
+                "<td> <a href='/download?filePath="+data.filePath.toString().replace('#',"%23")+"&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                "<td>" + data.isPass + "</td>" +
+                "<td>" + data.trialGrade + "</td>" +
+                "<td>" + data.trialComment + "</td>" +
+                "<td>" + moment(data.gmtCreate).format('YYYY-MM-dd') + "</td>" +
+                "</tr>");
+          });
+        },
+        error: function (data) {
+          alert(data.message)
+        }
+      })
+
+      $('#thesisRecordModel').modal({
+        keyboard: false
+      });
+    }
+
+    //查看盲审结果
+    function getBlindVerify(e) {
+      $("#blind-verify-grade").val($(e).attr('data-blindGrade'));
+      $("#blind-verify-comment").val($(e).attr('data-blindComment'));
+      $('#blindVerifyResultModel').modal({
+        keyboard: false
+      });
+    }
+
+    $('#thesisRecordModel').on('hidden.bs.modal', function (e) {
+      $("#thesisRecordTable").empty();
+    })
+  </script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div class="row">
+    <!-- 顶部logo等 -->
+    <div class="col-md-offset-1 col-md-11 row">
+      <div class="container-fluid col-md-12">
+        <img src="/images/nculogo.png" alt="" class="logo">
+        <span class="ncu hidden-xs">南昌大学</span>
+        <span class="user col-md-offset-7">
+                        <span th:text="${session.user.name}">甘容辉</span>
+                        <span class="hidden-xs">
+                            (<span th:text="${session.user.accountNo}">8000116251</span>)
+                        </span> &nbsp;&nbsp;&nbsp;
+                        <a href="/logout">注销</a>
+                    </span>
+        <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
+        <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
+      </div>
+
+    </div>
+  </div>
+  <!-- 顶部导航条 -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="visible-xs-block menu clearfix">
+          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navigation">
+            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
+            <li><a href="#">公告</a></li>
+            <li><a href="#">师生互选</a></li>
+            <li><a href="#">过程管理</a></li>
+            <li><a href="#">答辩</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="row ">
+    <!-- 左侧菜单 -->
+    <div class="col-md-offset-1 col-md-3 subMenu">
+      <h4 class="subMenu-title">师生互选</h4>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">课题申报</a>
+        <a href="#" class="list-group-item">选择课题</a>
+        <a href="#" class="list-group-item">查看任务书</a>
+        <a href="#" class="list-group-item">发布公告</a>
+        <a href="#" class="list-group-item">查看公告</a>
+      </div>
+    </div>
+
+    <!-- 论文 -->
+    <div class="row">
+      <div class="col-md-7 common view">
+
+        <p class="title">论文</p>
+
+        <hr>
+        <div class="table-responsive view">
+          <table class="table">
+            <thead>
+            <tr>
+              <th class="project-name">课题名</th>
+              <th th:if="${isBlind} == null">学生</th>
+              <th>论文</th>
+              <th>文档操作</th>
+              <th>审核结果</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="thesis:${teaThesis}">
+              <td th:text="${thesis.pname}"></td>
+              <td th:if="${isBlind} == null" th:text="${thesis.sname}"></td>
+              <!--              文档-->
+              <td th:if="${thesis.document} != null">
+                <a th:text="${#strings.arraySplit(thesis.document.filePath,'#')[1]}"
+                   th:href="@{/download(filePath=${thesis.document.filePath},fileType='thesis')}"></a>
+              </td>
+              <td th:if="${thesis.document} == null">未提交</td>
+              <!--              文档操作-->
+              <td>
+                <a th:if="${thesis.document} != null"
+                     th:href="@{/readOnline(filePath=${thesis.document.filePath},fileType='thesis')}">在线浏览</a>
+                <a th:href="@{/download(filePath=${thesis.document.filePath},fileType='thesis')}">下载</a>
+              </td>
+
+              <!--              审核结果-->
+              <td th:if="${thesis.document} == null">未提交</td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 1">已通过</td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 2">待审核</td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 0">已回拒</td>
+              <td>
+                <a th:if="${thesis.document} != null" th:data-pno="${thesis.pno}"
+                   th:data-dno="${thesis.document.thesisNo}"
+                   th:data-isBlind="${isBlind}?1:0"
+                   th:data-filePath="${thesis.document.filePath}"
+                   th:data-blindGrade="${thesis.document.blindTrialGrade}"
+                   th:data-blindComment="${thesis.document.blindTrialComment}"
+                   onclick="getProject(this)">审核</a>
+                <a th:if="${isBlind} == null and ${thesis.document} != null " onclick="getThesisRecord(this)"
+                   th:data-thesisNo="${thesis.document.thesisNo}">历史审核</a>
+                <a th:if="${isBlind} == null and ${thesis.document} != null " onclick="getBlindVerify(this)"
+                   th:data-blindGrade="${thesis.document.blindTrialGrade}"
+                   th:data-blindComment="${thesis.document.blindTrialComment}">盲审结果</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- 课题信息弹出框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">课题信息</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="thesisVerifyForm" class="form-inline form" action="/thesis/verify"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" id="dno" name="dno">
+            <input type="text" class="hide" id="isBlind" name="isBlind" th:if="${isBlind}"
+                   th:value="${isBlind}">
+            <input type="text" class="hide" id="filePath" name="filePath">
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-pname">课题名称&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-pname" name="pname" readonly>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-content">课题内容&nbsp;&nbsp;</label>
+                <textarea class="form-control" rows="3" id="project-content"
+                          name="content" readonly></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">课题类型&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-type" name="type" readonly>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 hide" id="old-file">
+                <input class="hide" type="text" id="oldFilePath" name="oldFilePath">
+              </div>
+            </div>
+
+            <div class="row" th:if="!${isBlind}">
+              <div class="col-md-12">
+                <label>通过&nbsp;&nbsp;</label>
+
+                <select class="form-control" name="isPass">
+                  <option value="1">通过</option>
+                  <option value="0">不通过</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评分&nbsp;&nbsp;
+                  <span style="color:red;" th:if="!${isBlind}">*取最后一次审核作为论文成绩</span>
+                  <span style="color:red;" th:if="${isBlind}">*此成绩很重要慎重对待</span>
+                </label>
+                <input id="verify-grade" type="text" class="form-control" name="score">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评语&nbsp;&nbsp;</label>
+                <input id="verify-comment" type="text" class="form-control" name="comment">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success" onclick="thesisVerify()">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--历史审核记录-->
+<div class="modal fade" tabindex="-1" role="dialog" id="thesisRecordModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">历史审核</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <table class="table" id="thesisRecord">
+            <thead>
+            <tr>
+              <th>文件</th>
+              <th>结果</th>
+              <th>分数</th>
+              <th>评语</th>
+              <th>时间</th>
+            </tr>
+            </thead>
+            <tbody id="thesisRecordTable">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          确定
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--盲审结果-->
+<div class="modal fade" tabindex="-1" role="dialog" id="blindVerifyResultModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">盲审结果</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="blindVerifyResult" class="form-inline form">
+            <div class="row">
+              <div class="col-md-12">
+                <label>评分&nbsp;&nbsp;</label>
+                <input id="blind-verify-grade" type="text" class="form-control" readonly>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评语&nbsp;&nbsp;</label>
+                <input id="blind-verify-comment" type="text" class="form-control" readonly>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+
+</html>

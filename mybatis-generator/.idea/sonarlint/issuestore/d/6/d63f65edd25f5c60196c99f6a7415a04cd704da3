@@ -1,0 +1,21 @@
+
+n
+java:S1192›"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñýÿÿÿÿ8´ã×ƒ”.
+k
+java:S1192Õ"NDefine a constant instead of duplicating this literal "trialComment" 12 times.(Ü¶“B8´ã×ƒ”.
+h
+java:S1192Ó"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©8´ã×ƒ”.
+j
+java:S1192™"LDefine a constant instead of duplicating this literal "trialGrade" 10 times.(™Æ”ö8´ã×ƒ”.
+h
+java:S1192"JDefine a constant instead of duplicating this literal "thesisNo" 12 times.(·üÄ€8´ã×ƒ”.
+h	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ8´ã×ƒ”.
+h	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºþÿÿÿÿ8´ã×ƒ”.
+b	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
+8´ã×ƒ”.
+Z
+java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s8´ã×ƒ”.
+a
+java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ8´ã×ƒ”.
+~
+java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì8´ã×ƒ”.

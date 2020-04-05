@@ -7,6 +7,7 @@ public enum UserRoleEnum {
     ADMIN("admin"),
     STUDENT("student"),
     TEACHER("teacher"),
+    DIRECTOR("director"),
     ;
 
     private String role;

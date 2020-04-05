@@ -3,9 +3,13 @@ package com.ncu.graduation.enums;
 
 public enum FileTypeEnum {
     PROJECT("project","D://FinallySchool/project/"),
-    OPENING_REPORT("openingReport","D://FinallySchool/openingReport/"),
+    OPENING_REPORT("openReport","D://FinallySchool/openingReport/"),
     TASK_BOOK("taskBook","D://FinallySchool/taskBook/"),
-    BULLETIN("bulletin","D://FinallySchool/bulletin/");
+    BULLETIN("bulletin","D://FinallySchool/bulletin/"),
+    THESIS("thesis","D://FinallySchool/thesis/"),
+    FOREIGNFILE("foreignFile","D://FinallySchool/foreignFile/"),
+    TRANSLATIONFILE("translationFile","D://FinallySchool/translationFile/")
+    ;
 
 
     private String type;

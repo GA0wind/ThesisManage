@@ -2,13 +2,9 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.BulletinDTO;
 import com.ncu.graduation.dto.PaginationDTO;
-import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.model.Bulletin;
 import com.ncu.graduation.service.BulletinService;
-import com.ncu.graduation.util.FileSave;
 import com.ncu.graduation.vo.UserVO;
-import java.io.File;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +21,7 @@ public class BulletinController {
   @Autowired
   private BulletinService bulletinService;
 
-  @RequestMapping("/bulletin")
+  @GetMapping("/bulletin")
   public String bulletin(HttpServletRequest request,
       Model model,
       @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -36,7 +32,7 @@ public class BulletinController {
     return "bulletinView";
   }
 
-  @RequestMapping("/bulletin/{id}")
+  @GetMapping("/bulletin/{id}")
   public String bulletin(@PathVariable("id") String id,
       Model model) {
     Bulletin bulletin = bulletinService.getById(Long.parseLong(id));
@@ -68,7 +64,7 @@ public class BulletinController {
     Bulletin bulletin = bulletinService.getById(id);
     model.addAttribute("id", bulletin.getId());
     model.addAttribute("title", bulletin.getTitle());
-    model.addAttribute("description", bulletin.getDescription());
+    model.addAttribute("content", bulletin.getContent());
     model.addAttribute("filePath", bulletin.getFilePath());
     return "bulletin-publish";
   }

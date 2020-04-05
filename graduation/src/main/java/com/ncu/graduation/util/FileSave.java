@@ -1,6 +1,5 @@
 package com.ncu.graduation.util;
 
-import com.ncu.graduation.dto.FileDTO;
 import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmBulletinError;
@@ -14,8 +13,7 @@ import java.util.Date;
 
 public class FileSave {
     public static String fileSave(MultipartFile file, FileTypeEnum fileTypeEnum) {
-        FileDTO fileDTO = new FileDTO();
-        fileDTO.setType(fileTypeEnum.getType());
+
         if (file.isEmpty()) {
             throw new CommonException(EmBulletinError.BULLETIN_FILE_IS_EMPTY);
         }
