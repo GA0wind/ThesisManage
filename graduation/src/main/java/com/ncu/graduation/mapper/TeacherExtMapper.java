@@ -1,8 +1,11 @@
 package com.ncu.graduation.mapper;
 
+import com.ncu.graduation.dto.UserSearchDTO;
+import com.ncu.graduation.model.Teacher;
 import com.ncu.graduation.util.BlindDistribution;
 import com.ncu.graduation.util.BlindDistribution.TeacherTwotuple;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author ：grh
@@ -13,5 +16,12 @@ import java.util.List;
  */
 public interface TeacherExtMapper {
 
-  List<TeacherTwotuple> selectTnoAndStudentNum();
+  List<TeacherTwotuple> selectTnoAndStudentNum(@Param("schoolYear") String schoolYear,
+      @Param("college") String college);
+
+  int updateByTno(Teacher teacher);
+
+
+  List<Teacher> searchTeaList(@Param("schoolYear") String schoolYear, @Param("userSearchDTO")
+      UserSearchDTO userSearchDTO);
 }

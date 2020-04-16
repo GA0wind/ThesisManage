@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>我的成绩</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+
+
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
+
+  </div>
+
+
+  <div class="row">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuOralExam">
+
+    </div>
+    <!-- 学生成绩 -->
+    <div class="row">
+      <div class="col-md-7 common view">
+
+        <p class="title">我的成绩</p>
+
+        <hr>
+        <div class="table-responsive view">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="project-name">老师</th>
+              <th>分数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="score:${examScore.scores}">
+              <td th:text="${score.tname}"></td>
+              <td th:text="${score.score}"></td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+              <td>答辩得分(平均分)</td>
+              <td>指导老师</td>
+              <td>盲审得分</td>
+              <td>总分</td>
+            </tr>
+            <tr>
+              <td th:text="${examScore.avg}"></td>
+              <td th:text="${examScore.score}"></td>
+              <td th:text="${examScore.blindScore}"></td>
+              <td th:text="${examScore.resultScore}"></td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -7,11 +7,14 @@ import com.ncu.graduation.model.ForeignRecord;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.service.ForeignLiteratureService;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -46,8 +49,10 @@ public class ForeignLiteratureController {
   public String getTeaForeignLiterature(HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
+    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
+        .getSession().getAttribute("teaProject");
     List<TeaProjectDocumentVO<ForeignLiterature>> teaForeignLiterature = foreignLiteratureService
-        .getTeaForeignLiterature(user);
+        .getTeaForeignLiterature(user, teaProject);
     model.addAttribute("teaForeignLiterature", teaForeignLiterature);
     return "document/teaForeignLiterature";
   }
@@ -70,11 +75,12 @@ public class ForeignLiteratureController {
   public ResultDTO submitForeignLiterature(@RequestParam("oldFile") String oldFile,
       @RequestParam("foreignFile") MultipartFile foreignFile,
       @RequestParam("translationFile") MultipartFile translationFile,
-      @RequestParam("pno") String pno,
-      HttpServletRequest request) {
-    UserVO user = (UserVO) request.getSession().getAttribute("user");
+      @RequestParam("dno") String dno,
+      HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    ProjectApply projectApply = (ProjectApply) session.getAttribute("stuProject");
     foreignLiteratureService
-        .submitForeignLiterature(user, oldFile, foreignFile, translationFile, pno);
+        .submitForeignLiterature(user, foreignFile, translationFile, dno,projectApply.getPno());
     return ResultDTO.okOf();
   }
 
@@ -84,11 +90,10 @@ public class ForeignLiteratureController {
   @GetMapping("/stuForeignLiterature")
   public String getStuForeignLiterature(HttpServletRequest request,
       Model model) {
-    UserVO user = (UserVO) request.getSession().getAttribute("user");
     ProjectApply project = (ProjectApply) request.getSession().getAttribute("stuProject");
 
     StuProjectDocumentVO<ForeignLiterature> stuForeignLiterature = foreignLiteratureService
-        .getStuForeignLiterature(user, project);
+        .getStuForeignLiterature(project);
     model.addAttribute("stuForeignLiterature", stuForeignLiterature);
     return "document/stuForeignLiterature";
   }

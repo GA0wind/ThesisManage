@@ -1,13 +1,19 @@
 package com.ncu.graduation.controller;
 
+import com.ncu.graduation.dto.OralExamSearchDTP;
+import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.enums.UserRoleEnum;
+import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmUserOperatorError;
+import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Thesis;
 import com.ncu.graduation.model.ThesisExample;
 import com.ncu.graduation.service.OralExaminationService;
 import com.ncu.graduation.service.ThesisService;
 import com.ncu.graduation.vo.OralExamScoreVO;
+import com.ncu.graduation.vo.OralExamStuProjectVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -33,8 +39,6 @@ public class OralExaminationController {
   @Autowired
   private OralExaminationService oralExaminationService;
 
-  @Autowired
-  private ThesisService thesisService;
 
   /**
    * 获取答辩小组成员信息
@@ -42,19 +46,12 @@ public class OralExaminationController {
   @GetMapping("/examGroup")
   public String getExamGroup(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    int groupNo = 0;
-    if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
-      ProjectSelectResult projectSelectResult = (ProjectSelectResult) session
-          .getAttribute("stuProject");
-      groupNo = projectSelectResult.getGroupNum();
+    if (user.getGroup() == null){
+      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
     }
-    if (UserRoleEnum.TEACHER.getRole().equals(user.getRole())) {
-      groupNo = user.getGroup();
-    }
-
-    List<UserVO> groupInfo = oralExaminationService.getGroupInfo(groupNo);
+    List<UserVO> groupInfo = oralExaminationService.getGroupInfo(user);
     model.addAttribute("teachers", groupInfo);
-    return "examGroupInfo";
+    return "oralExamination/groupInfo";
   }
 
   /**
@@ -63,14 +60,16 @@ public class OralExaminationController {
   @GetMapping("/examGroupStu")
   public String getGroupStu(@RequestParam(name = "page", defaultValue = "1") Integer page,
       @RequestParam(name = "size", defaultValue = "10") Integer size, HttpSession session,
-      Model model) {
+      Model model, OralExamSearchDTP oralExamSearchDTP) {
     UserVO user = (UserVO) session.getAttribute("user");
-    int groupNo = user.getGroup();
-    List<ProjectSelectResult> groupStus = oralExaminationService.getGroupStus(groupNo);
-    List<Thesis> thesis = thesisService.getGroupThesis(groupStus);
-    model.addAttribute("project", groupStus);
-    model.addAttribute("thesis", thesis);
-    return "examGroupStu";
+    if (user.getGroup() == null){
+      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+    }
+    PaginationDTO<OralExamStuProjectVO> groupStus = oralExaminationService
+        .getGroupStus(user, page, size,oralExamSearchDTP);
+    model.addAttribute(",oralExamSearchDTP",oralExamSearchDTP);
+    model.addAttribute("groupStus", groupStus);
+    return "oralExamination/groupStu";
   }
 
   /**
@@ -85,6 +84,9 @@ public class OralExaminationController {
   public ResultDTO scoreToStu(@RequestParam("score") Integer score,
       @RequestParam("sno") String sno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
+    if (user.getGroup() == null){
+      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+    }
     oralExaminationService.scoreToStu(score, sno, user);
     return ResultDTO.okOf();
   }
@@ -98,12 +100,15 @@ public class OralExaminationController {
   @GetMapping("/examScore")
   public String getExamScore(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectSelectResult projectSelectResult = (ProjectSelectResult) session
+    ProjectApply projectApply = (ProjectApply) session
         .getAttribute("stuProject");
-    List<OralExamScoreVO> examScore = oralExaminationService
-        .getExamScore(user, projectSelectResult);
-    model.addAttribute("examScore", examScore);
-    return "examScore";
+    if (user.getGroup() == null){
+      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+    }
+    OralExamScoreVO scoreVO= oralExaminationService
+        .getExamScore(user, projectApply);
+    model.addAttribute("examScore", scoreVO);
+    return "oralExamination/examScore";
   }
 
 

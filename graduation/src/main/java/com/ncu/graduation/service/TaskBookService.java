@@ -2,6 +2,7 @@ package com.ncu.graduation.service;
 
 import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmDocumentError;
 import com.ncu.graduation.mapper.TaskBookMapper;
 import com.ncu.graduation.model.ProjectApply;
@@ -19,8 +20,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -37,27 +41,27 @@ public class TaskBookService {
   @Autowired
   private TaskBookMapper taskBookMapper;
 
-  @Autowired
-  private ProjectService projectService;
 
-  public List<TeaProjectDocumentVO<TaskBook>> getTeaTaskBook(UserVO user) {
 
-    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+  /**
+   * 获取老师的任务书页面
+   */
+  public List<TeaProjectDocumentVO<TaskBook>> getTeaTaskBook(Map<String, ProjectSelectResult> teaProject) {
+
     List<String> pnos = new ArrayList<>();
-    teaProject.forEach((k,l)->{
-      pnos.add(k);
-    });
+    teaProject.forEach((k, l) -> pnos.add(k));
+    if (pnos.isEmpty()){
+      return new ArrayList<>();
+    }
     TaskBookExample taskBookExample = new TaskBookExample();
     taskBookExample.createCriteria().andPnoIn(pnos);
     List<TaskBook> taskBooks = taskBookMapper.selectByExample(taskBookExample);
-    Map<String,TaskBook> taskBookMap = new HashMap<>();
-    taskBooks.forEach((k)->{
-      taskBookMap.put(k.getPno(),k);
-    });
+    Map<String, TaskBook> taskBookMap = new HashMap<>(16);
+    taskBooks.forEach(k -> taskBookMap.put(k.getPno(), k));
 
     List<TeaProjectDocumentVO<TaskBook>> teaProjectDocumentVOS = new ArrayList<>();
 
-    teaProject.forEach((k,l)->{
+    teaProject.forEach((k, l) -> {
       TeaProjectDocumentVO<TaskBook> teaProjectDocumentVO = new TeaProjectDocumentVO<>();
       teaProjectDocumentVO.setPno(k);
       teaProjectDocumentVO.setPname(l.getPname());
@@ -69,27 +73,42 @@ public class TaskBookService {
     return teaProjectDocumentVOS;
   }
 
-  public void submitTaskBook(MultipartFile file, String pno) {
+  @Transactional
+  public void submitTaskBook(UserVO user ,MultipartFile file, String dno, String pno) {
     String filePath = FileSave.fileSave(file, FileTypeEnum.TASK_BOOK);
     TaskBook taskBook = new TaskBook();
-    taskBook.setPno(pno);
-    taskBook.setTaskNo(UUID.randomUUID().toString().replaceAll("-",""));
-    taskBook.setFilePath(filePath);
-    taskBook.setGmtCreate(new Date());
-    taskBook.setGmtModified(taskBook.getGmtCreate());
-    int result = taskBookMapper.insertSelective(taskBook);
-    if (result != 1){
-      throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+    //判断是新增还是修改
+    if (StringUtils.isBlank(dno)){
+      taskBook.setTaskNo(UUID.randomUUID().toString().replaceAll("-", ""));
+      taskBook.setGmtCreate(new Date());
+      taskBook.setGmtModified(taskBook.getGmtCreate());
+    }else{
+      taskBook.setTaskNo(dno);
+      taskBook.setGmtModified(new Date());
     }
+    taskBook.setPno(pno);
+    taskBook.setFilePath(filePath);
+    taskBook.setSchoolYear(user.getSchoolYear());
+    if (StringUtils.isBlank(dno)) {
+      int result = taskBookMapper.insertSelective(taskBook);
+      if (result != 1) {
+        throw new CommonException(EmCommonError.UNKNOWN_ERROR);
+      }
+    }else{
+      TaskBookExample taskBookExample = new TaskBookExample();
+      taskBookExample.createCriteria().andTaskNoEqualTo(dno);
+      int result = taskBookMapper.updateByExample(taskBook, taskBookExample);
+      if (result != 1) {
+        throw new CommonException(EmCommonError.UNKNOWN_ERROR);
+      }
+    }
+
   }
 
-  public StuProjectDocumentVO<TaskBook> getStuTaskBook(UserVO user,
-      ProjectApply project) {
-
+  public StuProjectDocumentVO<TaskBook> getStuTaskBook(ProjectApply project) {
     TaskBookExample taskBookExample = new TaskBookExample();
     taskBookExample.createCriteria().andPnoEqualTo(project.getPno());
     List<TaskBook> taskBooks = taskBookMapper.selectByExample(taskBookExample);
-
     StuProjectDocumentVO<TaskBook> stuProjectDocumentVOS = new StuProjectDocumentVO<>();
     stuProjectDocumentVOS.setDocument(taskBooks.get(0));
     stuProjectDocumentVOS.setProject(project);

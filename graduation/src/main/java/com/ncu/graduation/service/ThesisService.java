@@ -3,6 +3,7 @@ package com.ncu.graduation.service;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
 import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmDocumentError;
 import com.ncu.graduation.mapper.ProjectSelectResultMapper;
 import com.ncu.graduation.mapper.ThesisMapper;
@@ -28,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -50,19 +52,19 @@ public class ThesisService {
   @Autowired
   private ProjectSelectResultMapper projectSelectResultMapper;
 
-  public List<TeaProjectDocumentVO<Thesis>> getTeaThesis(UserVO user) {
-    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+  /**
+   * 获取老师名下的课题论文
+   * @param teaProject
+   * @return
+   */
+  public List<TeaProjectDocumentVO<Thesis>> getTeaThesis(Map<String, ProjectSelectResult> teaProject) {
     List<String> pnos = new ArrayList<>();
-    teaProject.forEach((k, l) -> {
-      pnos.add(k);
-    });
+    teaProject.forEach((k, l) -> pnos.add(k));
     ThesisExample thesisExample = new ThesisExample();
     thesisExample.createCriteria().andPnoIn(pnos);
     List<Thesis> thesisList = thesisMapper.selectByExample(thesisExample);
     Map<String, Thesis> thesisMap = new HashMap<>();
-    thesisList.forEach((k) -> {
-      thesisMap.put(k.getPno(), k);
-    });
+    thesisList.forEach(k -> thesisMap.put(k.getPno(), k));
 
     List<TeaProjectDocumentVO<Thesis>> teaProjectDocumentVOS = new ArrayList<>();
 
@@ -83,28 +85,27 @@ public class ThesisService {
    * 获取需要我盲审的论文
    */
   public List<TeaProjectDocumentVO<Thesis>> getTeaBlindThesis(UserVO user) {
-//获取盲审文档
+    //获取盲审文档
     ThesisExample thesisExample = new ThesisExample();
     thesisExample.createCriteria().andSchoolYearEqualTo(user.getSchoolYear())
         .andBlindTrialNoEqualTo(user.getAccountNo());
     List<Thesis> theses = thesisMapper.selectByExample(thesisExample);
     //获取课题名
     List<String> pnos = new ArrayList<>();
-    theses.forEach((k) -> {
-      pnos.add(k.getPno());
-    });
+    theses.forEach(k -> pnos.add(k.getPno()));
+    if (pnos.isEmpty()){
+      return new ArrayList<>();
+    }
     ProjectSelectResultExample example = new ProjectSelectResultExample();
     example.createCriteria().andPnoIn(pnos);
     List<ProjectSelectResult> projectSelectResults = projectSelectResultMapper.selectByExample(example);
     //形成映射, 方便查找
     Map<String, ProjectSelectResult> projectMap = new HashMap<>();
-    projectSelectResults.forEach((k) -> {
-      projectMap.put(k.getPno(), k);
-    });
+    projectSelectResults.forEach(k -> projectMap.put(k.getPno(), k));
     //填充数据
     List<TeaProjectDocumentVO<Thesis>> teaProjectDocumentVOS = new ArrayList<>();
     theses.forEach((k) -> {
-      TeaProjectDocumentVO<Thesis> teaProjectDocumentVO = new TeaProjectDocumentVO();
+      TeaProjectDocumentVO<Thesis> teaProjectDocumentVO = new TeaProjectDocumentVO<>();
       teaProjectDocumentVO.setPno(k.getPno());
       teaProjectDocumentVO.setPname(projectMap.get(k.getPno()).getPname());
       teaProjectDocumentVO.setDocument(k);
@@ -117,6 +118,7 @@ public class ThesisService {
   /**
    * 审核论文
    */
+  @Transactional
   public void verifyThesis(VerifyDocumentDTO verifyDocumentDTO) {
     Thesis thesis = new Thesis();
     thesis.setThesisNo(verifyDocumentDTO.getDno());
@@ -137,7 +139,7 @@ public class ThesisService {
     thesisExample.createCriteria().andThesisNoEqualTo(verifyDocumentDTO.getDno());
     int result = thesisMapper.updateByExampleSelective(thesis, thesisExample);
     if (result != 1) {
-      throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR,"审核失败, 请重试");
     }
 
     //插入评审记录
@@ -151,7 +153,7 @@ public class ThesisService {
     }
     result = thesisRecordMapper.insert(record);
     if (result != 1) {
-      throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR,"审核失败, 请重试");
     }
 
   }
@@ -159,29 +161,30 @@ public class ThesisService {
   /**
    * 提交论文
    */
-  public void submitThesis(UserVO user, String oldFile, MultipartFile file,
-      String pno) {
+  public void submitThesis(UserVO user, MultipartFile file,
+      String dno,String pno) {
     String filePath = FileSave.fileSave(file, FileTypeEnum.THESIS);
     Thesis thesis = new Thesis();
+    thesis.setThesisNo(dno);
     thesis.setPno(pno);
     thesis.setFilePath(filePath);
     thesis.setIsPass((byte)2);
     thesis.setSchoolYear(user.getSchoolYear());
-    if (StringUtils.isBlank(oldFile)){
+    if (StringUtils.isBlank(dno)){
       thesis.setThesisNo(UUID.randomUUID().toString().replaceAll("-", ""));
       thesis.setGmtCreate(new Date());
       thesis.setGmtModified(thesis.getGmtCreate());
       int result = thesisMapper.insertSelective(thesis);
       if (result != 1) {
-        throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+        throw new CommonException(EmCommonError.UNKNOWN_ERROR);
       }
     }else{
       thesis.setGmtModified(new Date());
       ThesisExample example = new ThesisExample();
-      example.createCriteria().andPnoEqualTo(pno);
+      example.createCriteria().andThesisNoEqualTo(dno);
       int result = thesisMapper.updateByExampleSelective(thesis, example);
       if (result != 1) {
-        throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+        throw new CommonException(EmCommonError.UNKNOWN_ERROR);
       }
     }
 
@@ -211,18 +214,12 @@ public class ThesisService {
     ThesisRecordExample example = new ThesisRecordExample();
     example.createCriteria().andThesisNoEqualTo(thesisNo);
     example.setOrderByClause("gmt_create desc");
-    List<ThesisRecord> records = thesisRecordMapper.selectByExample(example);
-    return records;
+    return thesisRecordMapper.selectByExample(example);
   }
 
-  public List<Thesis> getGroupThesis(List<ProjectSelectResult> groupStus) {
-    List<String> pnos = new ArrayList<>();
-    groupStus.forEach((k)->{
-      pnos.add(k.getPno());
-    });
+  public List<Thesis> getGroupThesis(List<String> pnos) {
     ThesisExample thesisExample = new ThesisExample();
     thesisExample.createCriteria().andPnoIn(pnos);
-    List<Thesis> theses = thesisMapper.selectByExample(thesisExample);
-    return theses;
+    return thesisMapper.selectByExample(thesisExample);
   }
 }

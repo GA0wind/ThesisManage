@@ -2,15 +2,12 @@ package com.ncu.graduation.error;
 
 public enum EmUserOperatorError implements CommonError   {
 
-
-
-  //通用错误类型10001
-  PARAMETER_VALIDATION_ERROR(10001,"参数不合法"),
-  UNKNOWN_ERROR(10002,"未知错误"),
-
-  USER_NOT_LOGIN(30001,"用户未登录"),
-  USER_LOGIN_FAIL(30002,"登录失败, 请检查账号密码"),
-
+  USER_NOT_LOGIN(3001,"用户未登录"),
+  USER_LOGIN_FAIL(3002,"登录失败, 请检查账号密码"),
+  STUDENT_CAN_USE(3003, "学生可进"),
+  ADMIN_CAN_USE(3004, "管理员可进"),
+  TEACHER_CAN_USE(3005, "老师可进"),
+  ORALEXAM_NOT_ARRANGE(3006, "答辩情况未安排, 请等待通知"),
   ;
 
   EmUserOperatorError(Integer errCode, String errMsg)

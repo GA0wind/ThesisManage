@@ -27,4 +27,6 @@ public class ProjectApplyDTO {
   @NotNull(message = "申请文件不能为空")
   private MultipartFile file;
   private String tags;
+  private String creaorNo;
+  private String college;
 }

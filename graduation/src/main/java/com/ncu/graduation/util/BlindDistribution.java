@@ -41,11 +41,6 @@ public class BlindDistribution {
 
     String pno;
     String tno;
-
-    public ProjectTwotuple(String pno, String tno) {
-      this.pno = pno;
-      this.tno = tno;
-    }
   }
 
 

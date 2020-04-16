@@ -21,7 +21,6 @@
         <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
         <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
       </div>
-
     </div>
   </div>
   <!-- 顶部导航条 -->
@@ -33,11 +32,17 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navigation">
-            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">公告</a></li>
-            <li><a href="#">师生互选</a></li>
-            <li><a href="#">过程管理</a></li>
-            <li><a href="#">答辩</a></li>
+            <li><a href="/bulletin">首页<span class="sr-only">(current)</span></a></li>
+            <li><a href="/bulletin">公告</a></li>
+            <li><a href="/project/myProject">师生互选</a></li>
+            <li><a th:if="${session.user.role} == 'student'" href="/stuTaskBook">过程管理</a></li>
+            <li><a th:if="${session.user.role} == 'teacher'" href="/teaTaskBook">过程管理</a></li>
+
+            <li><a th:if="${session.user.role} == 'admin'" href="/admin/projectPlan">毕设管理</a></li>
+            <li><a th:if="${session.user.role} == 'student'" href="/examScore">答辩</a></li>
+            <li><a th:if="${session.user.role} == 'teacher'" href="/examGroupStu">答辩</a></li>
+            <li><a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}">用户管理</a></li>
+
           </ul>
         </div>
       </div>

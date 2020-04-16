@@ -12,7 +12,9 @@ import com.ncu.graduation.vo.ProjectApplyVO;
 import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.UserVO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,10 +94,21 @@ public class ProjectController {
   /**
    * 撤销课题
    */
-  @PostMapping("/project/revoke/{pno}")
+  @GetMapping("/project/revoke/{pno}")
   @ResponseBody
   public ResultDTO revokeProject(@PathVariable("pno") String pno) {
     projectService.revoke(pno);
+    return ResultDTO.okOf();
+  }
+
+  /**
+   * 复审课题
+   */
+  @GetMapping("/project/review/{pno}")
+  @ResponseBody
+  public ResultDTO reviewProject(@PathVariable("pno") String pno, HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    projectService.review(pno,user);
     return ResultDTO.okOf();
   }
 

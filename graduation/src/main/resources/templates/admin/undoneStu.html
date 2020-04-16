@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>毕设管理</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
+
+  </div>
+
+  <div class="row ">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuProjectOp">
+
+    </div>
+
+    <!-- 未完成学生 -->
+    <div class=" col-md-7">
+      <div class="row">
+
+        <div class="col-md-12 common view">
+          <p class="title">未完成学生</p>
+          <hr>
+          <a href="/admin/undoneStu/openReport" class="btn btn-default">开题报告</a>
+          <a href="/admin/undoneStu/taskBook" class="btn btn-default">任务书</a>
+          <a href="/admin/undoneStu/foreignFile" class="btn btn-default">外文资料</a>
+          <a href="/admin/undoneStu/thesis" class="btn btn-default">论文</a>
+          <div class="table-responsive view">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="project-name">学院</th>
+                <th>课题</th>
+                <th>学生</th>
+                <th>学号</th>
+                <th>教师</th>
+                <th>工号</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="project:${undoneStu}">
+                <td th:text="${project.college}"></td>
+                <td th:text="${project.pname}"></td>
+                <td th:text="${project.sname}"></td>
+                <td th:text="${project.sno}"></td>
+                <td th:text="${project.tname}"></td>
+                <td th:text="${project.tno}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+
+</html>

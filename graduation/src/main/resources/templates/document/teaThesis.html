@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>开题报告</title>
+  <title>论文</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/css/share.css">
 
@@ -13,8 +13,6 @@
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
   <script src="/js/moment.min.js"></script>
-
-
 
 
   <script>
@@ -59,7 +57,10 @@
           $("#oldFilePath").val(filePath + "");
           var filePathUrl = filePath.replace("#", "%23");
           $("#old-file").removeClass("hide");
-          $("#old-file").append(" <p>\n"
+          $("#old-file").append(
+              "<input class='hide' type='text' id='oldFilePath' name='oldFilePath' value='"
+              + filePath + "'>"
+              + " <p>\n"
               + "&nbsp;&nbsp;课题文档\n"
               + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
               + filePath.split('#')[1] + "</span></a>\n"
@@ -87,10 +88,14 @@
     }
 
     //移除添加的文件数据
-    $('#myModal').on('hidden.bs.modal', function (e) {
-      $("#old-file").addClass("hide");
-      $("#old-file").empty();
-    })
+    //移除添加的数据
+    $(function () {
+      $('#myModal').on('hide.bs.modal',
+          function () {
+            $("#old-file").addClass("hide");
+            $("#old-file").empty();
+          })
+    });
 
     //获取论文记录
     function getThesisRecord(e) {
@@ -99,26 +104,24 @@
         url: '/stuThesis/record?thesisNo=' + thesisNo,
         dataType: 'json',
         success: function (data) {
-
-          $.each(data.data, function (i, data) {
-            $("#thesisRecordTable").append(
-                "<tr>" +
-                "<td> <a href='/download?filePath="+data.filePath.toString().replace('#',"%23")+"&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
-                "<td>" + data.isPass + "</td>" +
-                "<td>" + data.trialGrade + "</td>" +
-                "<td>" + data.trialComment + "</td>" +
-                "<td>" + moment(data.gmtCreate).format('YYYY-MM-dd') + "</td>" +
-                "</tr>");
-          });
+          if (data.code == 200) {
+            $.each(data.data, function (i, data) {
+              $("#thesisRecordTable").append(
+                  "<tr>" +
+                  "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
+                  + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  "<td>" + data.isPass + "</td>" +
+                  "<td>" + data.trialGrade + "</td>" +
+                  "<td>" + data.trialComment + "</td>" +
+                  "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
+                  "</tr>");
+            });
+          } else {
+            alert(data.message);
+          }
         },
-        error: function (data) {
-          alert(data.message)
-        }
-      })
-
-      $('#thesisRecordModel').modal({
-        keyboard: false
       });
+      $("#thesisRecordModel").modal('show');
     }
 
     //查看盲审结果
@@ -130,65 +133,28 @@
       });
     }
 
-    $('#thesisRecordModel').on('hidden.bs.modal', function (e) {
-      $("#thesisRecordTable").empty();
-    })
+    //清除记录
+    $(function () {
+      $('#thesisRecordModel').on('hide.bs.modal',
+          function () {
+            $("#thesisRecordTable").empty();
+          })
+    });
   </script>
 </head>
 
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div class="row">
-    <!-- 顶部logo等 -->
-    <div class="col-md-offset-1 col-md-11 row">
-      <div class="container-fluid col-md-12">
-        <img src="/images/nculogo.png" alt="" class="logo">
-        <span class="ncu hidden-xs">南昌大学</span>
-        <span class="user col-md-offset-7">
-                        <span th:text="${session.user.name}">甘容辉</span>
-                        <span class="hidden-xs">
-                            (<span th:text="${session.user.accountNo}">8000116251</span>)
-                        </span> &nbsp;&nbsp;&nbsp;
-                        <a href="/logout">注销</a>
-                    </span>
-        <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
-        <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
-      </div>
+  <div th:insert="head::head">
 
-    </div>
-  </div>
-  <!-- 顶部导航条 -->
-  <div class="row">
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <div class="visible-xs-block menu clearfix">
-          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navigation">
-            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">公告</a></li>
-            <li><a href="#">师生互选</a></li>
-            <li><a href="#">过程管理</a></li>
-            <li><a href="#">答辩</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
   </div>
 
-  <div class="row ">
+
+  <div class="row">
     <!-- 左侧菜单 -->
-    <div class="col-md-offset-1 col-md-3 subMenu">
-      <h4 class="subMenu-title">师生互选</h4>
-      <div class="list-group">
-        <a href="#" class="list-group-item active">课题申报</a>
-        <a href="#" class="list-group-item">选择课题</a>
-        <a href="#" class="list-group-item">查看任务书</a>
-        <a href="#" class="list-group-item">发布公告</a>
-        <a href="#" class="list-group-item">查看公告</a>
-      </div>
+    <div th:insert="leftMenu::leftMenuDocument">
+
     </div>
 
     <!-- 论文 -->
@@ -221,9 +187,8 @@
               </td>
               <td th:if="${thesis.document} == null">未提交</td>
               <!--              文档操作-->
-              <td>
-                <a th:if="${thesis.document} != null"
-                     th:href="@{/readOnline(filePath=${thesis.document.filePath},fileType='thesis')}">在线浏览</a>
+              <td th:if="${thesis.document} != null">
+                <a th:href="@{/readOnline(filePath=${thesis.document.filePath},fileType='thesis')}">在线浏览</a>
                 <a th:href="@{/download(filePath=${thesis.document.filePath},fileType='thesis')}">下载</a>
               </td>
 
@@ -240,9 +205,11 @@
                    th:data-blindGrade="${thesis.document.blindTrialGrade}"
                    th:data-blindComment="${thesis.document.blindTrialComment}"
                    onclick="getProject(this)">审核</a>
-                <a th:if="${isBlind} == null and ${thesis.document} != null " onclick="getThesisRecord(this)"
+                <a th:if="${isBlind} == null and ${thesis.document} != null "
+                   onclick="getThesisRecord(this)"
                    th:data-thesisNo="${thesis.document.thesisNo}">历史审核</a>
-                <a th:if="${isBlind} == null and ${thesis.document} != null " onclick="getBlindVerify(this)"
+                <a th:if="${isBlind} == null and ${thesis.document} != null "
+                   onclick="getBlindVerify(this)"
                    th:data-blindGrade="${thesis.document.blindTrialGrade}"
                    th:data-blindComment="${thesis.document.blindTrialComment}">盲审结果</a>
               </td>

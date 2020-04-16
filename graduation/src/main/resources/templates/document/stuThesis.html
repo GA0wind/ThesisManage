@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>开题报告</title>
+  <title>论文</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/css/share.css">
   <link rel="stylesheet" href="/css/index.css">
@@ -60,7 +60,7 @@
                 + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
                 "<td>" + data.trialGrade + "</td>" +
                 "<td>" + data.trialComment + "</td>" +
-                "<td>" + moment(data.gmtCreate).format('YYYY-MM-dd') + "</td>" +
+                "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                 "</tr>");
           });
         },
@@ -74,10 +74,13 @@
       });
     }
 
-    //移除添加的文件数据
-    $('#thesisRecordModel').on('hidden.bs.modal', function (e) {
-      $("#thesisRecordTable").empty();
-    })
+    //移除添加的数据
+    $(function () {
+      $('#thesisRecordModel').on('hide.bs.modal',
+          function () {
+            $("#thesisRecordTable").empty();
+          })
+    });
   </script>
 
 </head>
@@ -85,56 +88,17 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div class="row">
-    <!-- 顶部logo等 -->
-    <div class="col-md-offset-1 col-md-11 row">
-      <div class="container-fluid col-md-12">
-        <img src="/images/nculogo.png" alt="" class="logo">
-        <span class="ncu hidden-xs">南昌大学</span>
-        <span class="user col-md-offset-7">
-            甘容辉<span class="hidden-xs">(8000116251)</span> &nbsp;&nbsp;&nbsp;<a href="">注销</a>
-          </span>
-        <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
-        <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
-      </div>
+  <div th:insert="head::head">
 
-    </div>
-  </div>
-  <!-- 顶部导航条 -->
-  <div class="row">
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <div class="visible-xs-block menu clearfix">
-          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navigation">
-            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">公告</a></li>
-            <li><a href="#">师生互选</a></li>
-            <li><a href="#">过程管理</a></li>
-            <li><a href="#">答辩</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
   </div>
 
   <div class="row">
-
-
     <!-- 左侧菜单 -->
-    <div class="col-md-offset-1 col-md-2 subMenu">
-      <h4 class="subMenu-title">师生互选</h4>
-      <div class="list-group">
-        <a href="#" class="list-group-item active">课题申报</a>
-        <a href="#" class="list-group-item">选择课题</a>
-        <a href="#" class="list-group-item">查看任务书</a>
-        <a href="#" class="list-group-item">发布公告</a>
-        <a href="#" class="list-group-item">查看公告</a>
-      </div>
+    <div th:insert="leftMenu::leftMenuDocument">
+
     </div>
 
+<!--  学生论文  -->
     <div class="col-md-7">
       <div class="row">
         <div class="col-md-12 common view">
@@ -232,8 +196,8 @@
           <form id="thesisForm" class="form-inline form" action="/thesis/submit"
                 method="post"
                 enctype="multipart/form-data">
-            <input type="text" class="hide" id="project-pno" name="pno"
-                   th:value="${stuThesis.project.pno}">
+            <input type="text" class="hide" id="project-dno" name="dno"
+                   th:value="${stuThesis.document.thesisNo}">
             <input type="text" class="hide" id="thesis-oldFile" name="oldFile">
             <div class="row">
               <div class="col-md-12">

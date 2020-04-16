@@ -3,35 +3,31 @@ package com.ncu.graduation.service;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import com.ncu.graduation.dto.PaginationDTO;
+import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.mapper.ProjectApplyExtMapper;
 import com.ncu.graduation.mapper.ProjectApplyMapper;
-import com.ncu.graduation.mapper.ProjectExtMapper;
 import com.ncu.graduation.mapper.ProjectSelectMapper;
 import com.ncu.graduation.mapper.ProjectSelectResultMapper;
-import com.ncu.graduation.mapper.StudentMapper;
-import com.ncu.graduation.mapper.TeacherMapper;
+import com.ncu.graduation.mapper.StudentExtMapper;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectApplyExample;
 import com.ncu.graduation.model.ProjectSelect;
 import com.ncu.graduation.model.ProjectSelectExample;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.ProjectSelectResultExample;
-import com.ncu.graduation.model.Student;
-import com.ncu.graduation.model.StudentExample;
-import com.ncu.graduation.model.Teacher;
-import com.ncu.graduation.model.TeacherExample;
+import com.ncu.graduation.vo.ProAndStuNumVO;
 import com.ncu.graduation.vo.ProjectSelectVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,83 +51,69 @@ public class ProjectSelectService {
   private ProjectApplyExtMapper projectApplyExtMapper;
 
   @Autowired
-  private ProjectExtMapper projectExtMapper;
-  @Autowired
   private ProjectSelectMapper projectSelectMapper;
 
   @Autowired
-  private TeacherMapper teacherMapper;
-  @Autowired
-  private StudentMapper studentMapper;
+  private StudentExtMapper studentExtMapper;
 
 
   /**
    * 获取可选的课题
    */
   public PaginationDTO<ProjectSelectVO> getSelectiveProject(Integer page, Integer size,
-      UserVO user) {
-
+      UserVO user, ProjectSearchDTO projectSearchDTO) {
     PaginationDTO<ProjectSelectVO> paginationDTO = new PaginationDTO<>();
+    ProjectSearchDTO searchDTO = new ProjectSearchDTO();
+    if (!StringUtils.isBlank(projectSearchDTO.getPname())){
+      searchDTO.setPname("%"+projectSearchDTO.getPname()+"%");
+    }
+    if (!StringUtils.isBlank(projectSearchDTO.getCreatorName())){
+      searchDTO.setCreatorName("%"+projectSearchDTO.getCreatorName()+"%");
+    }
+    if (!StringUtils.isBlank(projectSearchDTO.getTags())){
+      searchDTO.setTags("%"+projectSearchDTO.getTags()+"%");
+    }
+    if (!StringUtils.isBlank(projectSearchDTO.getType())){
+      searchDTO.setType("%"+projectSearchDTO.getType()+"%");
+    }
     List<ProjectApply> projectApplys = null;
-    Map<String, String> userMap = new HashMap<>();
-    //分页
+    //map对应no, 姓名
+    //如果是老师  查找学生申报的课题
     if (UserRoleEnum.TEACHER.getRole().equals(user.getRole())) {
       String reg = "[0-9]{10}";
       PageMethod.startPage(page, size);
-      projectApplys = projectApplyExtMapper.getSelectiveProjectByTea(reg, user.getSchoolYear());
+      projectApplys = projectApplyExtMapper
+          .getSelectiveProjectByTea(reg, user.getSchoolYear(), user.getCollege(),searchDTO);
       PageInfo<ProjectApply> pageInfo = new PageInfo<>(projectApplys);
       paginationDTO.setPagination((int) pageInfo.getTotal(), page, size);
-      //获取创建者编号
-      Set<String> creatorNos = new HashSet<>();
-      projectApplys.forEach((k) -> {
-        creatorNos.add(k.getCreatorNo());
-      });
-      //查找创建者信息
-
-      StudentExample studentExample = new StudentExample();
-      studentExample.createCriteria().andSnoIn(new ArrayList<>(creatorNos));
-      List<Student> students = studentMapper.selectByExample(studentExample);
-      students.forEach((k) -> {
-        userMap.put(k.getSno(), k.getSname());
-      });
     }
+    //如果是学生 查找老师的课题
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       String reg = "[0-9]{7}";
       PageMethod.startPage(page, size);
-      projectApplys = projectApplyExtMapper.getSelectiveProjectByStu(reg, user.getSchoolYear());
+      projectApplys = projectApplyExtMapper
+          .getSelectiveProjectByStu(reg, user.getSchoolYear(), user.getCollege(),projectSearchDTO);
       PageInfo<ProjectApply> pageInfo = new PageInfo<>(projectApplys);
       paginationDTO.setPagination((int) pageInfo.getTotal(), page, size);
-      //获取创建者编号
-      Set<String> creatorNos = new HashSet<>();
-      projectApplys.forEach((k) -> {
-        creatorNos.add(k.getCreatorNo());
-      });
-      //查找创建者信息
-      TeacherExample teacherExample = new TeacherExample();
-      teacherExample.createCriteria().andTnoIn(new ArrayList<>(creatorNos));
-      List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
-      teachers.forEach((k) -> {
-        userMap.put(k.getTno(), k.getTname());
-      });
     }
-    if (projectApplys == null || projectApplys.isEmpty()) {
-      throw new CommonException(EmProjectError.UNKNOWN_ERROR);
+//    数据拼接
+    if(projectApplys != null && !projectApplys.isEmpty()){
+      List<ProjectSelectVO> projectSelectVOS = new ArrayList<>();
+      for (ProjectApply projectApply : projectApplys) {
+        ProjectSelectVO projectSelectVO = new ProjectSelectVO();
+        projectSelectVO.setPno(projectApply.getPno());
+        projectSelectVO.setPname(projectApply.getPname());
+        projectSelectVO.setType(projectApply.getType());
+        projectSelectVO.setResult(projectApply.getIsSelect());
+        projectSelectVO.setCreatorNo(projectApply.getCreatorNo());
+        projectSelectVO.setCreatorName(projectApply.getCreatorName());
+        projectSelectVOS.add(projectSelectVO);
+        paginationDTO.setData(projectSelectVOS);
+      }
     }
-
-    List<ProjectSelectVO> projectSelectVOS = new ArrayList<>();
-
-    for (ProjectApply projectApply : projectApplys) {
-      ProjectSelectVO projectSelectVO = new ProjectSelectVO();
-      projectSelectVO.setPno(projectApply.getPno());
-      projectSelectVO.setPname(projectApply.getPname());
-      projectSelectVO.setType(projectApply.getType());
-      projectSelectVO.setCreatorNo(projectApply.getCreatorNo());
-      projectSelectVO.setCreatorName(userMap.get(projectApply.getCreatorNo()));
-      projectSelectVOS.add(projectSelectVO);
-    }
-    paginationDTO.setData(projectSelectVOS);
     return paginationDTO;
   }
+
 
   /**
    * 选择课题
@@ -146,6 +128,7 @@ public class ProjectSelectService {
         throw new CommonException(EmProjectError.PROJECT_WAS_SELECTED_OVER_MAX_NUM);
       }
     }
+    //判断学生是否已经有确定课题
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       ProjectSelectResultExample projectSelectResultExample = new ProjectSelectResultExample();
       projectSelectResultExample.createCriteria().andSnoEqualTo(user.getAccountNo());
@@ -172,7 +155,7 @@ public class ProjectSelectService {
     if (projectSelects != null && !projectSelects.isEmpty()) {
       throw new CommonException(EmProjectError.PROJECT_SELECT_REPEAT);
     }
-    //判断是否该课题被选超过三次
+    //判断是否该课题被选超过三次未被审核
     projectSelectExample.clear();
     projectSelectExample.createCriteria().andPnoEqualTo(pno)
         .andIsSelectEqualTo((byte) 2);
@@ -184,6 +167,7 @@ public class ProjectSelectService {
     projectSelect.setPno(pno);
     projectSelect.setSelectorNo(user.getAccountNo());
     projectSelect.setSelectorName(user.getName());
+    projectSelect.setIsSelect((byte) 2);
     projectSelect.setSchoolYear(user.getSchoolYear());
     projectSelect.setGmtCreate(new Date());
     projectSelect.setGmtModified(projectSelect.getGmtCreate());
@@ -200,19 +184,21 @@ public class ProjectSelectService {
         .andSchoolYearEqualTo(user.getSchoolYear());
     projectSelectExample.setOrderByClause("is_select desc");
     List<ProjectSelect> projectSelects = projectSelectMapper.selectByExample(projectSelectExample);
+    if (projectSelects == null || projectSelects.isEmpty()){
+      return new ArrayList<>();
+    }
+    //获取课题编号列表来查找课题
     List<String> pnos = new ArrayList<>();
-    projectSelects.forEach((k) -> {
-      pnos.add(k.getPno());
-    });
+    projectSelects.forEach(k -> pnos.add(k.getPno()));
     ProjectApplyExample projectApplyExample = new ProjectApplyExample();
     projectApplyExample.createCriteria().andPnoIn(pnos);
     List<ProjectApply> projectApplies = projectApplyMapper.selectByExample(projectApplyExample);
-    Map<String, ProjectApply> projectApplyMap = new HashMap<>();
-    projectApplies.forEach((k) -> {
+    Map<String, ProjectApply> projectApplyMap = new HashMap<>(16);
+    //获取创建者列表查找创建者
+    projectApplies.forEach(k -> {
       projectApplyMap.put(k.getPno(), k);
     });
 
-    //todo 添加创始人名称
 
     List<ProjectSelectVO> projectSelectedVOS = new ArrayList<>();
     for (ProjectSelect projectSelect : projectSelects) {
@@ -221,6 +207,8 @@ public class ProjectSelectService {
       projectSelectVO.setPname(projectApplyMap.get(projectSelectVO.getPno()).getPname());
       projectSelectVO.setType(projectApplyMap.get(projectSelectVO.getPno()).getType());
       projectSelectVO.setResult(projectSelect.getIsSelect());
+      projectSelectVO.setCreatorNo(projectApplyMap.get(projectSelectVO.getPno()).getCreatorNo());
+      projectSelectVO.setCreatorName(projectApplyMap.get(projectSelectVO.getPno()).getCreatorName());
       projectSelectedVOS.add(projectSelectVO);
     }
     return projectSelectedVOS;
@@ -230,50 +218,35 @@ public class ProjectSelectService {
   /**
    * 获取我的课题的申请情况
    */
-  public PaginationDTO<ProjectSelectVO> getMyProjectSelectState(Integer page, Integer size,
-      UserVO user) {
-    PaginationDTO<ProjectSelectVO> paginationDTO = new PaginationDTO<>();
-
-    List<String> pnos = new ArrayList<>();
+  public List<ProjectApply> getMyProjectSelectState(UserVO user) {
     //获取我的课题
     ProjectApplyExample example = new ProjectApplyExample();
     example.createCriteria().andCreatorNoEqualTo(user.getAccountNo())
-        .andSchoolYearEqualTo(user.getSchoolYear());
-    List<ProjectApply> projectApplies = projectApplyMapper.selectByExample(example);
-    if (projectApplies == null || projectApplies.isEmpty()) {
-      throw new CommonException(EmProjectError.NO_PROJECT);
-    }
-    Map<String, ProjectApply> projectApplyMap = new HashMap<>();
+        .andSchoolYearEqualTo(user.getSchoolYear()).andIsPassEqualTo((byte) 1);
+    return projectApplyMapper.selectByExample(example);
+  }
 
-    projectApplies.forEach((k) -> {
-      pnos.add(k.getPno());
-      projectApplyMap.put(k.getPno(), k);
-    });
-
-    //分页
+  /**
+   * 根据课题号查看选题人
+   */
+  public List<ProjectSelectVO> getProjectSelectState(String pno) {
     ProjectSelectExample projectSelectExample = new ProjectSelectExample();
     //查找课题
-    projectSelectExample.createCriteria().andPnoIn(pnos);
+    projectSelectExample.createCriteria().andPnoEqualTo(pno);
     projectSelectExample.setOrderByClause("is_select desc");
-    PageMethod.startPage(page, size);
     List<ProjectSelect> projectSelects = projectSelectMapper.selectByExample(projectSelectExample);
-    PageInfo<ProjectSelect> pageInfo = new PageInfo<>(projectSelects);
-    paginationDTO.setPagination((int) pageInfo.getTotal(), page, size);
-
     List<ProjectSelectVO> projectSelectVOS = new ArrayList<>();
     for (ProjectSelect projectSelect : projectSelects) {
       ProjectSelectVO projectSelectVO = new ProjectSelectVO();
       projectSelectVO.setPno(projectSelect.getPno());
-      projectSelectVO.setPname(projectApplyMap.get(projectSelectVO.getPno()).getPname());
-      projectSelectVO.setType(projectApplyMap.get(projectSelectVO.getPno()).getType());
       projectSelectVO.setSelectNo(projectSelect.getSelectorNo());
       projectSelectVO.setSelectName(projectSelect.getSelectorName());
       projectSelectVO.setResult(projectSelect.getIsSelect());
       projectSelectVOS.add(projectSelectVO);
     }
-    paginationDTO.setData(projectSelectVOS);
-    return paginationDTO;
+    return projectSelectVOS;
   }
+
 
   /**
    * 确认选题人
@@ -281,6 +254,13 @@ public class ProjectSelectService {
   @Transactional
   public void confirmProjectSelector(UserVO user, String selectNo, String selectName, String pno,
       String pname) {
+    //判断当前指导人数是否超出
+    ProjectSelectResultExample projectSelectResultExample = new ProjectSelectResultExample();
+    projectSelectResultExample.createCriteria().andTnoEqualTo(user.getAccountNo());
+    long result = projectSelectResultMapper.countByExample(projectSelectResultExample);
+    if (result > user.getLeadNumber()) {
+      throw new CommonException(EmProjectError.PROJECT_WAS_SELECTED_OVER_MAX_NUM);
+    }
     //将该课题的其余选题人设为不通过
     ProjectSelect projectSelect = new ProjectSelect();
     projectSelect.setPno(pno);
@@ -294,8 +274,7 @@ public class ProjectSelectService {
     projectSelect.setIsSelect((byte) 1);
     projectSelectExample.createCriteria().andPnoEqualTo(pno).andSelectorNoEqualTo(selectNo);
     projectSelectMapper.updateByExampleSelective(projectSelect, projectSelectExample);
-
-    //更新课题数据库
+    //更新有效课题数据库
     ProjectSelectResult projectSelectResult = new ProjectSelectResult();
     projectSelectResult.setPno(pno);
     projectSelectResult.setPname(pname);
@@ -309,11 +288,12 @@ public class ProjectSelectService {
       projectSelectResult.setTname(user.getName());
       //修改课题申请中的被选中信息
       ProjectApply projectApply = new ProjectApply();
-      projectApply.setIsSelect((byte)1);
+      projectApply.setIsSelect((byte) 1);
       ProjectApplyExample projectApplyExample = new ProjectApplyExample();
       projectApplyExample.createCriteria().andPnoEqualTo(pno);
       projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
     }
+    //如果是学生, 将课题放入老师名下
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       projectSelectResult.setTno(selectNo);
       projectSelectResult.setTname(selectName);
@@ -322,7 +302,8 @@ public class ProjectSelectService {
       //修改课题申请中的被选中信息, 并将课题放入老师名下
       ProjectApply projectApply = new ProjectApply();
       projectApply.setCreatorNo(selectNo);
-      projectApply.setIsSelect((byte)1);
+      projectApply.setCreatorName(selectName);
+      projectApply.setIsSelect((byte) 1);
       ProjectApplyExample projectApplyExample = new ProjectApplyExample();
       projectApplyExample.createCriteria().andPnoEqualTo(pno);
       projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
@@ -340,6 +321,35 @@ public class ProjectSelectService {
     projectSelect.setGmtModified(new Date());
     ProjectSelectExample projectSelectExample = new ProjectSelectExample();
     projectSelectExample.createCriteria().andPnoEqualTo(pno).andSelectorNoEqualTo(selectNo);
-    projectSelectMapper.updateByExampleSelective(projectSelect, projectSelectExample);
+    int result = projectSelectMapper.updateByExampleSelective(projectSelect, projectSelectExample);
+    if (result != 1) {
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR, "拒绝课题" + pno + "选择失败");
+    }
+    //查看是否有未明确的选题人
+    projectSelectExample.clear();
+    projectSelectExample.createCriteria().andPnoEqualTo(pno).andIsSelectEqualTo((byte) 2);
+    List<ProjectSelect> projectSelects = projectSelectMapper.selectByExample(projectSelectExample);
+    if (projectSelects == null || projectSelects.isEmpty()) {
+      //没有则将课题被选情况设为未被人选
+      ProjectApply projectApply = new ProjectApply();
+      projectApply.setPno(pno);
+      projectApply.setIsSelect((byte) 0);
+      ProjectApplyExample projectApplyExample = new ProjectApplyExample();
+      projectApplyExample.createCriteria().andPnoEqualTo(pno);
+      projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
+    }
+
+  }
+
+
+  public List<ProAndStuNumVO> getStuAndProNum(UserVO user) {
+    // 查看学院可选课题
+    List<ProAndStuNumVO> proNumVOS = projectApplyExtMapper
+        .countByCollege(user.getSchoolYear());
+    List<ProAndStuNumVO> stuNumVOS = studentExtMapper.countByCollege(user.getSchoolYear());
+    Map<String, Long> stuByCollege = new HashMap<>();
+    stuNumVOS.forEach((k) -> stuByCollege.put(k.getCollege(), k.getStuNum()));
+    proNumVOS.forEach((k) -> k.setStuNum(stuByCollege.get(k.getCollege())));
+    return proNumVOS;
   }
 }

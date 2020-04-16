@@ -9,7 +9,9 @@ import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,9 +40,10 @@ public class TaskBookController {
   @GetMapping("/teaTaskBook")
   public String getTeaTaskBook(HttpServletRequest request,
       Model model) {
-    UserVO user = (UserVO) request.getSession().getAttribute("user");
+    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
+        .getSession().getAttribute("teaProject");
     List<TeaProjectDocumentVO<TaskBook>> myTaskBook = taskBookService
-        .getTeaTaskBook(user);
+        .getTeaTaskBook(teaProject);
     model.addAttribute("teaTaskBook", myTaskBook);
     return "document/teaTaskBook";
   }
@@ -48,14 +51,15 @@ public class TaskBookController {
   /**
    * 提交任务书
    * @param file
-   * @param pno
+   * @param dno
    * @return
    */
   @ResponseBody
   @PostMapping("/taskBook/submit")
   public ResultDTO submitTaskBook(@RequestParam("taskBook") MultipartFile file,
-      @RequestParam("pno") String pno) {
-    taskBookService.submitTaskBook(file,pno);
+      @RequestParam("dno") String dno,@RequestParam("pno")String pno, HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    taskBookService.submitTaskBook(user,file,dno,pno);
     return ResultDTO.okOf();
   }
 
@@ -68,11 +72,10 @@ public class TaskBookController {
   @GetMapping("/stuTaskBook")
   public String getStuTaskBook(HttpServletRequest request,
       Model model) {
-    UserVO user = (UserVO) request.getSession().getAttribute("user");
     ProjectApply project = (ProjectApply) request.getSession().getAttribute("stuProject");
 
     StuProjectDocumentVO<TaskBook> stuTaskBook = taskBookService
-        .getStuTaskBook(user,project);
+        .getStuTaskBook(project);
     model.addAttribute("stuTaskBook", stuTaskBook);
     return "document/stuTaskBook";
   }

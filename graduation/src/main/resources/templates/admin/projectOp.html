@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>毕设管理</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+
+  <script>
+    function addProject() {
+      $('#addProjectForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("添加成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert("添加失败, 请重试");
+          }
+        },
+
+      });
+    }
+
+    function showAddProjectModel(e) {
+      $('#projectModal').modal({
+        keyboard: false
+      });
+    }
+
+    //移除添加的文件数据
+    $('#myModal').on('hidden.bs.modal', function (e) {
+      $("#old-file").addClass("hide");
+      $("#old-file").empty();
+    })
+  </script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
+
+  </div>
+
+  <div class="row ">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuSelect">
+
+    </div>
+    <!-- 已提交的课题 -->
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12 common view">
+
+          <p class="title">我的课题</p>
+
+          <hr>
+          <div class="table-responsive view">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="project-name">学院</th>
+                <th>可选课题数</th>
+                <th>学生数</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="project:${stuAndProNum}">
+                <td th:text="${project.college}"></td>
+                <td th:text="${project.proNum}"></td>
+                <td th:text="${project.stuNum}"></td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <button onclick="showAddProjectModel()">添加可选课题</button>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- 课题信息弹出框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="projectModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">课题信息</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <form id="addProjectForm" class="form-inline form" action="/admin/addSelectiveProject"
+                method="post"
+                enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-pname">课题名称&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-pname" name="pname">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-content">课题内容&nbsp;&nbsp;</label>
+                <textarea class="form-control" rows="3" id="project-content"
+                          name="content"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">课题类型&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-type" name="type">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">创建者工号/学号&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-creator" name="creatorNo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">创建者姓名&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-creatorName" name="creatorName">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">课题文件&nbsp;&nbsp;</label>
+                <input type="file" class="form-control" id="project-file" name="file">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="project-type">所属学院&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="project-college" name="college">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评分&nbsp;&nbsp;</label>
+                <input id="verify-grade" type="text" class="form-control" name="score">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>评语&nbsp;&nbsp;</label>
+                <input id="verify-comment" type="text" class="form-control" name="comment">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="verifySubmit" type="button" class="btn btn-success"
+                onclick="addProject()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+
+</html>

@@ -9,14 +9,7 @@ package com.ncu.graduation.error;
  */
 public enum EmDocumentError implements CommonError {
 
-  /**
-   *
-   */
-  PARAMETER_VALIDATION_ERROR(10001, "参数不合法"),
-  UNKNOWN_ERROR(10002, "未知错误"),
 
-  DOCUMENT_IS_EMPTY(60001, "文件为空"),
-  STUDENT_CAN_USE(60002, "该页面为学生可进"),
 
   ;
   private Integer errCode;

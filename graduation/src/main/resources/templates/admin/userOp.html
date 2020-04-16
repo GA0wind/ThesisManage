@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>用户管理</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+
+  <script>
+    function addTea() {
+      $("#tea-isModify").val(0);
+      $("#tea-tno").val("");
+      $("#tea-tname").val("");
+      $("#tea-college").val("");
+      $("#tea-pwd").val("");
+      $("#tea-role").val("");
+      $("#tea-stuNum").val("");
+      $("#tea-groupNum").val("");
+      $("#tea-groupRole").val("");
+      $('#teaModel').modal({
+        keyboard: false
+      });
+    }
+
+    function getTea(e) {
+      var tno = $(e).attr('data-tno');
+      $("#tea-isModify").val(1);
+      $.ajax({
+        url: '/admin/tea/' + tno,
+        dataType: 'json',
+        success: function (data) {
+          if (data.code == 200) {
+            $("#tea-tno").val(data.data.tno + "");
+            $("#tea-tname").val(data.data.tname + "");
+            $("#tea-college").val(data.data.college + "");
+            $("#tea-role").val(data.data.role + "");
+            $("#tea-pwd").val(data.data.password + "");
+            $("#tea-stuNum").val(data.data.leadStudentNum + "");
+            $("#tea-groupNum").val(data.data.groupNum + "");
+            $("#tea-groupRole").val(data.data.groupRole + "");
+            $('#teaModel').modal({
+              keyboard: false
+            });
+          } else {
+            alert(data.message);
+          }
+        },
+
+      })
+    }
+
+    function submitTea() {
+      $('#modifyTeaForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    function addStu() {
+      $("#stu-isModify").val(0);
+      $("#stu-sno").val("");
+      $("#stu-sname").val("");
+      $("#stu-college").val("");
+      $("#stu-major").val("");
+      $("#stu-pwd").val("");
+      $("#stu-gradeClass").val("");
+      $("#stu-groupNum").val("");
+      $('#stuModel').modal({
+        keyboard: false
+      });
+    }
+
+    function getStu(e) {
+      var sno = $(e).attr('data-sno');
+      $("#stu-isModify").val(1);
+      $.ajax({
+        url: '/admin/stu/' + sno,
+        dataType: 'json',
+        success: function (data) {
+          if (data.code == 200) {
+            $("#stu-sno").val(data.data.sno + "");
+            $("#stu-sname").val(data.data.sname + "");
+            $("#stu-college").val(data.data.college + "");
+            $("#stu-pwd").val(data.data.password + "");
+            $("#stu-major").val(data.data.major + "");
+            $("#stu-gradeClass").val(data.data.gradeClass + "");
+            $("#stu-groupNum").val(data.data.groupNum + "");
+            $('#stuModel').modal({
+              keyboard: false
+            });
+          } else {
+            alert(data.message);
+          }
+        },
+      })
+    }
+
+    function submitStu() {
+      $('#modifyStuForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    function showAddUserExcel(e) {
+      var type = $(e).attr("data-type");
+      if (type == 'student') {
+        $("#exlAddUserForm").attr("action", "/admin/exlAddStu");
+      }
+      if (type == 'teacher') {
+        $("#exlAddUserForm").attr("action", "/admin/exlAddTea");
+      }
+
+      $('#exlAddUserModel').modal({
+        keyboard: false
+      });
+    }
+
+    function submitUserExl(e) {
+      $('#exlAddUserForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    function showGroupExlModel(e) {
+      var type = $(e).attr("data-type");
+      if (type == 'student') {
+        $("#exlSetGroupForm").attr("action", "/admin/setStuGroupByExcel");
+      }
+      if (type == 'teacher') {
+        $("#exlSetGroupForm").attr("action", "/admin/setTeaGroupByExcel");
+      }
+
+      $('#exlSetGroupModel').modal({
+        keyboard: false
+      });
+    }
+
+    function sumbitSetGroupExl() {
+      $('#exlSetGroupForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    function getUserList(e) {
+      $("#hide-page").val($("#page").val());
+      var page = $(e).attr("data-page");
+      if (page){
+        $("#hide-page").val(page);
+      }
+      var role = $('#getUserView').attr("data-role");
+      if (role == 'student'){
+        $('#getUserView').attr("active:'/admin/stuView'")
+      } else{
+        $('#getUserView').attr("active:'/admin/teaView'")
+      }
+      $('#getUserView').submit();
+    }
+
+    function changeVal(e) {
+      $(e).attr("value",$(e).val());
+    }
+  </script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
+
+  </div>
+
+  <div class="row ">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuUserOp">
+    </div>
+
+    <!-- 用户管理 -->
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title" th:if="${role} == 'student'">学生列表</p>
+          <p class="title" th:if="${role} == 'teacher'">职工列表</p>
+          <hr>
+          <form th:data-role="${role}" id="getUserView" method="get" class="form-inline form">
+            <input id="hide-page" type="text" class="hide" name="page">
+            <label for="search-userNo">学号</label>
+            <input id="search-userNo" type="text" name="userNo" th:value="${userSearchDTO.userNo}"  onchange="changeVal(this)">
+            <label for="search-college">学院</label>
+            <input id="search-college" type="text" name="college" th:value="${userSearchDTO.college}"  onchange="changeVal(this)">
+            <label for="search-name">姓名</label>
+            <input id="search-name" type="text" name="name" th:value="${userSearchDTO.name}" onchange="changeVal(this)">
+            <label th:if="${role}=='teacher'" for="search-role">角色</label>
+            <input th:if="${role}=='teacher'" id="search-role" type="text" name="role" th:value="${userSearchDTO.role}">
+            <button type="button" onclick="getUserList()">搜索</button>
+          </form>
+          <div class="table-responsive view">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="project-name">学号</th>
+                <th>姓名</th>
+                <th>学院</th>
+                <th th:if="${role} == 'student'">专业</th>
+                <th th:if="${role} == 'student'">班级</th>
+                <th th:if="${role} == 'student'">答辩小组</th>
+
+                <th th:if="${role} == 'teacher'">角色</th>
+                <th th:if="${role} == 'teacher'">指导人数</th>
+                <th th:if="${role} == 'teacher'">答辩小组</th>
+                <th th:if="${role} == 'teacher'">小组角色</th>
+
+              </tr>
+              </thead>
+              <tbody th:if="${role} == 'teacher'">
+              <tr th:each="teacher:${users.data}">
+                <td th:text="${teacher.tno}"></td>
+                <td th:text="${teacher.tname}">未知</td>
+                <td th:text="${teacher.college}"></td>
+                <td th:text="${teacher.role}"></td>
+                <td th:text="${teacher.leadStudentNum}"></td>
+                <td th:text="${teacher.groupNum}"></td>
+                <td th:text="${teacher.groupRole}"></td>
+
+                <td>
+                  <a onclick="getTea(this)"
+                     th:data-tno="${teacher.tno}">修改</a>
+                </td>
+              </tr>
+
+              </tbody>
+              <tbody th:if="${role} == 'student'">
+              <tr th:each="student:${users.data}">
+                <td th:text="${student.sno}"></td>
+                <td th:text="${student.sname}">未知</td>
+                <td th:text="${student.college}"></td>
+                <td th:text="${student.major}"></td>
+                <td th:text="${student.gradeClass}"></td>
+                <td th:text="${student.groupNum}"></td>
+                <td>
+                  <a onclick="getStu(this)"
+                     th:data-sno="${student.sno}">修改</a>
+                </td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td>
+                  <div th:if="${users.totalPage} > 1">
+                    <a onclick="getUserList(this)" th:data-page="1" class="more">首页</a>&nbsp;&nbsp;
+                    <a th:if="${users.page}>1" onclick="getUserList(this)"
+                       th:data-page="${users.page}-1" class="more">上一页</a>&nbsp;&nbsp;
+                    <input class="pagination-num" id="page" type="text" th:value="${users.page}"
+                           size="2" name="page"
+                           onmousedown="if(event.keyCode==13){getUserList()}">&nbsp;&nbsp;
+                    <a th:if="${users.page}<${users.totalPage}"
+                       onclick="getUserList(this)" th:data-page="${users.page}+1"
+                       class="more">下一页</a>&nbsp;&nbsp;
+                    <a onclick="getUserList(this)" th:data-page="${users.totalPage}"
+                       class="more">尾页</a>&nbsp;&nbsp;
+                  </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <button onclick="showGroupExlModel(this)" th:data-type="${role}">excel设置组别
+                  </button>
+                </td>
+                <td>
+                  <button onclick="showAddUserExcel(this)" th:data-type="${role}">excel添加</button>
+                </td>
+                <td th:if="${role} == 'teacher'" onclick="addTea()">
+                  <button>添加</button>
+                </td>
+                <td th:if="${role} == 'student'" onclick="addStu()">
+                  <button>添加</button>
+                </td>
+                <td th:if="${role} == 'teacher'"></td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- 教师信息修改框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="teaModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">课题信息</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="modifyTeaForm" class="form-inline form" action="/admin/add"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="number" class="hide" id="tea-isModify" name="isModify">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="tea-tno">工号&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="tea-tno" name="userNo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="tea-pwd">密码&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="tea-pwd" name="password">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="tea-tname">姓名&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="tea-tname" name="name">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>学院&nbsp;&nbsp;</label>
+                <select class="form-control" id="tea-college" name="college">
+                  <option value="软件学院">软件学院</option>
+                  <option value="艺术学院">艺术学院</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>角色&nbsp;&nbsp;</label>
+                <select class="form-control" id="tea-role" name="role">
+                  <option value="admin">管理员</option>
+                  <option value="teacher">指导老师</option>
+                  <option value="director">学院主任</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="tea-stuNum">指导人数&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="tea-stuNum" name="leadStudentNum">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>答辩小组&nbsp;&nbsp;</label>
+                <input id="tea-groupNum" type="text" class="form-control" name="groupNum">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>小组角色&nbsp;&nbsp;</label>
+                <input id="tea-groupRole" type="text" class="form-control" name="groupRole">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success"
+                onclick="submitTea()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 学生信息修改框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="stuModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">课题信息</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="modifyStuForm" class="form-inline form" action="/admin/add"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="number" class="hide" id="stu-isModify" name="isModify">
+            <input type="text" class="hide" id="role" name="role" value="student">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="stu-sno">工号&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="stu-sno" name="userNo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="stu-pwd">密码&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="stu-pwd" name="password">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="stu-sname">姓名&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="stu-sname" name="name">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>学院&nbsp;&nbsp;</label>
+                <select class="form-control" id="stu-college" name="college">
+                  <option value="软件学院">软件学院</option>
+                  <option value="艺术学院">艺术学院</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label>专业&nbsp;&nbsp;</label>
+                <select class="form-control" id="stu-major" name="major">
+                  <option value="软件工程">软件工程</option>
+                  <option value="信息安全">信息安全</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="stu-gradeClass">班级&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="stu-gradeClass" name="gradeClass">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>答辩小组&nbsp;&nbsp;</label>
+                <input id="stu-groupNum" type="text" class="form-control" name="groupNum">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success"
+                onclick="submitStu()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- excel添加用户框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="exlAddUserModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Excel添加学生</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <form id="exlAddUserForm" class="form-inline form" method="post"
+                enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="user-excel">excel文件&nbsp;&nbsp;</label>
+                <input type="file" class="form-control" id="user-excel" name="excel">
+                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 密码 姓名 学院 角色 指导人数
+                  (角色为admin或director或teacher)</p>
+                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 密码 姓名 学院 专业 班级 </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success"
+                onclick="submitUserExl()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- excel答辩小组框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="exlSetGroupModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Excel设置答辩小组</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <form id="exlSetGroupForm" class="form-inline form" method="post"
+                enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="group-excel">excel文件&nbsp;&nbsp;</label>
+                <input type="file" class="form-control" id="group-excel" name="excel">
+                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 组号 组内角色 (角色为member或leader) 学院</p>
+                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 组号 </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success"
+                onclick="sumbitSetGroupExl()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+
+</html>

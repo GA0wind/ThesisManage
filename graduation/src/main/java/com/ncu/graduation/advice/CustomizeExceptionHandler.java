@@ -4,6 +4,7 @@ package com.ncu.graduation.advice;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmBulletinError;
+import com.ncu.graduation.error.EmCommonError;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -18,8 +19,7 @@ public class CustomizeExceptionHandler {
 
 
     @ResponseBody
-    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class,
-        CommonException.class})
+    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
     public Object validationExceptionHandler(Exception exception) {
 
         BindingResult bindResult = null;
@@ -35,7 +35,15 @@ public class CustomizeExceptionHandler {
 
             msg = "不知道啥问题";
         }
-        return ResultDTO.errorOf(EmBulletinError.PARAMETER_VALIDATION_ERROR.getErrCode(), msg);
+        return ResultDTO.errorOf(EmCommonError.PARAMETER_VALIDATION_ERROR.getErrCode(), msg);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = CommonException.class)
+    public Object commonExceptionHandler(Exception exception) {
+
+        CommonException commonException = (CommonException)exception;
+        return ResultDTO.errorOf(commonException);
     }
 
 //    @ExceptionHandler(value = Exception.class)

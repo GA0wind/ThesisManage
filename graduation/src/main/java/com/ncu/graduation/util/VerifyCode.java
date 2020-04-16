@@ -26,10 +26,10 @@ public class VerifyCode {
         g.setColor(getRandomColor());
         g.fillRect(0, 0, width, height);
         g.setFont(new Font("Microsoft YaHei", 2, 24));
-        String sRand = "";
+        StringBuilder sRand = new StringBuilder();
         for(int responseOutputStream = 0; responseOutputStream < 4; ++responseOutputStream) {
             String rand = String.valueOf(random.nextInt(10));
-            sRand = sRand + rand;
+            sRand.append(rand);
             g.setColor(getRandomColor());
             g.drawString(rand, 13 * responseOutputStream + 16, 23);
         }
@@ -43,7 +43,7 @@ public class VerifyCode {
         }
         g.dispose();
 
-        return new VerifyCode(sRand,image);
+        return new VerifyCode(sRand.toString(),image);
 
     }
     private static Color getRandomColor() {

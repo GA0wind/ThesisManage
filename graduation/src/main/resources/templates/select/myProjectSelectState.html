@@ -14,6 +14,47 @@
   <script src="/js/jqueryForm.js"></script>
 
   <script>
+
+    function getprojectSelect(e) {
+      var pno = $(e).attr('data-pno');
+      var pname = $(e).attr('data-pname');
+      $.ajax({
+        url: '/project/myProjectSelectState/' + pno,
+        success: function (data) {
+          if (data.code == 200) {
+            $.each(data.data, function (i, data) {
+              var result;
+              var operate = "";
+              if (data.result == 1) {
+                result = "已定";
+              } else if (data.result == 2) {
+                result = "待定";
+                operate = "<a data-selectNo='" + data.selectNo + "' data-selectName='" +
+                    data.selectName + "' data-pno='" + pno + "' data-pname='" + pname
+                    + "' onclick=confirmSelect(this)>同意</a> / " +
+                    "<a data-selectNo='" + data.selectNo + "' data-pno='" + pno
+                    + "' onclick=refuseSelect(this)>回拒</a> / ";
+              } else if (data.result == 0) {
+                result = "回拒";
+              }
+
+              $("#selectState").append(
+                  "<tr>" +
+                  "<td>" + data.selectName + "</td>" +
+                  "<td>" + data.selectNo + "</td>" +
+                  "<td>" + result + "</td>" +
+                  "<td>" + operate + "</td>" +
+                  "</tr>");
+
+              $('#myModal').modal('show');
+            });
+          } else {
+            alert(data.message);
+          }
+        }
+      })
+    }
+
     function confirmSelect(e) {
       var selectNo = $(e).attr('data-selectNo');
       var selectName = $(e).attr('data-selectName');
@@ -48,121 +89,112 @@
         }
       })
     }
+
+    //移除添加数据数据
+    $(function () {
+      $('#myModal').on('hide.bs.modal',
+          function () {
+            $("#selectState").empty();
+          })
+    });
   </script>
 </head>
 
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div class="row">
-    <!-- 顶部logo等 -->
-    <div class="col-md-offset-1 col-md-11 row">
-      <div class="container-fluid col-md-12">
-        <img src="/images/nculogo.png" alt="" class="logo">
-        <span class="ncu hidden-xs">南昌大学</span>
-        <span class="user col-md-offset-7">
-                        <span th:text="${session.user.name}">甘容辉</span>
-                        <span class="hidden-xs">
-                            (<span th:text="${session.user.accountNo}">8000116251</span>)
-                        </span> &nbsp;&nbsp;&nbsp;
-                        <a href="/logout">注销</a>
-                    </span>
-        <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
-        <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
-      </div>
+  <div th:insert="head::head">
 
-    </div>
-  </div>
-  <!-- 顶部导航条 -->
-  <div class="row">
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <div class="visible-xs-block menu clearfix">
-          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navigation">
-            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">公告</a></li>
-            <li><a href="#">师生互选</a></li>
-            <li><a href="#">过程管理</a></li>
-            <li><a href="#">答辩</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
   </div>
 
-  <div class="row ">
+
+  <div class="row">
     <!-- 左侧菜单 -->
-    <div class="col-md-offset-1 col-md-3 subMenu">
-      <h4 class="subMenu-title">师生互选</h4>
-      <div class="list-group">
-        <a href="#" class="list-group-item active">课题申报</a>
-        <a href="#" class="list-group-item">选择课题</a>
-        <a href="#" class="list-group-item">查看任务书</a>
-        <a href="#" class="list-group-item">发布公告</a>
-        <a href="#" class="list-group-item">查看公告</a>
-      </div>
+    <div th:insert="leftMenu::leftMenuSelect">
+
     </div>
 
     <!-- 我的课题选题情况 -->
-    <div class="row">
-      <div class="col-md-7 common view">
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12 common view">
 
-        <p class="title">我的课题选题情况</p>
+          <p class="title">我的课题选题情况</p>
 
-        <hr>
-        <div class="table-responsive view">
-          <table class="table">
-            <thead>
-            <tr>
-              <th class="project-name">课题名</th>
-              <th>选题人</th>
-              <th>状态</th>
-              <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="projectSelect:${projectSelects.data}">
-              <td th:text="${projectSelect.pname}"></td>
-              <td th:text="${projectSelect.selectName+'('+projectSelect.selectNo+')'}"></td>
-              <td th:if="${projectSelect.result} == 1">已通过</td>
-              <td th:if="${projectSelect.result} == 2">待审核</td>
-              <td th:if="${projectSelect.result} == 0">被拒绝</td>
-              <td>
-                <a th:if="${projectSelect.result} == 2" th:data-selectNo="${projectSelect.selectNo}"
-                   th:data-selectName="${projectSelect.selectName}"
-                   th:data-pno="${projectSelect.pno}" th:data-pname="${projectSelect.pname}"
-                   onclick="confirmSelect(this)">同意</a>
-                <a th:if="${projectSelect.result} == 2" th:data-pno="${projectSelect.pno}" th:data-selectNo="${projectSelect.selectNo}"
-                   onclick="refuseSelect(this)">拒绝</a>
-              </td>
-            </tr>
+          <hr>
+          <div class="table-responsive view">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="project-name">课题名</th>
+                <th>课题类型</th>
+                <th>被选情况</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="projectApply:${projectApplys}">
+                <td th:text="${projectApply.pname}"></td>
+                <td th:text="${projectApply.type}"></td>
+                <td th:if="${projectApply.isSelect} == 1">已定</td>
+                <td th:if="${projectApply.isSelect} == 2">待定</td>
+                <td th:if="${projectApply.isSelect} == 0">待选</td>
+                <td>
+                  <a th:data-pno="${projectApply.pno}" th:data-pname="${projectApply.pname}"
+                     onclick=getprojectSelect(this)>查看待选详情</a>
+                </td>
+              </tr>
 
-            </tbody>
-            <tfoot>
-            <tr>
-              <td>
-                <div th:if="${projectSelects.totalPage} > 1">
-                  <a href="#" class="more">首页</a>&nbsp;&nbsp;
-                  <a href="#" class="more">上一页</a>&nbsp;&nbsp;
-                  <input class="pagination-num" type="text" value="1" size="2">&nbsp;&nbsp;
-                  <a href="#" class="more">下一页</a>&nbsp;&nbsp;
-                  <a href="#" class="more">尾页</a>&nbsp;&nbsp;
-                </div>
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            </tfoot>
-          </table>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- 课题被选信息 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">被选情况</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>选题人</th>
+              <th>学号</th>
+              <th>结果</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="selectState">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 </body>

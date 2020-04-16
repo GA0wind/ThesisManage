@@ -11,8 +11,7 @@ import org.apache.ibatis.annotations.Param;
  * @modified By：
  * @version: 0.0.1
  */
-public interface ProjectExtMapper {
+public interface ProjectSelectResultExtMapper {
 
-  List<ProjectTwotuple> getProjectNoAndTno();
 
 }

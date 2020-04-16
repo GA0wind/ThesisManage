@@ -3,6 +3,7 @@ package com.ncu.graduation.service;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
 import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmDocumentError;
 import com.ncu.graduation.mapper.ForeignLiteratureMapper;
 import com.ncu.graduation.mapper.ForeignRecordMapper;
@@ -25,6 +26,7 @@ import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -49,24 +51,21 @@ public class ForeignLiteratureService {
 
 
   /**
-   * 获取我的课题的外文信息
+   * 获取教师的课题的外文信息
    */
-  public List<TeaProjectDocumentVO<ForeignLiterature>> getTeaForeignLiterature(UserVO user) {
-    //获取我的课题
-    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+  public List<TeaProjectDocumentVO<ForeignLiterature>> getTeaForeignLiterature(UserVO user,
+      Map<String, ProjectSelectResult> teaProject) {
+    //获取教师的课题编号
     List<String> pnos = new ArrayList<>();
-    teaProject.forEach((k, l) -> {
-      pnos.add(k);
-    });
+    teaProject.forEach((k, l) -> pnos.add(k));
     //查询这些课题的外文资料数据
     ForeignLiteratureExample example = new ForeignLiteratureExample();
     example.createCriteria().andPnoIn(pnos);
     List<ForeignLiterature> foreignLiteratures = foreignLiteratureMapper.selectByExample(
         example);
-    Map<String, ForeignLiterature> foreignLiteratureMap = new HashMap<>();
-    foreignLiteratures.forEach((k) -> {
-      foreignLiteratureMap.put(k.getPno(), k);
-    });
+    //组装数据
+    Map<String, ForeignLiterature> foreignLiteratureMap = new HashMap<>(16);
+    foreignLiteratures.forEach(k -> foreignLiteratureMap.put(k.getPno(), k));
 
     List<TeaProjectDocumentVO<ForeignLiterature>> teaProjectDocumentVOS = new ArrayList<>();
 
@@ -86,6 +85,7 @@ public class ForeignLiteratureService {
   /**
    * 指导老师审核外文资料
    */
+  @Transactional
   public void verifyForeignLiterature(VerifyDocumentDTO verifyDocumentDTO) {
     ForeignLiterature foreignLiterature = new ForeignLiterature();
     foreignLiterature.setFno(verifyDocumentDTO.getDno());
@@ -97,10 +97,9 @@ public class ForeignLiteratureService {
     //插入数据
     ForeignLiteratureExample foreignLiteratureExample = new ForeignLiteratureExample();
     foreignLiteratureExample.createCriteria().andFnoEqualTo(verifyDocumentDTO.getDno());
-    int result = foreignLiteratureMapper
-        .updateByExampleSelective(foreignLiterature, foreignLiteratureExample);
-    if (result != 1) {
-      throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+    if (foreignLiteratureMapper
+        .updateByExampleSelective(foreignLiterature, foreignLiteratureExample) != 1) {
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR,"审核出错, 请重试");
     }
 
     //插入评审记录
@@ -113,9 +112,8 @@ public class ForeignLiteratureService {
       record.setTranslationFile(verifyDocumentDTO.getTranslationFile());
       record.setGmtCreate(foreignLiterature.getGmtModified());
     }
-    result = foreignRecordMapper.insert(record);
-    if (result != 1) {
-      throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+    if (foreignRecordMapper.insert(record) != 1) {
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR,"审核出错, 请重试");
     }
 
   }
@@ -123,34 +121,34 @@ public class ForeignLiteratureService {
   /**
    * 提交外文资料
    */
-  public void submitForeignLiterature(UserVO user, String oldFile,
+  public void submitForeignLiterature(UserVO user,
       MultipartFile foreignFile,
-      MultipartFile translationFile, String pno) {
-
+      MultipartFile translationFile, String dno,String pno) {
     String foreignFilePath = FileSave.fileSave(foreignFile, FileTypeEnum.FOREIGNFILE);
     String translationFilePath = FileSave.fileSave(translationFile, FileTypeEnum.TRANSLATIONFILE);
     ForeignLiterature foreignLiterature = new ForeignLiterature();
+    foreignLiterature.setFno(dno);
     foreignLiterature.setPno(pno);
     foreignLiterature.setForeignFile(foreignFilePath);
     foreignLiterature.setTranslationFile(translationFilePath);
-    foreignLiterature.setIsPass((byte)2);
+    foreignLiterature.setIsPass((byte) 2);
     foreignLiterature.setSchoolYear(user.getSchoolYear());
-    if (StringUtils.isBlank(oldFile)){
+    if (StringUtils.isBlank(dno)) {
       foreignLiterature.setFno(UUID.randomUUID().toString().replaceAll("-", ""));
       foreignLiterature.setGmtCreate(new Date());
       foreignLiterature.setGmtModified(foreignLiterature.getGmtCreate());
       int result = foreignLiteratureMapper.insertSelective(foreignLiterature);
       if (result != 1) {
-        throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+        throw new CommonException(EmCommonError.UNKNOWN_ERROR,"外文资料添加失败, 请重试");
       }
-    }else{
+    } else {
       foreignLiterature.setGmtModified(new Date());
       ForeignLiteratureExample example = new ForeignLiteratureExample();
-      example.createCriteria().andPnoEqualTo(pno);
+      example.createCriteria().andFnoEqualTo(dno);
       int result = foreignLiteratureMapper.updateByExampleSelective(foreignLiterature,
           example);
       if (result != 1) {
-        throw new CommonException(EmDocumentError.UNKNOWN_ERROR);
+        throw new CommonException(EmCommonError.UNKNOWN_ERROR,"外文资料修改失败, 请重试");
       }
     }
 
@@ -160,13 +158,13 @@ public class ForeignLiteratureService {
   /**
    * 学生查看外文资料和审核
    */
-  public StuProjectDocumentVO<ForeignLiterature> getStuForeignLiterature(UserVO user, ProjectApply projectApply) {
+  public StuProjectDocumentVO<ForeignLiterature> getStuForeignLiterature(ProjectApply projectApply) {
     ForeignLiteratureExample example = new ForeignLiteratureExample();
     example.createCriteria().andPnoEqualTo(projectApply.getPno());
     List<ForeignLiterature> foreignLiteratures = foreignLiteratureMapper.selectByExample(example);
 
     StuProjectDocumentVO<ForeignLiterature> stuProjectDocumentVOS = new StuProjectDocumentVO<>();
-    if (foreignLiteratures != null && !foreignLiteratures.isEmpty()){
+    if (foreignLiteratures != null && !foreignLiteratures.isEmpty()) {
       stuProjectDocumentVOS.setDocument(foreignLiteratures.get(0));
     }
     stuProjectDocumentVOS.setProject(projectApply);
@@ -175,15 +173,12 @@ public class ForeignLiteratureService {
 
   /**
    * 获取外文资料审核记录
-   * @param fno
-   * @return
    */
   public List<ForeignRecord> getForeignRecord(String fno) {
     ForeignRecordExample example = new ForeignRecordExample();
     example.createCriteria().andFnoEqualTo(fno);
     example.setOrderByClause("gmt_create desc");
-    List<ForeignRecord> records = foreignRecordMapper.selectByExample(example);
-    return records;
+    return foreignRecordMapper.selectByExample(example);
   }
 
 }

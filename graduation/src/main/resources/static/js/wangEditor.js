@@ -4124,7 +4124,7 @@ UploadImg.prototype = {
             var name = file.name;
             var size = file.size;
 
-            // chrome 低版本 name === undefined
+            // chrome 低版本 creatorName === undefined
             if (!name || !size) {
                 return;
             }

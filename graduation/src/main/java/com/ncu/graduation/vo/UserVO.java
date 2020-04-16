@@ -19,4 +19,8 @@ public class UserVO {
   private String schoolYear;
   private Byte leadNumber;
   private Integer group;
+  private String gradeClass;
+  private String major;
+  private String title;
+
 }

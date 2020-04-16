@@ -1,7 +1,9 @@
 package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.PaginationDTO;
+import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
+import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.service.ProjectSelectService;
 import com.ncu.graduation.vo.ProjectSelectVO;
 import com.ncu.graduation.vo.UserVO;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,13 +33,15 @@ public class ProjectSelectController {
   /**
    * 获取可选的课题
    */
-  @GetMapping("/projectSelectView")
+  @GetMapping("/project/projectSelectView")
   public String getSelectiveProject(HttpSession session, Model model,
       @RequestParam(name = "page", defaultValue = "1") Integer page,
-      @RequestParam(name = "size", defaultValue = "10") Integer size) {
+      @RequestParam(name = "size", defaultValue = "10") Integer size,
+      ProjectSearchDTO projectSearchDTO) {
     UserVO user = (UserVO) session.getAttribute("user");
+    model.addAttribute("search",projectSearchDTO);
     PaginationDTO<ProjectSelectVO> selectiveProject = projectSelectService
-        .getSelectiveProject(page, size, user);
+        .getSelectiveProject(page, size, user,projectSearchDTO);
     model.addAttribute("projects", selectiveProject);
     return "select/project-select";
   }
@@ -55,7 +60,7 @@ public class ProjectSelectController {
   /**
    * 我的选题情况
    */
-  @GetMapping("/mySelectState")
+  @GetMapping("/project/mySelectState")
   public String mySelectState(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
     List<ProjectSelectVO> mySelectState = projectSelectService.getMySelectState(user);
@@ -66,16 +71,29 @@ public class ProjectSelectController {
   /**
    * 我的课题的选题情况
    */
-  @GetMapping("/myProject/selectState")
-  public String myProjectSelectState(HttpSession session, Model model,
-      @RequestParam(name = "page", defaultValue = "1") Integer page,
-      @RequestParam(name = "size", defaultValue = "10") Integer size) {
+  @GetMapping("/project/myProject/selectState")
+  public String myProjectSelectState(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    PaginationDTO<ProjectSelectVO> myProjectSelectState = projectSelectService
-        .getMyProjectSelectState(page, size, user);
-    model.addAttribute("projectSelects", myProjectSelectState);
+    List<ProjectApply> projectSelectState = projectSelectService
+        .getMyProjectSelectState(user);
+    model.addAttribute("projectApplys", projectSelectState);
     return "select/myProjectSelectState";
   }
+
+  /**
+   * 某个课题的被选情况
+   * @param pno
+   * @return
+   */
+  @ResponseBody
+  @GetMapping("/project/myProjectSelectState/{pno}")
+  public ResultDTO getProjectSelectState(@PathVariable("pno") String pno) {
+    List<ProjectSelectVO> projectSelectState = projectSelectService
+        .getProjectSelectState(pno);
+
+    return ResultDTO.okOf(projectSelectState);
+  }
+
 
   /**
    * 确认选题人

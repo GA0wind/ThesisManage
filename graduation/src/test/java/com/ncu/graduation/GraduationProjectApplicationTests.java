@@ -1,13 +1,10 @@
 package com.ncu.graduation;
 
 import com.ncu.graduation.mapper.ProjectApplyMapper;
-import com.ncu.graduation.mapper.ProjectExtMapper;
 import com.ncu.graduation.mapper.TeacherExtMapper;
-import com.ncu.graduation.model.ProjectApply;
-import com.ncu.graduation.model.ProjectApplyExample;
-import com.ncu.graduation.util.BlindDistribution;
-import com.ncu.graduation.util.BlindDistribution.ProjectTwotuple;
-import java.util.List;
+import com.ncu.graduation.util.CronDateUtils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,40 +74,51 @@ class GraduationProjectApplicationTests {
 
 
   @Autowired
-  private ProjectExtMapper projectExtMapper;
-  @Autowired
   private TeacherExtMapper teacherExtMapper;
-@Autowired
-private ProjectApplyMapper projectApplyMapper;
+  @Autowired
+  private ProjectApplyMapper projectApplyMapper;
+
+//  @Test
+//  void teacher() {
+//    BlindDistribution blindDistribution = new BlindDistribution();
+//    blindDistribution.init(teacherExtMapper.selectTnoAndStudentNum(),projectExtMapper.getProjectNoAndTno());
+//
+//
+//    List<ProjectTwotuple> distribution = blindDistribution.distribution();
+//    for (int i = 0; i < distribution.size(); i++) {
+//      ProjectApply projectApply = new ProjectApply();
+//      projectApply.setPno(distribution.get(i).getPno());
+//      projectApply.setBlindTrialNo(distribution.get(i).getTno());
+//      ProjectApplyExample projectApplyExample = new ProjectApplyExample();
+//      projectApplyExample.createCriteria().andPnoEqualTo(distribution.get(i).getPno());
+//      projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
+//    }
+//    System.out.println(distribution);
+//  }
+
 
   @Test
-  void teacher() {
-    BlindDistribution blindDistribution = new BlindDistribution();
-    blindDistribution.init(teacherExtMapper.selectTnoAndStudentNum(),projectExtMapper.getProjectNoAndTno());
-
-
-    List<ProjectTwotuple> distribution = blindDistribution.distribution();
-    for (int i = 0; i < distribution.size(); i++) {
-      ProjectApply projectApply = new ProjectApply();
-      projectApply.setPno(distribution.get(i).getPno());
-      projectApply.setBlindTrialNo(distribution.get(i).getTno());
-      ProjectApplyExample projectApplyExample = new ProjectApplyExample();
-      projectApplyExample.createCriteria().andPnoEqualTo(distribution.get(i).getPno());
-      projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
-    }
-    System.out.println(distribution);
-  }
-
-
-  @Test
-  void getInfoFromExcel(){
+  void getInfoFromExcel() {
     new File("D://User.xlsx");
   }
 
   @Test
-  void getUUID(){
-    String uuid = UUID.randomUUID().toString().replaceAll("-","");
+  void getUUID() {
+    String uuid = UUID.randomUUID().toString().replaceAll("-", "");
     System.out.println(uuid);
   }
 
+
+  @Test
+  void testDateToCron() {
+    String date = "2020-11-11";
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    String cron="";
+    try {
+      cron = CronDateUtils.getCron(format.parse(date));
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    System.out.println(cron);
+  }
 }

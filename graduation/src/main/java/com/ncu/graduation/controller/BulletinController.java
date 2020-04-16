@@ -29,7 +29,7 @@ public class BulletinController {
     UserVO userVO = (UserVO) request.getSession().getAttribute("user");
     PaginationDTO paginationDTO = bulletinService.list(page, size, userVO.getSchoolYear());
     model.addAttribute("pagination", paginationDTO);
-    return "bulletinView";
+    return "bulletin/bulletinView";
   }
 
   @GetMapping("/bulletin/{id}")
@@ -37,14 +37,14 @@ public class BulletinController {
       Model model) {
     Bulletin bulletin = bulletinService.getById(Long.parseLong(id));
     model.addAttribute("bulletin", bulletin);
-    return "bulletin";
+    return "bulletin/bulletin";
   }
 
 
 
   @GetMapping("/bulletin/publish")
   public String publish() {
-    return "bulletin-publish";
+    return "bulletin/bulletin-publish";
   }
 
 
@@ -66,12 +66,12 @@ public class BulletinController {
     model.addAttribute("title", bulletin.getTitle());
     model.addAttribute("content", bulletin.getContent());
     model.addAttribute("filePath", bulletin.getFilePath());
-    return "bulletin-publish";
+    return "bulletin/bulletin-publish";
   }
 
   @GetMapping("/bulletin/delete/{id}")
   public String delete(@PathVariable(name = "id") Long id) {
     bulletinService.delete(id);
-    return "bulletinView";
+    return "bulletin/bulletinView";
   }
 }

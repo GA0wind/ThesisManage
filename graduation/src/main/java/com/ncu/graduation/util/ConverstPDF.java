@@ -3,6 +3,8 @@ package com.ncu.graduation.util;
 
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmBulletinError;
+import com.ncu.graduation.error.EmCommonError;
+import com.ncu.graduation.error.EmFileError;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +34,7 @@ public class ConverstPDF {
   public ByteArrayOutputStream officeToPDF(File file) {
 
     if (file == null) {
-      throw new CommonException(EmBulletinError.BULLETIN_FILE_IS_EMPTY);
+      throw new CommonException(EmFileError.FILE_IS_EMPTY);
     }
 
     // Here, we could have a dedicated service that would convert document

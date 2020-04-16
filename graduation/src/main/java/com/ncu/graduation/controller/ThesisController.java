@@ -5,6 +5,7 @@ import com.ncu.graduation.dto.VerifyDocumentDTO;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Thesis;
 import com.ncu.graduation.model.ThesisRecord;
 import com.ncu.graduation.service.ThesisService;
@@ -12,6 +13,7 @@ import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -44,9 +46,10 @@ public class ThesisController {
   @GetMapping("/teaThesis")
   public String getTeaThesis(HttpServletRequest request,
       Model model) {
-    UserVO user = (UserVO) request.getSession().getAttribute("user");
+    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
+        .getSession().getAttribute("teaProject");
     List<TeaProjectDocumentVO<Thesis>> myThesis = thesisService
-        .getTeaThesis(user);
+        .getTeaThesis(teaProject);
     model.addAttribute("teaThesis", myThesis);
     return "document/teaThesis";
   }
@@ -79,12 +82,12 @@ public class ThesisController {
    */
   @ResponseBody
   @PostMapping("/thesis/submit")
-  public ResultDTO submitThesis(@RequestParam("oldFile") String oldFile,
-      @RequestParam("thesis") MultipartFile file,
-      @RequestParam("pno") String pno,
+  public ResultDTO submitThesis(@RequestParam("thesis") MultipartFile file,
+      @RequestParam("dno") String dno,
       HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    thesisService.submitThesis(user,oldFile,file, pno);
+    ProjectApply projectApply = (ProjectApply) session.getAttribute("stuProject");
+    thesisService.submitThesis(user,file, dno,projectApply.getPno());
     return ResultDTO.okOf();
   }
 

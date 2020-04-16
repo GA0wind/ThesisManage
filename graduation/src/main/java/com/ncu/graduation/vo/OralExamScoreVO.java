@@ -1,5 +1,7 @@
 package com.ncu.graduation.vo;
 
+import java.math.BigDecimal;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -12,7 +14,15 @@ import lombok.Data;
 @Data
 public class OralExamScoreVO
 {
-  private String tno;
-  private String tname;
-  private Byte score;
+  private List<Score> scores;
+  private BigDecimal score;
+  private BigDecimal blindScore;
+  private BigDecimal avg;
+  private BigDecimal resultScore;
+  @Data
+  public static class Score{
+    private String tno;
+    private String tname;
+    private Byte score;
+  }
 }

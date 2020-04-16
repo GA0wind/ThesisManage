@@ -8,19 +8,15 @@ package com.ncu.graduation.error;
  * @version: 0.0.1
  */
 public enum EmProjectError implements CommonError{
-  /**
-   *
-   */
-  PARAMETER_VALIDATION_ERROR(10001,"参数不合法"),
-  UNKNOWN_ERROR(10002,"未知错误"),
 
-  PROJECT_NO_NOT_EXIST(40001,"课题编号不存在"),
-  PROJECT_SELECT_OVER_MAX_NUM(50001,"已选课题选择数量大于可选择最大数量"),
-  PROJECT_SELECT_REPEAT(50002,"不能重复选择课题"),
-  PROJECT_WAS_SELECTED_OVER_MAX_NUM(50002,"该课题被选择数量大于可被选择最大数量"),
-  TEACHER_LEAD_STUDENT_NUM_IS_ENOUGH(50003,"指导学生数已达上限"),
-  STUDENT_ONLY_ONE_PROJECT(50004,"已选定课题, 无法更改"),
-  NO_PROJECT(50003,"你没有课题"),
+  NO_PROJECT(5001,"你没有课题"),
+  PROJECT_NO_NOT_EXIST(5002,"课题编号不存在"),
+  PROJECT_SELECT_OVER_MAX_NUM(5003,"已选课题选择数量大于可选择最大数量"),
+  PROJECT_SELECT_REPEAT(5004,"不能重复选择课题"),
+  PROJECT_WAS_SELECTED_OVER_MAX_NUM(5005,"当前课题已达最大选择人数, 请等待重试或换一个课题"),
+  TEACHER_LEAD_STUDENT_NUM_IS_ENOUGH(5006,"指导学生数已达上限"),
+  STUDENT_ONLY_ONE_PROJECT(5007,"已选定课题, 无法报名"),
+  NOT_EXIST_DIRECTOR(5008,"主任不存在, 请联系管理员"),
   ;
   private Integer errCode;
   private String errMsg;
@@ -45,5 +41,6 @@ public enum EmProjectError implements CommonError{
     this.errMsg = errMsg;
     return this;
   }
+
 
 }

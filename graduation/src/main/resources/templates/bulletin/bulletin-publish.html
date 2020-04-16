@@ -3,132 +3,104 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>公告</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/share.css">
-    <link rel="stylesheet" href="/css/bulletin.css">
-    <link rel="stylesheet" href="/css/editormd.min.css">
+  <meta charset="UTF-8">
+  <title>公告</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/bulletin.css">
+  <link rel="stylesheet" href="/css/editormd.min.css">
 
 
-    <script src="/js/jquery-3.4.1.min.js" type="application/javascript"></script>
-    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="/js/share.js" type="application/javascript"></script>
-    <script src="/js/editormd.min.js" type="application/javascript"></script>
+  <script src="/js/jquery-3.4.1.min.js" type="application/javascript"></script>
+  <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+  <script src="/js/share.js" type="application/javascript"></script>
+  <script src="/js/editormd.min.js" type="application/javascript"></script>
 
 </head>
 
 <body>
-    <div class="container-fluid main">
-        <!--顶部-->
-        <div class="row">
-            <!-- 顶部logo等 -->
-            <div class="col-md-offset-1 col-md-11 row">
-                <div class="container-fluid col-md-12">
-                    <img src="/images/nculogo.png" alt="" class="logo">
-                    <span class="ncu hidden-xs">南昌大学</span>
-                    <span class="user col-md-offset-7">
-                        甘容辉<span class="hidden-xs">(8000116251)</span> &nbsp;&nbsp;&nbsp;<a href="">注销</a>
-                    </span>
-                    <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
-                    <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
-                </div>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
 
-            </div>
-        </div>
-        <!-- 顶部导航条 -->
-        <div class="row">
-            <nav class="navbar navbar-default navbar-static-top">
-                <div class="container-fluid">
-                    <div class="visible-xs-block menu clearfix">
-                        <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navigation">
-                            <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">公告</a></li>
-                            <li><a href="#">师生互选</a></li>
-                            <li><a href="#">过程管理</a></li>
-                            <li><a href="#">答辩</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+  </div>
 
-        <div class="row big-main">
-            <!-- 发布公告 -->
+  <div class="row big-main">
+    <!-- 发布公告 -->
+    <div class="row">
+      <div class="col-md-offset-1 col-md-9 common form">
+        <p class="title">发布公告</p>
+        <hr>
+        <div class="col-md-12 common">
+          <form class="form-inline form" action="/bulletin/publish" method="post"
+                enctype="multipart/form-data">
+            <input type="text" name="id" th:value="${id}" class="hide">
             <div class="row">
-                <div class="col-md-offset-1 col-md-9 common form">
-                    <p class="title">发布公告</p>
-                    <hr>
-                    <div class="col-md-12 common">
-                        <form class="form-inline form" action="/bulletin/publish" method="post"
-                            enctype="multipart/form-data">
-                            <input type="text" name="id" th:value="${id}" class="hide">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="bulletin-title">标题&nbsp;&nbsp;</label>
-                                    <input type="text" class="form-control" id="bulletin-title" name="title" th:value="${title}">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>内容&nbsp;&nbsp;</label>
-                                    <div id="bulletin-description" th:text="${description}">
-                                        <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
-                                    </div>
-                                    <textarea id="desc" style="width:100%; height:200px; display: none" name="desc"></textarea>
-                                </div>
-                            </div>
-
-                            <script type="text/javascript" src="/js/wangEditor.js"></script>
-                            <script type="text/javascript">
-                                var E = window.wangEditor;
-                                var editor = new E('#bulletin-description');
-                                var $text1 = $('#desc');
-                                editor.customConfig.uploadImgServer = '/img/upload'
-                                editor.customConfig.onchange = function (html) {
-                                    // 监控变化，同步更新到 textarea
-                                    $text1.val(html)
-                                }
-                                editor.create();
-                                // 初始化 textarea 的值
-                                $text1.val(editor.txt.html())
-                            </script>
-
-                            <div class="row" th:if="${id != null}">
-                                <p>
-                                    &nbsp;&nbsp;当前附件：
-                                    <span class="hide" th:text="${#strings.arraySplit(filePath,'#')[0]}"></span>
-                                    <input type="text" th:value="${filePath}" name="oldFilePath" class="hide">
-                                    <a th:href="@{/download(filePath=${filePath},fileType='bulletin')}"><span th:text="${#strings.arraySplit(filePath,'#')[1]}"></span></a>
-                                    &nbsp;&nbsp;
-                                    <a th:href="@{/readOnline(filePath=${filePath},fileType='bulletin')}">在线浏览</a>
-
-                                </p>
-
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="bulletin-file">选择附件：&nbsp;&nbsp;</label>
-                                    <input type="file" class="form-control" id="bulletin-file" name="file">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="submit" class="pull-right btn btn-primary">发布公告</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
+              <div class="col-md-12">
+                <label for="bulletin-title">标题&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="bulletin-title" name="title"
+                       th:value="${title}">
+              </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label>内容&nbsp;&nbsp;</label>
+                <div id="bulletin-content" th:text="${content}">
+                  <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+                </div>
+                <textarea id="content" style="width:100%; height:200px; display: none"
+                          name="content"></textarea>
+              </div>
+            </div>
+
+            <script type="text/javascript" src="/js/wangEditor.js"></script>
+            <script type="text/javascript">
+              var E = window.wangEditor;
+              var editor = new E('#bulletin-content');
+              var $text1 = $('#content');
+              editor.customConfig.uploadImgServer = '/img/upload'
+              editor.customConfig.onchange = function (html) {
+                // 监控变化，同步更新到 textarea
+                $text1.val(html)
+              }
+              editor.create();
+              // 初始化 textarea 的值
+              $text1.val(editor.txt.html())
+            </script>
+
+            <div class="row" th:if="${id != null}">
+              <p>
+                &nbsp;&nbsp;当前附件：
+                <span class="hide" th:text="${#strings.arraySplit(filePath,'#')[0]}"></span>
+                <input type="text" th:value="${filePath}" name="oldFilePath" class="hide">
+                <a th:href="@{/download(filePath=${filePath},fileType='bulletin')}"><span
+                    th:text="${#strings.arraySplit(filePath,'#')[1]}"></span></a>
+                &nbsp;&nbsp;
+                <a th:href="@{/readOnline(filePath=${filePath},fileType='bulletin')}">在线浏览</a>
+
+              </p>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="bulletin-file">选择附件：&nbsp;&nbsp;</label>
+                <input type="file" class="form-control" id="bulletin-file" name="file">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="submit" class="pull-right btn btn-primary">发布公告</button>
+              </div>
+            </div>
+          </form>
         </div>
+
+
+      </div>
     </div>
+  </div>
+</div>
 
 </body>
 
