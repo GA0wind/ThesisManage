@@ -7,6 +7,7 @@ import com.ncu.graduation.dto.VerifyDocumentDTO;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.vo.ProjectApplyVO;
 import com.ncu.graduation.vo.ProjectInfoVO;
@@ -51,6 +52,8 @@ public class ProjectController {
     PaginationDTO<ProjectApplyVO> myApplyProject = projectService
         .getMyApplyProject(page, size, user);
     model.addAttribute("myProject", myApplyProject);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "/project/myProject";
   }
 
@@ -72,8 +75,8 @@ public class ProjectController {
   @PostMapping("/project/apply")
   @ResponseBody
   public ResultDTO applyProject(@Valid ProjectApplyDTO projectApplyDTO,
-      HttpServletRequest request) {
-    UserVO user = (UserVO) request.getSession().getAttribute("user");
+      HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
     if (user == null) {
       throw new CommonException(EmUserOperatorError.USER_NOT_LOGIN);
     }

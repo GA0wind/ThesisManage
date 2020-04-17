@@ -64,6 +64,8 @@
       <div class="row">
         <div class="col-md-12 common view">
           <p class="title">任务书</p>
+          <p>* 提交时间为 <span th:text="${projectPlan.taskBookTime}"></span></p>
+
           <hr>
           <dl class="dl-horizontal" th:if="${stuTaskBook.document} != null">
             <dt>任务书：</dt>

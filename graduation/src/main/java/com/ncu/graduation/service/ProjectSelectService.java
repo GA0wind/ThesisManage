@@ -19,6 +19,7 @@ import com.ncu.graduation.model.ProjectSelect;
 import com.ncu.graduation.model.ProjectSelectExample;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.ProjectSelectResultExample;
+import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.vo.ProAndStuNumVO;
 import com.ncu.graduation.vo.ProjectSelectVO;
 import com.ncu.graduation.vo.UserVO;
@@ -56,6 +57,8 @@ public class ProjectSelectService {
   @Autowired
   private StudentExtMapper studentExtMapper;
 
+  @Autowired
+  private JedisOp jedis;
 
   /**
    * 获取可选的课题
@@ -309,6 +312,8 @@ public class ProjectSelectService {
       projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
     }
     projectSelectResultMapper.insertSelective(projectSelectResult);
+    //更新数据后将redis中的数据删除, 等待下一次自动插入
+    jedis.delete(user.getAccountNo());
   }
 
   /**

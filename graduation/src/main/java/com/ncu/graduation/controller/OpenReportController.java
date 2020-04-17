@@ -7,8 +7,10 @@ import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.OpenReportRecordExample;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.service.OpenReportService;
+import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
@@ -39,19 +41,22 @@ public class OpenReportController {
 
   @Autowired
   private OpenReportService openReportService;
-
+@Autowired
+private ProjectService projectService;
 
   /**
    * 教师开题报告页面, 获取我的开题报告
    */
-  @GetMapping("/teaOpenReport")
+  @GetMapping("/teacher/openReport")
   public String getTeaOpenReport(HttpServletRequest request,
       Model model) {
-    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
-        .getSession().getAttribute("teaProject");
+    UserVO user = (UserVO) request.getSession().getAttribute("user");
+    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<OpenReport>> myOpenReport = openReportService
         .getTeaOpenReport(teaProject);
     model.addAttribute("teaOpenReport", myOpenReport);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/teaOpenReport";
   }
 
@@ -59,7 +64,7 @@ public class OpenReportController {
    * 审核开题报告, 盲审也用这一URL
    */
   @ResponseBody
-  @PostMapping("/openReport/verify")
+  @PostMapping("/teacher/openReport/verify")
   public ResultDTO verifyDocument(@Valid VerifyDocumentDTO verifyDocument) {
     openReportService.verifyOpenReport(verifyDocument);
     return ResultDTO.okOf();
@@ -68,7 +73,7 @@ public class OpenReportController {
   /**
    * 获取需要我盲审的开题报告
    */
-  @GetMapping("/openReport/blindVerify")
+  @GetMapping("/teacher/openReport/blindVerify")
   public String blindVerifyDocument(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
     List<TeaProjectDocumentVO<OpenReport>> teaBlindOpenReport = openReportService
@@ -83,8 +88,8 @@ public class OpenReportController {
    * 提交开题报告
    */
   @ResponseBody
-  @PostMapping("/openReport/submit")
-  public ResultDTO submitTaskBook(@RequestParam("openReport") MultipartFile file,
+  @PostMapping("/student/openReport/submit")
+  public ResultDTO submitOpenReport(@RequestParam("openReport") MultipartFile file,
       @RequestParam("dno") String dno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectApply projectApply = (ProjectApply) session.getAttribute("stuProject");
@@ -95,13 +100,16 @@ public class OpenReportController {
   /**
    * 学生查看开题报告和审核结果
    */
-  @GetMapping("/stuOpenReport")
+  @GetMapping("/student/openReport")
   public String getStuOpenReport(HttpServletRequest request,
       Model model) {
-    ProjectApply project = (ProjectApply) request.getSession().getAttribute("stuProject");
+    UserVO user = (UserVO) request.getSession().getAttribute("user");
+    ProjectApply project = projectService.getStuProject(user);
     StuProjectDocumentVO<OpenReport> stuOpenReport = openReportService
         .getStuOpenReport(project);
     model.addAttribute("stuOpenReport", stuOpenReport);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/stuOpenReport";
   }
 
@@ -109,7 +117,7 @@ public class OpenReportController {
    * 查看历史评价
    */
   @ResponseBody
-  @GetMapping("/stuOpenReport/record")
+  @GetMapping("/student/openReport/record")
   public ResultDTO getOpenReportRecord(@RequestParam("openNo") String openNo, Model model) {
     List<OpenReportRecord> records = openReportService.getOpenReportRecord(openNo);
     model.addAttribute("openReportRecord", records);

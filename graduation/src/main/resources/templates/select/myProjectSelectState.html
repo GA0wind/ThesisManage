@@ -26,23 +26,23 @@
               var result;
               var operate = "";
               if (data.result == 1) {
-                result = "已定";
+                result = "<td class='text-success'>已定</td>";
               } else if (data.result == 2) {
-                result = "待定";
-                operate = "<a data-selectNo='" + data.selectNo + "' data-selectName='" +
+                result = "<td class='text-warning'>待定</td>";
+                operate = "<button data-selectNo='" + data.selectNo + "' data-selectName='" +
                     data.selectName + "' data-pno='" + pno + "' data-pname='" + pname
-                    + "' onclick=confirmSelect(this)>同意</a> / " +
-                    "<a data-selectNo='" + data.selectNo + "' data-pno='" + pno
-                    + "' onclick=refuseSelect(this)>回拒</a> / ";
+                    + "' onclick=confirmSelect(this) class='btn btn-link'>同意</button> / " +
+                    "<button data-selectNo='" + data.selectNo + "' data-pno='" + pno
+                    + "' onclick=refuseSelect(this) class='btn btn-link'>回拒</button> / ";
               } else if (data.result == 0) {
-                result = "回拒";
+                result = "<td class='text-danger'>回拒</td>";
               }
 
               $("#selectState").append(
                   "<tr>" +
                   "<td>" + data.selectName + "</td>" +
                   "<td>" + data.selectNo + "</td>" +
-                  "<td>" + result + "</td>" +
+                  result +
                   "<td>" + operate + "</td>" +
                   "</tr>");
 
@@ -136,12 +136,12 @@
               <tr th:each="projectApply:${projectApplys}">
                 <td th:text="${projectApply.pname}"></td>
                 <td th:text="${projectApply.type}"></td>
-                <td th:if="${projectApply.isSelect} == 1">已定</td>
-                <td th:if="${projectApply.isSelect} == 2">待定</td>
-                <td th:if="${projectApply.isSelect} == 0">待选</td>
+                <td th:if="${projectApply.isSelect} == 1" class="text-success">已定</td>
+                <td th:if="${projectApply.isSelect} == 2" class="text-warning">待定</td>
+                <td th:if="${projectApply.isSelect} == 0" class="text-info">待选</td>
                 <td>
-                  <a th:data-pno="${projectApply.pno}" th:data-pname="${projectApply.pname}"
-                     onclick=getprojectSelect(this)>查看待选详情</a>
+                  <button th:data-pno="${projectApply.pno}" th:data-pname="${projectApply.pname}" class="btn btn-link"
+                     onclick=getprojectSelect(this)>查看待选详情</button>
                 </td>
               </tr>
 

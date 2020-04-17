@@ -69,9 +69,9 @@
           <hr>
           <dl class="dl-horizontal" th:if="${project.projectApply} != null">
             <dt>审核状态：</dt>
-            <dd th:if="${project.projectApply.isPass}==0" class="no-pass">未通过</dd>
-            <dd th:if="${project.projectApply.isPass}==1" class="pass">已通过</dd>
-            <dd th:if="${project.projectApply.isPass}==2">审核中</dd>
+            <dd th:if="${project.projectApply.isPass}==0" class="text-danger">未通过</dd>
+            <dd th:if="${project.projectApply.isPass}==1" class="text-success">已通过</dd>
+            <dd th:if="${project.projectApply.isPass}==2" class="text-warning">审核中</dd>
             <dt>盲审评分：</dt>
             <dd th:text="${project.projectApply.blindTrialGrade} != null ? ${project.projectApply.blindTrialGrade}:'未审核'"></dd>
             <dt>盲审评语：</dt>

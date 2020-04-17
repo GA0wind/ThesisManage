@@ -54,9 +54,9 @@
               <td th:text="${projectSelect.pname}"></td>
               <td th:text="${projectSelect.type}"></td>
               <td th:text="${projectSelect.creatorName}"></td>
-              <td th:if="${projectSelect.result} == 1">已通过</td>
-              <td th:if="${projectSelect.result} == 2">待审核</td>
-              <td th:if="${projectSelect.result} == 0">被拒绝</td>
+              <td th:if="${projectSelect.result} == 1" class="text-success">已通过</td>
+              <td th:if="${projectSelect.result} == 2" class="text-warning">待审核</td>
+              <td th:if="${projectSelect.result} == 0" class="text-danger">被拒绝</td>
               <td>
                 <a th:href="@{'/project/'+${projectSelect.pno}}">查看课题详情</a>
               </td>

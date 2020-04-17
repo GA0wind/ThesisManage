@@ -37,12 +37,12 @@
           <li class="list-group-item" th:each="bulletin : ${pagination.data}">
             <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}">毕设开始了</a>
             <span class="view-time">
-                                <span th:text="${bulletin.gmtModified}">2020-11-11</span>&nbsp;&nbsp;
-                                <span th:if="${session.user.role == 'admin'}">
-                                    <a th:href="@{'/bulletin/delete/'+${bulletin.id}}">删除</a>&nbsp;/&nbsp;
-                                    <a th:href="@{'/bulletin/modify/'+${bulletin.id}}">修改</a>
-                                </span>
-                            </span>
+              <span th:text="${bulletin.gmtModified}">2020-11-11</span>&nbsp;&nbsp;
+              <span th:if="${session.user.role == 'admin'}">
+                <a th:href="@{'/bulletin/delete/'+${bulletin.id}}">删除</a>&nbsp;/&nbsp;
+                <a th:href="@{'/bulletin/modify/'+${bulletin.id}}">修改</a>
+              </span>
+            </span>
           </li>
         </ul>
         <div th:if="${pagination.totalPage} > 1">

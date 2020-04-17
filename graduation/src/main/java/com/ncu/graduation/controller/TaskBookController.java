@@ -2,8 +2,10 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.TaskBook;
+import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.service.TaskBookService;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,50 +36,50 @@ public class TaskBookController {
 
   @Autowired
   private TaskBookService taskBookService;
+  @Autowired
+  private ProjectService projectService;
 
   /**
    * 教师任务书页面, 获取我的课题的任务书
    */
-  @GetMapping("/teaTaskBook")
+  @GetMapping("/teacher/taskBook")
   public String getTeaTaskBook(HttpServletRequest request,
       Model model) {
-    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
-        .getSession().getAttribute("teaProject");
+    UserVO user = (UserVO) request.getSession().getAttribute("user");
+    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<TaskBook>> myTaskBook = taskBookService
         .getTeaTaskBook(teaProject);
     model.addAttribute("teaTaskBook", myTaskBook);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/teaTaskBook";
   }
 
   /**
    * 提交任务书
-   * @param file
-   * @param dno
-   * @return
    */
   @ResponseBody
-  @PostMapping("/taskBook/submit")
+  @PostMapping("/teacher/taskBook/submit")
   public ResultDTO submitTaskBook(@RequestParam("taskBook") MultipartFile file,
-      @RequestParam("dno") String dno,@RequestParam("pno")String pno, HttpSession session) {
+      @RequestParam("dno") String dno, @RequestParam("pno") String pno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    taskBookService.submitTaskBook(user,file,dno,pno);
+    taskBookService.submitTaskBook(user, file, dno, pno);
     return ResultDTO.okOf();
   }
 
   /**
    * 学生查看任务书
-   * @param request
-   * @param model
-   * @return
    */
-  @GetMapping("/stuTaskBook")
-  public String getStuTaskBook(HttpServletRequest request,
+  @GetMapping("/student/taskBook")
+  public String getStuTaskBook(HttpSession session,
       Model model) {
-    ProjectApply project = (ProjectApply) request.getSession().getAttribute("stuProject");
-
+    UserVO user = (UserVO) session.getAttribute("user");
+    ProjectApply stuProject = projectService.getStuProject(user);
     StuProjectDocumentVO<TaskBook> stuTaskBook = taskBookService
-        .getStuTaskBook(project);
+        .getStuTaskBook(stuProject);
     model.addAttribute("stuTaskBook", stuTaskBook);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/stuTaskBook";
   }
 

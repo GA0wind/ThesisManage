@@ -49,23 +49,33 @@
     function getThesisRecord(e) {
       var thesisNo = $(e).attr('data-thesisNo');
       $.ajax({
-        url: '/stuThesis/record?thesisNo=' + thesisNo,
+        url: '/student/thesis/record?thesisNo=' + thesisNo,
         dataType: 'json',
         success: function (data) {
+          if (data.code == 200) {
+            $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
+              $("#thesisRecordTable").append(
+                  "<tr>" +
+                  "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
+                  + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  isPass +
+                  "<td>" + data.trialGrade + "</td>" +
+                  "<td>" + data.trialComment + "</td>" +
+                  "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
+                  "</tr>");
+            });
+          }else{
+            alert(data.message);
+          }
 
-          $.each(data.data, function (i, data) {
-            $("#thesisRecordTable").append(
-                "<tr>" +
-                "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
-                + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
-                "<td>" + data.trialGrade + "</td>" +
-                "<td>" + data.trialComment + "</td>" +
-                "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
-                "</tr>");
-          });
-        },
-        error: function (data) {
-          alert(data.message)
         }
       })
 
@@ -133,7 +143,8 @@
       </div>
       <div class="row">
         <div class="col-md-12 common view">
-          <p class="title">开题报告</p>
+          <p class="title">论文</p>
+          <p>* 提交时间为 <span th:text="${projectPlan.thesisTime}"></span></p>
           <hr>
           <dl class="dl-horizontal" th:if="${stuThesis.document} != null">
             <dt>论文：</dt>
@@ -146,9 +157,9 @@
               </p>
             </dd>
             <dt>审核状态：</dt>
-            <dd th:if="${stuThesis.document.isPass} == 0 " class="no-pass">未通过</dd>
-            <dd th:if="${stuThesis.document.isPass} == 1" class="pass">已通过</dd>
-            <dd th:if="${stuThesis.document.isPass} == 2">待审核</dd>
+            <dd th:if="${stuThesis.document.isPass} == 0" class="text-danger">未通过</dd>
+            <dd th:if="${stuThesis.document.isPass} == 1" class="text-success">已通过</dd>
+            <dd th:if="${stuThesis.document.isPass} == 2" class="text-warning">待审核</dd>
             <dt>审核评分：</dt>
             <dd th:text="${stuThesis.document.isPass}!= 2 ? ${stuThesis.document.trialGrade}:'未审核'"></dd>
             <dt>审核评语：</dt>
@@ -160,15 +171,15 @@
 
 
           </dl>
-          <button th:if="${stuThesis.document} == null" type="button" class="btn btn-default"
+          <button th:if="${stuThesis.document} == null" type="button" class="btn btn-primary"
                   onclick="showThesisModel(0)">提交
           </button>
           <button
-              th:if="${stuThesis.document} != null and ${stuThesis.document.isPass} != 1"
-              type="button" class="btn btn-default"
+              th:if="${stuThesis.document} != null"
+              type="button" class="btn btn-primary"
               onclick="showThesisModel(1)">重新提交
           </button>
-          <button th:if="${stuThesis.document} != null" type="button" class="btn btn-default"
+          <button th:if="${stuThesis.document} != null" type="button" class="btn btn-primary"
                   th:data-thesisNo="${stuThesis.document.thesisNo}"
                   onclick="getThesisRecord(this)">查看历史审核
           </button>
@@ -193,7 +204,7 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="thesisForm" class="form-inline form" action="/thesis/submit"
+          <form id="thesisForm" class="form-inline form" action="/student/thesis/submit"
                 method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="project-dno" name="dno"
@@ -212,7 +223,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">
           取消
         </button>
-        <button id="thesisBtn" type="button" class="btn btn-default"
+        <button id="thesisBtn" type="button" class="btn btn-primary"
                 onclick="thesisSubmit()">提交
         </button>
       </div>
@@ -235,6 +246,7 @@
             <thead>
             <tr>
               <th>文件</th>
+              <th>审核结果</th>
               <th>审核分数</th>
               <th>审核评语</th>
               <th>审核时间</th>
@@ -247,7 +259,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
           确定
         </button>
       </div>

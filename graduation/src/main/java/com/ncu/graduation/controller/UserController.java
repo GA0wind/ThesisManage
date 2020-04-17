@@ -1,5 +1,6 @@
 package com.ncu.graduation.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.ncu.graduation.dto.LoginDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.UserModifyPwdDTO;
@@ -14,6 +15,7 @@ import com.ncu.graduation.model.Student;
 import com.ncu.graduation.model.Teacher;
 import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.service.UserService;
+import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.util.VerifyCode;
 import com.ncu.graduation.vo.UserVO;
 import java.util.Map;
@@ -38,6 +40,8 @@ public class UserController {
   private UserService userService;
   @Autowired
   private ProjectService projectService;
+  @Autowired
+  private JedisOp jedis;
 
   @GetMapping(value = "/verifyCode")
   public void GetVerifyCode(HttpServletRequest request,
@@ -83,9 +87,9 @@ public class UserController {
       userVO.setGroup(teacher.getGroupNum());
       userVO.setTitle(teacher.getTitle());
       request.getSession().setAttribute("user", userVO);
+      projectService.getTeaProject(userVO);
+      //判断是否已经在redis中, 如果是就更新存储时间, 不是就插入
 
-      Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(userVO);
-      request.getSession().setAttribute("teaProject", teaProject);
     }
     if (UserRoleEnum.STUDENT.getRole().equals(loginDTO.getRole())) {
       Student student = (Student) userService.login(loginDTO);
@@ -99,16 +103,13 @@ public class UserController {
       userVO.setGradeClass(student.getMajor());
       userVO.setGroup(student.getGroupNum());
       request.getSession().setAttribute("user", userVO);
-
-      ProjectApply stuProject = projectService.getStuProject(userVO);
-      request.getSession().setAttribute("stuProject", stuProject);
+      projectService.getStuProject(userVO);
     }
-
     return "redirect:project/myProject";
   }
 
   @GetMapping("/logout")
-  public String logout(HttpSession session){
+  public String logout(HttpSession session) {
     session.removeAttribute("user");
     session.removeAttribute("teaProject");
     session.removeAttribute("stuProject");
@@ -117,30 +118,31 @@ public class UserController {
 
   @ResponseBody
   @PostMapping("/user/modify")
-  public ResultDTO modifyPwd(UserModifyPwdDTO userModifyDTO,HttpSession session){
+  public ResultDTO modifyPwd(UserModifyPwdDTO userModifyDTO, HttpSession session) {
 
-    if (!userModifyDTO.getNewPwd().equals(userModifyDTO.getConfirmNewPwd())){
-      return ResultDTO.errorOf(EmCommonError.PARAMETER_VALIDATION_ERROR.getErrCode(),"两次密码不一致");
+    if (!userModifyDTO.getNewPwd().equals(userModifyDTO.getConfirmNewPwd())) {
+      return ResultDTO.errorOf(EmCommonError.PARAMETER_VALIDATION_ERROR.getErrCode(), "两次密码不一致");
     }
     UserVO user = (UserVO) session.getAttribute("user");
     LoginDTO loginDTO = new LoginDTO();
     loginDTO.setAccountNo(user.getAccountNo());
     loginDTO.setAccountPwd(userModifyDTO.getOldPwd());
     loginDTO.setRole(user.getRole());
-    if (userService.login(loginDTO) == null){
-      return ResultDTO.errorOf(EmUserOperatorError.USER_LOGIN_FAIL.getErrCode(),"旧密码有误请重试");
+    if (userService.login(loginDTO) == null) {
+      return ResultDTO.errorOf(EmUserOperatorError.USER_LOGIN_FAIL.getErrCode(), "旧密码有误请重试");
     }
     Integer result = userService.updatePwd(user, userModifyDTO.getNewPwd());
-    if (result != 1){
-      return ResultDTO.errorOf(EmCommonError.UNKNOWN_ERROR.getErrCode(),"修改失败, 检查一下参数信息");
+    if (result != 1) {
+      return ResultDTO.errorOf(EmCommonError.UNKNOWN_ERROR.getErrCode(), "修改失败, 检查一下参数信息");
     }
     return ResultDTO.okOf();
   }
 
   @GetMapping("/user/info/{userNo}")
-  public String getUserInfo(@PathVariable("userNo") String userNo,@RequestParam("role") String role,Model model){
+  public String getUserInfo(@PathVariable("userNo") String userNo,
+      @RequestParam("role") String role, Model model) {
     UserVO userVO = new UserVO();
-    if (UserRoleEnum.STUDENT.getRole().equals(role)){
+    if (UserRoleEnum.STUDENT.getRole().equals(role)) {
       Student student = userService.getStu(userNo);
       userVO.setName(student.getSname());
       userVO.setRole(UserRoleEnum.STUDENT.getRole());
@@ -149,7 +151,7 @@ public class UserController {
       userVO.setMajor(student.getMajor());
       userVO.setGradeClass(student.getGradeClass());
     }
-    if (!UserRoleEnum.STUDENT.getRole().equals(role)){
+    if (!UserRoleEnum.STUDENT.getRole().equals(role)) {
       Teacher teacher = userService.getTea(userNo);
       userVO.setName(teacher.getTname());
       userVO.setAccountNo(teacher.getTno());
@@ -158,7 +160,7 @@ public class UserController {
       userVO.setGroup(teacher.getGroupNum());
       userVO.setTitle(teacher.getTitle());
     }
-    model.addAttribute("user",userVO);
+    model.addAttribute("user", userVO);
 
     return "profile";
   }

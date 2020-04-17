@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -201,7 +203,7 @@ public class AdminController {
   @GetMapping("/admin/projectPlan")
   public String getProjectPlan(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    List<ProjectPlan> projectPlans = projectService.getProjectPlan(user);
+    List<ProjectPlan> projectPlans = projectService.getProjectPlans();
     if (projectPlans == null || projectPlans.isEmpty()) {
       return "admin/projectPlan";
     }

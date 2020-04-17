@@ -87,7 +87,6 @@
       })
     }
 
-    //移除添加的文件数据
     //移除添加的数据
     $(function () {
       $('#myModal').on('hide.bs.modal',
@@ -101,16 +100,24 @@
     function getThesisRecord(e) {
       var thesisNo = $(e).attr('data-thesisNo');
       $.ajax({
-        url: '/stuThesis/record?thesisNo=' + thesisNo,
+        url: '/student/thesis/record?thesisNo=' + thesisNo,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
             $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
               $("#thesisRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
                   + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
-                  "<td>" + data.isPass + "</td>" +
+                  isPass +
                   "<td>" + data.trialGrade + "</td>" +
                   "<td>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
@@ -162,7 +169,7 @@
       <div class="col-md-7 common view">
 
         <p class="title">论文</p>
-
+        <p>* 提交时间为 <span th:text="${projectPlan.thesisTime}"></span></p>
         <hr>
         <div class="table-responsive view">
           <table class="table">
@@ -194,24 +201,30 @@
 
               <!--              审核结果-->
               <td th:if="${thesis.document} == null">未提交</td>
-              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 1">已通过</td>
-              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 2">待审核</td>
-              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 0">已回拒</td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 0"
+                  class="text-danger">已回拒
+              </td>
               <td>
-                <a th:if="${thesis.document} != null" th:data-pno="${thesis.pno}"
+                <button class="btn btn-link" th:if="${thesis.document} != null" th:data-pno="${thesis.pno}"
                    th:data-dno="${thesis.document.thesisNo}"
                    th:data-isBlind="${isBlind}?1:0"
                    th:data-filePath="${thesis.document.filePath}"
                    th:data-blindGrade="${thesis.document.blindTrialGrade}"
                    th:data-blindComment="${thesis.document.blindTrialComment}"
-                   onclick="getProject(this)">审核</a>
-                <a th:if="${isBlind} == null and ${thesis.document} != null "
+                   onclick="getProject(this)">审核</button>
+                <button class="btn btn-link" th:if="${isBlind} == null and ${thesis.document} != null "
                    onclick="getThesisRecord(this)"
-                   th:data-thesisNo="${thesis.document.thesisNo}">历史审核</a>
-                <a th:if="${isBlind} == null and ${thesis.document} != null "
+                   th:data-thesisNo="${thesis.document.thesisNo}">历史审核</button>
+                <button class="btn btn-link" th:if="${isBlind} == null and ${thesis.document} != null "
                    onclick="getBlindVerify(this)"
                    th:data-blindGrade="${thesis.document.blindTrialGrade}"
-                   th:data-blindComment="${thesis.document.blindTrialComment}">盲审结果</a>
+                   th:data-blindComment="${thesis.document.blindTrialComment}">盲审结果</button>
               </td>
             </tr>
             </tbody>
@@ -236,7 +249,7 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="thesisVerifyForm" class="form-inline form" action="/thesis/verify"
+          <form id="thesisVerifyForm" class="form-inline form" action="/teacher/thesis/verify"
                 method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="dno" name="dno">
@@ -273,7 +286,6 @@
             <div class="row" th:if="!${isBlind}">
               <div class="col-md-12">
                 <label>通过&nbsp;&nbsp;</label>
-
                 <select class="form-control" name="isPass">
                   <option value="1">通过</option>
                   <option value="0">不通过</option>
@@ -336,7 +348,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
           确定
         </button>
       </div>
@@ -375,7 +387,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -26,11 +26,42 @@
               window.location.href = "/project/myProject";
             }, 500);
           } else {
-            alert("提交失败, 请重试");
+            alert(data.message);
           }
         },
 
       });
+    }
+
+    //复审课题
+    function reviewProject(e) {
+      var pno = $(e).attr("data-pno");
+      $.ajax({
+        url: '/project/review/' + pno,
+        success: function (data) {
+          if (data.code == 200) {
+            alert("申请成功，请等待结果");
+            window.location.reload();
+          } else {
+            alert(data.message);
+          }
+        }
+      })
+    }
+    //撤销课题
+    function revokeProject(e) {
+      var pno = $(e).attr("data-pno");
+      $.ajax({
+        url: '/project/revoke/' + pno,
+        success: function (data) {
+          if (data.code == 200) {
+            alert("撤销成功");
+            window.location.reload();
+          } else {
+            alert(data.message);
+          }
+        }
+      })
     }
 
     //获取课题简要信息
@@ -99,6 +130,7 @@
         <div class="col-md-12 common view">
 
           <p class="title">我的课题</p>
+          <p>* 申报时间为 <span th:text="${projectPlan.projectApplyTime}"></span></p>
 
           <hr>
           <div class="table-responsive view">
@@ -115,17 +147,16 @@
               <tr th:each="project:${myProject.data}">
                 <td th:text="${project.pname}"></td>
                 <td>未知</td>
-                <td th:if="${project.isPass}==0" class="no-pass">未通过</td>
-                <td th:if="${project.isPass}==1" class="pass">已通过</td>
-                <td th:if="${project.isPass}==2">审核中</td>
+                <td th:if="${project.isPass}==0" class="text-danger">未通过</td>
+                <td th:if="${project.isPass}==1" class="text-success">已通过</td>
+                <td th:if="${project.isPass}==2" class="text-warning">审核中</td>
                 <td>
                   <a th:href="@{'/project/'+${project.pno}}">查看详情</a>
-                  <a onclick="getProject(this)" th:data-pno="${project.pno}"
-                     th:if="${project.isPass}==2">修改</a>
-                  <a th:href="@{'/project/revoke/'+${project.pno}}"
-                     th:if="${project.isPass}==2">撤销</a>
-                  <a th:href="@{'/project/review/'+${project.pno}}"
-                     th:if="${project.isPass}==0">复核</a>
+                  <button  class="btn btn-link" onclick="getProject(this)" th:data-pno="${project.pno}"
+                     th:if="${project.isPass}==2">修改</button>
+                  <button class="btn btn-link" th:if="${project.isPass}==2" th:data-pno="${project.pno}" onclick="revokeProject(this)">撤销</button>
+                  <button class="btn btn-link" th:if="${project.isPass}==0" th:data-pno="${project.pno}"
+                     onclick="reviewProject(this)">复核</button>
                 </td>
               </tr>
 
@@ -179,7 +210,10 @@
             <div class="row">
               <div class="col-md-12">
                 <label for="project-type">课题类型&nbsp;&nbsp;</label>
-                <input type="text" class="form-control" id="project-type" name="type">
+                <select id="project-type" class="form-control" name="type">
+                  <option value="校级">校级</option>
+                  <option value="省级">省级</option>
+                </select>
               </div>
             </div>
 
@@ -202,7 +236,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeFile()">
           取消
         </button>
-        <button type="button" class="btn btn-success" onclick="projectApply()">提交</button>
+        <button type="button" class="btn btn-primary" onclick="projectApply()">提交</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

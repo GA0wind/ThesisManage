@@ -1,14 +1,18 @@
 package com.ncu.graduation.controller;
 
+import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Thesis;
 import com.ncu.graduation.model.ThesisRecord;
+import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.service.ThesisService;
+import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
@@ -40,17 +44,22 @@ public class ThesisController {
   @Autowired
   private ThesisService thesisService;
 
+  @Autowired
+  private ProjectService projectService;
+
   /**
    * 教师论文页面, 获取我的课题的论文
    */
-  @GetMapping("/teaThesis")
-  public String getTeaThesis(HttpServletRequest request,
+  @GetMapping("/teacher/thesis")
+  public String getTeaThesis(HttpSession session,
       Model model) {
-    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
-        .getSession().getAttribute("teaProject");
+    UserVO user = (UserVO)session.getAttribute("user");
+    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<Thesis>> myThesis = thesisService
         .getTeaThesis(teaProject);
     model.addAttribute("teaThesis", myThesis);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/teaThesis";
   }
 
@@ -58,7 +67,7 @@ public class ThesisController {
    * 审核论文, 盲审也用这一URL
    */
   @ResponseBody
-  @PostMapping("/thesis/verify")
+  @PostMapping("/teacher/thesis/verify")
   public ResultDTO verifyDocument(@Valid VerifyDocumentDTO verifyDocument) {
     thesisService.verifyThesis(verifyDocument);
     return ResultDTO.okOf();
@@ -67,7 +76,7 @@ public class ThesisController {
   /**
    * 获取需要我盲审的论文
    */
-  @GetMapping("/thesis/blindVerify")
+  @GetMapping("/teacher/thesis/blindVerify")
   public String blindVerifyDocument(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
     List<TeaProjectDocumentVO<Thesis>> teaBlindThesis = thesisService.getTeaBlindThesis(user);
@@ -81,7 +90,7 @@ public class ThesisController {
    * 提交论文
    */
   @ResponseBody
-  @PostMapping("/thesis/submit")
+  @PostMapping("/student/thesis/submit")
   public ResultDTO submitThesis(@RequestParam("thesis") MultipartFile file,
       @RequestParam("dno") String dno,
       HttpSession session) {
@@ -94,14 +103,16 @@ public class ThesisController {
   /**
    * 学生查看论文和审核结果
    */
-  @GetMapping("/stuThesis")
+  @GetMapping("/student/thesis")
   public String getStuThesis(HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    ProjectApply project = (ProjectApply) request.getSession().getAttribute("stuProject");
+    ProjectApply stuProject = projectService.getStuProject(user);
     StuProjectDocumentVO<Thesis> stuThesis = thesisService
-        .getStuThesis(user,project);
+        .getStuThesis(user,stuProject);
     model.addAttribute("stuThesis", stuThesis);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/stuThesis";
   }
 
@@ -109,7 +120,7 @@ public class ThesisController {
    * 查看历史评价
    */
   @ResponseBody
-  @GetMapping("/stuThesis/record")
+  @GetMapping("/student/thesis/record")
   public ResultDTO getThesisRecord(@RequestParam("thesisNo") String thesisNo, Model model) {
     List<ThesisRecord> records = thesisService.getThesisRecord(thesisNo);
     model.addAttribute("thesisRecord", records);

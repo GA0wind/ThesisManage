@@ -16,14 +16,6 @@
   <script type="text/javascript" src="/js/moment.min.js"></script>
   <script type="text/javascript" src="/js/daterangepicker.js"></script>
 
-  <style>
-    dt {
-      margin-bottom: 10px;
-    }
-
-    dt {
-    }
-  </style>
 
   <script>
     function sumbitProjectPlan() {
@@ -47,7 +39,7 @@
 </head>
 
 <body>
-<div class="container-fluid main">
+<div class="container-fluid main" style="margin-bottom: 20px">
   <!--  顶部-->
   <div th:insert="head::head">
 
@@ -67,6 +59,7 @@
           <hr>
           <form action="/admin/projectPlan" method="post" id="projectPlanForm">
             <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
+            <input type="text" class="hide" name="schoolYear" th:value="${newProjectPlan.schoolYear}">
             <dl>
               <div class="col-md-6">
                 <dt>课题申报起止时间：</dt>
@@ -132,7 +125,7 @@
                 </dd>
               </div>
             </dl>
-            <button class="btn btn-default pull-right" type="button" onclick="sumbitProjectPlan()">
+            <button class="btn btn-primary pull-right" type="button" onclick="sumbitProjectPlan()">
               提交
             </button>
           </form>
@@ -210,7 +203,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

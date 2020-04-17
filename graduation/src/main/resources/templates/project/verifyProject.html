@@ -128,12 +128,12 @@
               <tr th:each="project:${projects.data}">
                 <td th:text="${project.pname}"></td>
                 <td th:text="${project.type}">未知</td>
-                <td th:text="${project.isPass} == 2 ? '未审核':'已审核'"></td>
+                <td th:text="${project.isPass} == 2 ? '未审核':'已审核'" th:class="${project.isPass} == 2 ? 'text-success':'text-warning'"></td>
                 <td>
-                  <a th:if="${project.isPass} == 2" onclick="getProject(this)"
-                     th:data-pno="${project.pno}">审核</a>
-                  <a th:if="${project.isPass} != 2" onclick="getProject(this)"
-                     th:data-pno="${project.pno}">查看</a>
+                  <button th:if="${project.isPass} == 2" onclick="getProject(this)" class="btn btn-link"
+                     th:data-pno="${project.pno}">审核</button>
+                  <button th:if="${project.isPass} != 2" onclick="getProject(this)" class="btn btn-link"
+                     th:data-pno="${project.pno}">查看</button>
                 </td>
               </tr>
 
@@ -227,7 +227,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button id="verifySubmit" type="button" class="btn btn-success"
+        <button id="verifySubmit" type="button" class="btn btn-primary"
                 onclick="projectApplyVerify()">提交
         </button>
       </div>

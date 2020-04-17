@@ -7,8 +7,10 @@ import com.ncu.graduation.model.ForeignRecord;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.service.ForeignLiteratureService;
+import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
@@ -41,19 +43,22 @@ public class ForeignLiteratureController {
   @Autowired
   private ForeignLiteratureService foreignLiteratureService;
 
+  @Autowired
+  private ProjectService projectService;
 
   /**
    * 教师外文资料页面, 获取我的课题的外文资料
    */
-  @GetMapping("/teaForeignLiterature")
+  @GetMapping("/teacher/foreignLiterature")
   public String getTeaForeignLiterature(HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    Map<String, ProjectSelectResult> teaProject = (Map<String, ProjectSelectResult>) request
-        .getSession().getAttribute("teaProject");
+    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<ForeignLiterature>> teaForeignLiterature = foreignLiteratureService
         .getTeaForeignLiterature(user, teaProject);
     model.addAttribute("teaForeignLiterature", teaForeignLiterature);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/teaForeignLiterature";
   }
 
@@ -61,7 +66,7 @@ public class ForeignLiteratureController {
    * 审核外文资料
    */
   @ResponseBody
-  @PostMapping("/foreignLiterature/verify")
+  @PostMapping("/teacher/foreignLiterature/verify")
   public ResultDTO verifyDocument(@Valid VerifyDocumentDTO verifyDocument) {
     foreignLiteratureService.verifyForeignLiterature(verifyDocument);
     return ResultDTO.okOf();
@@ -71,7 +76,7 @@ public class ForeignLiteratureController {
    * 提交外文资料
    */
   @ResponseBody
-  @PostMapping("/foreignLiterature/submit")
+  @PostMapping("/student/foreignLiterature/submit")
   public ResultDTO submitForeignLiterature(@RequestParam("oldFile") String oldFile,
       @RequestParam("foreignFile") MultipartFile foreignFile,
       @RequestParam("translationFile") MultipartFile translationFile,
@@ -87,14 +92,18 @@ public class ForeignLiteratureController {
   /**
    * 学生查看开题报告和审核结果
    */
-  @GetMapping("/stuForeignLiterature")
+  @GetMapping("/student/foreignLiterature")
   public String getStuForeignLiterature(HttpServletRequest request,
       Model model) {
-    ProjectApply project = (ProjectApply) request.getSession().getAttribute("stuProject");
+    UserVO user = (UserVO) request.getSession().getAttribute("user");
+
+    ProjectApply project = projectService.getStuProject(user);
 
     StuProjectDocumentVO<ForeignLiterature> stuForeignLiterature = foreignLiteratureService
         .getStuForeignLiterature(project);
     model.addAttribute("stuForeignLiterature", stuForeignLiterature);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "document/stuForeignLiterature";
   }
 
@@ -102,7 +111,7 @@ public class ForeignLiteratureController {
    * 查看历史评价
    */
   @ResponseBody
-  @GetMapping("/stuForeignLiterature/record")
+  @GetMapping("/student/foreignLiterature/record")
   public ResultDTO getForeignRecordRecord(@RequestParam("fno") String fno, Model model) {
     List<ForeignRecord> foreignRecord = foreignLiteratureService.getForeignRecord(fno);
     model.addAttribute("foreignRecord", foreignRecord);

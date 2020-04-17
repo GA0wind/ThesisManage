@@ -15,7 +15,7 @@ public class ProjectPlanDTO {
   private String projectApplyTime;
   private String projectSelectTime;
   private String taskBookTime;
-  private String openingReportTime;
+  private String openReportTime;
   private String foreignLiteratureTime;
   private String oralExaminationTime;
   private String thesisTime;

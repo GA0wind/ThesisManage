@@ -64,8 +64,10 @@
         <div class="col-md-12 common view">
 
           <p class="title">可选课题</p>
+          <p>* 选择时间为 <span th:text="${projectPlan.projectSelectTime}"></span></p>
+
           <hr>
-          <form action="/project/projectSelectView" id="getProjectView">
+          <form action="/project/projectSelectView" id="getProjectView" class="search">
             <input id="hide-page" type="text" class="hide" name="page">
             <label for="pname">课题</label>
             <input id="pname" type="text" name="pname" th:value="${projectSearchDTO.pname}"
@@ -79,13 +81,13 @@
             <label for="tags">标签</label>
             <input id="tags" type="text" name="tags" th:value="${projectSearchDTO.tags}"
                    onclick="changeVal(this)">
-            <button type="button" onclick="getProjectList()">搜索</button>
+            <button class="btn btn-primary" type="button" onclick="getProjectList()">搜索</button>
           </form>
           <div class="table-responsive view">
             <table class="table">
               <thead>
               <tr>
-                <th class="project-name">课题名</th>
+                <th>课题名</th>
                 <th>题目类型</th>
                 <th th:text="${session.user.role} == 'student' ? '指导老师':'学生'"></th>
                 <th>操作</th>
@@ -98,7 +100,7 @@
                 <td th:text="${project.creatorName}"></td>
                 <td>
                   <a th:href="@{'/project/'+${project.pno}}">查看详情</a>
-                  <a th:data-pno="${project.pno}" onclick="selectProject(this)">报名</a>
+                  <button class="btn btn-link" th:data-pno="${project.pno}" onclick="selectProject(this)">报名</button>
                 </td>
               </tr>
 
@@ -107,17 +109,17 @@
               <tr>
                 <td>
                   <div th:if="${projects.totalPage} > 1">
-                    <a onclick="getProjectList(this)" th:data-page="1" class="more">首页</a>&nbsp;&nbsp;
-                    <a th:if="${projects.page}!=1" onclick="getProjectList(this)"
-                       th:data-page="${projects.page}-1" class="more">上一页</a>&nbsp;&nbsp;
+                    <button onclick="getProjectList(this)" th:data-page="1" class="more btn btn-link">首页</button>&nbsp;&nbsp;
+                    <button th:if="${projects.page}!=1" onclick="getProjectList(this)"
+                       th:data-page="${projects.page}-1" class="more btn btn-link">上一页</button>&nbsp;&nbsp;
                     <input class="pagination-num" id="page" type="text" th:value="${projects.page}"
                            size="2" name="page"
                            onmousedown="if(event.keyCode==13){getProjectList()}">&nbsp;&nbsp;
-                    <a th:if="${projects.page}!=${projects.totalPage}"
+                    <button th:if="${projects.page}!=${projects.totalPage}"
                        onclick="getProjectList(this)" th:data-page="${projects.page}+1"
-                       class="more">下一页</a>&nbsp;&nbsp;
-                    <a onclick="getProjectList(this)" th:data-page="${projects.totalPage}"
-                       class="more">尾页</a>&nbsp;&nbsp;
+                       class="more btn btn-link">下一页</button>&nbsp;&nbsp;
+                    <button onclick="getProjectList(this)" th:data-page="${projects.totalPage}"
+                       class="more btn btn-link">尾页</button>&nbsp;&nbsp;
                   </div>
                 </td>
                 <td></td>

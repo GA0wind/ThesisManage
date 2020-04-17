@@ -11,12 +11,14 @@ import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Thesis;
 import com.ncu.graduation.model.ThesisExample;
 import com.ncu.graduation.service.OralExaminationService;
+import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.service.ThesisService;
 import com.ncu.graduation.vo.OralExamScoreVO;
 import com.ncu.graduation.vo.OralExamStuProjectVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +41,8 @@ public class OralExaminationController {
   @Autowired
   private OralExaminationService oralExaminationService;
 
+  @Autowired
+  private ProjectService projectService;
 
   /**
    * 获取答辩小组成员信息
@@ -57,7 +61,7 @@ public class OralExaminationController {
   /**
    * 获取小组内的学生和课题和论文信息
    */
-  @GetMapping("/examGroupStu")
+  @GetMapping("/teacher/examGroupStu")
   public String getGroupStu(@RequestParam(name = "page", defaultValue = "1") Integer page,
       @RequestParam(name = "size", defaultValue = "10") Integer size, HttpSession session,
       Model model, OralExamSearchDTP oralExamSearchDTP) {
@@ -80,7 +84,7 @@ public class OralExaminationController {
    * @return
    */
   @ResponseBody
-  @PostMapping("/examGroupScore")
+  @PostMapping("/teacher/examGroupScore")
   public ResultDTO scoreToStu(@RequestParam("score") Integer score,
       @RequestParam("sno") String sno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
@@ -97,11 +101,10 @@ public class OralExaminationController {
    * @param model
    * @return
    */
-  @GetMapping("/examScore")
+  @GetMapping("/student/examScore")
   public String getExamScore(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply projectApply = (ProjectApply) session
-        .getAttribute("stuProject");
+    ProjectApply projectApply = projectService.getStuProject(user);
     if (user.getGroup() == null){
       throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
     }

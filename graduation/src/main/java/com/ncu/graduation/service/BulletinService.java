@@ -3,6 +3,7 @@ package com.ncu.graduation.service;
 
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
+import com.ncu.graduation.controller.AdminController;
 import com.ncu.graduation.dto.BulletinDTO;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.enums.FileTypeEnum;
@@ -20,6 +21,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,8 @@ public class BulletinService {
 
     @Autowired
     private BulletinMapper bulletinMapper;
+
+    private static Logger logger = LoggerFactory.getLogger(BulletinService.class);
 
     /**
      * 获取公告列表
@@ -117,12 +122,15 @@ public class BulletinService {
             bulletin.setGmtCreate(new Date());
             bulletin.setGmtModified(bulletin.getGmtCreate());
             bulletinMapper.insertSelective(bulletin);
+            logger.info("[{}]发布了公告, 公告id=[{}]",userVO.getAccountNo(),bulletin.getId());
         } else {
             bulletin.setId(Long.parseLong(bulletinDTO.getId()));
             bulletin.setGmtModified(new Date());
+
             if (bulletinMapper.updateByPrimaryKeySelective(bulletin) != 1) {
                 throw new CommonException(EmBulletinError.BULLETIN_PUBLISH_FAIL,"修改失败, 请检查参数是否正确");
             }
+            logger.info("[{}]修改了公告id=[{}]的信息",userVO.getAccountNo(),bulletin.getId());
         }
     }
 

@@ -243,15 +243,15 @@
             <input id="search-college" type="text" name="college" th:value="${userSearchDTO.college}"  onchange="changeVal(this)">
             <label for="search-name">姓名</label>
             <input id="search-name" type="text" name="name" th:value="${userSearchDTO.name}" onchange="changeVal(this)">
-            <label th:if="${role}=='teacher'" for="search-role">角色</label>
+            <label th:if="${role}=='teacher'" for="search-role">角色(teacher,admin,director)</label>
             <input th:if="${role}=='teacher'" id="search-role" type="text" name="role" th:value="${userSearchDTO.role}">
-            <button type="button" onclick="getUserList()">搜索</button>
+            <button class="btn btn-primary" type="button" onclick="getUserList()">搜索</button>
           </form>
           <div class="table-responsive view">
             <table class="table">
               <thead>
               <tr>
-                <th class="project-name">学号</th>
+                <th>学号</th>
                 <th>姓名</th>
                 <th>学院</th>
                 <th th:if="${role} == 'student'">专业</th>
@@ -268,16 +268,18 @@
               <tbody th:if="${role} == 'teacher'">
               <tr th:each="teacher:${users.data}">
                 <td th:text="${teacher.tno}"></td>
-                <td th:text="${teacher.tname}">未知</td>
+                <td th:text="${teacher.tname}"></td>
                 <td th:text="${teacher.college}"></td>
-                <td th:text="${teacher.role}"></td>
+                <td th:if="${teacher.role}=='admin'">管理员</td>
+                <td th:if="${teacher.role}=='director'">主任</td>
+                <td th:if="${teacher.role}=='teacher'">指导老师</td>
                 <td th:text="${teacher.leadStudentNum}"></td>
                 <td th:text="${teacher.groupNum}"></td>
                 <td th:text="${teacher.groupRole}"></td>
 
                 <td>
-                  <a onclick="getTea(this)"
-                     th:data-tno="${teacher.tno}">修改</a>
+                  <button class="btn btn-link" onclick="getTea(this)"
+                     th:data-tno="${teacher.tno}">修改</button>
                 </td>
               </tr>
 
@@ -285,14 +287,14 @@
               <tbody th:if="${role} == 'student'">
               <tr th:each="student:${users.data}">
                 <td th:text="${student.sno}"></td>
-                <td th:text="${student.sname}">未知</td>
+                <td th:text="${student.sname}"></td>
                 <td th:text="${student.college}"></td>
                 <td th:text="${student.major}"></td>
                 <td th:text="${student.gradeClass}"></td>
                 <td th:text="${student.groupNum}"></td>
                 <td>
-                  <a onclick="getStu(this)"
-                     th:data-sno="${student.sno}">修改</a>
+                  <button class="btn btn-link" onclick="getStu(this)"
+                     th:data-sno="${student.sno}">修改</button>
                 </td>
               </tr>
               </tbody>
@@ -300,34 +302,34 @@
               <tr>
                 <td>
                   <div th:if="${users.totalPage} > 1">
-                    <a onclick="getUserList(this)" th:data-page="1" class="more">首页</a>&nbsp;&nbsp;
-                    <a th:if="${users.page}>1" onclick="getUserList(this)"
-                       th:data-page="${users.page}-1" class="more">上一页</a>&nbsp;&nbsp;
+                    <button onclick="getUserList(this)" th:data-page="1"  class="btn btn-link more">首页</button>&nbsp;&nbsp;
+                    <button th:if="${users.page}>1" onclick="getUserList(this)"
+                       th:data-page="${users.page}-1" class="btn btn-link more">上一页</button>&nbsp;&nbsp;
                     <input class="pagination-num" id="page" type="text" th:value="${users.page}"
                            size="2" name="page"
                            onmousedown="if(event.keyCode==13){getUserList()}">&nbsp;&nbsp;
-                    <a th:if="${users.page}<${users.totalPage}"
+                    <button th:if="${users.page}<${users.totalPage}"
                        onclick="getUserList(this)" th:data-page="${users.page}+1"
-                       class="more">下一页</a>&nbsp;&nbsp;
-                    <a onclick="getUserList(this)" th:data-page="${users.totalPage}"
-                       class="more">尾页</a>&nbsp;&nbsp;
+                       class="btn btn-link more">下一页</button>&nbsp;&nbsp;
+                    <button onclick="getUserList(this)" th:data-page="${users.totalPage}"
+                       class="btn btn-link more">尾页</button>&nbsp;&nbsp;
                   </div>
                 </td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>
-                  <button onclick="showGroupExlModel(this)" th:data-type="${role}">excel设置组别
+                  <button class="btn btn-primary" onclick="showGroupExlModel(this)" th:data-type="${role}">excel设置组别
                   </button>
                 </td>
                 <td>
-                  <button onclick="showAddUserExcel(this)" th:data-type="${role}">excel添加</button>
+                  <button class="btn btn-primary" onclick="showAddUserExcel(this)" th:data-type="${role}">excel添加</button>
                 </td>
-                <td th:if="${role} == 'teacher'" onclick="addTea()">
-                  <button>添加</button>
+                <td th:if="${role} == 'teacher'">
+                  <button class="btn btn-primary" onclick="addTea()">添加</button>
                 </td>
-                <td th:if="${role} == 'student'" onclick="addStu()">
-                  <button>添加</button>
+                <td th:if="${role} == 'student'">
+                  <button class="btn btn-primary" onclick="addStu()">添加</button>
                 </td>
                 <td th:if="${role} == 'teacher'"></td>
               </tr>
@@ -424,7 +426,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-primary"
                 onclick="submitTea()">提交
         </button>
       </div>
@@ -442,7 +444,6 @@
         <h4 class="modal-title">课题信息</h4>
       </div>
       <div class="modal-body">
-
         <div class="col-md-12 common">
           <form id="modifyStuForm" class="form-inline form" action="/admin/add"
                 method="post"
@@ -505,7 +506,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-primary"
                 onclick="submitStu()">提交
         </button>
       </div>
@@ -531,7 +532,7 @@
                 <label for="user-excel">excel文件&nbsp;&nbsp;</label>
                 <input type="file" class="form-control" id="user-excel" name="excel">
                 <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 密码 姓名 学院 角色 指导人数
-                  (角色为admin或director或teacher)</p>
+                  (角色为admin或director或teacher) (第一行为列名不存数据)</p>
                 <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 密码 姓名 学院 专业 班级 </p>
               </div>
             </div>
@@ -540,7 +541,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-primary"
                 onclick="submitUserExl()">提交
         </button>
       </div>
@@ -565,8 +566,8 @@
               <div class="col-md-12">
                 <label for="group-excel">excel文件&nbsp;&nbsp;</label>
                 <input type="file" class="form-control" id="group-excel" name="excel">
-                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 组号 组内角色 (角色为member或leader) 学院</p>
-                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 组号 </p>
+                <p th:if="${role} == 'teacher'"> *excel表格从左到右列对应为 工号 组号 组内角色 (角色为member或leader) 学院(第一行为列名不存数据)</p>
+                <p th:if="${role} == 'student'"> *excel表格从左到右列对应为 学号 组号 (第一行为列名不存数据)</p>
               </div>
             </div>
           </form>
@@ -574,7 +575,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-primary"
                 onclick="sumbitSetGroupExl()">提交
         </button>
       </div>

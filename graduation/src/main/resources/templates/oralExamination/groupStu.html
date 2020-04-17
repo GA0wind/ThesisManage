@@ -83,7 +83,7 @@
         <p class="title">小组课题</p>
 
         <hr>
-        <form action="/examGroupStu" id="getOralExamView">
+        <form action="/teacher/examGroupStu" id="getOralExamView">
           <input id="hide-page" type="text" class="hide" name="page">
           <label for="pname">课题</label>
           <input id="pname" type="text" name="pname" th:value="${oralExamSearchDTP.pname}"
@@ -91,7 +91,7 @@
           <label for="sname">学生姓名</label>
           <input id="sname" type="text" name="sname"
                  th:value="${oralExamSearchDTP.sname}" onclick="changeVal(this)">
-          <button type="button" onclick="getOralExamList()">搜索</button>
+          <button class="btn btn-primary" type="button" onclick="getOralExamList()">搜索</button>
         </form>
         <div class="table-responsive view">
           <table class="table">
@@ -130,7 +130,6 @@
             <tfoot>
             <tr>
               <td>
-
                 <div th:if="${groupStus.totalPage} > 1">
                   <a onclick="getOralExamList(this)" th:data-page="1" class="more">首页</a>&nbsp;&nbsp;
                   <a th:if="${groupStus.page}!=1" onclick="getOralExamList(this)"
@@ -173,7 +172,7 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="oralExamScoreForm" class="form-inline form" action="/examGroupScore"
+          <form id="oralExamScoreForm" class="form-inline form" action="/teacher/examGroupScore"
                 method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="sno" name="sno">
@@ -198,7 +197,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button id="verifySubmit" type="button" class="btn btn-success"
+        <button id="verifySubmit" type="button" class="btn btn-primary"
                 onclick="oralExamScore()">提交
         </button>
       </div>

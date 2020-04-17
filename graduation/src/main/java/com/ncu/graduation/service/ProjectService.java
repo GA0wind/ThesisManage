@@ -377,11 +377,23 @@ public class ProjectService {
     }
   }
 
-  public List<ProjectPlan> getProjectPlan(UserVO user) {
+  /**
+   * 管理员获取所有课题计划
+   * @return
+   *
+   */
+  public List<ProjectPlan> getProjectPlans() {
     ProjectPlanExample projectPlanExample = new ProjectPlanExample();
     projectPlanExample.setOrderByClause("id");
     List<ProjectPlan> projectPlans = projectPlanMapper.selectByExample(projectPlanExample);
     return projectPlans;
+  }
+
+  public ProjectPlan getProjectPlan(String schoolYear) {
+    ProjectPlanExample projectPlanExample = new ProjectPlanExample();
+    projectPlanExample.createCriteria().andSchoolYearEqualTo(schoolYear);
+    List<ProjectPlan> projectPlans = projectPlanMapper.selectByExample(projectPlanExample);
+    return projectPlans.get(0);
   }
 
   /**
@@ -432,7 +444,7 @@ public class ProjectService {
       default:
         break;
     }
-    if (pnos.isEmpty()){
+    if (pnos.isEmpty()) {
       return new ArrayList<>();
     }
     //获取所有有效选题

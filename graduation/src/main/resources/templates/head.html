@@ -35,12 +35,12 @@
             <li><a href="/bulletin">首页<span class="sr-only">(current)</span></a></li>
             <li><a href="/bulletin">公告</a></li>
             <li><a href="/project/myProject">师生互选</a></li>
-            <li><a th:if="${session.user.role} == 'student'" href="/stuTaskBook">过程管理</a></li>
-            <li><a th:if="${session.user.role} == 'teacher'" href="/teaTaskBook">过程管理</a></li>
+            <li><a th:if="${session.user.role} == 'student'" href="/student/taskBook">过程管理</a></li>
+            <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/taskBook">过程管理</a></li>
 
             <li><a th:if="${session.user.role} == 'admin'" href="/admin/projectPlan">毕设管理</a></li>
-            <li><a th:if="${session.user.role} == 'student'" href="/examScore">答辩</a></li>
-            <li><a th:if="${session.user.role} == 'teacher'" href="/examGroupStu">答辩</a></li>
+            <li><a th:if="${session.user.role} == 'student'" href="/student/examScore">答辩</a></li>
+            <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/examGroupStu">答辩</a></li>
             <li><a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}">用户管理</a></li>
 
           </ul>

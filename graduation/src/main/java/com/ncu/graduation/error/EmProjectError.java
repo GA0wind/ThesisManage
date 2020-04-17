@@ -17,6 +17,8 @@ public enum EmProjectError implements CommonError{
   TEACHER_LEAD_STUDENT_NUM_IS_ENOUGH(5006,"指导学生数已达上限"),
   STUDENT_ONLY_ONE_PROJECT(5007,"已选定课题, 无法报名"),
   NOT_EXIST_DIRECTOR(5008,"主任不存在, 请联系管理员"),
+  PROJECT_APPLY_IS_OVERTIME(5009,"已经过了课题申请时间, 无法申请"),
+  PROJECT_SELECT_IS_OVERTIME(5010,"已经过了课题选择时间, 无法报名"),
   ;
   private Integer errCode;
   private String errMsg;

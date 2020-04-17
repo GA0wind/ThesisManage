@@ -53,16 +53,24 @@
     function getOpenReportRecord(e) {
       var openNo = $(e).attr('data-openNo');
       $.ajax({
-        url: '/stuOpenReport/record?openNo=' + openNo,
+        url: '/student/openReport/record?openNo=' + openNo,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
             $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
               $("#openReportRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
-                  + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>"
-                  +
+                  + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  isPass +
                   "<td>" + data.trialGrade + "</td>" +
                   "<td>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
@@ -103,7 +111,7 @@
     <div th:insert="leftMenu::leftMenuDocument">
 
     </div>
-<!--  学生开题报告  -->
+    <!--  学生开题报告  -->
     <div class="col-md-7">
       <div class="row">
         <div class="col-md-12 common view">
@@ -139,6 +147,8 @@
       <div class="row">
         <div class="col-md-12 common view">
           <p class="title">开题报告</p>
+          <p>* 提交时间为 <span th:text="${projectPlan.openReportTime}"></span></p>
+
           <hr>
           <dl class="dl-horizontal" th:if="${stuOpenReport.document} != null">
             <dt>开题报告：</dt>
@@ -165,15 +175,15 @@
 
 
           </dl>
-          <button th:if="${stuOpenReport.document} == null" type="button" class="btn btn-default"
+          <button th:if="${stuOpenReport.document} == null" type="button" class="btn btn-primary"
                   onclick="showOpenReportModel(0)">提交
           </button>
           <button
-              th:if="${stuOpenReport.document} != null and ${stuOpenReport.document.isPass} != 1"
-              type="button" class="btn btn-default"
+              th:if="${stuOpenReport.document} != null"
+              type="button" class="btn btn-primary"
               onclick="showOpenReportModel(1)">重新提交
           </button>
-          <button th:if="${stuOpenReport.document} != null" type="button" class="btn btn-default"
+          <button th:if="${stuOpenReport.document} != null" type="button" class="btn btn-primary"
                   th:data-openNo="${stuOpenReport.document.openNo}"
                   onclick="getOpenReportRecord(this)">查看历史审核
           </button>
@@ -198,7 +208,7 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="openReportForm" class="form-inline form" action="/openReport/submit"
+          <form id="openReportForm" class="form-inline form" action="/student/openReport/submit"
                 method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="project-dno" name="dno"
@@ -217,7 +227,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">
           取消
         </button>
-        <button id="openReportBtn" type="button" class="btn btn-default"
+        <button id="openReportBtn" type="button" class="btn btn-primary"
                 onclick="openReportSubmit()">提交
         </button>
       </div>
@@ -240,6 +250,7 @@
             <thead>
             <tr>
               <th>文件</th>
+              <th>审核结果</th>
               <th>审核分数</th>
               <th>审核评语</th>
               <th>审核时间</th>
@@ -252,7 +263,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
           确定
         </button>
       </div>

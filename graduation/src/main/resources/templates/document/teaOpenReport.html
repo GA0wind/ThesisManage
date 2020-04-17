@@ -48,7 +48,7 @@
         url: '/project/simple/' + pno,
         dataType: 'json',
         success: function (data) {
-          if (data.code == 200){
+          if (data.code == 200) {
             $("#project-pno").val(data.data.pno + "");
             $("#project-pname").val(data.data.pname + "");
             $("#project-content").val(data.data.content + "");
@@ -58,7 +58,8 @@
             var filePathUrl = filePath.replace("#", "%23");
             $("#old-file").removeClass("hide");
             $("#old-file").append(
-                "<input class='hide' type='text' id='oldFilePath' name='oldFilePath' value='"+filePath+"'>"
+                "<input class='hide' type='text' id='oldFilePath' name='oldFilePath' value='"
+                + filePath + "'>"
                 + " <p>\n"
                 + "&nbsp;&nbsp;课题文档\n"
                 + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
@@ -79,8 +80,7 @@
             $('#myModal').modal({
               keyboard: false
             });
-          }
-          else{
+          } else {
             alert(data.message)
           }
 
@@ -101,23 +101,30 @@
     function getOpenReportRecord(e) {
       var openNo = $(e).attr('data-openNo');
       $.ajax({
-        url: '/stuOpenReport/record?openNo=' + openNo,
+        url: '/student/openReport/record?openNo=' + openNo,
         dataType: 'json',
         success: function (data) {
-          if (data.code ==200){
+          if (data.code == 200) {
             $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
               $("#openReportRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
                   + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
-                  "<td>" + data.isPass + "</td>" +
+                  isPass +
                   "<td>" + data.trialGrade + "</td>" +
                   "<td>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
-          }
-          else {
+          } else {
             alert(data.message);
           }
 
@@ -167,6 +174,7 @@
       <div class="col-md-7 common view">
 
         <p class="title">开题报告</p>
+        <p>* 提交时间为 <span th:text="${projectPlan.openReportTime}"></span></p>
 
         <hr>
         <div class="table-responsive view">
@@ -200,30 +208,33 @@
 
               <!--              审核结果-->
               <td th:if="${openReport.document} == null">未提交</td>
-              <td th:if="${openReport.document} != null and ${openReport.document.isPass} == 1">
+              <td th:if="${openReport.document} != null and ${openReport.document.isPass} == 1"
+                  class="text-success">
                 已通过
               </td>
-              <td th:if="${openReport.document} != null and ${openReport.document.isPass} == 2">
+              <td th:if="${openReport.document} != null and ${openReport.document.isPass} == 2"
+                  class="text-warning">
                 待审核
               </td>
-              <td th:if="${openReport.document} != null and ${openReport.document.isPass} == 0">
+              <td th:if="${openReport.document} != null and ${openReport.document.isPass} == 0"
+                  class="text-danger">
                 已回拒
               </td>
               <td>
-                <a th:if="${openReport.document} != null" th:data-pno="${openReport.pno}"
+                <button class="btn btn-link" th:if="${openReport.document} != null" th:data-pno="${openReport.pno}"
                    th:data-dno="${openReport.document.openNo}"
                    th:data-isBlind="${isBlind}?1:0"
                    th:data-filePath="${openReport.document.filePath}"
                    th:data-blindGrade="${openReport.document.blindTrialGrade}"
                    th:data-blindComment="${openReport.document.blindTrialComment}"
-                   onclick="getProject(this)">审核</a>
-                <a th:if="${isBlind} == null and ${openReport.document} != null "
+                   onclick="getProject(this)">审核</button>
+                <button class="btn btn-link" th:if="${isBlind} == null and ${openReport.document} != null "
                    onclick="getOpenReportRecord(this)"
-                   th:data-openNo="${openReport.document.openNo}">历史审核</a>
-                <a th:if="${isBlind} == null and ${openReport.document} != null "
+                   th:data-openNo="${openReport.document.openNo}">历史审核</button>
+                <button class="btn btn-link" th:if="${isBlind} == null and ${openReport.document} != null "
                    onclick="getBlindVerify(this)"
                    th:data-blindGrade="${openReport.document.blindTrialGrade}"
-                   th:data-blindComment="${openReport.document.blindTrialComment}">盲审结果</a>
+                   th:data-blindComment="${openReport.document.blindTrialComment}">盲审结果</button>
               </td>
             </tr>
             </tbody>
@@ -248,7 +259,7 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="openReportVerifyForm" class="form-inline form" action="/openReport/verify"
+          <form id="openReportVerifyForm" class="form-inline form" action="/teacher/openReport/verify"
                 method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="dno" name="dno">
@@ -312,7 +323,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success" onclick="openReportVerify()">提交</button>
+        <button type="button" class="btn btn-primary" onclick="openReportVerify()">提交</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -345,7 +356,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
           确定
         </button>
       </div>
@@ -384,7 +395,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

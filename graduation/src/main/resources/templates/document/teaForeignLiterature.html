@@ -49,11 +49,19 @@
     function getForeignLiteratureRecord(e) {
       var fno = $(e).attr('data-fno');
       $.ajax({
-        url: '/stuForeignLiterature/record?fno=' + fno,
+        url: '/student/foreignLiterature/record?fno=' + fno,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
             $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
               $("#foreignLiteratureRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.foreignFile.toString().replace('#',
@@ -62,7 +70,7 @@
                   "<td> <a href='/download?filePath=" + data.translationFile.toString().replace('#',
                   "%23") + "&fileType=translationFile'>" + data.translationFile.toString().split('#')[1]
                   + "</a></td>" +
-                  "<td>" + data.isPass + "</td>" +
+                  isPass +
                   "<td>" + data.trialGrade + "</td>" +
                   "<td>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
@@ -107,7 +115,8 @@
     <div class="row">
       <div class="col-md-7 common view">
 
-        <p class="title">开题报告</p>
+        <p class="title">外文资料</p>
+        <p>* 提交时间为 <span th:text="${projectPlan.foreignLiteratureTime}"></span></p>
 
         <hr>
         <div class="table-responsive view">
@@ -146,26 +155,26 @@
               <!--              审核结果-->
               <td th:if="${foreignLiterature.document} == null">未提交</td>
 
-              <td th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} == 1">
+              <td th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} == 1" class="text-success">
                 已通过
               </td>
-              <td th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} == 2">
+              <td th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} == 2" class="text-warning">
                 待审核
               </td>
-              <td th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} == 0">
+              <td th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} == 0" class="text-danger">
                 已回拒
               </td>
 
               <td>
 
-                <a th:if="${foreignLiterature.document} != null"
+                <button class="btn btn-link" th:if="${foreignLiterature.document} != null"
                    th:data-dno="${foreignLiterature.document.fno}"
                    th:data-foreignFile="${foreignLiterature.document.foreignFile}"
                    th:data-translationFile="${foreignLiterature.document.translationFile}"
-                   onclick="getProject(this)">审核</a>
-                <a onclick="getForeignLiteratureRecord(this)"
+                   onclick="getProject(this)">审核</button>
+                <button class="btn btn-link" onclick="getForeignLiteratureRecord(this)"
                    th:if="${foreignLiterature.document} != null"
-                   th:data-fno="${foreignLiterature.document.fno}">历史审核</a>
+                   th:data-fno="${foreignLiterature.document.fno}">历史审核</button>
               </td>
             </tr>
             </tbody>
@@ -191,7 +200,7 @@
 
         <div class="col-md-12 common">
           <form id="foreignLiteratureVerifyForm" class="form-inline form"
-                action="/foreignLiterature/verify" method="post"
+                action="/teacher/foreignLiterature/verify" method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="dno" name="dno">
             <input type="text" class="hide" id="foreignFile" name="filePath">
@@ -226,7 +235,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success" onclick="foreignLiteratureVerify()">提交
+        <button type="button" class="btn btn-primary" onclick="foreignLiteratureVerify()">提交
         </button>
       </div>
     </div><!-- /.modal-content -->
@@ -261,7 +270,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
           确定
         </button>
       </div>

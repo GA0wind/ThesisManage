@@ -4,7 +4,11 @@ import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
+import com.ncu.graduation.model.ProjectSelect;
 import com.ncu.graduation.service.ProjectSelectService;
+import com.ncu.graduation.service.ProjectService;
+import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.vo.ProjectSelectVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
@@ -30,6 +34,10 @@ public class ProjectSelectController {
   @Autowired
   private ProjectSelectService projectSelectService;
 
+  @Autowired
+  private ProjectService projectService;
+
+
   /**
    * 获取可选的课题
    */
@@ -43,6 +51,8 @@ public class ProjectSelectController {
     PaginationDTO<ProjectSelectVO> selectiveProject = projectSelectService
         .getSelectiveProject(page, size, user,projectSearchDTO);
     model.addAttribute("projects", selectiveProject);
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    model.addAttribute("projectPlan", projectPlan);
     return "select/project-select";
   }
 

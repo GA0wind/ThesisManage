@@ -48,11 +48,19 @@
     function getForeignLiteratureRecord(e) {
       var fno = $(e).attr('data-fno');
       $.ajax({
-        url: '/stuForeignLiterature/record?fno=' + fno,
+        url: '/student/foreignLiterature/record?fno=' + fno,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
             $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
               $("#foreignLiteratureRecordTable").append(
                   "<tr>" +
                   "<td><a href='/download?filePath=" + data.foreignFile.toString().replace('#', "%23")
@@ -61,6 +69,7 @@
                   "<td><a href='/download?filePath=" + data.translationFile.toString().replace('#',
                   "%23") + "&fileType=openReport'>" + data.translationFile.toString().split('#')[1]
                   + "</a></td>" +
+                  isPass+
                   "<td>" + data.trialGrade + "</td>" +
                   "<td>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
@@ -131,6 +140,8 @@
       <div class="row">
         <div class="col-md-12 common view">
           <p class="title">外文资料</p>
+          <p>* 提交时间为 <span th:text="${projectPlan.foreignLiteratureTime}"></span></p>
+
           <hr>
           <dl class="dl-horizontal" th:if="${stuForeignLiterature.document} != null">
             <dt>外文原文：</dt>
@@ -162,15 +173,15 @@
 
           </dl>
           <button th:if="${stuForeignLiterature.document} == null" type="button"
-                  class="btn btn-success"
+                  class="btn btn-primary"
                   onclick="showForeignLiteratureModel(0)">提交
           </button>
           <button th:if="${stuForeignLiterature.document} != null" type="button"
-                  class="btn btn-success"
+                  class="btn btn-primary"
                   onclick="showForeignLiteratureModel(1)">重新提交
           </button>
           <button th:if="${stuForeignLiterature.document} != null" type="button"
-                  class="btn btn-success"
+                  class="btn btn-primary"
                   th:data-fno="${stuForeignLiterature.document.fno}"
                   onclick="getForeignLiteratureRecord(this)">查看历史审核
           </button>
@@ -196,7 +207,7 @@
 
         <div class="col-md-12 common">
           <form id="foreignLiteratureForm" class="form-inline form" method="post"
-                action="/foreignLiterature/submit"
+                action="/student/foreignLiterature/submit"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="project-dno" name="dno"
                    th:value="${stuForeignLiterature.document.fno}">
@@ -218,7 +229,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">
           取消
         </button>
-        <button id="foreignLiteratureBtn" type="button" class="btn btn-success"
+        <button id="foreignLiteratureBtn" type="button" class="btn btn-primary"
                 onclick="foreignLiteratureSubmit()">提交
         </button>
       </div>
@@ -242,6 +253,7 @@
             <tr>
               <th>原文</th>
               <th>译文</th>
+              <th>审核结果</th>
               <th>分数</th>
               <th>评语</th>
               <th>时间</th>
@@ -254,7 +266,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
           确定
         </button>
       </div>

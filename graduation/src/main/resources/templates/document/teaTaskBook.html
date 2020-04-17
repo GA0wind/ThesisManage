@@ -72,6 +72,7 @@
       <div class="col-md-7 common view">
 
         <p class="title">任务书</p>
+        <p>* 提交时间为 <span th:text="${projectPlan.taskBookTime}"></span></p>
 
         <hr>
         <div class="table-responsive view">
@@ -97,11 +98,11 @@
               <td>
                 <a th:if="${taskBook.document} != null"
                    th:href="@{/readOnline(filePath=${taskBook.document.filePath},fileType='taskBook')}">在线浏览</a>
-                <a th:if="${taskBook.document} == null" th:data-pno="${taskBook.pno}"
-                   onclick="setDno(this)">提交</a>
-                <a th:if="${taskBook.document} != null" th:data-pno="${taskBook.pno}"
+                <button class="btn btn-link" th:if="${taskBook.document} == null" th:data-pno="${taskBook.pno}"
+                   onclick="setDno(this)">提交</button>
+                <button class="btn btn-link" th:if="${taskBook.document} != null" th:data-pno="${taskBook.pno}"
                    th:data-dno="${taskBook.document.taskNo}"
-                   onclick="modify(this)">修改</a>
+                   onclick="modify(this)">修改</button>
               </td>
             </tr>
 
@@ -128,7 +129,7 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="taskBookSubmit" class="form-inline form" action="/taskBook/submit" method="post"
+          <form id="taskBookSubmit" class="form-inline form" action="/teacher/taskBook/submit" method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="dno" name="dno">
             <input type="text" class="hide" id="pno" name="pno">
@@ -144,7 +145,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success" onclick="taskBookSubmit()">提交</button>
+        <button type="button" class="btn btn-primary" onclick="taskBookSubmit()">提交</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

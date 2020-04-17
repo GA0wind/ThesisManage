@@ -5,73 +5,113 @@
 <body>
 
 <div th:fragment="leftMenuSelect">
-    <div class="col-md-offset-1 col-md-2 subMenu">
-        <h4 class="subMenu-title">师生互选</h4>
-        <div class="list-group">
-            <a href="/project/myProject" class="list-group-item active">我的课题</a>
-            <a  th:if="${session.user.role} == 'teacher'" href="/project/verifyProjectView" class="list-group-item">盲审课题</a>
-            <a href="/project/projectSelectView" class="list-group-item">师生互选</a>
-            <a href="/project/mySelectState" class="list-group-item">选题情况</a>
-            <a href="/project/myProject/selectState" class="list-group-item">课题被选情况</a>
-            <a  th:if="${session.user.role} == 'admin'" href="/admin/projectSelectiveAndStu" class="list-group-item">数量统计</a>
+  <div class="col-md-offset-1 col-md-2 subMenu">
+    <h4 class="subMenu-title">师生互选</h4>
+    <div class="list-group">
+      <a href="/project/myProject" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/project/myProject'} ? 'active':''">我的课题</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/project/verifyProjectView"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/project/verifyProjectView'} ? 'active':''">盲审课题</a>
+      <a href="/project/projectSelectView" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/project/projectSelectView'} ? 'active':''">师生互选</a>
+      <a href="/project/mySelectState" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/project/mySelectState'} ? 'active':''">选题情况</a>
+      <a href="/project/myProject/selectState" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/project/myProject/selectState'} ? 'active':''">课题被选情况</a>
+      <a th:if="${session.user.role} == 'admin'" href="/admin/projectSelectiveAndStu"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/projectSelectiveAndStu'} ? 'active':''">数量统计</a>
 
-        </div>
     </div>
+  </div>
 </div>
 
 <div th:fragment="leftMenuDocument">
-    <div class="col-md-offset-1 col-md-2 subMenu">
-        <h4 class="subMenu-title">过程文档</h4>
-        <div class="list-group">
-            <a th:if="${session.user.role} == 'teacher'" href="/teaTaskBook" class="list-group-item active">任务书</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/teaTaskBook" class="list-group-item">盲审任务书</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/teaOpenReport" class="list-group-item">开题报告</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/openReport/blindVerify" class="list-group-item">盲审开题报告</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/teaForeignLiterature" class="list-group-item">外文资料</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/teaTaskBook" class="list-group-item">指导记录</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/teaThesis" class="list-group-item">论文</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/thesis/blindVerify" class="list-group-item">盲审论文</a>
+  <div class="col-md-offset-1 col-md-2 subMenu">
+    <h4 class="subMenu-title">过程文档</h4>
+    <div class="list-group">
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/taskBook"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/taskBook'} ? 'active':''">任务书</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/openReport" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/openReport'} ? 'active':''">开题报告</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/openReport/blindVerify"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/openReport/blindVerify'} ? 'active':''">盲审开题报告</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/foreignLiterature"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/foreignLiterature'} ? 'active':''">外文资料</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/taskBook"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/taskBook'} ? 'active':''">指导记录</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/thesis" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/thesis'} ? 'active':''">论文</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/teacher/thesis/blindVerify"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/thesis/blindVerify'} ? 'active':''">盲审论文</a>
 
-            <a th:if="${session.user.role} == 'student'" href="/stuTaskBook" class="list-group-item">任务书</a>
-            <a th:if="${session.user.role} == 'student'" href="/stuOpenReport" class="list-group-item">开题报告</a>
-            <a th:if="${session.user.role} == 'student'" href="/stuForeignLiterature" class="list-group-item">外文资料</a>
-            <a th:if="${session.user.role} == 'student'" href="/stuTaskBook" class="list-group-item">指导记录</a>
-            <a th:if="${session.user.role} == 'student'" href="/stuThesis" class="list-group-item">论文</a>
-        </div>
+
+      <a th:if="${session.user.role} == 'student'" href="/student/taskBook"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/student/taskBook'} ? 'active':''">任务书</a>
+      <a th:if="${session.user.role} == 'student'" href="/student/openReport" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/student/openReport'} ? 'active':''">开题报告</a>
+      <a th:if="${session.user.role} == 'student'" href="/student/foreignLiterature"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/student/foreignLiterature'} ? 'active':''">外文资料</a>
+<!--      <a th:if="${session.user.role} == 'student'" href="/student/taskBook"-->
+<!--         class="list-group-item"-->
+<!--         th:classappend="${#httpServletRequest.getRequestURI() == '/student/taskBook'} ? 'active':''">指导记录</a>-->
+      <a th:if="${session.user.role} == 'student'" href="/student/thesis" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/student/thesis'} ? 'active':''">论文</a>
     </div>
+  </div>
 </div>
 
 <div th:fragment="leftMenuOralExam">
-    <div class="col-md-offset-1 col-md-2 subMenu">
-        <h4 class="subMenu-title">答辩</h4>
-        <div class="list-group">
-            <a href="/examGroup" class="list-group-item active">答辩小组</a>
-            <a th:if="${session.user.role} == 'teacher'" href="/examGroupStu" class="list-group-item">小组课题</a>
-            <a th:if="${session.user.role} == 'student'" href="/examScore" class="list-group-item">成绩</a>
+  <div class="col-md-offset-1 col-md-2 subMenu">
+    <h4 class="subMenu-title">答辩</h4>
+    <div class="list-group">
+      <a href="/examGroup" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/examGroup'} ? 'active':''">答辩小组</a>
+      <a th:if="${session.user.role} == 'teacher'" href="/examGroupStu"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/teacher/examGroupStu'} ? 'active':''">小组课题</a>
+      <a th:if="${session.user.role} == 'student'" href="/examScore" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/student/examScore'} ? 'active':''">成绩</a>
 
-        </div>
     </div>
+  </div>
 </div>
 
 <div th:fragment="leftMenuUserOp">
-    <div class="col-md-offset-1 col-md-2 subMenu">
-        <h4 class="subMenu-title">用户管理</h4>
-        <div class="list-group">
-            <a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}" class="list-group-item active">个人信息</a>
-            <a th:if="${session.user.role} == 'admin'" href="/admin/stuView" class="list-group-item">学生列表</a>
-            <a th:if="${session.user.role} == 'admin'" href="/admin/teaView" class="list-group-item">职工列表</a>
-        </div>
+  <div class="col-md-offset-1 col-md-2 subMenu">
+    <h4 class="subMenu-title">用户管理</h4>
+    <div class="list-group">
+      <a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}"
+         class="list-group-item"
+         th:classappend="${#strings.contains(#httpServletRequest.getRequestURI(),'/user/info/')} ? 'active':''">个人信息</a>
+      <a th:if="${session.user.role} == 'admin'" href="/admin/stuView"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/stuView'} ? 'active':''">学生列表</a>
+      <a th:if="${session.user.role} == 'admin'" href="/admin/teaView"
+         class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/teaView'} ? 'active':''">职工列表</a>
     </div>
+  </div>
 </div>
 
 <div th:fragment="leftMenuProjectOp">
-    <div class="col-md-offset-1 col-md-2 subMenu">
-        <h4 class="subMenu-title">毕设管理</h4>
-        <div class="list-group">
-            <a href="/admin/teaView" class="list-group-item active">毕设计划</a>
-            <a href="/admin/undoneStu/openReport" class="list-group-item">进度查询</a>
-        </div>
+  <div class="col-md-offset-1 col-md-2 subMenu">
+    <h4 class="subMenu-title">毕设管理</h4>
+    <div class="list-group">
+      <a href="/admin/projectPlan" class="list-group-item"
+         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/projectPlan'} ? 'active':''">毕设计划</a>
+      <a href="/admin/undoneStu/openReport" class="list-group-item"
+         th:classappend="${#strings.contains(#httpServletRequest.getRequestURI(),'/admin/undoneStu/')} ? 'active':''">进度查询</a>
     </div>
+  </div>
 </div>
 
 </body>
