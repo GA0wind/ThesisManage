@@ -2,6 +2,7 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.mapper.OpenReportRecordMapper;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
@@ -104,9 +105,13 @@ private ProjectService projectService;
   public String getStuOpenReport(HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    ProjectApply project = projectService.getStuProject(user);
+    ProjectApply stuProject = projectService.getStuProject(user);
+    if (stuProject == null){
+      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
+      return "error";
+    }
     StuProjectDocumentVO<OpenReport> stuOpenReport = openReportService
-        .getStuOpenReport(project);
+        .getStuOpenReport(stuProject);
     model.addAttribute("stuOpenReport", stuOpenReport);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);

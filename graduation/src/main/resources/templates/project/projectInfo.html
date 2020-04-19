@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -11,6 +12,7 @@
   <script src="/js/jquery-3.4.1.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/share.js"></script>
+  <script src="/js/transition.min.js"></script>
 
 </head>
 
@@ -53,7 +55,6 @@
             <dt>课题文件：</dt>
             <dd>
               <p>
-
                 <a th:href="@{/download(filePath=${project.projectApply.filePath},fileType='project')}"><span
                     th:text="${#strings.arraySplit(project.projectApply.filePath,'#')[1]}"></span></a>
                 &nbsp;&nbsp;

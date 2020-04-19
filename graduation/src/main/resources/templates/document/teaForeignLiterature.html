@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -13,6 +14,7 @@
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
   <script src="/js/moment.min.js"></script>
+  <script src="/js/transition.min.js"></script>
 
   <script>
 
@@ -28,7 +30,7 @@
               window.location.reload();
             }, 500);
           } else {
-            alert("审核失败, 请重试");
+            alert(data.message);
           }
         },
 

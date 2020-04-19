@@ -5,6 +5,7 @@ import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectSelectResult;
@@ -104,12 +105,17 @@ public class OralExaminationController {
   @GetMapping("/student/examScore")
   public String getExamScore(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply projectApply = projectService.getStuProject(user);
+    ProjectApply stuProject = projectService.getStuProject(user);
+    OralExamScoreVO scoreVO = new OralExamScoreVO();
+    if (stuProject == null){
+      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
+      return "error";
+    }
     if (user.getGroup() == null){
       throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
     }
-    OralExamScoreVO scoreVO= oralExaminationService
-        .getExamScore(user, projectApply);
+    scoreVO= oralExaminationService
+        .getExamScore(user, stuProject);
     model.addAttribute("examScore", scoreVO);
     return "oralExamination/examScore";
   }

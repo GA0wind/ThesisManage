@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +13,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
+  <script src="/js/transition.min.js"></script>
 
   <script>
     //课题申请提交
@@ -127,7 +129,7 @@
     <!-- 我的课题 -->
     <div class="col-md-7">
       <div class="row">
-        <div class="col-md-12 common view">
+        <div class="col-md-12 common view clearfix">
 
           <p class="title">我的课题</p>
           <p>* 申报时间为 <span th:text="${projectPlan.projectApplyTime}"></span></p>
@@ -161,18 +163,9 @@
               </tr>
 
               </tbody>
-              <tfoot>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <button type="button" onclick="showProPost()">课题申请</button>
-                </td>
-              </tr>
-              </tfoot>
             </table>
           </div>
+          <button type="button" class="pull-right btn btn-primary" onclick="showProPost()">课题申请</button>
         </div>
       </div>
     </div>

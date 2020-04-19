@@ -11,14 +11,13 @@
   background-color: #143270;
 }
 
-.big-main {
-  padding-left: 60px;
-}
+/*.big-main {*/
+/*  padding-left: 60px;*/
+/*}*/
 
-.search input{
+.search input {
   margin-right: 10px;
 }
-
 
 
 @media (min-width: 768px) {
@@ -52,18 +51,23 @@
     border: none;
     padding-left: 130px;
     background-color: #143270;
+    border-radius: 0;
   }
 
-  .navbar-default .navbar-nav > li > a {
+  .navbar-default .navbar-header .navbar-brand {
+    display: none;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a {
     color: white;
   }
 
-  .navbar-default .navbar-nav > li > a:hover {
+  .navbar-default .navbar-collapse .navbar-nav > li > a:hover {
     background-color: #9d7702;
     color: black;
   }
 
-  .navbar-default .navbar-nav > .active > a {
+  .navbar-default .navbar-collapse .navbar-nav > .active > a {
     color: black;
   }
 
@@ -80,6 +84,7 @@
   .common .title {
     font-size: 20px;
     font-weight: 800;
+    display: inline-block;
   }
 
   .common .view .table {
@@ -119,9 +124,6 @@
     width: 100px;
   }
 
-  table {
-    table-layout: fixed;
-  }
 
   tr td {
     overflow: hidden;
@@ -168,21 +170,41 @@
     background-color: #143270;
   }
 
-  .navbar-default .navbar-nav > li > a {
-    color: black;
+  .navbar-default .navbar-header .navbar-toggle span {
+    color: white;
   }
 
-  .navbar-default .navbar-nav > li > a:hover {
+  .navbar-default .navbar-header .navbar-brand {
+    color: white;
+  }
+
+  .navbar-default .navbar-header .navbar-brand:hover {
+    color: #c2c2c2;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a {
+    color: white;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a:hover {
     background-color: #9d7702;
-    color: #949494;
-  }
-
-  .navbar-default .navbar-nav > .active > a {
     color: black;
   }
 
-  table {
-    table-layout: fixed;
+  .navbar-default .navbar-collapse .navbar-nav > .active > a {
+    color: black;
+  }
+
+  .common {
+    padding: 10px 20px;
+    border: 1px solid #cecece;
+    margin-bottom: 20px;
+  }
+
+  .common .title {
+    font-size: 18px;
+    font-weight: 800;
+    display: inline-block;
   }
 
   tr td {

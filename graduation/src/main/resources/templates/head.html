@@ -5,6 +5,8 @@
 <body>
 
 <div th:fragment="head">
+
+
   <div class="row">
     <!-- 顶部logo等 -->
     <div class="col-md-offset-1 col-md-11 row">
@@ -25,13 +27,19 @@
   </div>
   <!-- 顶部导航条 -->
   <div class="row">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="visible-xs-block menu clearfix">
-          <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">首页</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navigation">
+          <ul class="nav navbar-nav">
             <li><a href="/bulletin">首页<span class="sr-only">(current)</span></a></li>
             <li><a href="/bulletin">公告</a></li>
             <li><a href="/project/myProject">师生互选</a></li>
@@ -42,7 +50,6 @@
             <li><a th:if="${session.user.role} == 'student'" href="/student/examScore">答辩</a></li>
             <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/examGroupStu">答辩</a></li>
             <li><a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}">用户管理</a></li>
-
           </ul>
         </div>
       </div>

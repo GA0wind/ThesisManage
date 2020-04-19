@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8"/>
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="/css/login.css"/>
   <link rel="stylesheet" href="/css/share.css">
   <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/jqueryForm.js"></script>
 
 </head>
 
@@ -23,6 +25,24 @@
       }
     });
   });
+
+  function login() {
+    $('#loginForm').ajaxSubmit({
+      beforeSubmit: function () {
+      },
+      success: function (data) {
+        if (data.code == 200) {
+          alert("登录成功");
+          setTimeout(function () {
+            window.location.href='/project/myProject';
+          }, 500);
+        } else {
+          alert(data.message);
+        }
+      },
+
+    });
+  }
 
 </script>
 
@@ -62,7 +82,7 @@
     <div class="col-md-3  col-xs-12 login-form">
       <h4 class="title">登录</h4>
       <hr>
-      <form class="form-horizontal" action="/login" method="post">
+      <form class="form-horizontal" action="/login" method="post" id="loginForm">
         <div class="form-group">
           <label for="account_no" class="col-sm-3 control-label">账号</label>
           <div class="col-sm-7">
@@ -112,7 +132,7 @@
 
         <div class="form-group">
           <div class="login">
-            <button type="submit" class="btn btn-primary ">登录</button>
+            <button type="button" class="btn btn-primary" onclick="login()">登录</button>
           </div>
         </div>
       </form>

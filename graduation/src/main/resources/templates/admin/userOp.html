@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +13,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
+  <script src="/js/transition.min.js"></script>
 
   <script>
     function addTea() {
@@ -198,20 +200,20 @@
     function getUserList(e) {
       $("#hide-page").val($("#page").val());
       var page = $(e).attr("data-page");
-      if (page){
+      if (page) {
         $("#hide-page").val(page);
       }
       var role = $('#getUserView').attr("data-role");
-      if (role == 'student'){
+      if (role == 'student') {
         $('#getUserView').attr("active:'/admin/stuView'")
-      } else{
+      } else {
         $('#getUserView').attr("active:'/admin/teaView'")
       }
       $('#getUserView').submit();
     }
 
     function changeVal(e) {
-      $(e).attr("value",$(e).val());
+      $(e).attr("value", $(e).val());
     }
   </script>
 </head>
@@ -231,21 +233,40 @@
     <!-- 用户管理 -->
     <div class="col-md-7">
       <div class="row">
-        <div class="col-md-12 common view">
+        <div class="col-md-12 common view clearfix" style="margin-bottom: 40px">
           <p class="title" th:if="${role} == 'student'">学生列表</p>
           <p class="title" th:if="${role} == 'teacher'">职工列表</p>
           <hr>
-          <form th:data-role="${role}" id="getUserView" method="get" class="form-inline form">
+          <form th:data-role="${role}" id="getUserView" method="get" class="form-inline form"
+                style="margin-bottom: 10px">
             <input id="hide-page" type="text" class="hide" name="page">
-            <label for="search-userNo">学号</label>
-            <input id="search-userNo" type="text" name="userNo" th:value="${userSearchDTO.userNo}"  onchange="changeVal(this)">
-            <label for="search-college">学院</label>
-            <input id="search-college" type="text" name="college" th:value="${userSearchDTO.college}"  onchange="changeVal(this)">
-            <label for="search-name">姓名</label>
-            <input id="search-name" type="text" name="name" th:value="${userSearchDTO.name}" onchange="changeVal(this)">
-            <label th:if="${role}=='teacher'" for="search-role">角色(teacher,admin,director)</label>
-            <input th:if="${role}=='teacher'" id="search-role" type="text" name="role" th:value="${userSearchDTO.role}">
-            <button class="btn btn-primary" type="button" onclick="getUserList()">搜索</button>
+            <div class="form-group">
+              <label for="search-userNo">学号</label>
+              <input class="form-control" id="search-userNo" type="text" name="userNo"
+                     th:value="${userSearchDTO.userNo}"
+                     onchange="changeVal(this)">
+            </div>
+            <div class="form-group">
+              <label for="search-college">学院</label>
+              <input class="form-control" id="search-college" type="text" name="college"
+                     th:value="${userSearchDTO.college}" onchange="changeVal(this)">
+            </div>
+            <div class="form-group">
+              <label for="search-name">姓名</label>
+              <input class="form-control" id="search-name" type="text" name="name"
+                     th:value="${userSearchDTO.name}"
+                     onchange="changeVal(this)">
+            </div>
+            <div class="form-group">
+              <label th:if="${role}=='teacher'" for="search-role">角色(teacher,admin,director)</label>
+              <input class="form-control" th:if="${role}=='teacher'" id="search-role" type="text"
+                     name="role"
+                     th:value="${userSearchDTO.role}">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="button" onclick="getUserList()">搜索
+              </button>
+            </div>
           </form>
           <div class="table-responsive view">
             <table class="table">
@@ -279,7 +300,8 @@
 
                 <td>
                   <button class="btn btn-link" onclick="getTea(this)"
-                     th:data-tno="${teacher.tno}">修改</button>
+                          th:data-tno="${teacher.tno}">修改
+                  </button>
                 </td>
               </tr>
 
@@ -294,47 +316,47 @@
                 <td th:text="${student.groupNum}"></td>
                 <td>
                   <button class="btn btn-link" onclick="getStu(this)"
-                     th:data-sno="${student.sno}">修改</button>
+                          th:data-sno="${student.sno}">修改
+                  </button>
                 </td>
               </tr>
               </tbody>
-              <tfoot>
-              <tr>
-                <td>
-                  <div th:if="${users.totalPage} > 1">
-                    <button onclick="getUserList(this)" th:data-page="1"  class="btn btn-link more">首页</button>&nbsp;&nbsp;
-                    <button th:if="${users.page}>1" onclick="getUserList(this)"
-                       th:data-page="${users.page}-1" class="btn btn-link more">上一页</button>&nbsp;&nbsp;
-                    <input class="pagination-num" id="page" type="text" th:value="${users.page}"
-                           size="2" name="page"
-                           onmousedown="if(event.keyCode==13){getUserList()}">&nbsp;&nbsp;
-                    <button th:if="${users.page}<${users.totalPage}"
-                       onclick="getUserList(this)" th:data-page="${users.page}+1"
-                       class="btn btn-link more">下一页</button>&nbsp;&nbsp;
-                    <button onclick="getUserList(this)" th:data-page="${users.totalPage}"
-                       class="btn btn-link more">尾页</button>&nbsp;&nbsp;
-                  </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <button class="btn btn-primary" onclick="showGroupExlModel(this)" th:data-type="${role}">excel设置组别
-                  </button>
-                </td>
-                <td>
-                  <button class="btn btn-primary" onclick="showAddUserExcel(this)" th:data-type="${role}">excel添加</button>
-                </td>
-                <td th:if="${role} == 'teacher'">
-                  <button class="btn btn-primary" onclick="addTea()">添加</button>
-                </td>
-                <td th:if="${role} == 'student'">
-                  <button class="btn btn-primary" onclick="addStu()">添加</button>
-                </td>
-                <td th:if="${role} == 'teacher'"></td>
-              </tr>
-              </tfoot>
+
             </table>
+          </div>
+          <div class="pull-left" th:if="${users.totalPage} > 1">
+            <a onclick="getUserList(this)" th:data-page="1" class="btn btn-link more">
+              首页
+            </a>&nbsp;&nbsp;
+            <a th:classappend="${users.page}>1?'':'disabled'" onclick="getUserList(this)"
+                    th:data-page="${users.page}-1" class="btn btn-link more">上一页
+            </a>&nbsp;&nbsp;
+            <input class="pagination-num" id="page" type="text" th:value="${users.page}"
+                   size="2" name="page"
+                   onmousedown="if(event.keyCode==13){getUserList()}">&nbsp;&nbsp;
+            <a th:classappend="${users.page} < ${users.totalPage} ?'':'disabled'"
+               onclick="getUserList(this)" th:data-page="${users.page}+1"
+                    class="btn btn-link more">下一页
+            </a>&nbsp;&nbsp;
+            <a onclick="getUserList(this)" th:data-page="${users.totalPage}"
+                    class="btn btn-link more">尾页
+            </a>&nbsp;&nbsp;
+          </div>
+          <div class="pull-right">
+            <div class="row">
+              <button class="btn btn-primary" onclick="showGroupExlModel(this)"
+                      th:data-type="${role}">excel设置组别
+              </button>
+              <button class="btn btn-primary" onclick="showAddUserExcel(this)"
+                      th:data-type="${role}">excel添加
+              </button>
+              <span th:if="${role} == 'teacher'">
+                <button class="btn btn-primary" onclick="addTea()">添加</button>
+              </span>
+              <span th:if="${role} == 'student'">
+                <button class="btn btn-primary" onclick="addStu()">添加</button>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -566,7 +588,8 @@
               <div class="col-md-12">
                 <label for="group-excel">excel文件&nbsp;&nbsp;</label>
                 <input type="file" class="form-control" id="group-excel" name="excel">
-                <p th:if="${role} == 'teacher'"> *excel表格从左到右列对应为 工号 组号 组内角色 (角色为member或leader) 学院(第一行为列名不存数据)</p>
+                <p th:if="${role} == 'teacher'"> *excel表格从左到右列对应为 工号 组号 组内角色 (角色为member或leader)
+                  学院(第一行为列名不存数据)</p>
                 <p th:if="${role} == 'student'"> *excel表格从左到右列对应为 学号 组号 (第一行为列名不存数据)</p>
               </div>
             </div>

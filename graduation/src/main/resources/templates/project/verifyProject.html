@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +13,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
+  <script src="/js/transition.min.js"></script>
 
   <script>
     function projectApplyVerify() {
@@ -25,7 +27,7 @@
               window.location.reload();
             }, 500);
           } else {
-            alert("审核失败, 请重试");
+            alert(data.message);
           }
         },
 
@@ -138,13 +140,6 @@
               </tr>
 
               </tbody>
-              <tfoot>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              </tfoot>
             </table>
           </div>
         </div>
@@ -208,7 +203,7 @@
             </div>
 
 
-            <div class="row" th:if="{session.user.role} != 'director'">
+            <div class="row" th:if="${session.user.role} != 'director'">
               <div class="col-md-12">
                 <label>评分&nbsp;&nbsp;</label>
                 <input id="verify-grade" type="text" class="form-control" name="score">

@@ -241,6 +241,7 @@ public class OralExaminationService {
     OralExamScoreVO scoreVO = new OralExamScoreVO();
     scoreVO.setScores(scores);
     //获取论文
+    
     StuProjectDocumentVO<Thesis> stuThesis = thesisService.getStuThesis(user, projectApply);
     //盲审和老师成绩
     if (stuThesis.getDocument().getTrialGrade() == null) {

@@ -1,0 +1,392 @@
+[ERROR] [springboot-user] 2020-04-18 10:50:37.159 [restartedMain][] org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.classic.joran.action.ContextNameAction - Failed to rename context [springboot-user] as [graduation] java.lang.IllegalStateException: Context has been already given a name
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:324)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:288)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:246)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:223)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:76)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.ncu.graduation.GraduationProjectApplication.main(GraduationProjectApplication.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.classic.joran.action.ContextNameAction - Failed to rename context [springboot-user] as [graduation] java.lang.IllegalStateException: Context has been already given a name
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithSpecificConfig(AbstractLoggingSystem.java:66)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:57)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:118)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:318)
+	... 19 common frames omitted
+[ERROR] [graduation] 2020-04-18 10:52:13.602 [restartedMain][] org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: java.io.FileNotFoundException: class path resource [logback-spring.xml] cannot be resolved to URL because it does not exist
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:324)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:288)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:246)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:223)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:76)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.ncu.graduation.GraduationProjectApplication.main(GraduationProjectApplication.java:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [logback-spring.xml] cannot be resolved to URL because it does not exist
+	at org.springframework.util.ResourceUtils.getURL(ResourceUtils.java:137)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:317)
+	... 19 common frames omitted
+[ERROR] [graduation] 2020-04-18 10:52:45.103 [restartedMain][] org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: java.io.FileNotFoundException: class path resource [logback-spring.xml] cannot be resolved to URL because it does not exist
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:324)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:288)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:246)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:223)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:76)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.ncu.graduation.GraduationProjectApplication.main(GraduationProjectApplication.java:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [logback-spring.xml] cannot be resolved to URL because it does not exist
+	at org.springframework.util.ResourceUtils.getURL(ResourceUtils.java:137)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:317)
+	... 19 common frames omitted
+[INFO ] [graduation] 2020-04-18 11:00:58.129 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Starting GraduationProjectApplication on DESKTOP-7IS477G with PID 9568 (F:\FinallySchool\graduation\target\classes started by grh in F:\FinallySchool\graduation)
+[INFO ] [graduation] 2020-04-18 11:00:58.135 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - No active profile set, falling back to default profiles: default
+[INFO ] [graduation] 2020-04-18 11:00:58.437 [restartedMain][] o.s.boot.devtools.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\grh\.m2\repository\org\openoffice\juh\4.1.2\juh-4.1.2.jar referenced one or more files that do not exist: file:/C:/Users/grh/.m2/repository/org/openoffice/juh/4.1.2/ridl.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/juh/4.1.2/jurt.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/lib/,file:/C:/Users/grh/.m2/repository/org/openoffice/juh/bin/
+[INFO ] [graduation] 2020-04-18 11:00:58.437 [restartedMain][] o.s.boot.devtools.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\grh\.m2\repository\org\openoffice\jurt\4.1.2\jurt-4.1.2.jar referenced one or more files that do not exist: file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/4.1.2/ridl.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/4.1.2/unoloader.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/lib/,file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/bin/
+[INFO ] [graduation] 2020-04-18 11:00:58.437 [restartedMain][] o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] [graduation] 2020-04-18 11:00:58.438 [restartedMain][] o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] [graduation] 2020-04-18 11:01:02.323 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [graduation] 2020-04-18 11:01:02.326 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO ] [graduation] 2020-04-18 11:01:02.394 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43ms. Found 0 Redis repository interfaces.
+[DEBUG] [graduation] 2020-04-18 11:01:02.661 [restartedMain][] org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+[INFO ] [graduation] 2020-04-18 11:01:04.345 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+[INFO ] [graduation] 2020-04-18 11:01:04.360 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:01:04.363 [restartedMain][] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] [graduation] 2020-04-18 11:01:04.363 [restartedMain][] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO ] [graduation] 2020-04-18 11:01:04.505 [restartedMain][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] [graduation] 2020-04-18 11:01:04.505 [restartedMain][] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 6067 ms
+[INFO ] [graduation] 2020-04-18 11:01:04.805 [restartedMain][] c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+[INFO ] [graduation] 2020-04-18 11:01:06.816 [restartedMain][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+[INFO ] [graduation] 2020-04-18 11:01:08.912 [restartedMain][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Start' and waiting...
+[INFO ] [graduation] 2020-04-18 11:01:09.264 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeDescriptor - soffice info (from exec path): Product: OpenOffice - Version: ??? - useLongOptionNameGnuStyle: false
+[INFO ] [graduation] 2020-04-18 11:01:09.265 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - OFFICE HOME: C:\Program Files (x86)\OpenOffice 4
+[INFO ] [graduation] 2020-04-18 11:01:09.265 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Starting process with --accept 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ServiceManager' and profileDir 'C:\Users\grh\AppData\Local\Temp\.jodconverter_socket_host-127.0.0.1_port-2002_tcpNoDelay-1'
+[INFO ] [graduation] 2020-04-18 11:01:09.680 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Started process; pid: 7984
+[INFO ] [graduation] 2020-04-18 11:01:10.868 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeConnection - Connected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:01:11.649 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:01:11.884 [restartedMain][] o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] [graduation] 2020-04-18 11:01:13.103 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+[INFO ] [graduation] 2020-04-18 11:01:13.124 [restartedMain][] org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+[INFO ] [graduation] 2020-04-18 11:01:13.124 [restartedMain][] org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+[INFO ] [graduation] 2020-04-18 11:01:13.126 [restartedMain][] org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+[INFO ] [graduation] 2020-04-18 11:01:13.128 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+[INFO ] [graduation] 2020-04-18 11:01:13.128 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+[INFO ] [graduation] 2020-04-18 11:01:13.129 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+[INFO ] [graduation] 2020-04-18 11:01:13.129 [restartedMain][] org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@33bb397d
+[INFO ] [graduation] 2020-04-18 11:01:13.149 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:01:13.403 [restartedMain][] o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] [graduation] 2020-04-18 11:01:13.469 [restartedMain][] o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+[INFO ] [graduation] 2020-04-18 11:01:13.469 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+[INFO ] [graduation] 2020-04-18 11:01:13.507 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:01:13.566 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
+[INFO ] [graduation] 2020-04-18 11:01:13.575 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Started GraduationProjectApplication in 16.899 seconds (JVM running for 21.657)
+[INFO ] [graduation] 2020-04-18 11:01:21.222 [http-nio-8888-exec-1][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] [graduation] 2020-04-18 11:01:21.223 [http-nio-8888-exec-1][] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] [graduation] 2020-04-18 11:01:21.235 [http-nio-8888-exec-1][] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+[INFO ] [graduation] 2020-04-18 11:05:24.269 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:05:24.270 [Thread-45][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:05:24.270 [Thread-45][] o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+[INFO ] [graduation] 2020-04-18 11:05:24.272 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+[INFO ] [graduation] 2020-04-18 11:05:24.272 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:05:24.272 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+[INFO ] [graduation] 2020-04-18 11:05:24.517 [Thread-45][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:05:24.518 [Thread-45][] o.j.core.office.AbstractOfficeManagerPool - Stopping the office manager pool...
+[INFO ] [graduation] 2020-04-18 11:05:24.519 [Thread-45][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Stop' and waiting...
+[INFO ] [graduation] 2020-04-18 11:05:24.541 [MessageDispatcher][] org.jodconverter.local.office.OfficeConnection - Disconnected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:05:24.784 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcessManager - Process exited with code 0
+[INFO ] [graduation] 2020-04-18 11:05:24.920 [Thread-45][] o.j.core.office.AbstractOfficeManagerPool - Office manager stopped
+[INFO ] [graduation] 2020-04-18 11:05:24.925 [Thread-45][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+[INFO ] [graduation] 2020-04-18 11:05:24.929 [Thread-45][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+[INFO ] [graduation] 2020-04-18 11:05:26.532 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Starting GraduationProjectApplication on DESKTOP-7IS477G with PID 9568 (F:\FinallySchool\graduation\target\classes started by grh in F:\FinallySchool\graduation)
+[INFO ] [graduation] 2020-04-18 11:05:26.532 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - No active profile set, falling back to default profiles: default
+[INFO ] [graduation] 2020-04-18 11:05:27.098 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [graduation] 2020-04-18 11:05:27.099 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO ] [graduation] 2020-04-18 11:05:27.128 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28ms. Found 0 Redis repository interfaces.
+[INFO ] [graduation] 2020-04-18 11:05:27.502 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+[INFO ] [graduation] 2020-04-18 11:05:27.503 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:05:27.503 [restartedMain][] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] [graduation] 2020-04-18 11:05:27.503 [restartedMain][] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO ] [graduation] 2020-04-18 11:05:27.539 [restartedMain][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] [graduation] 2020-04-18 11:05:27.539 [restartedMain][] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 997 ms
+[INFO ] [graduation] 2020-04-18 11:05:27.644 [restartedMain][] c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+[INFO ] [graduation] 2020-04-18 11:05:27.712 [restartedMain][] com.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+[INFO ] [graduation] 2020-04-18 11:05:29.279 [restartedMain][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Start' and waiting...
+[INFO ] [graduation] 2020-04-18 11:05:29.948 [jodconverter-officeprocess-1][] org.jodconverter.local.office.OfficeDescriptor - soffice info (from exec path): Product: OpenOffice - Version: ??? - useLongOptionNameGnuStyle: false
+[INFO ] [graduation] 2020-04-18 11:05:29.949 [jodconverter-officeprocess-1][] org.jodconverter.local.office.OfficeProcess - OFFICE HOME: C:\Program Files (x86)\OpenOffice 4
+[INFO ] [graduation] 2020-04-18 11:05:29.949 [jodconverter-officeprocess-1][] org.jodconverter.local.office.OfficeProcess - Starting process with --accept 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ServiceManager' and profileDir 'C:\Users\grh\AppData\Local\Temp\.jodconverter_socket_host-127.0.0.1_port-2002_tcpNoDelay-1'
+[INFO ] [graduation] 2020-04-18 11:05:30.504 [jodconverter-officeprocess-1][] org.jodconverter.local.office.OfficeProcess - Started process; pid: 444
+[INFO ] [graduation] 2020-04-18 11:05:32.025 [jodconverter-officeprocess-1][] org.jodconverter.local.office.OfficeConnection - Connected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:05:32.285 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:05:32.330 [restartedMain][] o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] [graduation] 2020-04-18 11:05:32.496 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+[INFO ] [graduation] 2020-04-18 11:05:32.497 [restartedMain][] org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+[INFO ] [graduation] 2020-04-18 11:05:32.497 [restartedMain][] org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+[INFO ] [graduation] 2020-04-18 11:05:32.498 [restartedMain][] org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+[INFO ] [graduation] 2020-04-18 11:05:32.498 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+[INFO ] [graduation] 2020-04-18 11:05:32.498 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+[INFO ] [graduation] 2020-04-18 11:05:32.498 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+[INFO ] [graduation] 2020-04-18 11:05:32.498 [restartedMain][] org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2b78bfc8
+[INFO ] [graduation] 2020-04-18 11:05:32.505 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:05:32.602 [restartedMain][] o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] [graduation] 2020-04-18 11:05:32.618 [restartedMain][] o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+[INFO ] [graduation] 2020-04-18 11:05:32.619 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+[INFO ] [graduation] 2020-04-18 11:05:32.623 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:05:32.627 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
+[INFO ] [graduation] 2020-04-18 11:05:32.628 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Started GraduationProjectApplication in 6.197 seconds (JVM running for 280.71)
+[INFO ] [graduation] 2020-04-18 11:05:32.630 [restartedMain][] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[INFO ] [graduation] 2020-04-18 11:06:56.262 [Thread-53][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:06:56.263 [Thread-53][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:06:56.263 [Thread-53][] o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+[INFO ] [graduation] 2020-04-18 11:06:56.265 [Thread-53][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+[INFO ] [graduation] 2020-04-18 11:06:56.265 [Thread-53][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:06:56.265 [Thread-53][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+[INFO ] [graduation] 2020-04-18 11:06:56.268 [Thread-53][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:06:56.268 [Thread-53][] o.j.core.office.AbstractOfficeManagerPool - Stopping the office manager pool...
+[INFO ] [graduation] 2020-04-18 11:06:56.268 [Thread-53][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Stop' and waiting...
+[INFO ] [graduation] 2020-04-18 11:06:56.294 [MessageDispatcher][] org.jodconverter.local.office.OfficeConnection - Disconnected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:06:56.863 [jodconverter-officeprocess-1][] org.jodconverter.local.office.OfficeProcessManager - Process exited with code 0
+[INFO ] [graduation] 2020-04-18 11:06:57.320 [Thread-53][] o.j.core.office.AbstractOfficeManagerPool - Office manager stopped
+[INFO ] [graduation] 2020-04-18 11:06:57.322 [Thread-53][] com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closing ...
+[INFO ] [graduation] 2020-04-18 11:06:57.324 [Thread-53][] com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+[INFO ] [graduation] 2020-04-18 11:07:00.245 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Starting GraduationProjectApplication on DESKTOP-7IS477G with PID 9568 (F:\FinallySchool\graduation\target\classes started by grh in F:\FinallySchool\graduation)
+[INFO ] [graduation] 2020-04-18 11:07:00.245 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - No active profile set, falling back to default profiles: default
+[INFO ] [graduation] 2020-04-18 11:07:01.042 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [graduation] 2020-04-18 11:07:01.042 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO ] [graduation] 2020-04-18 11:07:01.080 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37ms. Found 0 Redis repository interfaces.
+[INFO ] [graduation] 2020-04-18 11:07:01.486 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+[INFO ] [graduation] 2020-04-18 11:07:01.487 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:07:01.488 [restartedMain][] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] [graduation] 2020-04-18 11:07:01.488 [restartedMain][] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO ] [graduation] 2020-04-18 11:07:01.519 [restartedMain][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] [graduation] 2020-04-18 11:07:01.520 [restartedMain][] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1266 ms
+[INFO ] [graduation] 2020-04-18 11:07:01.592 [restartedMain][] c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+[INFO ] [graduation] 2020-04-18 11:07:01.641 [restartedMain][] com.alibaba.druid.pool.DruidDataSource - {dataSource-3} inited
+[INFO ] [graduation] 2020-04-18 11:07:02.721 [restartedMain][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Start' and waiting...
+[INFO ] [graduation] 2020-04-18 11:07:03.194 [jodconverter-officeprocess-2][] org.jodconverter.local.office.OfficeDescriptor - soffice info (from exec path): Product: OpenOffice - Version: ??? - useLongOptionNameGnuStyle: false
+[INFO ] [graduation] 2020-04-18 11:07:03.195 [jodconverter-officeprocess-2][] org.jodconverter.local.office.OfficeProcess - OFFICE HOME: C:\Program Files (x86)\OpenOffice 4
+[INFO ] [graduation] 2020-04-18 11:07:03.195 [jodconverter-officeprocess-2][] org.jodconverter.local.office.OfficeProcess - Starting process with --accept 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ServiceManager' and profileDir 'C:\Users\grh\AppData\Local\Temp\.jodconverter_socket_host-127.0.0.1_port-2002_tcpNoDelay-1'
+[INFO ] [graduation] 2020-04-18 11:12:18.658 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Starting GraduationProjectApplication on DESKTOP-7IS477G with PID 14308 (F:\FinallySchool\graduation\target\classes started by grh in F:\FinallySchool\graduation)
+[INFO ] [graduation] 2020-04-18 11:12:18.664 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - No active profile set, falling back to default profiles: default
+[INFO ] [graduation] 2020-04-18 11:12:18.837 [restartedMain][] o.s.boot.devtools.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\grh\.m2\repository\org\openoffice\juh\4.1.2\juh-4.1.2.jar referenced one or more files that do not exist: file:/C:/Users/grh/.m2/repository/org/openoffice/juh/4.1.2/ridl.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/juh/4.1.2/jurt.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/lib/,file:/C:/Users/grh/.m2/repository/org/openoffice/juh/bin/
+[INFO ] [graduation] 2020-04-18 11:12:18.837 [restartedMain][] o.s.boot.devtools.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\grh\.m2\repository\org\openoffice\jurt\4.1.2\jurt-4.1.2.jar referenced one or more files that do not exist: file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/4.1.2/ridl.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/4.1.2/unoloader.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/lib/,file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/bin/
+[INFO ] [graduation] 2020-04-18 11:12:18.838 [restartedMain][] o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] [graduation] 2020-04-18 11:12:18.838 [restartedMain][] o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] [graduation] 2020-04-18 11:12:20.114 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [graduation] 2020-04-18 11:12:20.117 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO ] [graduation] 2020-04-18 11:12:20.180 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42ms. Found 0 Redis repository interfaces.
+[DEBUG] [graduation] 2020-04-18 11:12:20.429 [restartedMain][] org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+[INFO ] [graduation] 2020-04-18 11:12:21.649 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+[INFO ] [graduation] 2020-04-18 11:12:21.663 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:12:21.664 [restartedMain][] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] [graduation] 2020-04-18 11:12:21.664 [restartedMain][] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO ] [graduation] 2020-04-18 11:12:21.798 [restartedMain][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] [graduation] 2020-04-18 11:12:21.798 [restartedMain][] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2960 ms
+[INFO ] [graduation] 2020-04-18 11:12:22.016 [restartedMain][] c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+[ERROR] [graduation] 2020-04-18 11:12:22.173 [restartedMain][] com.alibaba.druid.filter.FilterManager - load filter error, filter not found : filter
+[INFO ] [graduation] 2020-04-18 11:12:23.503 [restartedMain][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+[INFO ] [graduation] 2020-04-18 11:12:24.498 [restartedMain][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Start' and waiting...
+[WARN ] [graduation] 2020-04-18 11:12:24.989 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - A process with --accept 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ServiceManager' is already running; pid 7880; trying to kill it...
+[WARN ] [graduation] 2020-04-18 11:12:26.413 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Profile dir 'C:\Users\grh\AppData\Local\Temp\.jodconverter_socket_host-127.0.0.1_port-2002_tcpNoDelay-1' already exists; deleting
+[INFO ] [graduation] 2020-04-18 11:12:26.485 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeDescriptor - soffice info (from exec path): Product: OpenOffice - Version: ??? - useLongOptionNameGnuStyle: false
+[INFO ] [graduation] 2020-04-18 11:12:26.486 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - OFFICE HOME: C:\Program Files (x86)\OpenOffice 4
+[INFO ] [graduation] 2020-04-18 11:12:26.486 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Starting process with --accept 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ServiceManager' and profileDir 'C:\Users\grh\AppData\Local\Temp\.jodconverter_socket_host-127.0.0.1_port-2002_tcpNoDelay-1'
+[INFO ] [graduation] 2020-04-18 11:12:26.919 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Started process; pid: 12676
+[INFO ] [graduation] 2020-04-18 11:12:28.036 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeConnection - Connected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:12:28.475 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:12:28.580 [restartedMain][] o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] [graduation] 2020-04-18 11:12:29.316 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+[INFO ] [graduation] 2020-04-18 11:12:29.334 [restartedMain][] org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+[INFO ] [graduation] 2020-04-18 11:12:29.335 [restartedMain][] org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+[INFO ] [graduation] 2020-04-18 11:12:29.336 [restartedMain][] org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+[INFO ] [graduation] 2020-04-18 11:12:29.337 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+[INFO ] [graduation] 2020-04-18 11:12:29.337 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+[INFO ] [graduation] 2020-04-18 11:12:29.337 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+[INFO ] [graduation] 2020-04-18 11:12:29.338 [restartedMain][] org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7726e541
+[INFO ] [graduation] 2020-04-18 11:12:29.350 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:12:29.476 [restartedMain][] o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] [graduation] 2020-04-18 11:12:29.509 [restartedMain][] o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+[INFO ] [graduation] 2020-04-18 11:12:29.510 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+[INFO ] [graduation] 2020-04-18 11:12:29.529 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:12:29.571 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
+[INFO ] [graduation] 2020-04-18 11:12:29.576 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Started GraduationProjectApplication in 11.673 seconds (JVM running for 15.303)
+[INFO ] [graduation] 2020-04-18 11:12:39.620 [http-nio-8888-exec-2][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] [graduation] 2020-04-18 11:12:39.621 [http-nio-8888-exec-2][] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] [graduation] 2020-04-18 11:12:39.634 [http-nio-8888-exec-2][] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 13 ms
+[WARN ] [graduation] 2020-04-18 11:12:40.320 [http-nio-8888-exec-2][] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'loginDTO' on field 'role': rejected value [null]; codes [NotBlank.loginDTO.role,NotBlank.role,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginDTO.role,role]; arguments []; default message [role]]; default message [角色不能为空]]
+[WARN ] [graduation] 2020-04-18 11:12:44.355 [http-nio-8888-exec-1][] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 2 errors
+Field error in object 'loginDTO' on field 'accountPwd': rejected value []; codes [NotBlank.loginDTO.accountPwd,NotBlank.accountPwd,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginDTO.accountPwd,accountPwd]; arguments []; default message [accountPwd]]; default message [密码不能为空]
+Field error in object 'loginDTO' on field 'code': rejected value []; codes [NotBlank.loginDTO.code,NotBlank.code,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginDTO.code,code]; arguments []; default message [code]]; default message [验证码不能为空]]
+[INFO ] [graduation] 2020-04-18 11:16:05.975 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:16:05.977 [Thread-45][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:16:05.977 [Thread-45][] o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+[INFO ] [graduation] 2020-04-18 11:16:05.978 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+[INFO ] [graduation] 2020-04-18 11:16:05.978 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:16:05.979 [Thread-45][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+[INFO ] [graduation] 2020-04-18 11:16:06.010 [Thread-45][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:16:06.012 [Thread-45][] o.j.core.office.AbstractOfficeManagerPool - Stopping the office manager pool...
+[INFO ] [graduation] 2020-04-18 11:16:06.013 [Thread-45][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Stop' and waiting...
+[INFO ] [graduation] 2020-04-18 11:16:06.033 [MessageDispatcher][] org.jodconverter.local.office.OfficeConnection - Disconnected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:16:06.274 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcessManager - Process exited with code 0
+[INFO ] [graduation] 2020-04-18 11:16:06.368 [Thread-45][] o.j.core.office.AbstractOfficeManagerPool - Office manager stopped
+[INFO ] [graduation] 2020-04-18 11:16:06.371 [Thread-45][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+[INFO ] [graduation] 2020-04-18 11:16:06.374 [Thread-45][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+[INFO ] [graduation] 2020-04-18 11:16:08.156 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Starting GraduationProjectApplication on DESKTOP-7IS477G with PID 14308 (F:\FinallySchool\graduation\target\classes started by grh in F:\FinallySchool\graduation)
+[INFO ] [graduation] 2020-04-18 11:16:08.156 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - No active profile set, falling back to default profiles: default
+[INFO ] [graduation] 2020-04-18 11:16:15.355 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Starting GraduationProjectApplication on DESKTOP-7IS477G with PID 14284 (F:\FinallySchool\graduation\target\classes started by grh in F:\FinallySchool\graduation)
+[INFO ] [graduation] 2020-04-18 11:16:15.380 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - No active profile set, falling back to default profiles: default
+[INFO ] [graduation] 2020-04-18 11:16:15.845 [restartedMain][] o.s.boot.devtools.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\grh\.m2\repository\org\openoffice\juh\4.1.2\juh-4.1.2.jar referenced one or more files that do not exist: file:/C:/Users/grh/.m2/repository/org/openoffice/juh/4.1.2/ridl.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/juh/4.1.2/jurt.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/lib/,file:/C:/Users/grh/.m2/repository/org/openoffice/juh/bin/
+[INFO ] [graduation] 2020-04-18 11:16:15.845 [restartedMain][] o.s.boot.devtools.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\grh\.m2\repository\org\openoffice\jurt\4.1.2\jurt-4.1.2.jar referenced one or more files that do not exist: file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/4.1.2/ridl.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/4.1.2/unoloader.jar,file:/C:/Users/grh/.m2/repository/org/openoffice/lib/,file:/C:/Users/grh/.m2/repository/org/openoffice/jurt/bin/
+[INFO ] [graduation] 2020-04-18 11:16:15.846 [restartedMain][] o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] [graduation] 2020-04-18 11:16:15.847 [restartedMain][] o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] [graduation] 2020-04-18 11:16:17.667 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] [graduation] 2020-04-18 11:16:17.671 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO ] [graduation] 2020-04-18 11:16:17.765 [restartedMain][] o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64ms. Found 0 Redis repository interfaces.
+[DEBUG] [graduation] 2020-04-18 11:16:18.315 [restartedMain][] org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+[INFO ] [graduation] 2020-04-18 11:16:20.022 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+[INFO ] [graduation] 2020-04-18 11:16:20.045 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:16:20.046 [restartedMain][] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] [graduation] 2020-04-18 11:16:20.047 [restartedMain][] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO ] [graduation] 2020-04-18 11:16:20.313 [restartedMain][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] [graduation] 2020-04-18 11:16:20.315 [restartedMain][] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4468 ms
+[INFO ] [graduation] 2020-04-18 11:16:20.959 [restartedMain][] c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+[INFO ] [graduation] 2020-04-18 11:16:22.622 [restartedMain][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+[INFO ] [graduation] 2020-04-18 11:16:23.545 [restartedMain][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Start' and waiting...
+[INFO ] [graduation] 2020-04-18 11:16:23.821 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeDescriptor - soffice info (from exec path): Product: OpenOffice - Version: ??? - useLongOptionNameGnuStyle: false
+[INFO ] [graduation] 2020-04-18 11:16:23.821 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - OFFICE HOME: C:\Program Files (x86)\OpenOffice 4
+[INFO ] [graduation] 2020-04-18 11:16:23.821 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Starting process with --accept 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ServiceManager' and profileDir 'C:\Users\grh\AppData\Local\Temp\.jodconverter_socket_host-127.0.0.1_port-2002_tcpNoDelay-1'
+[INFO ] [graduation] 2020-04-18 11:16:24.216 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcess - Started process; pid: 3284
+[INFO ] [graduation] 2020-04-18 11:16:25.350 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeConnection - Connected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:16:25.894 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:16:26.046 [restartedMain][] o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] [graduation] 2020-04-18 11:16:27.000 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+[INFO ] [graduation] 2020-04-18 11:16:27.020 [restartedMain][] org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+[INFO ] [graduation] 2020-04-18 11:16:27.020 [restartedMain][] org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+[INFO ] [graduation] 2020-04-18 11:16:27.021 [restartedMain][] org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+[INFO ] [graduation] 2020-04-18 11:16:27.023 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+[INFO ] [graduation] 2020-04-18 11:16:27.023 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+[INFO ] [graduation] 2020-04-18 11:16:27.023 [restartedMain][] org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+[INFO ] [graduation] 2020-04-18 11:16:27.023 [restartedMain][] org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@664ff651
+[INFO ] [graduation] 2020-04-18 11:16:27.040 [restartedMain][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:16:27.255 [restartedMain][] o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] [graduation] 2020-04-18 11:16:27.305 [restartedMain][] o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+[INFO ] [graduation] 2020-04-18 11:16:27.306 [restartedMain][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+[INFO ] [graduation] 2020-04-18 11:16:27.324 [restartedMain][] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8888"]
+[INFO ] [graduation] 2020-04-18 11:16:27.366 [restartedMain][] o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path ''
+[INFO ] [graduation] 2020-04-18 11:16:27.373 [restartedMain][] com.ncu.graduation.GraduationProjectApplication - Started GraduationProjectApplication in 13.436 seconds (JVM running for 16.783)
+[INFO ] [graduation] 2020-04-18 11:16:28.588 [http-nio-8888-exec-1][] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] [graduation] 2020-04-18 11:16:28.588 [http-nio-8888-exec-1][] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] [graduation] 2020-04-18 11:16:28.604 [http-nio-8888-exec-1][] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 16 ms
+[WARN ] [graduation] 2020-04-18 11:16:28.687 [http-nio-8888-exec-2][] o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+[WARN ] [graduation] 2020-04-18 11:16:33.727 [http-nio-8888-exec-4][] o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+[WARN ] [graduation] 2020-04-18 11:16:38.742 [http-nio-8888-exec-4][] o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+[INFO ] [graduation] 2020-04-18 11:17:26.264 [Thread-42][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:17:26.265 [Thread-42][] o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+[INFO ] [graduation] 2020-04-18 11:17:26.266 [Thread-42][] o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+[INFO ] [graduation] 2020-04-18 11:17:26.266 [Thread-42][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+[INFO ] [graduation] 2020-04-18 11:17:26.266 [Thread-42][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+[INFO ] [graduation] 2020-04-18 11:17:26.267 [Thread-42][] org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+[INFO ] [graduation] 2020-04-18 11:17:26.296 [Thread-42][] o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] [graduation] 2020-04-18 11:17:26.298 [Thread-42][] o.j.core.office.AbstractOfficeManagerPool - Stopping the office manager pool...
+[INFO ] [graduation] 2020-04-18 11:17:26.306 [Thread-42][] org.jodconverter.local.office.OfficeProcessManager - Submitting task 'Stop' and waiting...
+[INFO ] [graduation] 2020-04-18 11:17:26.340 [MessageDispatcher][] org.jodconverter.local.office.OfficeConnection - Disconnected: 'socket,host=127.0.0.1,port=2002,tcpNoDelay=1'
+[INFO ] [graduation] 2020-04-18 11:17:26.582 [jodconverter-officeprocess-0][] org.jodconverter.local.office.OfficeProcessManager - Process exited with code 0
+[INFO ] [graduation] 2020-04-18 11:17:26.698 [Thread-42][] o.j.core.office.AbstractOfficeManagerPool - Office manager stopped
+[INFO ] [graduation] 2020-04-18 11:17:26.700 [Thread-42][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+[INFO ] [graduation] 2020-04-18 11:17:26.704 [Thread-42][] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+[ERROR] [graduation] 2020-04-18 11:17:28.566 [restartedMain][] org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: java.io.FileNotFoundException: class path resource [logback.xml] cannot be resolved to URL because it does not exist
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:324)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:288)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:246)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:223)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:76)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.ncu.graduation.GraduationProjectApplication.main(GraduationProjectApplication.java:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [logback.xml] cannot be resolved to URL because it does not exist
+	at org.springframework.util.ResourceUtils.getURL(ResourceUtils.java:137)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:317)
+	... 19 common frames omitted

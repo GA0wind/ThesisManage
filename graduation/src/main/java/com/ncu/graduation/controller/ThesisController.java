@@ -3,6 +3,7 @@ package com.ncu.graduation.controller;
 import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.ProjectApply;
@@ -108,6 +109,10 @@ public class ThesisController {
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
     ProjectApply stuProject = projectService.getStuProject(user);
+    if (stuProject == null){
+      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
+      return "error";
+    }
     StuProjectDocumentVO<Thesis> stuThesis = thesisService
         .getStuThesis(user,stuProject);
     model.addAttribute("stuThesis", stuThesis);

@@ -103,7 +103,7 @@
   <!-- 关闭 Dubbo 协议日志的输出 -->
   <logger name="com.alibaba.dubbo.rpc.protocol.dubbo" additivity="false" level="OFF" />
   <!-- Druid 的 SQL 日志的输出，level改成debug时可输出日志 -->
-  <logger name="druid.sql.Statement" additivity="false" level="info">
+  <logger name="druid.sql.Statement" additivity="false" level="debug">
     <appender-ref ref="druidSqlRollingFile" />
   </logger>
 

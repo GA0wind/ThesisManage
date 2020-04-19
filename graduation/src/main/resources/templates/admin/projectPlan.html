@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -15,6 +16,7 @@
   <script type="text/javascript" src="/js/share.js"></script>
   <script type="text/javascript" src="/js/moment.min.js"></script>
   <script type="text/javascript" src="/js/daterangepicker.js"></script>
+  <script src="/js/transition.min.js"></script>
 
 
   <script>
@@ -29,7 +31,31 @@
               window.location.reload();
             }, 500);
           } else {
-            alert("提交失败, 请重试");
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    function showNewProjectPlanModel() {
+      $('#myModal').modal({
+        keyboard: false
+      });
+    }
+
+    function newFormSubmit() {
+      $('#setNewProjectPlanForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("提交成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
           }
         },
 
@@ -56,10 +82,12 @@
            th:if="${newProjectPlan} != null and ${newProjectPlan.schoolYear} == ${session.user.schoolYear}">
         <div class="col-md-12 common view">
           <p class="title" th:text="${newProjectPlan.schoolYear}"></p>
+          <button onclick="showNewProjectPlanModel()" class="pull-right btn btn-primary">建立新学年计划</button>
           <hr>
           <form action="/admin/projectPlan" method="post" id="projectPlanForm">
             <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
-            <input type="text" class="hide" name="schoolYear" th:value="${newProjectPlan.schoolYear}">
+            <input type="text" class="hide" name="schoolYear"
+                   th:value="${newProjectPlan.schoolYear}">
             <dl>
               <div class="col-md-6">
                 <dt>课题申报起止时间：</dt>
@@ -206,7 +234,100 @@
   </div>
 </div>
 
+<!-- 新学年弹出框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">新学年计划</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common view">
+          <form action="/admin/projectPlan" method="post" id="setNewProjectPlanForm">
+            <dl>
+              <div class="col-md-6">
+                <dt>学年(YYYY-YYYY)：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="schoolYear">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>课题申报起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="projectApplyTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>师生互选起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="projectSelectTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>任务书起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="taskBookTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>开题报告起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="openReportTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>外文资料起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="foreignLiteratureTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>论文起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="ThesisTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>答辩起止时间：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control date" style="margin-bottom: 5px" type="text"
+                         name="oralExaminationTime">
+                </dd>
+              </div>
+              <div class="col-md-6">
+                <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
+                <dd class="col-md-6">
+                  <input class="form-control" style="margin-bottom: 5px" type="text"
+                         name="scoreComposition">
+                </dd>
+              </div>
+            </dl>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="verifySubmit" type="button" class="btn btn-primary"
+                onclick="newFormSubmit()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 </body>
+
+
 <script>
   $(document).ready(function () {
     var options = {};

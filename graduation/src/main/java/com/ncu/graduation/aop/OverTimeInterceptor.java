@@ -9,6 +9,7 @@ import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.mapper.ProjectPlanMapper;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectPlanExample;
+import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.vo.UserVO;
 import java.time.LocalDate;
@@ -36,7 +37,7 @@ public class OverTimeInterceptor {
   private JedisOp jedisOp;
 
   @Autowired
-  private ProjectPlanMapper projectPlanMapper;
+  private ProjectService projectService;
 
 
   @Around("execution(* com.ncu.graduation.controller.ProjectController.applyProject(..))")
@@ -46,6 +47,10 @@ public class OverTimeInterceptor {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
+    if (projectPlan == null){
+      projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+    }
     String endTime = projectPlan.getProjectApplyTime().split(":")[1];
     if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
       return ResultDTO.errorOf(EmProjectError.PROJECT_APPLY_IS_OVERTIME);
@@ -66,6 +71,10 @@ public class OverTimeInterceptor {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
+    if (projectPlan == null){
+      projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+    }
     String endTime = projectPlan.getProjectSelectTime().split(":")[1];
     if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
       return ResultDTO.errorOf(EmProjectError.PROJECT_SELECT_IS_OVERTIME);
@@ -86,6 +95,10 @@ public class OverTimeInterceptor {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
+    if (projectPlan == null){
+      projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+    }
     String endTime = projectPlan.getTaskBookTime().split(":")[1];
     if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
       return ResultDTO.errorOf(EmDocumentError.TASK_SUBMIT_IS_OVERTIME);
@@ -106,6 +119,10 @@ public class OverTimeInterceptor {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
+    if (projectPlan == null){
+      projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+    }
     String endTime = projectPlan.getOpenReportTime().split(":")[1];
     if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
       return ResultDTO.errorOf(EmDocumentError.OPENREPORT_SUBMIT_IS_OVERTIME);
@@ -126,6 +143,10 @@ public class OverTimeInterceptor {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
+    if (projectPlan == null){
+      projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+    }
     String endTime = projectPlan.getForeignLiteratureTime().split(":")[1];
     if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
       return ResultDTO.errorOf(EmDocumentError.FOREIGNLITERATURE_SUBMIT_IS_OVERTIME);
@@ -146,6 +167,10 @@ public class OverTimeInterceptor {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
+    if (projectPlan == null){
+      projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+    }
     String endTime = projectPlan.getThesisTime().split(":")[1];
     if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
       return ResultDTO.errorOf(EmDocumentError.THESIS_SUBMIT_IS_OVERTIME);

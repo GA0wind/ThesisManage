@@ -65,6 +65,9 @@ public class OpenReportService {
     List<String> pnos = new ArrayList<>();
     teaProject.forEach((k, l) -> pnos.add(k));
     //获取开题报告
+    if (pnos.isEmpty()){
+      new TeaProjectDocumentVO<>();
+    }
     OpenReportExample openReportExample = new OpenReportExample();
     openReportExample.createCriteria().andPnoIn(pnos);
     List<OpenReport> openReports = openReportMapper.selectByExample(openReportExample);

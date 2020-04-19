@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +13,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
+  <script src="/js/transition.min.js"></script>
 
   <script>
     function addProject() {
@@ -25,7 +27,7 @@
               window.location.reload();
             }, 500);
           } else {
-            alert("添加失败, 请重试");
+            alert(data.message);
           }
         },
 
@@ -87,11 +89,13 @@
                 <td></td>
                 <td></td>
                 <td>
-                  <button class="btn btn-primary" onclick="showAddProjectModel()">添加可选课题</button>
                 </td>
               </tr>
               </tfoot>
             </table>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-primary" onclick="showAddProjectModel()">添加可选课题</button>
           </div>
         </div>
       </div>

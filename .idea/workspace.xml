@@ -2,61 +2,102 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="665f9718-6e71-4950-8c5a-670ff221907d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/ProjectApplyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/project-info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-generator/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/BulletinDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/BulletinDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/EmBulletinError.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/EmBulletinError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/mapper/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/mapper/ProjectMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_spring_boot_starter_1_1_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_5_1_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_autoconfigure_1_2_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_starter_1_2_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_06.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_SparseBitSet_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_lettuce_lettuce_core_5_2_2_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_45_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_45_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_45_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_4_1_45_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_45_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_45_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_core_3_3_3_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_compress_1_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_3_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_quartz_scheduler_quartz_2_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_redis_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_quartz_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_5_2_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_3_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/conf/MyConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/RedirectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation/src/main/resources/static/js/transition.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/a/0a044f1cf022ac8d08ab532d479bbf6c70682552" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/7/176dffd183a497c982dff957ac568b331531c14b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/9/39b2e23a9427adbe65789c34ce7ef72f6cc41b12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c9d42f874c516eb73857e3ff22c6f7437564db12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/2/f243f550601ba1e8b6ab9dcaa725b6a6d78c57ba" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/data/logs/springboot-user/druid-sql.log" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/data/logs/springboot-user/druid-sql.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/data/logs/springboot-user/springboot-user.log" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/data/logs/springboot-user/springboot-user.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/GraduationProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/GraduationProjectApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/advice/CustomizeExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/advice/CustomizeExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/aop/OverTimeInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/aop/OverTimeInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/aop/RedisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/aop/RedisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/conf/JedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/conf/JedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ForeignLiteratureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ForeignLiteratureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/OpenReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/OpenReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/OralExaminationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/OralExaminationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/TaskBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/TaskBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ThesisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ThesisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/CommonError.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/error/CommonError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/OpenReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/OpenReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/OralExaminationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/OralExaminationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/logback-spring.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/static/css/share.css" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/static/css/share.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin-publish.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin-publish.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletinView.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletinView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/project-apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Bulletin.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Bulletin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/BulletinExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/BulletinExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/MenuExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectApply.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectApply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectPlan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/StudentExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/StudentExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/TeacherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/ncu/graduation/model/TeacherExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/BulletinMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/BulletinMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectApplyMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectPlanMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectPlanMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectSelectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/ProjectSelectMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mapper/TeacherMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/projectOp.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/projectOp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/projectPlan.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/projectPlan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/undoneStu.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/undoneStu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/userOp.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/admin/userOp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin/bulletin-publish.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin/bulletin-publish.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin/bulletin.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin/bulletin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin/bulletinView.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin/bulletinView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuForeignLiterature.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuForeignLiterature.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuOpenReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuOpenReport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuTaskBook.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuTaskBook.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuThesis.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/stuThesis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaForeignLiterature.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaForeignLiterature.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaOpenReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaOpenReport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaTaskBook.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaTaskBook.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaThesis.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/document/teaThesis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/head.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/oralExamination/examScore.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/oralExamination/examScore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/oralExamination/groupStu.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/oralExamination/groupStu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/project/myProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/project/myProject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/project/projectInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/project/projectInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/project/verifyProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/project/verifyProject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/select/myProjectSelectState.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/select/myProjectSelectState.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/select/mySelectState.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/select/mySelectState.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation/src/main/resources/templates/select/project-select.html" beforeDir="false" afterPath="$PROJECT_DIR$/graduation/src/main/resources/templates/select/project-select.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/graduation/target/" />
     <ignored path="$PROJECT_DIR$/mybatis-generator/target/" />
@@ -74,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+            <state relative-caret-position="437">
+              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,13 +125,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java">
+        <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="31" column="35" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="35" />
+            <state relative-caret-position="575">
+              <caret line="120" column="34" selection-start-line="120" selection-start-column="34" selection-end-line="120" selection-end-column="34" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#1;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#2;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#3;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project/projectInfo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="860">
+              <caret line="86" column="12" lean-forward="true" selection-start-line="67" selection-start-column="6" selection-end-line="86" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -98,21 +156,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/ProjectService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+            <state relative-caret-position="684">
+              <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/pdf.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
+            <state relative-caret-position="741">
               <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
             </state>
           </provider>
@@ -121,8 +174,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            <state relative-caret-position="323">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,40 +184,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project-apply.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="115" column="78" lean-forward="true" selection-start-line="113" selection-start-column="36" selection-end-line="115" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project-info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="90" column="69" selection-start-line="90" selection-start-column="69" selection-end-line="90" selection-end-column="69" />
-              <folding>
-                <element signature="n#style#0;n#textarea#0;n#dd#1;n#dl#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectApply.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
+            <state relative-caret-position="741">
               <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="78" column="19" selection-start-line="78" selection-end-line="79" />
             </state>
           </provider>
         </entry>
@@ -223,7 +246,6 @@
         <option value="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/UserController.java" />
         <option value="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/FileController.java" />
         <option value="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/vo/ScheduleVO.java" />
-        <option value="$PROJECT_DIR$/graduation/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" />
         <option value="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" />
         <option value="$PROJECT_DIR$/graduation/src/main/resources/templates/my-project.html" />
@@ -243,6 +265,7 @@
         <option value="$PROJECT_DIR$/graduation/src/main/resources/templates/project-apply.html" />
         <option value="$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" />
         <option value="$PROJECT_DIR$/graduation/src/main/resources/templates/project-info.html" />
+        <option value="$PROJECT_DIR$/graduation/src/main/resources/templates/index.html" />
       </list>
     </option>
   </component>
@@ -269,7 +292,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="765" />
     <option name="y" value="158" />
     <option name="width" value="1940" />
@@ -354,42 +377,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="ncu" type="462c0819:PsiDirectoryNode" />
               <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinallySchool" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ncu" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinallySchool" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ncu" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinallySchool" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ncu" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
               <item name="vo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -407,26 +394,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinallySchool" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinallySchool" type="462c0819:PsiDirectoryNode" />
-              <item name="graduation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
@@ -436,6 +404,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FinallySchool" type="b2602c69:ProjectViewProjectNode" />
@@ -517,7 +486,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="G:/welab作业/training/group5/task2/java-springboot-pierce/springboot-user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -613,6 +582,7 @@
       <workItem from="1584692475200" duration="11958000" />
       <workItem from="1584789299914" duration="7395000" />
       <workItem from="1584800906289" duration="5125000" />
+      <workItem from="1587276223267" duration="261000" />
     </task>
     <servers />
   </component>
@@ -643,13 +613,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82606000" />
+    <option name="totallyTimeSpent" value="82867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24520256" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24786781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
@@ -704,13 +674,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/openoffice/jurt/4.1.2/jurt-4.1.2.jar!/com/sun/star/lib/connections/socket/socketConnector.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/openoffice/jurt/4.1.2/jurt-4.1.2.jar!/com/sun/star/lib/connections/socket/SocketConnection.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -807,35 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding>
-            <element signature="e#870#876#0" expanded="true" />
-            <element signature="e#876#882#0" expanded="true" />
-            <element signature="e#882#888#0" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#3521#3527#0" expanded="true" />
-            <element signature="e#3527#3533#0" expanded="true" />
-            <element signature="n#style#0;n#tr#1;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#3683#3689#0" expanded="true" />
-            <element signature="e#3689#3695#0" expanded="true" />
-            <element signature="n#style#0;n#tr#2;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#3845#3851#0" expanded="true" />
-            <element signature="e#3851#3857#0" expanded="true" />
-            <element signature="n#style#0;n#tr#3;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#4007#4013#0" expanded="true" />
-            <element signature="e#4013#4019#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectPlan.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -926,13 +860,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/FileDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/FileDTO.java" />
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -965,43 +893,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletinView.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="69" column="52" selection-start-line="69" selection-start-column="52" selection-end-line="69" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/my-project.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="65" column="34" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
-          <folding>
-            <element signature="e#994#1000#0" expanded="true" />
-            <element signature="e#1000#1006#0" expanded="true" />
-            <element signature="e#1006#1012#0" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" />
-            <element signature="e#3291#3297#0" expanded="true" />
-            <element signature="e#3297#3303#0" expanded="true" />
-            <element signature="e#3356#3362#0" expanded="true" />
-            <element signature="e#3362#3368#0" expanded="true" />
-            <element signature="e#3450#3456#0" expanded="true" />
-            <element signature="e#3456#3462#0" expanded="true" />
-            <element signature="e#3515#3521#0" expanded="true" />
-            <element signature="e#3521#3527#0" expanded="true" />
-            <element signature="e#3579#3585#0" expanded="true" />
-            <element signature="e#3585#3591#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin-publish.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletinView.html" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/my-project.html" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin-publish.html" />
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/ProjectApplyDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1009,37 +903,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/mapper/ProjectMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/pdf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/mapper/ProjectMapper.xml" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/Project.java" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin.html" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project-apply.html" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java" />
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project-info.html" />
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+        <state relative-caret-position="437">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1048,39 +923,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/service/ProjectService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+        <state relative-caret-position="684">
+          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/pdf.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/bulletin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="78" column="19" selection-start-line="78" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project-apply.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="115" column="78" lean-forward="true" selection-start-line="113" selection-start-column="36" selection-end-line="115" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/dto/ProjectInfoDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="35" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="35" />
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1089,18 +947,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graduation/src/main/java/com/ncu/graduation/model/ProjectApply.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="741">
           <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project-info.html">
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="90" column="69" selection-start-line="90" selection-start-column="69" selection-end-line="90" selection-end-column="69" />
+        <state relative-caret-position="575">
+          <caret line="120" column="34" selection-start-line="120" selection-start-column="34" selection-end-line="120" selection-end-column="34" />
           <folding>
-            <element signature="n#style#0;n#textarea#0;n#dd#1;n#dl#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#1;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#2;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#3;n#table#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation/src/main/resources/templates/project/projectInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="86" column="12" lean-forward="true" selection-start-line="67" selection-start-column="6" selection-end-line="86" selection-end-column="12" />
         </state>
       </provider>
     </entry>

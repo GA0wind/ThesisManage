@@ -5,6 +5,8 @@ import com.alibaba.fastjson.TypeReference;
 import com.ncu.graduation.dto.ProjectPlanDTO;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmCommonError;
+import com.ncu.graduation.error.EmProjectError;
+import com.ncu.graduation.error.RedirectException;
 import com.ncu.graduation.mapper.ProjectPlanMapper;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
@@ -43,7 +45,7 @@ public class RedisCache {
    * 将老师所拥有的有效课题存入redis
    */
   @Around("execution(* com.ncu.graduation.service.ProjectService.getTeaProject(..))")
-  public Object beforeGetStuProject(ProceedingJoinPoint jp) {
+  public Object beforeGetTeaProject(ProceedingJoinPoint jp) {
     Object[] args = jp.getArgs();
     UserVO user = (UserVO) args[0];
     Map projectMap = new HashMap<>();
@@ -69,15 +71,15 @@ public class RedisCache {
    * 将学生所拥有的课题存入redis
    */
   @Around("execution(* com.ncu.graduation.service.ProjectService.getStuProject(..))")
-  public Object beforeGetTeaProject(ProceedingJoinPoint jp) {
+  public Object beforeGetStuProject(ProceedingJoinPoint jp) {
     Object[] args = jp.getArgs();
     UserVO user = (UserVO) args[0];
-    ProjectApply projectApply = new ProjectApply();
+    ProjectApply stuProject = new ProjectApply();
     if (Boolean.TRUE.equals(jedisOp.exists(user.getAccountNo()))) {
-      projectApply = JSON.parseObject(jedisOp.get(user.getAccountNo()), ProjectApply.class);
+      stuProject = JSON.parseObject(jedisOp.get(user.getAccountNo()), ProjectApply.class);
     } else {
       try {
-        ProjectApply stuProject = (ProjectApply) jp.proceed();
+        stuProject = (ProjectApply) jp.proceed();
         if (stuProject != null) {
           jedisOp.setex(user.getAccountNo(), JSON.toJSONString(stuProject));
         }
@@ -85,7 +87,7 @@ public class RedisCache {
         throwable.printStackTrace();
       }
     }
-    return projectApply;
+    return stuProject;
   }
 
   /**

@@ -2,6 +2,7 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.model.ForeignLiterature;
 import com.ncu.graduation.model.ForeignRecord;
 import com.ncu.graduation.model.OpenReport;
@@ -96,11 +97,13 @@ public class ForeignLiteratureController {
   public String getStuForeignLiterature(HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-
-    ProjectApply project = projectService.getStuProject(user);
-
+    ProjectApply stuProject = projectService.getStuProject(user);
+    if (stuProject == null){
+      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
+      return "error";
+    }
     StuProjectDocumentVO<ForeignLiterature> stuForeignLiterature = foreignLiteratureService
-        .getStuForeignLiterature(project);
+        .getStuForeignLiterature(stuProject);
     model.addAttribute("stuForeignLiterature", stuForeignLiterature);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);

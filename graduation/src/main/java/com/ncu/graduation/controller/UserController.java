@@ -62,6 +62,7 @@ public class UserController {
     return "login";
   }
 
+  @ResponseBody
   @PostMapping(value = "/login")
   public Object login(@Valid LoginDTO loginDTO,
       HttpServletRequest request) {
@@ -105,7 +106,7 @@ public class UserController {
       request.getSession().setAttribute("user", userVO);
       projectService.getStuProject(userVO);
     }
-    return "redirect:project/myProject";
+    return ResultDTO.okOf();
   }
 
   @GetMapping("/logout")

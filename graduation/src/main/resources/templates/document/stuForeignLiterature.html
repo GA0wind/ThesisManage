@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -13,7 +14,8 @@
   <script src="/js/share.js"></script>
   <script src="/js/jqueryForm.js"></script>
   <script src="/js/moment.min.js"></script>
-  
+  <script src="/js/transition.min.js"></script>
+
   <script>
     //显示提交框, 并设置oldfile, 判断是否是第一次提交
     function showForeignLiteratureModel(e) {
@@ -37,7 +39,7 @@
               window.location.reload();
             }, 500);
           } else {
-            alert("提交失败, 请重试");
+            alert(data.message);
           }
         },
 
@@ -163,9 +165,9 @@
               </p>
             </dd>
             <dt>审核状态：</dt>
-            <dd th:if="${stuForeignLiterature.document.isPass} == 0 " class="no-pass">未通过</dd>
-            <dd th:if="${stuForeignLiterature.document.isPass} == 1" class="pass">已通过</dd>
-            <dd th:if="${stuForeignLiterature.document.isPass} == 2">待审核</dd>
+            <dd th:if="${stuForeignLiterature.document.isPass} == 0" class="text-danger">未通过</dd>
+            <dd th:if="${stuForeignLiterature.document.isPass} == 1" class="text-success">已通过</dd>
+            <dd th:if="${stuForeignLiterature.document.isPass} == 2" class="text-warning">待审核</dd>
             <dt>审核评分：</dt>
             <dd th:text="${stuForeignLiterature.document.isPass}!= 2 ? ${stuForeignLiterature.document.trialGrade}:'未审核'"></dd>
             <dt>审核评语：</dt>

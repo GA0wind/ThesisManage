@@ -163,8 +163,17 @@ public class UserService {
         teacher.setGmtModified(teacher.getGmtCreate());
         result = teacherMapper.insert(teacher);
       } else {
-        teacher.setSchoolYear(user.getSchoolYear()+",");
-        result = teacherExtMapper.updateByTno(teacher);
+        TeacherExample teacherExample = new TeacherExample();
+        teacherExample.createCriteria().andTnoEqualTo(teacher.getTno()).andSchoolYearLike("%"+user.getSchoolYear()+"%");
+        List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
+        if (teachers == null || teachers.isEmpty()){
+          teacher.setSchoolYear(user.getSchoolYear()+",");
+          result = teacherExtMapper.updateByTno(teacher);
+        }
+        else{
+          teacher.setSchoolYear(null);
+          result = teacherExtMapper.updateByTno(teacher);
+        }
       }
     }
     if (result == 0) {
@@ -212,6 +221,16 @@ public class UserService {
       Teacher teacher = (Teacher) l;
       teacher.setSchoolYear(user.getSchoolYear()+",");
       teacher.setGmtModified(new Date());
+      TeacherExample teacherExample = new TeacherExample();
+      teacherExample.createCriteria().andTnoEqualTo(teacher.getTno()).andSchoolYearLike("%"+user.getSchoolYear()+"%");
+      List<Teacher> teacherList = teacherMapper.selectByExample(teacherExample);
+      if (teacherList == null || teacherList.isEmpty()){
+        teacher.setSchoolYear(user.getSchoolYear()+",");
+      }
+      else{
+        teacher.setSchoolYear(null);
+      }
+
       if (teacherExtMapper.updateByTno(teacher) != 1) {
         teacher.setGmtCreate(new Date());
         teacher.setGmtModified(teacher.getGmtCreate());

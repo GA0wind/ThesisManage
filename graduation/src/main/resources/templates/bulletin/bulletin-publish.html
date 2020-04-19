@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
@@ -10,11 +11,31 @@
   <link rel="stylesheet" href="/css/bulletin.css">
   <link rel="stylesheet" href="/css/editormd.min.css">
 
-
   <script src="/js/jquery-3.4.1.min.js" type="application/javascript"></script>
   <script src="/js/bootstrap.min.js" type="application/javascript"></script>
   <script src="/js/share.js" type="application/javascript"></script>
   <script src="/js/editormd.min.js" type="application/javascript"></script>
+  <script src="/js/transition.min.js"></script>
+
+  <script src="/js/jqueryForm.js">
+    function bulletinPublish(){
+      $('#bulletinPublishForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("发布成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+  </script>
 
 </head>
 
@@ -25,14 +46,14 @@
 
   </div>
 
-  <div class="row big-main">
+  <div class="row">
     <!-- 发布公告 -->
     <div class="row">
       <div class="col-md-offset-1 col-md-9 common form">
         <p class="title">发布公告</p>
         <hr>
         <div class="col-md-12 common">
-          <form class="form-inline form" action="/bulletin/publish" method="post"
+          <form class="form-inline form" action="/bulletin/publish" method="post" id="bulletinPublishForm"
                 enctype="multipart/form-data">
             <input type="text" name="id" th:value="${id}" class="hide">
             <div class="row">
@@ -90,7 +111,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <button type="submit" class="pull-right btn btn-primary">发布公告</button>
+                <button type="button" class="pull-right btn btn-primary" onclick="bulletinPublish()">发布公告</button>
               </div>
             </div>
           </form>

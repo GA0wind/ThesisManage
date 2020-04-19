@@ -1,6 +1,7 @@
 package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.ResultDTO;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
@@ -75,6 +76,10 @@ public class TaskBookController {
       Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectApply stuProject = projectService.getStuProject(user);
+    if (stuProject == null){
+      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
+      return "error";
+    }
     StuProjectDocumentVO<TaskBook> stuTaskBook = taskBookService
         .getStuTaskBook(stuProject);
     model.addAttribute("stuTaskBook", stuTaskBook);

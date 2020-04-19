@@ -30,6 +30,9 @@ public class JedisConfig extends CachingConfigurerSupport {
   @Value("${spring.redis.port}")
   private int port;
 
+  @Value("${spring.redis.password}")
+  private String password;
+
   @Value("${spring.redis.timeout}")
   private int timeout;
 
@@ -56,7 +59,7 @@ public class JedisConfig extends CachingConfigurerSupport {
     jedisPoolConfig.setBlockWhenExhausted(true);
     // 是否启用pool的jmx管理功能, 默认tru
     jedisPoolConfig.setJmxEnabled(true);
-    JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
+    JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout,password);
     System.out.println("JedisPool注入成功...");
     return jedisPool;
   }
