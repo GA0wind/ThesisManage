@@ -280,6 +280,7 @@
                 <th th:if="${role} == 'student'">答辩小组</th>
 
                 <th th:if="${role} == 'teacher'">角色</th>
+                <th th:if="${role} == 'teacher'">职称</th>
                 <th th:if="${role} == 'teacher'">指导人数</th>
                 <th th:if="${role} == 'teacher'">答辩小组</th>
                 <th th:if="${role} == 'teacher'">小组角色</th>
@@ -294,14 +295,15 @@
                 <td th:if="${teacher.role}=='admin'">管理员</td>
                 <td th:if="${teacher.role}=='director'">主任</td>
                 <td th:if="${teacher.role}=='teacher'">指导老师</td>
+                <td th:text="${teacher.title}"></td>
                 <td th:text="${teacher.leadStudentNum}"></td>
                 <td th:text="${teacher.groupNum}"></td>
                 <td th:text="${teacher.groupRole}"></td>
 
                 <td>
-                  <button class="btn btn-link" onclick="getTea(this)"
+                  <a class="btn-link" onclick="getTea(this)" role="button"
                           th:data-tno="${teacher.tno}">修改
-                  </button>
+                  </a>
                 </td>
               </tr>
 
@@ -315,9 +317,9 @@
                 <td th:text="${student.gradeClass}"></td>
                 <td th:text="${student.groupNum}"></td>
                 <td>
-                  <button class="btn btn-link" onclick="getStu(this)"
+                  <a class="btn-link" onclick="getStu(this)" role="button"
                           th:data-sno="${student.sno}">修改
-                  </button>
+                  </a>
                 </td>
               </tr>
               </tbody>
@@ -325,21 +327,21 @@
             </table>
           </div>
           <div class="pull-left" th:if="${users.totalPage} > 1">
-            <a onclick="getUserList(this)" th:data-page="1" class="btn btn-link more">
+            <a onclick="getUserList(this)" th:data-page="1" class="btn-link more" role="button">
               首页
             </a>&nbsp;&nbsp;
             <a th:classappend="${users.page}>1?'':'disabled'" onclick="getUserList(this)"
-                    th:data-page="${users.page}-1" class="btn btn-link more">上一页
+                    th:data-page="${users.page}-1" class="btn btn-link more"role="button">上一页
             </a>&nbsp;&nbsp;
             <input class="pagination-num" id="page" type="text" th:value="${users.page}"
                    size="2" name="page"
                    onmousedown="if(event.keyCode==13){getUserList()}">&nbsp;&nbsp;
             <a th:classappend="${users.page} < ${users.totalPage} ?'':'disabled'"
                onclick="getUserList(this)" th:data-page="${users.page}+1"
-                    class="btn btn-link more">下一页
+                    class="btn btn-link more"role="button">下一页
             </a>&nbsp;&nbsp;
             <a onclick="getUserList(this)" th:data-page="${users.totalPage}"
-                    class="btn btn-link more">尾页
+                    class="btn-link more"role="button">尾页
             </a>&nbsp;&nbsp;
           </div>
           <div class="pull-right">
@@ -373,7 +375,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">课题信息</h4>
+        <h4 class="modal-title">教职工信息</h4>
       </div>
       <div class="modal-body">
 
@@ -404,13 +406,12 @@
             <div class="row">
               <div class="col-md-12">
                 <label>学院&nbsp;&nbsp;</label>
-                <select class="form-control" id="tea-college" name="college">
-                  <option value="软件学院">软件学院</option>
-                  <option value="艺术学院">艺术学院</option>
+                <select id="tea-college" class="form-control" name="college">
+                  <option th:each="college:${collegeList}" th:value="${college.collegeName}"
+                          th:text="${college.collegeName}"></option>
                 </select>
               </div>
             </div>
-
 
             <div class="row">
               <div class="col-md-12">
@@ -420,6 +421,12 @@
                   <option value="teacher">指导老师</option>
                   <option value="director">学院主任</option>
                 </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="tea-title">职称&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="tea-title" name="title">
               </div>
             </div>
             <div class="row">
@@ -463,7 +470,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">课题信息</h4>
+        <h4 class="modal-title">学生</h4>
       </div>
       <div class="modal-body">
         <div class="col-md-12 common">
@@ -494,19 +501,16 @@
             <div class="row">
               <div class="col-md-12">
                 <label>学院&nbsp;&nbsp;</label>
-                <select class="form-control" id="stu-college" name="college">
-                  <option value="软件学院">软件学院</option>
-                  <option value="艺术学院">艺术学院</option>
+                <select id="stu-college" class="form-control" name="college">
+                  <option th:each="college:${collegeList}" th:value="${college.collegeName}"
+                          th:text="${college.collegeName}"></option>
                 </select>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <label>专业&nbsp;&nbsp;</label>
-                <select class="form-control" id="stu-major" name="major">
-                  <option value="软件工程">软件工程</option>
-                  <option value="信息安全">信息安全</option>
-                </select>
+                <input type="text" class="form-control" id="stu-major" name="major">
               </div>
             </div>
             <div class="row">
@@ -543,7 +547,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Excel添加学生</h4>
+        <h4 class="modal-title">Excel添加用户</h4>
       </div>
       <div class="modal-body">
         <div class="col-md-12 common">
@@ -553,9 +557,9 @@
               <div class="col-md-12">
                 <label for="user-excel">excel文件&nbsp;&nbsp;</label>
                 <input type="file" class="form-control" id="user-excel" name="excel">
-                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 密码 姓名 学院 角色 指导人数
+                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 密码 姓名 学院 角色 职称 指导人数
                   (角色为admin或director或teacher) (第一行为列名不存数据)</p>
-                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 密码 姓名 学院 专业 班级 </p>
+                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 密码 姓名 学院 专业 班级(第一行为列名不存数据) </p>
               </div>
             </div>
           </form>

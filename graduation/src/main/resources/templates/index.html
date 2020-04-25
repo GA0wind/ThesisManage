@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <title>首页</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/css/share.css">
-  <link rel="stylesheet" href="/css/index.css">
   <script src="/js/jquery-3.4.1.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/share.js"></script>
@@ -16,116 +17,170 @@
 </head>
 
 <body>
-  <div class="container-fluid main">
-    <!--顶部-->
-    <div class="row">
-      <!-- 顶部logo等 -->
-      <div class="col-md-offset-1 col-md-11 row">
-        <div class="container-fluid col-md-12">
-          <img src="/images/nculogo.png" alt="" class="logo">
-          <span class="ncu hidden-xs">南昌大学</span>
-          <span class="user col-md-offset-7">
-            甘容辉<span class="hidden-xs">(8000116251)</span> &nbsp;&nbsp;&nbsp;<a href="">注销</a>
-          </span>
-          <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
-          <h1 class="system-name visible-xs-inline">毕业设计管理系统</h1>
-        </div>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
 
+  </div>
+
+  <div class="row">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">当前进度</p>
+        <hr>
+        <div class="progress">
+          <div th:classappend="${projectPlan.projectApplyIsOver}==1? 'over-time':''"
+               class="progress-bar" style="width: 13%;">
+            <span class="sr-only"></span>课题申报<br>
+            <span th:text="${projectPlan.projectApplyTime}"></span>
+          </div>
+          <div th:classappend="${projectPlan.projectSelectIsOver}==1? 'over-time':''"
+               class="progress-bar" style="width: 13%;">
+            <span class="sr-only"></span>师生互选<br>
+            <span th:text="${projectPlan.projectSelectTime}"></span>
+          </div>
+          <div th:classappend="${projectPlan.taskBookIsOver}==1? 'over-time':''"
+               class="progress-bar"
+               style="width: 13%;">
+            <span class="sr-only"></span>任务书<br>
+            <span th:text="${projectPlan.taskBookTime}"></span>
+          </div>
+          <div th:classappend="${projectPlan.openReportIsOver}==1? 'over-time':''"
+               class="progress-bar" style="width: 13%;">
+            <span class="sr-only"></span>开题报告<br>
+            <span th:text="${projectPlan.openReportTime}"></span>
+          </div>
+          <div th:classappend="${projectPlan.foreignLiteratureIsOver}==1? 'over-time':''"
+               class="progress-bar" style="width: 13%;">
+            <span class="sr-only"></span>外文资料<br>
+            <span th:text="${projectPlan.foreignLiteratureTime}"></span>
+          </div>
+          <div th:classappend="${projectPlan.thesisIsOver}==1? 'over-time':''" class="progress-bar"
+               style="width: 13%;">
+            <span class="sr-only"></span>论文<br>
+            <span th:text="${projectPlan.thesisTime}"></span>
+          </div>
+          <div th:classappend="${projectPlan.oralExaminationIsOver}==1? 'over-time':''"
+               class="progress-bar" style="width: 13%;">
+            <span class="sr-only"></span>答辩<br>
+            <span th:text="${projectPlan.oralExaminationTime}"></span>
+          </div>
+        </div>
+        <p>*蓝色为已进行项目，灰色为未开始项目</p>
       </div>
     </div>
-    <!-- 顶部导航条 -->
-    <div class="row">
-      <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-          <div class="visible-xs-block menu clearfix">
-            <span class="title">首页</span><span class="glyphicon glyphicon-align-justify icon"></span>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navigation">
-              <li><a href="#">首页<span class="sr-only">(current)</span></a></li>
-              <li><a href="#">公告</a></li>
-              <li><a href="#">师生互选</a></li>
-              <li><a href="#">过程管理</a></li>
-              <li><a href="#">答辩</a></li>
-            </ul>
-          </div>
+    <div th:if="${session.user.role} == 'teacher'" class="row">
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">我的课题</p>
+        <hr>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>课题名</th>
+              <th>学生</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tr th:each="project:${projects}">
+              <td th:text="${project.pname}"></td>
+              <td th:text="${project.sname}"></td>
+              <td><a th:href="@{'/project/progress/'+${project.pno}}">查看进度</a></td>
+            </tr>
+          </table>
         </div>
-      </nav>
+      </div>
     </div>
 
-    <div class="row big-main">
-      <div class="row">
-        <div class="col-md-offset-1 col-md-9 common view">
-          <p class="title">当前进度</p>
-          <hr>
-          <div class="progress">
-            <div class="progress-bar" style="width: 14%">
-              <span class="sr-only"></span>课题申报<br>2020-11-11:2020-11-12
-            </div>
-            <div class="progress-bar" style="width: 14%">
-              <span class="sr-only"></span>师生互选<br>2020-11-11:2020-11-12
-            </div>
-            <div class="progress-bar not-time" style="width: 14%">
-              <span class="sr-only"></span>任务书<br>2020-11-11:2020-11-12
-            </div>
-            <div class="progress-bar not-time" style="width: 14%">
-              <span class="sr-only"></span>开题报告<br>2020-11-11:2020-11-12
-            </div>
-            <div class="progress-bar not-time" style="width: 14%">
-              <span class="sr-only"></span>外文资料<br>2020-11-11:2020-11-12
-            </div>
-            <div class="progress-bar not-time" style="width: 14%">
-              <span class="sr-only"></span>论文<br>2020-11-11:2020-11-12
-            </div>
-            <div class="progress-bar not-time" style="width: 14%">
-              <span class="sr-only"></span>答辩<br>2020-11-11:2020-11-12
-            </div>
-          </div>
-          <p>*蓝色为已进行项目，灰色为未开始项目</p>
-        </div>
+    <div th:if="${session.user.role} == 'student' and ${projectProgress != null}" class="row">
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">我的题目</p>
+        <hr>
+        <dl class="dl-horizontal">
+          <dt>课题名：</dt>
+          <dd th:text="${projectProgress.selectResult.pname}"></dd>
+          <dt>指导老师：</dt>
+          <dd th:text="${projectProgress.selectResult.tname}"></dd>
+          <dt>学生：</dt>
+          <dd th:text="${projectProgress.selectResult.sname}"></dd>
+        </dl>
       </div>
-      <div class="row">
-        <div class="col-md-offset-1 col-md-9 common view">
-          <p class="title">我的题目</p>
-          <hr>
-          <dl class="dl-horizontal">
-            <dt>课题名：</dt>
-            <dd>毕业设计管理系统</dd>
-            <dt>指导老师：</dt>
-            <dd>欧阳皓</dd>
-          </dl>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-offset-1 col-md-9 common view">
-          <p class="title">我的进度</p>
-          <hr>
+    </div>
+    <div th:if="${session.user.role} == 'student' and ${projectProgress != null}" class="row">
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">我的进度</p>
+        <hr>
+        <div class="table-responsive">
+
           <table class="table table-bordered">
             <tr style="text-align: center;">
-              <td>开题报告</td>
-              <td>已提交&nbsp;&nbsp;审核通过</td>
-              <td>查看详情</td>
+              <td>任务书</td>
+              <td th:text="${projectProgress.taskBook} == null ? '未提交':'已提交'"></td>
+              <td th:text="${projectProgress.taskBook} == null ? '未通过':'已通过'"></td>
+              <td><a th:if="${projectProgress.taskBook} != null"
+                     th:href="@{/student/taskBook(pno=${projectProgress.taskBook.pno})}">查看详情</a>
+              </td>
             </tr>
             <tr style="text-align: center;">
               <td>开题报告</td>
-              <td>已提交&nbsp;&nbsp;审核通过</td>
-              <td>查看详情</td>
+              <td th:text="${projectProgress.openReport} == null ? '未提交':'已提交'"></td>
+              <td th:if="${projectProgress.openReport} != null and ${projectProgress.openReport.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${projectProgress.openReport} != null and ${projectProgress.openReport.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${projectProgress.openReport} != null and ${projectProgress.openReport.isPass} == 0"
+                  class="text-danger">未通过
+              </td>
+              <td th:if="${projectProgress.openReport} == null"></td>
+
+              <td><a th:if="${projectProgress.openReport} != null"
+                     th:href="@{/student/openReport(pno=${projectProgress.openReport.pno})}">查看详情</a>
+              </td>
+
             </tr>
             <tr style="text-align: center;">
-              <td>开题报告</td>
-              <td>已提交&nbsp;&nbsp;审核通过</td>
-              <td>查看详情</td>
+              <td>外文资料</td>
+              <td th:text="${projectProgress.foreignLiterature} == null ? '未提交':'已提交'"></td>
+              <td th:if="${projectProgress.foreignLiterature} != null and ${projectProgress.foreignLiterature.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${projectProgress.foreignLiterature} != null and ${projectProgress.foreignLiterature.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${projectProgress.foreignLiterature} != null and ${projectProgress.foreignLiterature.isPass} == 0"
+                  class="text-danger">未通过
+              </td>
+              <td th:if="${projectProgress.foreignLiterature} == null"></td>
+              <td><a th:if="${projectProgress.foreignLiterature} != null"
+                     th:href="@{/student/foreignLiterature(pno=${projectProgress.foreignLiterature.pno})}">查看详情</a>
+              </td>
+
             </tr>
             <tr style="text-align: center;">
-              <td>开题报告</td>
-              <td>已提交&nbsp;&nbsp;审核通过</td>
-              <td>查看详情</td>
+              <td>论文</td>
+              <td th:text="${projectProgress.thesis} == null ? '未提交':'已提交'"></td>
+              <td th:if="${projectProgress.thesis} != null and ${projectProgress.thesis.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${projectProgress.thesis} != null and ${projectProgress.thesis.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${projectProgress.thesis} != null and ${projectProgress.thesis.isPass} == 0"
+                  class="text-danger">未通过
+              </td>
+              <td th:if="${projectProgress.thesis} == null"></td>
+              <td><a th:if="${projectProgress.thesis} != null"
+                     th:href="@{/student/thesis(pno=${projectProgress.thesis.pno})}">查看详情</a></td>
+
             </tr>
           </table>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 </body>
 

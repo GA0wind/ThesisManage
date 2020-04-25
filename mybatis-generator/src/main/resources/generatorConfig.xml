@@ -51,6 +51,7 @@
     <table schema="graduation" tableName="foreign_record" domainObjectName="ForeignRecord"></table>
     <table schema="graduation" tableName="oral_exam_score" domainObjectName="OralExamScore"></table>
     <table schema="graduation" tableName="exam_group" domainObjectName="ExamGroup"></table>
+    <table schema="graduation" tableName="guidance_record" domainObjectName="GuidanceRecord"></table>
 
 
   </context>

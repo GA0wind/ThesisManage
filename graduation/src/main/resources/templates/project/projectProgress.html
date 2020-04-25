@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>课题进度</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:insert="head::head">
+
+  </div>
+
+  <div class="row big-main">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">课题信息</p>
+        <hr>
+        <dl class="dl-horizontal">
+          <dt>课题名：</dt>
+          <dd th:text="${projectProgress.selectResult.pname}"></dd>
+          <dt>指导老师：</dt>
+          <dd th:text="${projectProgress.selectResult.tname}"></dd>
+          <dt>学生：</dt>
+          <dd th:text="${projectProgress.selectResult.sname}"></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">课题进度</p>
+        <hr>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr style="text-align: center;">
+              <td>任务书</td>
+              <td th:text="${projectProgress.taskBook} == null ? '未提交':'已提交'"></td>
+              <td th:text="${projectProgress.taskBook} == null ? '未通过':'已通过'"></td>
+              <td><a th:if="${projectProgress.taskBook} != null" th:href="@{/student/taskBook(pno=${projectProgress.taskBook.pno})}">查看详情</a>
+              </td>
+            </tr>
+            <tr style="text-align: center;">
+              <td>开题报告</td>
+              <td th:text="${projectProgress.openReport} == null ? '未提交':'已提交'"></td>
+              <td th:if="${projectProgress.openReport} != null and ${projectProgress.openReport.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${projectProgress.openReport} != null and ${projectProgress.openReport.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${projectProgress.openReport} != null and ${projectProgress.openReport.isPass} == 0"
+                  class="text-danger">未通过
+              </td>
+              <td th:if="${projectProgress.openReport} == null"></td>
+
+              <td><a th:if="${projectProgress.openReport} != null" th:href="@{/student/openReport(pno=${projectProgress.openReport.pno})}">查看详情</a>
+              </td>
+
+            </tr>
+            <tr style="text-align: center;">
+              <td>外文资料</td>
+              <td th:text="${projectProgress.foreignLiterature} == null ? '未提交':'已提交'"></td>
+              <td th:if="${projectProgress.foreignLiterature} != null and ${projectProgress.foreignLiterature.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${projectProgress.foreignLiterature} != null and ${projectProgress.foreignLiterature.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${projectProgress.foreignLiterature} != null and ${projectProgress.foreignLiterature.isPass} == 0"
+                  class="text-danger">未通过
+              </td>
+              <td th:if="${projectProgress.foreignLiterature} == null"></td>
+
+              <td><a th:if="${projectProgress.foreignLiterature} != null"
+                  th:href="@{/student/foreignLiterature(pno=${projectProgress.foreignLiterature.pno})}">查看详情</a>
+              </td>
+
+            </tr>
+            <tr style="text-align: center;">
+              <td>论文</td>
+              <td th:text="${projectProgress.thesis} == null ? '未提交':'已提交'"></td>
+              <td th:if="${projectProgress.thesis} != null and ${projectProgress.thesis.isPass} == 1"
+                  class="text-success">已通过
+              </td>
+              <td th:if="${projectProgress.thesis} != null and ${projectProgress.thesis.isPass} == 2"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${projectProgress.thesis} != null and ${projectProgress.thesis.isPass} == 0"
+                  class="text-danger">未通过
+              </td>
+              <td th:if="${projectProgress.thesis} == null"></td>
+
+              <td><a th:if="${projectProgress.thesis} != null" th:href="@{/student/thesis(pno=${projectProgress.thesis.pno})}">查看详情</a></td>
+
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+</html>

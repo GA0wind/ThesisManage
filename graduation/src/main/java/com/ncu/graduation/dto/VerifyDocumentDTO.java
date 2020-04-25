@@ -2,6 +2,7 @@ package com.ncu.graduation.dto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**
@@ -14,14 +15,19 @@ import lombok.Data;
 
 @Data
 public class VerifyDocumentDTO {
-  private String dno;
+  @NotBlank(message = "课题编号不能为空")
+  private String pno;
   private Byte isBlind = (byte)0;
   private Byte isPass;
   @Max(value = 100,message = "分数不能大于100")
   @Min(value = 0,message = "分数不能小于0")
-  private Byte score;
+  private String score;
   //审核时的文件, 存下来记录
   private String filePath;
   private String translationFile;
   private String comment;
+
+  public Byte getScore() {
+    return Byte.parseByte(score);
+  }
 }

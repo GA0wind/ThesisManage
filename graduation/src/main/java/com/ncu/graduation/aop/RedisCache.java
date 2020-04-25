@@ -51,14 +51,14 @@ public class RedisCache {
     Map projectMap = new HashMap<>();
     //老师和学年作为key
     if (Boolean.TRUE.equals(jedisOp.exists(user.getAccountNo() + user.getSchoolYear()))) {
-      projectMap = JSON.parseObject(jedisOp.get(user.getAccountNo()),
+      projectMap = JSON.parseObject(jedisOp.get(user.getAccountNo() + user.getSchoolYear()),
           new TypeReference<Map<String, ProjectSelectResult>>() {
           });
     } else {
       try {
-        Map teaProject = (Map) jp.proceed();
-        if (teaProject != null && !teaProject.isEmpty()) {
-          jedisOp.setex(user.getAccountNo() + user.getSchoolYear(), JSON.toJSONString(teaProject));
+        projectMap = (Map) jp.proceed();
+        if (projectMap != null && !projectMap.isEmpty()) {
+          jedisOp.setex(user.getAccountNo() + user.getSchoolYear(), JSON.toJSONString(projectMap));
         }
       } catch (Throwable throwable) {
         throwable.printStackTrace();

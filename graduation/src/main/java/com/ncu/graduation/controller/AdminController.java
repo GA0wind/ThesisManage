@@ -7,6 +7,8 @@ import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.SelectiveProjectDTO;
 import com.ncu.graduation.dto.UserAddDTO;
 import com.ncu.graduation.dto.UserSearchDTO;
+import com.ncu.graduation.enums.CollegeEnum;
+import com.ncu.graduation.enums.ProjectTypeEnum;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
@@ -67,6 +69,7 @@ public class AdminController {
     PaginationDTO<Student> paginationDTO = userService.stuList(page, size, user,userSearchDTO);
     model.addAttribute("users", paginationDTO);
     model.addAttribute("role", "student");
+    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
     return "admin/userOp";
   }
 
@@ -78,6 +81,7 @@ public class AdminController {
   public ResultDTO getStu(@PathVariable String sno, Model model) {
     Student student = userService.getStu(sno);
     model.addAttribute("student", student);
+    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
     return ResultDTO.okOf(student);
   }
 
@@ -115,6 +119,8 @@ public class AdminController {
     PaginationDTO<Teacher> paginationDTO = userService.teaList(page, size, user,userSearchDTO);
     model.addAttribute("users", paginationDTO);
     model.addAttribute("role", "teacher");
+    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+
     return "admin/userOp";
   }
 
@@ -126,6 +132,8 @@ public class AdminController {
   public ResultDTO getTea(@PathVariable String tno, Model model) {
     Teacher teacher = userService.getTea(tno);
     model.addAttribute("teachers", teacher);
+    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+
     return  ResultDTO.okOf(teacher);
   }
 
@@ -172,6 +180,9 @@ public class AdminController {
     List<ProAndStuNumVO> stuAndProNum = projectSelectService
         .getStuAndProNum(user);
     model.addAttribute("stuAndProNum", stuAndProNum);
+    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("projectTypeList", ProjectTypeEnum.getProjectTypeList());
+
     return "admin/projectOp";
   }
 

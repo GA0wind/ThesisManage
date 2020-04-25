@@ -4,7 +4,7 @@ import com.ncu.graduation.dto.VerifyDocumentDTO;
 import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmCommonError;
-import com.ncu.graduation.error.EmDocumentError;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.mapper.OpenReportMapper;
 import com.ncu.graduation.mapper.OpenReportRecordMapper;
 import com.ncu.graduation.mapper.ProjectSelectResultMapper;
@@ -16,7 +16,6 @@ import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.ProjectSelectResultExample;
 import com.ncu.graduation.util.FileSave;
-import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
@@ -59,14 +58,14 @@ public class OpenReportService {
   /**
    * 获取教师的课题的开题报告
    */
-  public List<TeaProjectDocumentVO<OpenReport>> getTeaOpenReport(Map<String, ProjectSelectResult> teaProject) {
-
+  public List<TeaProjectDocumentVO<OpenReport>> getTeaOpenReport(
+      Map<String, ProjectSelectResult> teaProject) {
     //获取有效课题
     List<String> pnos = new ArrayList<>();
     teaProject.forEach((k, l) -> pnos.add(k));
     //获取开题报告
-    if (pnos.isEmpty()){
-      new TeaProjectDocumentVO<>();
+    if (pnos.isEmpty()) {
+      return new ArrayList<>();
     }
     OpenReportExample openReportExample = new OpenReportExample();
     openReportExample.createCriteria().andPnoIn(pnos);
@@ -99,7 +98,7 @@ public class OpenReportService {
     //获取课题名
     List<String> pnos = new ArrayList<>();
     openReports.forEach((k) -> pnos.add(k.getPno()));
-    if (pnos.isEmpty()){
+    if (pnos.isEmpty()) {
       return new ArrayList<>();
     }
     ProjectSelectResultExample examplexample = new ProjectSelectResultExample();
@@ -125,24 +124,37 @@ public class OpenReportService {
    * 审核开题报告
    */
   @Transactional
-  public void verifyOpenReport(VerifyDocumentDTO verifyDocumentDTO) {
+  public void verifyOpenReport(VerifyDocumentDTO verifyDocumentDTO,
+      UserVO user) {
     OpenReport openReport = new OpenReport();
-    openReport.setOpenNo(verifyDocumentDTO.getDno());
+    openReport.setPno(verifyDocumentDTO.getPno());
     openReport.setGmtModified(new Date());
+    OpenReportExample openReportExample = new OpenReportExample();
     //盲审
     if (verifyDocumentDTO.getIsBlind() == 1) {
       openReport.setBlindTrialGrade(verifyDocumentDTO.getScore());
       openReport.setBlindTrialComment(verifyDocumentDTO.getComment());
+      //判断是否有该课题
+      openReportExample.createCriteria().andPnoEqualTo(verifyDocumentDTO.getPno())
+          .andBlindTrialNoEqualTo(user.getAccountNo());
+
     }
     //普通审核
     if (verifyDocumentDTO.getIsBlind() == 0) {
       openReport.setIsPass(verifyDocumentDTO.getIsPass());
+      if (openReport.getIsPass() == 1) {
+        openReport.setModifiable((byte) 0);
+      }
+      Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+      if (!teaProject.containsKey(verifyDocumentDTO.getPno())) {
+        throw new CommonException(EmProjectError.USER_NOT_HAVE_THE_PROJECT);
+      }
       openReport.setTrialGrade(verifyDocumentDTO.getScore());
       openReport.setTrialComment(verifyDocumentDTO.getComment());
+      openReportExample.createCriteria().andPnoEqualTo(verifyDocumentDTO.getPno());
     }
     //插入数据
-    OpenReportExample openReportExample = new OpenReportExample();
-    openReportExample.createCriteria().andOpenNoEqualTo(verifyDocumentDTO.getDno());
+
     int result = openReportMapper.updateByExampleSelective(openReport, openReportExample);
     if (result != 1) {
       throw new CommonException(EmCommonError.UNKNOWN_ERROR, "审核失败请重试");
@@ -151,7 +163,8 @@ public class OpenReportService {
     //插入评审记录
     if (verifyDocumentDTO.getIsBlind() == 0) {
       OpenReportRecord record = new OpenReportRecord();
-      record.setOpenNo(verifyDocumentDTO.getDno());
+      record.setPno(verifyDocumentDTO.getPno());
+      record.setIsPass(verifyDocumentDTO.getIsPass());
       record.setTrialGrade(verifyDocumentDTO.getScore());
       record.setFilePath(verifyDocumentDTO.getFilePath());
       record.setTrialComment(verifyDocumentDTO.getComment());
@@ -166,16 +179,15 @@ public class OpenReportService {
   /**
    * 提交开题报告
    */
-  public void submitOpenReport(MultipartFile file, String dno, UserVO user,String pno) {
+  public void submitOpenReport(MultipartFile file, String id, UserVO user, String pno) {
     String filePath = FileSave.fileSave(file, FileTypeEnum.OPENING_REPORT);
     OpenReport openReport = new OpenReport();
-    openReport.setOpenNo(dno);
+
     openReport.setPno(pno);
     openReport.setFilePath(filePath);
     openReport.setIsPass((byte) 2);
     openReport.setSchoolYear(user.getSchoolYear());
-    if (StringUtils.isBlank(dno)) {
-      openReport.setOpenNo(UUID.randomUUID().toString().replaceAll("-", ""));
+    if (StringUtils.isBlank(id)) {
       openReport.setGmtCreate(new Date());
       openReport.setGmtModified(openReport.getGmtCreate());
       int result = openReportMapper.insertSelective(openReport);
@@ -183,9 +195,10 @@ public class OpenReportService {
         throw new CommonException(EmCommonError.UNKNOWN_ERROR, "审核失败请重试");
       }
     } else {
+      openReport.setId(Long.parseLong(id));
       openReport.setGmtModified(new Date());
       OpenReportExample openReportExample = new OpenReportExample();
-      openReportExample.createCriteria().andOpenNoEqualTo(dno);
+      openReportExample.createCriteria().andPnoEqualTo(pno);
       int result = openReportMapper.updateByExampleSelective(openReport, openReportExample);
       if (result != 1) {
         throw new CommonException(EmCommonError.UNKNOWN_ERROR, "审核失败请重试");
@@ -214,9 +227,9 @@ public class OpenReportService {
   /**
    * 获取审核记录
    */
-  public List<OpenReportRecord> getOpenReportRecord(String openNo) {
+  public List<OpenReportRecord> getOpenReportRecord(String pno) {
     OpenReportRecordExample example = new OpenReportRecordExample();
-    example.createCriteria().andOpenNoEqualTo(openNo);
+    example.createCriteria().andPnoEqualTo(pno);
     example.setOrderByClause("gmt_create desc");
     List<OpenReportRecord> records = openReportRecordMapper.selectByExample(example);
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -229,5 +242,22 @@ public class OpenReportService {
       }
     });
     return records;
+  }
+
+  /**
+   * 设置开题报告可修改
+   */
+
+  public void setOpenReportModifiable(String pno) {
+    OpenReport openReport = new OpenReport();
+    openReport.setPno(pno);
+    openReport.setModifiable((byte) 1);
+
+    OpenReportExample openReportExample = new OpenReportExample();
+    openReportExample.createCriteria().andPnoEqualTo(pno);
+    int result = openReportMapper.updateByExampleSelective(openReport, openReportExample);
+    if (result != 1) {
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR);
+    }
   }
 }

@@ -43,17 +43,21 @@ public class OverTimeInterceptor {
   @Around("execution(* com.ncu.graduation.controller.ProjectController.applyProject(..))")
   @ResponseBody
   public ResultDTO projectInterceptor(ProceedingJoinPoint jp) {
-    HttpSession session = (HttpSession) jp.getArgs()[1];
+    HttpSession session = (HttpSession) jp.getArgs()[0];
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
-    if (projectPlan == null){
+    if (projectPlan == null) {
       projectPlan = projectService.getProjectPlan(user.getSchoolYear());
-      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+      jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
-    String endTime = projectPlan.getProjectApplyTime().split(":")[1];
-    if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
-      return ResultDTO.errorOf(EmProjectError.PROJECT_APPLY_IS_OVERTIME);
+    String[] time = projectPlan.getProjectApplyTime().split(":");
+    String endTime = time[1];
+    String startTime = time[0];
+
+    if (LocalDate.now().isAfter(LocalDate.parse(endTime)) || LocalDate.now()
+        .isBefore(LocalDate.parse(startTime))) {
+      return ResultDTO.errorOf(EmProjectError.PROJECT_APPLY_IS_NOT_TIME);
     } else {
       try {
         return (ResultDTO) jp.proceed();
@@ -67,17 +71,20 @@ public class OverTimeInterceptor {
   @Around("execution(* com.ncu.graduation.controller.ProjectSelectController.projectSelect(..))")
   @ResponseBody
   public ResultDTO projectSelectInterceptor(ProceedingJoinPoint jp) {
-    HttpSession session = (HttpSession) jp.getArgs()[1];
+    HttpSession session = (HttpSession) jp.getArgs()[0];
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
-    if (projectPlan == null){
+    if (projectPlan == null) {
       projectPlan = projectService.getProjectPlan(user.getSchoolYear());
-      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+      jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
-    String endTime = projectPlan.getProjectSelectTime().split(":")[1];
-    if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
-      return ResultDTO.errorOf(EmProjectError.PROJECT_SELECT_IS_OVERTIME);
+    String[] time = projectPlan.getProjectSelectTime().split(":");
+    String endTime = time[1];
+    String startTime = time[0];
+    if (LocalDate.now().isAfter(LocalDate.parse(endTime)) || LocalDate.now()
+        .isBefore(LocalDate.parse(startTime))) {
+      return ResultDTO.errorOf(EmProjectError.PROJECT_SELECT_IS_NOT_TIME);
     } else {
       try {
         return (ResultDTO) jp.proceed();
@@ -91,17 +98,20 @@ public class OverTimeInterceptor {
   @Around("execution(* com.ncu.graduation.controller.TaskBookController.submitTaskBook(..))")
   @ResponseBody
   public ResultDTO taskBookInterceptor(ProceedingJoinPoint jp) {
-    HttpSession session = (HttpSession) jp.getArgs()[1];
+    HttpSession session = (HttpSession) jp.getArgs()[0];
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
-    if (projectPlan == null){
+    if (projectPlan == null) {
       projectPlan = projectService.getProjectPlan(user.getSchoolYear());
-      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+      jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
-    String endTime = projectPlan.getTaskBookTime().split(":")[1];
-    if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
-      return ResultDTO.errorOf(EmDocumentError.TASK_SUBMIT_IS_OVERTIME);
+    String[] time = projectPlan.getTaskBookTime().split(":");
+    String endTime = time[1];
+    String startTime = time[0];
+    if (LocalDate.now().isAfter(LocalDate.parse(endTime)) || LocalDate.now()
+        .isBefore(LocalDate.parse(startTime))) {
+      return ResultDTO.errorOf(EmDocumentError.TASK_SUBMIT_IS_NOT_TIME);
     } else {
       try {
         return (ResultDTO) jp.proceed();
@@ -115,17 +125,20 @@ public class OverTimeInterceptor {
   @Around("execution(* com.ncu.graduation.controller.OpenReportController.submitOpenReport(..))")
   @ResponseBody
   public ResultDTO openReportInterceptor(ProceedingJoinPoint jp) {
-    HttpSession session = (HttpSession) jp.getArgs()[1];
+    HttpSession session = (HttpSession) jp.getArgs()[0];
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
-    if (projectPlan == null){
+    if (projectPlan == null) {
       projectPlan = projectService.getProjectPlan(user.getSchoolYear());
-      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+      jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
-    String endTime = projectPlan.getOpenReportTime().split(":")[1];
-    if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
-      return ResultDTO.errorOf(EmDocumentError.OPENREPORT_SUBMIT_IS_OVERTIME);
+    String[] time = projectPlan.getOpenReportTime().split(":");
+    String endTime = time[1];
+    String startTime = time[0];
+    if (LocalDate.now().isAfter(LocalDate.parse(endTime)) || LocalDate.now()
+        .isBefore(LocalDate.parse(startTime))) {
+      return ResultDTO.errorOf(EmDocumentError.OPENREPORT_SUBMIT_IS_NOT_TIME);
     } else {
       try {
         return (ResultDTO) jp.proceed();
@@ -139,17 +152,20 @@ public class OverTimeInterceptor {
   @Around("execution(* com.ncu.graduation.controller.ForeignLiteratureController.submitForeignLiterature(..))")
   @ResponseBody
   public ResultDTO ForeignLiteratureInterceptor(ProceedingJoinPoint jp) {
-    HttpSession session = (HttpSession) jp.getArgs()[1];
+    HttpSession session = (HttpSession) jp.getArgs()[0];
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
-    if (projectPlan == null){
+    if (projectPlan == null) {
       projectPlan = projectService.getProjectPlan(user.getSchoolYear());
-      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+      jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
-    String endTime = projectPlan.getForeignLiteratureTime().split(":")[1];
-    if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
-      return ResultDTO.errorOf(EmDocumentError.FOREIGNLITERATURE_SUBMIT_IS_OVERTIME);
+    String[] time = projectPlan.getForeignLiteratureTime().split(":");
+    String endTime = time[1];
+    String startTime = time[0];
+    if (LocalDate.now().isAfter(LocalDate.parse(endTime)) || LocalDate.now()
+        .isBefore(LocalDate.parse(startTime))) {
+      return ResultDTO.errorOf(EmDocumentError.FOREIGNLITERATURE_SUBMIT_IS_NOT_TIME);
     } else {
       try {
         return (ResultDTO) jp.proceed();
@@ -163,17 +179,20 @@ public class OverTimeInterceptor {
   @Around("execution(* com.ncu.graduation.controller.ThesisController.submitThesis(..))")
   @ResponseBody
   public ResultDTO ThesisInterceptor(ProceedingJoinPoint jp) {
-    HttpSession session = (HttpSession) jp.getArgs()[1];
+    HttpSession session = (HttpSession) jp.getArgs()[0];
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectPlan projectPlan = JSON
         .parseObject(jedisOp.get(user.getSchoolYear()), ProjectPlan.class);
-    if (projectPlan == null){
+    if (projectPlan == null) {
       projectPlan = projectService.getProjectPlan(user.getSchoolYear());
-      jedisOp.set(user.getSchoolYear(),JSON.toJSONString(projectPlan));
+      jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
-    String endTime = projectPlan.getThesisTime().split(":")[1];
-    if (LocalDate.now().isAfter(LocalDate.parse(endTime))) {
-      return ResultDTO.errorOf(EmDocumentError.THESIS_SUBMIT_IS_OVERTIME);
+    String[] time = projectPlan.getThesisTime().split(":");
+    String endTime = time[1];
+    String startTime = time[0];
+    if (LocalDate.now().isAfter(LocalDate.parse(endTime)) || LocalDate.now()
+        .isBefore(LocalDate.parse(startTime))) {
+      return ResultDTO.errorOf(EmDocumentError.THESIS_SUBMIT_IS_NOT_TIME);
     } else {
       try {
         return (ResultDTO) jp.proceed();

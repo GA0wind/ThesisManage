@@ -1,7 +1,9 @@
 package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.ResultDTO;
+import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmProjectError;
+import com.ncu.graduation.error.RedirectException;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,31 +64,42 @@ public class TaskBookController {
    */
   @ResponseBody
   @PostMapping("/teacher/taskBook/submit")
-  public ResultDTO submitTaskBook(@RequestParam("taskBook") MultipartFile file,
-      @RequestParam("dno") String dno, @RequestParam("pno") String pno, HttpSession session) {
+  public ResultDTO submitTaskBook(HttpSession session, @RequestParam("taskBook") MultipartFile file,
+      @RequestParam(value = "id",required = false) String id, @RequestParam("pno") String pno) {
     UserVO user = (UserVO) session.getAttribute("user");
-    taskBookService.submitTaskBook(user, file, dno, pno);
+    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+    //如果课题编号不在当前用户有效课题中, 不允许操作
+    if (!teaProject.containsKey(pno)){
+      return ResultDTO.errorOf(EmProjectError.USER_NOT_HAVE_THE_PROJECT);
+    }
+    taskBookService.submitTaskBook(user, file, id, pno);
     return ResultDTO.okOf();
   }
 
   /**
-   * 学生查看任务书
+   * 查看任务书
    */
   @GetMapping("/student/taskBook")
-  public String getStuTaskBook(HttpSession session,
+  public String getStuTaskBook(@RequestParam(value = "pno", required = false) String pno,
+      HttpSession session,
       Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply stuProject = projectService.getStuProject(user);
-    if (stuProject == null){
-      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
-      return "error";
+    ProjectApply projectApply;
+    if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
+      projectApply = projectService.getStuProject(user);
+    } else {
+      projectApply = projectService.getProject(pno);
+    }
+    if (projectApply == null) {
+      throw new RedirectException(EmProjectError.NO_PROJECT);
     }
     StuProjectDocumentVO<TaskBook> stuTaskBook = taskBookService
-        .getStuTaskBook(stuProject);
+        .getStuTaskBook(projectApply);
     model.addAttribute("stuTaskBook", stuTaskBook);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);
     return "document/stuTaskBook";
+
   }
 
   //todo 任务书修改功能

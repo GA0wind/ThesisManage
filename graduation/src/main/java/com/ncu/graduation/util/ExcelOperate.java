@@ -251,7 +251,7 @@ public class ExcelOperate {
 
     Cell cell;
     int cellNum = 0;
-    // 获取学号
+    // 获取工号
     cell = row.getCell(cellNum++);
     String tno = convertCellValueToString(cell);
     teacher.setTno(tno);

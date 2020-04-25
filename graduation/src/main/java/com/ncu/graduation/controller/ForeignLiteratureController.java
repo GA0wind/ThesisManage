@@ -2,7 +2,9 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmProjectError;
+import com.ncu.graduation.error.RedirectException;
 import com.ncu.graduation.model.ForeignLiterature;
 import com.ncu.graduation.model.ForeignRecord;
 import com.ncu.graduation.model.OpenReport;
@@ -25,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,8 +71,19 @@ public class ForeignLiteratureController {
    */
   @ResponseBody
   @PostMapping("/teacher/foreignLiterature/verify")
-  public ResultDTO verifyDocument(@Valid VerifyDocumentDTO verifyDocument) {
-    foreignLiteratureService.verifyForeignLiterature(verifyDocument);
+  public ResultDTO verifyDocument(HttpSession session,@Valid VerifyDocumentDTO verifyDocument) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    foreignLiteratureService.verifyForeignLiterature(user,verifyDocument);
+    return ResultDTO.okOf();
+  }
+
+  /**
+   * 允许修改外文资料
+   */
+  @ResponseBody
+  @GetMapping("/teacher/foreignLiterature/modifiable")
+  public ResultDTO setForeignLiteratureModifiable(@RequestParam("pno") String pno, Model model) {
+    foreignLiteratureService.setForeignLiteratureModifiable(pno);
     return ResultDTO.okOf();
   }
 
@@ -78,15 +92,14 @@ public class ForeignLiteratureController {
    */
   @ResponseBody
   @PostMapping("/student/foreignLiterature/submit")
-  public ResultDTO submitForeignLiterature(@RequestParam("oldFile") String oldFile,
+  public ResultDTO submitForeignLiterature(HttpSession session,@RequestParam("oldFile") String oldFile,
       @RequestParam("foreignFile") MultipartFile foreignFile,
       @RequestParam("translationFile") MultipartFile translationFile,
-      @RequestParam("dno") String dno,
-      HttpSession session) {
+      @RequestParam(value = "id",required = false) String id) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply projectApply = (ProjectApply) session.getAttribute("stuProject");
+    ProjectApply projectApply = projectService.getStuProject(user);
     foreignLiteratureService
-        .submitForeignLiterature(user, foreignFile, translationFile, dno,projectApply.getPno());
+        .submitForeignLiterature(user, foreignFile, translationFile, id,projectApply.getPno());
     return ResultDTO.okOf();
   }
 
@@ -94,13 +107,17 @@ public class ForeignLiteratureController {
    * 学生查看开题报告和审核结果
    */
   @GetMapping("/student/foreignLiterature")
-  public String getStuForeignLiterature(HttpServletRequest request,
+  public String getStuForeignLiterature(@RequestParam(value = "pno",required=false)String pno,HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    ProjectApply stuProject = projectService.getStuProject(user);
+    ProjectApply stuProject;
+    if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
+      stuProject = projectService.getStuProject(user);
+    } else {
+      stuProject = projectService.getProject(pno);
+    }
     if (stuProject == null){
-      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
-      return "error";
+      throw new RedirectException(EmProjectError.NO_PROJECT);
     }
     StuProjectDocumentVO<ForeignLiterature> stuForeignLiterature = foreignLiteratureService
         .getStuForeignLiterature(stuProject);
@@ -115,8 +132,8 @@ public class ForeignLiteratureController {
    */
   @ResponseBody
   @GetMapping("/student/foreignLiterature/record")
-  public ResultDTO getForeignRecordRecord(@RequestParam("fno") String fno, Model model) {
-    List<ForeignRecord> foreignRecord = foreignLiteratureService.getForeignRecord(fno);
+  public ResultDTO getForeignRecordRecord(@RequestParam("pno") String pno, Model model) {
+    List<ForeignRecord> foreignRecord = foreignLiteratureService.getForeignRecord(pno);
     model.addAttribute("foreignRecord", foreignRecord);
     return ResultDTO.okOf(foreignRecord);
   }

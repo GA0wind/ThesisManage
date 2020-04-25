@@ -118,7 +118,7 @@ public class BulletinService {
         bulletin.setSchoolYear(userVO.getSchoolYear());
         bulletin.setCreatorNo(userVO.getAccountNo());
         //id为空是新增, id有数字是修改
-        if (bulletinDTO.getId() == null) {
+        if (StringUtils.isBlank(bulletinDTO.getId())) {
             bulletin.setGmtCreate(new Date());
             bulletin.setGmtModified(bulletin.getGmtCreate());
             bulletinMapper.insertSelective(bulletin);

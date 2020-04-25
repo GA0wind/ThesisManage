@@ -8,6 +8,7 @@ public enum EmUserOperatorError implements CommonError   {
   ADMIN_CAN_USE(3004, "管理员可进"),
   TEACHER_CAN_USE(3005, "老师可进"),
   ORALEXAM_NOT_ARRANGE(3006, "答辩情况未安排, 请等待通知"),
+  ROLE_CANNOT_DO_THIS(3007,"当前角色不能进行相关操作"),
   ;
 
   EmUserOperatorError(Integer errCode, String errMsg)

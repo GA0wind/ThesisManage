@@ -3,7 +3,9 @@ package com.ncu.graduation.controller;
 import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmProjectError;
+import com.ncu.graduation.error.RedirectException;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
 import com.ncu.graduation.model.ProjectApply;
@@ -54,7 +56,7 @@ public class ThesisController {
   @GetMapping("/teacher/thesis")
   public String getTeaThesis(HttpSession session,
       Model model) {
-    UserVO user = (UserVO)session.getAttribute("user");
+    UserVO user = (UserVO) session.getAttribute("user");
     Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<Thesis>> myThesis = thesisService
         .getTeaThesis(teaProject);
@@ -69,8 +71,9 @@ public class ThesisController {
    */
   @ResponseBody
   @PostMapping("/teacher/thesis/verify")
-  public ResultDTO verifyDocument(@Valid VerifyDocumentDTO verifyDocument) {
-    thesisService.verifyThesis(verifyDocument);
+  public ResultDTO verifyDocument(@Valid VerifyDocumentDTO verifyDocument,HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    thesisService.verifyThesis(verifyDocument,user);
     return ResultDTO.okOf();
   }
 
@@ -86,18 +89,27 @@ public class ThesisController {
     return "document/teaThesis";
   }
 
+  /**
+   * 允许修改论文
+   */
+  @ResponseBody
+  @GetMapping("/teacher/thesis/modifiable")
+  public ResultDTO setThesisModifiable(@RequestParam("pno") String pno, Model model) {
+    thesisService.setThesisModifiable(pno);
+    return ResultDTO.okOf();
+  }
+
 
   /**
    * 提交论文
    */
   @ResponseBody
   @PostMapping("/student/thesis/submit")
-  public ResultDTO submitThesis(@RequestParam("thesis") MultipartFile file,
-      @RequestParam("dno") String dno,
-      HttpSession session) {
+  public ResultDTO submitThesis(HttpSession session, @RequestParam("thesis") MultipartFile file,
+      @RequestParam(value = "id",required = false) String id) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply projectApply = (ProjectApply) session.getAttribute("stuProject");
-    thesisService.submitThesis(user,file, dno,projectApply.getPno());
+    ProjectApply projectApply = projectService.getStuProject(user);
+    thesisService.submitThesis(user, file, id, projectApply.getPno());
     return ResultDTO.okOf();
   }
 
@@ -105,16 +117,21 @@ public class ThesisController {
    * 学生查看论文和审核结果
    */
   @GetMapping("/student/thesis")
-  public String getStuThesis(HttpServletRequest request,
+  public String getStuThesis(@RequestParam(value = "pno", required = false) String pno,
+      HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    ProjectApply stuProject = projectService.getStuProject(user);
-    if (stuProject == null){
-      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
-      return "error";
+    ProjectApply stuProject;
+    if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
+      stuProject = projectService.getStuProject(user);
+    } else {
+      stuProject = projectService.getProject(pno);
+    }
+    if (stuProject == null) {
+      throw new RedirectException(EmProjectError.NO_PROJECT);
     }
     StuProjectDocumentVO<Thesis> stuThesis = thesisService
-        .getStuThesis(user,stuProject);
+        .getStuThesis(user, stuProject);
     model.addAttribute("stuThesis", stuThesis);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);
@@ -126,8 +143,8 @@ public class ThesisController {
    */
   @ResponseBody
   @GetMapping("/student/thesis/record")
-  public ResultDTO getThesisRecord(@RequestParam("thesisNo") String thesisNo, Model model) {
-    List<ThesisRecord> records = thesisService.getThesisRecord(thesisNo);
+  public ResultDTO getThesisRecord(@RequestParam("pno") String pno, Model model) {
+    List<ThesisRecord> records = thesisService.getThesisRecord(pno);
     model.addAttribute("thesisRecord", records);
     return ResultDTO.okOf(records);
   }

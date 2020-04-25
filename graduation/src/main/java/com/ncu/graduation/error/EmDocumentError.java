@@ -8,10 +8,10 @@ package com.ncu.graduation.error;
  * @version: 0.0.1
  */
 public enum EmDocumentError implements CommonError {
-  TASK_SUBMIT_IS_OVERTIME(6001,"已经过了任务书提交时间, 无法提交"),
-  OPENREPORT_SUBMIT_IS_OVERTIME(6002,"已经过了开题报告提交时间, 无法提交"),
-  FOREIGNLITERATURE_SUBMIT_IS_OVERTIME(6003,"已经过了外文资料提交时间, 无法提交"),
-  THESIS_SUBMIT_IS_OVERTIME(6004,"已经过了论文提交时间, 无法提交"),
+  TASK_SUBMIT_IS_NOT_TIME(6001,"不在任务书提交时间, 无法提交"),
+  OPENREPORT_SUBMIT_IS_NOT_TIME(6002,"不在开题报告提交时间, 无法提交"),
+  FOREIGNLITERATURE_SUBMIT_IS_NOT_TIME(6003,"不在外文资料提交时间, 无法提交"),
+  THESIS_SUBMIT_IS_NOT_TIME(6004,"不在论文提交时间, 无法提交"),
   ;
   private Integer errCode;
   private String errMsg;

@@ -15,12 +15,12 @@
 </head>
 
 <script>
-  $(document).ready(function() {
-    $('input[type=radio][name=role]').change(function() {
+  $(document).ready(function () {
+    $('input[type=radio][name=role]').change(function () {
       var role = $("input[name='role']:checked").val();
       if (role != null && role != 'student') {
         $("#schoolYear").removeClass("hide");
-      } else{
+      } else {
         $("#schoolYear").addClass("hide");
       }
     });
@@ -32,9 +32,8 @@
       },
       success: function (data) {
         if (data.code == 200) {
-          alert("登录成功");
           setTimeout(function () {
-            window.location.href='/project/myProject';
+            window.location.href = '/';
           }, 500);
         } else {
           alert(data.message);
@@ -53,7 +52,7 @@
   <div class="row">
     <div class="login-logo col-md-9 col-xs-12">
       <div>
-        <img src="/img/nculogo.png"/>
+        <img src="/images/nculogo.png"/>
         <h2>南昌大学</h2>
       </div>
       <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
@@ -70,9 +69,10 @@
           <span class="title">最新公告</span> <a href="/bulletin" class="more-bulletin">更多公告&gt;&gt;</a>
         </div>
         <!-- List group -->
-        <ul class="list-group">
-          <li class="list-group-item"><a href="#">毕业设计计划已发布</a><span class="time">时间</span></li>
-          <li class="list-group-item"><a href="#">学生操作手册</a> <span class="time">时间</span></li>
+        <ul class="list-group" th:each="bulletin:${bulletins.data}">
+          <li class="list-group-item"><a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}">毕业设计计划已发布</a>
+            <span class="time" th:text="${bulletin.gmtModified}"></span>
+          </li>
         </ul>
       </div>
 
@@ -110,13 +110,13 @@
           <label class="col-sm-3 control-label">账号角色</label>
           <div class="col-sm-9">
             <label class="radio-inline">
-                <input type="radio" name="role" id="student" value="student">学生
+              <input type="radio" name="role" id="student" value="student">学生
             </label>
             <label class="radio-inline">
-                <input type="radio" name="role" id="teacher" value="teacher"/>教师
+              <input type="radio" name="role" id="teacher" value="teacher"/>教师
             </label>
             <label class="radio-inline">
-                <input type="radio" name="role" id="admin" value="admin"/>管理员
+              <input type="radio" name="role" id="admin" value="admin"/>管理员
             </label>
           </div>
         </div>
@@ -125,7 +125,8 @@
           <label class="col-sm-3 control-label">学年</label>
           <div class="col-sm-7">
             <select class="form-control" name="schoolYear">
-                <option th:each="schoolYear : ${schoolYears}" th:text="${schoolYear}" th:value="${schoolYear}"></option>
+              <option th:each="schoolYear : ${schoolYears}" th:text="${schoolYear}"
+                      th:value="${schoolYear}"></option>
             </select>
           </div>
         </div>

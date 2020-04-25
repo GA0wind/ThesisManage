@@ -58,11 +58,9 @@ public class CustomizeExceptionHandler {
     ex.printStackTrace();
     //跳转错误页面
     if (ex instanceof RedirectException) {
-      model.addAttribute("message", ex.getMessage());
-      ex.printStackTrace();
+      model.addAttribute("message", ((RedirectException) ex).getErrMsg());
     } else {
       model.addAttribute("message", EmCommonError.UNKNOWN_ERROR.getErrMsg());
-      ex.printStackTrace();
     }
     return new ModelAndView("error");
 

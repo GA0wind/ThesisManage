@@ -16,9 +16,9 @@
   <script src="/js/transition.min.js"></script>
 
   <script>
-    function setDno(e) {
-      var pno = $(e).attr('data-pno');
-      $("#pno").val(pno);
+    function setId(e) {
+      var id = $(e).attr('data-id');
+      $("#id").val(id);
       $('#myModal').modal({
         keyboard: false
       });
@@ -43,8 +43,8 @@
     }
 
     function modify(e) {
-      var dno = $(e).attr('data-dno');
-      $("#dno").val(dno);
+      var id = $(e).attr('data-id');
+      $("#id").val(id);
       var pno = $(e).attr('data-pno');
       $("#pno").val(pno);
       $('#myModal').modal({
@@ -84,7 +84,7 @@
               <th class="project-name">课题名</th>
               <th>学生</th>
               <th>任务书</th>
-              <th>操作</th>
+              <th style="width: 200px;">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -100,11 +100,11 @@
               <td>
                 <a th:if="${taskBook.document} != null"
                    th:href="@{/readOnline(filePath=${taskBook.document.filePath},fileType='taskBook')}">在线浏览</a>
-                <button class="btn btn-link" th:if="${taskBook.document} == null" th:data-pno="${taskBook.pno}"
-                   onclick="setDno(this)">提交</button>
-                <button class="btn btn-link" th:if="${taskBook.document} != null" th:data-pno="${taskBook.pno}"
-                   th:data-dno="${taskBook.document.taskNo}"
-                   onclick="modify(this)">修改</button>
+                <a class="btn-link" role="button" th:if="${taskBook.document} == null" th:data-pno="${taskBook.pno}"
+                   onclick="setId(this)">提交</a>
+                <a class="btn-link" role="button" th:if="${taskBook.document} != null" th:data-pno="${taskBook.pno}"
+                   th:data-id="${taskBook.document.id}"
+                   onclick="modify(this)">修改</a>
               </td>
             </tr>
 
@@ -133,7 +133,7 @@
         <div class="col-md-12 common">
           <form id="taskBookSubmit" class="form-inline form" action="/teacher/taskBook/submit" method="post"
                 enctype="multipart/form-data">
-            <input type="text" class="hide" id="dno" name="dno">
+            <input type="text" class="hide" id="id" name="id">
             <input type="text" class="hide" id="pno" name="pno">
 
             <div class="row">

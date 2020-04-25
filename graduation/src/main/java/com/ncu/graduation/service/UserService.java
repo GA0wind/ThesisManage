@@ -24,6 +24,7 @@ import com.ncu.graduation.model.*;
 import com.ncu.graduation.util.BlindDistribution.TeacherTwotuple;
 import com.ncu.graduation.util.ExcelOperate;
 import com.ncu.graduation.util.FileSave;
+import com.ncu.graduation.util.Md5Util;
 import com.ncu.graduation.vo.UserVO;
 import java.io.File;
 import java.io.IOException;
@@ -82,6 +83,7 @@ public class UserService {
    * @return
    */
   public Object login(LoginDTO loginDTO) {
+    loginDTO.setAccountPwd(Md5Util.md5(loginDTO.getAccountPwd()));
     if (UserRoleEnum.ADMIN.getRole().equals(loginDTO.getRole()) || UserRoleEnum.TEACHER.getRole()
         .equals(loginDTO.getRole())) {
       TeacherExample teacherExample = new TeacherExample();
@@ -112,14 +114,14 @@ public class UserService {
         .equals(user.getRole())) {
       Teacher teacher = new Teacher();
       teacher.setTno(user.getAccountNo());
-      teacher.setPassword(newPwd);
+      teacher.setPassword(Md5Util.md5(newPwd));
       TeacherExample teacherExample = new TeacherExample();
       teacherExample.createCriteria().andTnoEqualTo(user.getAccountNo());
       result = teacherMapper.updateByExampleSelective(teacher, teacherExample);
     } else if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       Student student = new Student();
       student.setSno(user.getAccountNo());
-      student.setPassword(newPwd);
+      student.setPassword(Md5Util.md5(newPwd));
       StudentExample studentExample = new StudentExample();
       studentExample.createCriteria().andSnoEqualTo(user.getAccountNo());
       result = studentMapper.updateByExampleSelective(student, studentExample);
@@ -137,7 +139,7 @@ public class UserService {
       student.setCollege(userAddDTO.getCollege());
       student.setGradeClass(userAddDTO.getGradeClass());
       student.setSchoolYear(user.getSchoolYear());
-      student.setPassword(userAddDTO.getPassword());
+      student.setPassword(Md5Util.md5(userAddDTO.getPassword()));
       if (userAddDTO.getIsModify() != 1) {
         student.setGmtCreate(new Date());
         student.setGmtModified(student.getGmtCreate());
@@ -153,7 +155,8 @@ public class UserService {
       teacher.setTname(userAddDTO.getName());
       teacher.setCollege(userAddDTO.getCollege());
       teacher.setLeadStudentNum(userAddDTO.getLeadStudentNum());
-      teacher.setPassword(userAddDTO.getPassword());
+      teacher.setTitle(userAddDTO.getTitle());
+      teacher.setPassword(Md5Util.md5(userAddDTO.getPassword()));
       teacher.setRole(userAddDTO.getRole());
 
       //判断是否是修改
@@ -192,6 +195,7 @@ public class UserService {
     students.forEach((k, l) -> {
       Student student = (Student) l;
       student.setSchoolYear(user.getSchoolYear());
+      student.setPassword(Md5Util.md5(student.getPassword()));
       student.setGmtCreate(new Date());
       student.setGmtModified(student.getGmtCreate());
       if (studentMapper.insert(student) != 1) {
@@ -220,6 +224,7 @@ public class UserService {
     teachers.forEach((k, l) -> {
       Teacher teacher = (Teacher) l;
       teacher.setSchoolYear(user.getSchoolYear()+",");
+      teacher.setPassword(Md5Util.md5(teacher.getPassword()));
       teacher.setGmtModified(new Date());
       TeacherExample teacherExample = new TeacherExample();
       teacherExample.createCriteria().andTnoEqualTo(teacher.getTno()).andSchoolYearLike("%"+user.getSchoolYear()+"%");

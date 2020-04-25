@@ -48,9 +48,9 @@
 
     //获取外文资料记录
     function getForeignLiteratureRecord(e) {
-      var fno = $(e).attr('data-fno');
+      var pno = $(e).attr('data-pno');
       $.ajax({
-        url: '/student/foreignLiterature/record?fno=' + fno,
+        url: '/student/foreignLiterature/record?pno=' + pno,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
@@ -65,15 +65,17 @@
               }
               $("#foreignLiteratureRecordTable").append(
                   "<tr>" +
-                  "<td><a href='/download?filePath=" + data.foreignFile.toString().replace('#', "%23")
-                  + "&fileType=openReport'>" + data.foreignFile.toString().split('#')[1] + "</a></td>"
+                  "<td><a href='/download?filePath=" + data.foreignFile.toString().replace('#',
+                  "%23")
+                  + "&fileType=openReport'>" + data.foreignFile.toString().split('#')[1]
+                  + "</a></td>"
                   +
                   "<td><a href='/download?filePath=" + data.translationFile.toString().replace('#',
                   "%23") + "&fileType=openReport'>" + data.translationFile.toString().split('#')[1]
                   + "</a></td>" +
-                  isPass+
+                  isPass +
                   "<td>" + data.trialGrade + "</td>" +
-                  "<td>" + data.trialComment + "</td>" +
+                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -172,19 +174,20 @@
             <dd th:text="${stuForeignLiterature.document.isPass}!= 2 ? ${stuForeignLiterature.document.trialGrade}:'未审核'"></dd>
             <dt>审核评语：</dt>
             <dd th:text="${stuForeignLiterature.document.isPass}!= 2 ? ${stuForeignLiterature.document.trialComment}:'未审核'"></dd>
-
           </dl>
-          <button th:if="${stuForeignLiterature.document} == null" type="button"
+          <a th:if="${stuForeignLiterature.document} == null and ${session.user.role} == 'student'" type="button"
                   class="btn btn-primary"
                   onclick="showForeignLiteratureModel(0)">提交
-          </button>
-          <button th:if="${stuForeignLiterature.document} != null" type="button"
+          </a>
+          <a th:if="${stuForeignLiterature.document} != null and ${session.user.role} == 'student'"
+                  th:classappend="${stuForeignLiterature.document.modifiable} == 1 ? '':'disabled'"
+                  type="button"
                   class="btn btn-primary"
                   onclick="showForeignLiteratureModel(1)">重新提交
-          </button>
+          </a>
           <button th:if="${stuForeignLiterature.document} != null" type="button"
                   class="btn btn-primary"
-                  th:data-fno="${stuForeignLiterature.document.fno}"
+                  th:data-pno="${stuForeignLiterature.document.pno}"
                   onclick="getForeignLiteratureRecord(this)">查看历史审核
           </button>
         </div>
@@ -211,8 +214,8 @@
           <form id="foreignLiteratureForm" class="form-inline form" method="post"
                 action="/student/foreignLiterature/submit"
                 enctype="multipart/form-data">
-            <input type="text" class="hide" id="project-dno" name="dno"
-                   th:value="${stuForeignLiterature.document.fno}">
+            <input type="text" class="hide" id="document-id" name="id"
+                   th:if="${stuForeignLiterature.document}" th:value="${stuForeignLiterature.document.id}">
             <input type="text" class="hide" id="foreignLiterature-oldFile" name="oldFile">
             <div class="row">
               <div class="col-md-12">

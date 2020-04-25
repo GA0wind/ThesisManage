@@ -25,7 +25,7 @@ public class UserInterceptor implements HandlerInterceptor {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
     if (user == null){
       try {
-        response.sendRedirect(request.getContextPath()+"/");
+        response.sendRedirect(request.getContextPath()+"/login");
         return false;
       } catch (IOException e) {
         log.error("[{}] redirect fail", UserInterceptor.class);

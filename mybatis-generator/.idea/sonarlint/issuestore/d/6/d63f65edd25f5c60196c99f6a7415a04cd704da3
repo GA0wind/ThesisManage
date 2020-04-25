@@ -1,23 +1,21 @@
 
-j
-java:S1192Õ"LDefine a constant instead of duplicating this literal "trialGrade" 10 times.(™Æ”ö8äÈí˜˜.
-h
-java:S1192"JDefine a constant instead of duplicating this literal "thesisNo" 12 times.(·üÄ€8äÈí˜˜.
 n
-java:S1192×"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñýÿÿÿÿ8äÈí˜˜.
+java:S1192×"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñýÿÿÿÿ8¸«é‘›.
 k
-java:S1192‘"NDefine a constant instead of duplicating this literal "trialComment" 12 times.(Ü¶“B8äÈí˜˜.
+java:S1192‘"NDefine a constant instead of duplicating this literal "trialComment" 12 times.(Ü¶“B8¸«é‘›.
 f
-java:S1192™"HDefine a constant instead of duplicating this literal "isPass" 10 times.(Â‚ò 8äÈí˜˜.
+java:S1192™"HDefine a constant instead of duplicating this literal "isPass" 10 times.(Â‚ò 8¸«é‘›.
 h
-java:S1192Ó"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©8äÈí˜˜.
-h	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ8äÈí˜˜.
-h	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºþÿÿÿÿ8äÈí˜˜.
+java:S1192Ó"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©8¸«é‘›.
+j
+java:S1192Õ"LDefine a constant instead of duplicating this literal "trialGrade" 10 times.(™Æ”ö8¸«é‘›.
+h	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ8¸«é‘›.
+h	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºþÿÿÿÿ8¸«é‘›.
 b	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
-8äÈí˜˜.
+8¸«é‘›.
 Z
-java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s8äÈí˜˜.
+java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s8¸«é‘›.
 a
-java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ8äÈí˜˜.
+java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ8¸«é‘›.
 ~
-java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì8äÈí˜˜.
+java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì8¸«é‘›.

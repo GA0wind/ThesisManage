@@ -36,11 +36,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">首页</a>
+          <a class="navbar-brand" href="/">首页</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/bulletin">首页<span class="sr-only">(current)</span></a></li>
+            <li><a href="/">首页<span class="sr-only">(current)</span></a></li>
             <li><a href="/bulletin">公告</a></li>
             <li><a href="/project/myProject">师生互选</a></li>
             <li><a th:if="${session.user.role} == 'student'" href="/student/taskBook">过程管理</a></li>

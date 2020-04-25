@@ -3,6 +3,9 @@ package com.ncu.graduation.controller;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
+import com.ncu.graduation.enums.UserRoleEnum;
+import com.ncu.graduation.error.CommonException;
+import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelect;
@@ -61,8 +64,11 @@ public class ProjectSelectController {
    */
   @ResponseBody
   @GetMapping("/project/select")
-  public ResultDTO projectSelect(@RequestParam("pno") String pno, HttpSession session) {
+  public ResultDTO projectSelect(HttpSession session,@RequestParam("pno") String pno) {
     UserVO user = (UserVO) session.getAttribute("user");
+    if (!UserRoleEnum.STUDENT.getRole().equals(user.getRole()) || !UserRoleEnum.TEACHER.getRole().equals(user.getRole())){
+      throw new CommonException(EmUserOperatorError.ROLE_CANNOT_DO_THIS);
+    }
     projectSelectService.selectProject(user, pno);
     return ResultDTO.okOf();
   }

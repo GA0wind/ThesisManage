@@ -1,3 +1,43 @@
 
-c
-java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¼Ğ¤œ8ğß”î.
+f
+java:S5361¬"HReplace this call to "replaceAll()" by a call to the "replace()" method.(İ“ô8˜´§ˆ™.
+O
+java:S1602Û",Remove useless curly braces around statement(±Á²øÿÿÿÿ8å±‘‰™.
+F
+java:S1148¦"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8˜´§ˆ™.
+f
+java:S5361ë"HReplace this call to "replaceAll()" by a call to the "replace()" method.(İ“ô8å±‘‰™.
+P
+java:S1199Í"-Extract this nested code block into a method.(÷»Âàşÿÿÿÿ8å±‘‰™.
+R
+java:S1611È"/Remove the parentheses around the "k" parameter(“÷Äàûÿÿÿÿ8å±‘‰™.
+J
+java:S1602Ò",Remove useless curly braces around statement(¿±‚Ù8å±‘‰™.
+
+java:S1488ê"lImmediately return this expression instead of assigning it to the temporary variable "projectSelectResults".(Êã­˜ıÿÿÿÿ8å±‘‰™.
+M
+java:S1611Ê"/Remove the parentheses around the "k" parameter(äĞÍê8˜´§ˆ™.
+R
+java:S1611Û"/Remove the parentheses around the "k" parameter(±Á²øÿÿÿÿ8å±‘‰™.
+F
+java:S1148—"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8å±‘‰™.
+O
+java:S1602È",Remove useless curly braces around statement(“÷Äàûÿÿÿÿ8å±‘‰™.
+R
+java:S1611ÿ"/Remove the parentheses around the "k" parameter(ÏÂãüÿÿÿÿ8˜´§ˆ™.
+P
+java:S1199»"-Extract this nested code block into a method.(ëì˜ªûÿÿÿÿ8å±‘‰™.
+R
+java:S1611¿"/Remove the parentheses around the "k" parameter(õ„ÒŒıÿÿÿÿ8å±‘‰™.
+J
+java:S1602Ê",Remove useless curly braces around statement(äĞÍê8å±‘‰™.
+K
+java:S1199×"-Extract this nested code block into a method.(Ü³ô8å±‘‰™.
+M
+java:S1611Ò"/Remove the parentheses around the "k" parameter(¿±‚Ù8å±‘‰™.
+‚
+java:S1488¥"dImmediately return this expression instead of assigning it to the temporary variable "projectPlans".(Êááô8å±‘‰™.
+O
+java:S1602¿",Remove useless curly braces around statement(õ„ÒŒıÿÿÿÿ8å±‘‰™.
+K
+java:S1199Ä"-Extract this nested code block into a method.(Õşğ—8å±‘‰™.

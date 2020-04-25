@@ -9,7 +9,7 @@ package com.ncu.graduation.error;
  */
 public enum EmProjectError implements CommonError{
 
-  NO_PROJECT(5001,"你没有课题"),
+  NO_PROJECT(5001,"没有课题"),
   PROJECT_NO_NOT_EXIST(5002,"课题编号不存在"),
   PROJECT_SELECT_OVER_MAX_NUM(5003,"已选课题选择数量大于可选择最大数量"),
   PROJECT_SELECT_REPEAT(5004,"不能重复选择课题"),
@@ -17,8 +17,9 @@ public enum EmProjectError implements CommonError{
   TEACHER_LEAD_STUDENT_NUM_IS_ENOUGH(5006,"指导学生数已达上限"),
   STUDENT_ONLY_ONE_PROJECT(5007,"已选定课题, 无法报名"),
   NOT_EXIST_DIRECTOR(5008,"主任不存在, 请联系管理员"),
-  PROJECT_APPLY_IS_OVERTIME(5009,"已经过了课题申请时间, 无法申请"),
-  PROJECT_SELECT_IS_OVERTIME(5010,"已经过了课题选择时间, 无法报名"),
+  PROJECT_APPLY_IS_NOT_TIME(5009,"不在课题申请时间, 无法申请"),
+  PROJECT_SELECT_IS_NOT_TIME(5010,"不在课题选择时间, 无法报名"),
+  USER_NOT_HAVE_THE_PROJECT(5011,"当前用户无法对该课题操作"),
   ;
   private Integer errCode;
   private String errMsg;

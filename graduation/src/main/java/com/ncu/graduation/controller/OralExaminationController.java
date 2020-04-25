@@ -7,6 +7,7 @@ import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.error.EmUserOperatorError;
+import com.ncu.graduation.error.RedirectException;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Thesis;
@@ -68,7 +69,7 @@ public class OralExaminationController {
       Model model, OralExamSearchDTP oralExamSearchDTP) {
     UserVO user = (UserVO) session.getAttribute("user");
     if (user.getGroup() == null){
-      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+      throw new RedirectException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
     }
     PaginationDTO<OralExamStuProjectVO> groupStus = oralExaminationService
         .getGroupStus(user, page, size,oralExamSearchDTP);
@@ -90,7 +91,7 @@ public class OralExaminationController {
       @RequestParam("sno") String sno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
     if (user.getGroup() == null){
-      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+      throw new RedirectException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
     }
     oralExaminationService.scoreToStu(score, sno, user);
     return ResultDTO.okOf();
@@ -107,20 +108,13 @@ public class OralExaminationController {
     UserVO user = (UserVO) session.getAttribute("user");
     ProjectApply stuProject = projectService.getStuProject(user);
     OralExamScoreVO scoreVO = new OralExamScoreVO();
-    if (stuProject == null){
-      model.addAttribute("message", EmProjectError.NO_PROJECT.getErrMsg());
-      return "error";
-    }
-    if (user.getGroup() == null){
-      throw new CommonException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+    if (stuProject == null) {
+      throw new RedirectException(EmProjectError.NO_PROJECT);
     }
     scoreVO= oralExaminationService
         .getExamScore(user, stuProject);
     model.addAttribute("examScore", scoreVO);
     return "oralExamination/examScore";
   }
-
-
-
 
 }

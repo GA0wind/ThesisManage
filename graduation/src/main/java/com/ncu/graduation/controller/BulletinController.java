@@ -2,6 +2,7 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.BulletinDTO;
 import com.ncu.graduation.dto.PaginationDTO;
+import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.model.Bulletin;
 import com.ncu.graduation.service.BulletinService;
 import com.ncu.graduation.vo.UserVO;
@@ -48,12 +49,13 @@ public class BulletinController {
   }
 
 
+  @ResponseBody
   @PostMapping("/bulletin/publish")
-  public String doPublish(@Valid BulletinDTO bulletinDTO,
+  public ResultDTO doPublish(@Valid BulletinDTO bulletinDTO,
       HttpServletRequest request) {
     UserVO userVO = (UserVO) request.getSession().getAttribute("user");
     bulletinService.createOrUpdate(bulletinDTO,userVO);
-    return "redirect:/bulletin";
+    return ResultDTO.okOf();
   }
 
 

@@ -129,7 +129,7 @@
               </td>
               <td th:text="${project.score} != null ? ${project.score}:'未打分'"></td>
               <td>
-                <a th:if="${project.score} == null" onclick="score(this)"
+                <a th:if="${project.score} == null" onclick="score(this)" class="btn-link"
                    th:data-sno="${project.sno}">打分</a>
               </td>
             </tr>
@@ -137,16 +137,16 @@
           </table>
         </div>
         <div class="pull-left" th:if="${groupStus.totalPage} > 1">
-          <a onclick="getOralExamList(this)" th:data-page="1" class="more">首页</a>&nbsp;&nbsp;
-          <a th:classappend="${groupStus.page} > 1 ?'':'disabled'" onclick="getOralExamList(this)"
-             th:data-page="${groupStus.page}-1" class="more">上一页</a>&nbsp;&nbsp;
+          <a onclick="getOralExamList(this)" th:data-page="1" class="more"  role="button">首页</a>&nbsp;&nbsp;
+          <a th:classappend="${groupStus.page} > 1 ?'':'disabled'" onclick="getOralExamList(this)" role="button"
+             th:data-page="${groupStus.page}-1" class="more btn btn-link">上一页</a>&nbsp;&nbsp;
           <input class="pagination-num" id="page" type="text" th:value="${groupStus.page}"
                  size="2" name="page"
                  onmousedown="if(event.keyCode==13){getOralExamList()}">&nbsp;&nbsp;
-          <a th:classappend="${groupStus.page} < ${groupStus.totalPage} ?'':'disabled'"
+          <a th:classappend="${groupStus.page} < ${groupStus.totalPage} ?'':'disabled'" role="button"
              onclick="getOralExamList(this)" th:data-page="${groupStus.page}+1"
-             class="more">下一页</a>&nbsp;&nbsp;
-          <a onclick="getOralExamList(this)" th:data-page="${groupStus.totalPage}"
+             class="more btn-link btn">下一页</a>&nbsp;&nbsp;
+          <a onclick="getOralExamList(this)" th:data-page="${groupStus.totalPage}" role="button"
              class="more">尾页</a>&nbsp;&nbsp;
         </div>
       </div>

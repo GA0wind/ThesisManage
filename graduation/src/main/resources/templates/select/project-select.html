@@ -70,7 +70,8 @@
 
           <hr>
           <div class="view">
-            <form action="/project/projectSelectView" id="getProjectView" class="form-inline" style="margin-bottom: 10px">
+            <form action="/project/projectSelectView" id="getProjectView" class="form-inline"
+                  style="margin-bottom: 10px">
               <input id="hide-page" type="text" class="hide" name="page">
               <div class="form-group">
                 <label for="pname">课题</label>
@@ -113,9 +114,9 @@
                 <td th:text="${project.creatorName}"></td>
                 <td>
                   <a th:href="@{'/project/'+${project.pno}}">查看详情</a>
-                  <button class="btn btn-link" th:data-pno="${project.pno}"
-                          onclick="selectProject(this)">报名
-                  </button>
+                  <a class="btn-link" th:data-pno="${project.pno}" role="button"
+                     onclick="selectProject(this)">报名
+                  </a>
                 </td>
               </tr>
 
@@ -123,21 +124,23 @@
             </table>
           </div>
           <div class="pull-left">
-            <a  onclick="getProjectList(this)" th:data-page="1"
-                    class="more btn btn-link">首页
+            <a onclick="getProjectList(this)" th:data-page="1"
+               class="more btn-link">首页
             </a>&nbsp;&nbsp;
-            <a th:classappend="${projects.page} > 1 ?'':'disabled'" onclick="getProjectList(this)"
-                    th:data-page="${projects.page}-1" class="more btn btn-link">上一页
+            <a th:classappend="${projects.page} > 1 ? '':'disabled'" onclick="getProjectList(this)"
+               th:data-page="${projects.page}-1" role="button" class="more btn btn-link">上一页
             </a>&nbsp;&nbsp;
             <input class="pagination-num" id="page" type="text" th:value="${projects.page}"
+                   role="button"
                    size="2" name="page"
                    onmousedown="if(event.keyCode==13){getProjectList()}">&nbsp;&nbsp;
             <a th:classappend="${projects.page} > ${projects.totalPage} ?'':'disabled'"
-                    onclick="getProjectList(this)" th:data-page="${projects.page}+1"
-                    class="more btn btn-link">下一页
+               role="button"
+               onclick="getProjectList(this)" th:data-page="${projects.page}+1"
+               class="more btn btn-link">下一页
             </a>&nbsp;&nbsp;
-            <a onclick="getProjectList(this)" th:data-page="${projects.totalPage}"
-                    class="more btn btn-link">尾页
+            <a onclick="getProjectList(this)" th:data-page="${projects.totalPage}" role="button"
+               class="more btn-link">尾页
             </a>&nbsp;&nbsp;
           </div>
         </div>

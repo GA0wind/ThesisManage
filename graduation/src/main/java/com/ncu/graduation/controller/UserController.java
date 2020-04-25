@@ -2,6 +2,7 @@ package com.ncu.graduation.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.ncu.graduation.dto.LoginDTO;
+import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.UserModifyPwdDTO;
 import com.ncu.graduation.enums.UserRoleEnum;
@@ -10,18 +11,25 @@ import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
+import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Student;
 import com.ncu.graduation.model.Teacher;
+import com.ncu.graduation.service.BulletinService;
 import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.service.UserService;
 import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.util.VerifyCode;
+import com.ncu.graduation.vo.ProjectPlanVO;
+import com.ncu.graduation.vo.ProjectProgressVO;
 import com.ncu.graduation.vo.UserVO;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +49,8 @@ public class UserController {
   @Autowired
   private ProjectService projectService;
   @Autowired
+  private BulletinService bulletinService;
+  @Autowired
   private JedisOp jedis;
 
   @GetMapping(value = "/verifyCode")
@@ -56,9 +66,64 @@ public class UserController {
   }
 
   @GetMapping(value = "/")
+  public String index(Model model, HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    if (UserRoleEnum.TEACHER.getRole().equals(user.getRole())) {
+      Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+      List<ProjectSelectResult> selectResults = new ArrayList<>();
+      if (teaProject != null){
+        teaProject.forEach((k, l) -> {
+          selectResults.add(l);
+        });
+      }
+      model.addAttribute("projects", selectResults);
+    }
+    if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
+      ProjectApply stuProject = projectService.getStuProject(user);
+      ProjectProgressVO projectProgress = null;
+      if (stuProject != null){
+        projectProgress = projectService.getProjectProgress(stuProject.getPno());
+      }
+      model.addAttribute("projectProgress", projectProgress);
+    }
+    ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
+    ProjectPlanVO projectPlanVO = new ProjectPlanVO();
+    BeanUtils.copyProperties(projectPlan, projectPlanVO);
+    //判断是否超时, 给前端判断展示
+    if (LocalDate.now()
+        .isAfter(LocalDate.parse(projectPlanVO.getProjectApplyTime().split(":")[1]))) {
+      projectPlanVO.setProjectApplyIsOver((byte)1);
+    }
+    if (LocalDate.now()
+        .isAfter(LocalDate.parse(projectPlanVO.getProjectSelectTime().split(":")[1]))) {
+      projectPlanVO.setProjectSelectIsOver((byte)1);
+    }
+    if (LocalDate.now()
+        .isAfter(LocalDate.parse(projectPlanVO.getTaskBookTime().split(":")[1]))) {
+      projectPlanVO.setTaskBookIsOver((byte)1);
+    }
+    if (LocalDate.now()
+        .isAfter(LocalDate.parse(projectPlanVO.getOpenReportTime().split(":")[1]))) {
+      projectPlanVO.setOpenReportIsOver((byte)1);
+    }
+    if (LocalDate.now()
+        .isAfter(LocalDate.parse(projectPlanVO.getForeignLiteratureTime().split(":")[1]))) {
+      projectPlanVO.setForeignLiteratureIsOver((byte)1);
+    }
+    if (LocalDate.now()
+        .isAfter(LocalDate.parse(projectPlanVO.getThesisTime().split(":")[1]))) {
+      projectPlanVO.setThesisIsOver((byte)1);
+    }
+    model.addAttribute("projectPlan", projectPlanVO);
+    return "index";
+  }
+
+  @GetMapping(value = "/login")
   public String login(Model model) {
     List<String> schoolYear = userService.getSchoolYear();
+    PaginationDTO paginationDTO = bulletinService.list(1, 10, schoolYear.get(0));
     model.addAttribute("schoolYears", schoolYear);
+    model.addAttribute("bulletins", paginationDTO);
     return "login";
   }
 
@@ -114,7 +179,7 @@ public class UserController {
     session.removeAttribute("user");
     session.removeAttribute("teaProject");
     session.removeAttribute("stuProject");
-    return "redirect:/";
+    return "redirect:/login";
   }
 
   @ResponseBody

@@ -29,17 +29,17 @@
     <div class="row">
       <!-- 已提交的课题 -->
       <div class="col-md-offset-1 col-md-9 common view">
-        <p class="title">公告
-          <a class="pull-right view-publish" th:if="${session.user.role == 'admin'}"
-             href="/bulletin/publish">发布公告</a>
-        </p>
+        <p class="title">公告</p>
+        <a class="pull-right view-publish btn btn-primary" th:if="${session.user.role == 'admin'}"
+           href="/bulletin/publish">发布公告</a>
+
 
         <hr>
         <ul class="list-group">
           <li class="list-group-item" th:each="bulletin : ${pagination.data}">
-            <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}">毕设开始了</a>
+            <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}"></a>
             <span class="view-time">
-              <span th:text="${bulletin.gmtModified}">2020-11-11</span>&nbsp;&nbsp;
+              <span th:text="${bulletin.gmtModified}"></span>&nbsp;&nbsp;
               <span th:if="${session.user.role == 'admin'}">
                 <a th:href="@{'/bulletin/delete/'+${bulletin.id}}">删除</a>&nbsp;/&nbsp;
                 <a th:href="@{'/bulletin/modify/'+${bulletin.id}}">修改</a>

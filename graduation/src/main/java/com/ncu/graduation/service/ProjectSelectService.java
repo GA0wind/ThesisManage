@@ -82,7 +82,7 @@ public class ProjectSelectService {
     List<ProjectApply> projectApplys = null;
     //map对应no, 姓名
     //如果是老师  查找学生申报的课题
-    if (UserRoleEnum.TEACHER.getRole().equals(user.getRole())) {
+    if (UserRoleEnum.TEACHER.getRole().equals(user.getRole()) || UserRoleEnum.ADMIN.getRole().equals(user.getRole()) || UserRoleEnum.DIRECTOR.getRole().equals(user.getRole())) {
       String reg = "[0-9]{10}";
       PageMethod.startPage(page, size);
       projectApplys = projectApplyExtMapper

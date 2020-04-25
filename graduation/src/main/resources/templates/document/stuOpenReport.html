@@ -53,9 +53,9 @@
 
     //获取开题报告记录
     function getOpenReportRecord(e) {
-      var openNo = $(e).attr('data-openNo');
+      var pno = $(e).attr('data-pno');
       $.ajax({
-        url: '/student/openReport/record?openNo=' + openNo,
+        url: '/student/openReport/record?pno=' + pno,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
@@ -74,7 +74,7 @@
                   + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
                   isPass +
                   "<td>" + data.trialGrade + "</td>" +
-                  "<td>" + data.trialComment + "</td>" +
+                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -177,16 +177,16 @@
 
 
           </dl>
-          <button th:if="${stuOpenReport.document} == null" type="button" class="btn btn-primary"
+          <a th:if="${stuOpenReport.document} == null and ${session.user.role} == 'student'" type="button" class="btn btn-primary"
                   onclick="showOpenReportModel(0)">提交
-          </button>
-          <button
-              th:if="${stuOpenReport.document} != null"
+          </a>
+          <a
+              th:if="${stuOpenReport.document} != null and ${session.user.role} == 'student'" th:classappend="${stuOpenReport.document.modifiable} == 1 ? '':'disabled'"
               type="button" class="btn btn-primary"
               onclick="showOpenReportModel(1)">重新提交
-          </button>
+          </a>
           <button th:if="${stuOpenReport.document} != null" type="button" class="btn btn-primary"
-                  th:data-openNo="${stuOpenReport.document.openNo}"
+                  th:data-pno="${stuOpenReport.document.pno}"
                   onclick="getOpenReportRecord(this)">查看历史审核
           </button>
         </div>
@@ -213,8 +213,8 @@
           <form id="openReportForm" class="form-inline form" action="/student/openReport/submit"
                 method="post"
                 enctype="multipart/form-data">
-            <input type="text" class="hide" id="project-dno" name="dno"
-                   th:value="${stuOpenReport.document.openNo}">
+            <input type="text" class="hide" id="document-id" name="id"
+                   th:if="${stuOpenReport.document}" th:value="${stuOpenReport.document.id}">
             <input type="text" class="hide" id="openReport-oldFile" name="oldFile">
             <div class="row">
               <div class="col-md-12">

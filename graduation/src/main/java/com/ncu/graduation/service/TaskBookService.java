@@ -73,30 +73,36 @@ public class TaskBookService {
     return teaProjectDocumentVOS;
   }
 
+  /**
+   * 提交任务书
+   * @param user
+   * @param file
+   * @param id
+   * @param pno
+   */
   @Transactional
-  public void submitTaskBook(UserVO user ,MultipartFile file, String dno, String pno) {
+  public void submitTaskBook(UserVO user ,MultipartFile file, String id, String pno) {
     String filePath = FileSave.fileSave(file, FileTypeEnum.TASK_BOOK);
     TaskBook taskBook = new TaskBook();
     //判断是新增还是修改
-    if (StringUtils.isBlank(dno)){
-      taskBook.setTaskNo(UUID.randomUUID().toString().replaceAll("-", ""));
+    if (StringUtils.isBlank(id)){
       taskBook.setGmtCreate(new Date());
       taskBook.setGmtModified(taskBook.getGmtCreate());
     }else{
-      taskBook.setTaskNo(dno);
+      taskBook.setId(Long.parseLong(id));
       taskBook.setGmtModified(new Date());
     }
     taskBook.setPno(pno);
     taskBook.setFilePath(filePath);
     taskBook.setSchoolYear(user.getSchoolYear());
-    if (StringUtils.isBlank(dno)) {
+    if (StringUtils.isBlank(id)) {
       int result = taskBookMapper.insertSelective(taskBook);
       if (result != 1) {
         throw new CommonException(EmCommonError.UNKNOWN_ERROR);
       }
     }else{
       TaskBookExample taskBookExample = new TaskBookExample();
-      taskBookExample.createCriteria().andTaskNoEqualTo(dno);
+      taskBookExample.createCriteria().andIdEqualTo(Long.parseLong(id));
       int result = taskBookMapper.updateByExample(taskBook, taskBookExample);
       if (result != 1) {
         throw new CommonException(EmCommonError.UNKNOWN_ERROR);
@@ -105,6 +111,11 @@ public class TaskBookService {
 
   }
 
+  /**
+   * 获取学生任务书
+   * @param project
+   * @return
+   */
   public StuProjectDocumentVO<TaskBook> getStuTaskBook(ProjectApply project) {
     TaskBookExample taskBookExample = new TaskBookExample();
     taskBookExample.createCriteria().andPnoEqualTo(project.getPno());

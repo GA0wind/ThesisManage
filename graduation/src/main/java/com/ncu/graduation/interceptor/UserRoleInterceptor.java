@@ -36,7 +36,7 @@ public class UserRoleInterceptor implements HandlerInterceptor {
     if (user.getRole().equals(UserRoleEnum.TEACHER.getRole())) {
       if (Pattern.matches(admin, url)) {
         try {
-          response.sendRedirect(request.getContextPath() + "/");
+          response.sendRedirect(request.getContextPath() + "/login");
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class UserRoleInterceptor implements HandlerInterceptor {
     if (user.getRole().equals(UserRoleEnum.ADMIN.getRole())) {
       if (Pattern.matches(teacher, url) || Pattern.matches(student, url)) {
         try {
-          response.sendRedirect(request.getContextPath() + "/");
+          response.sendRedirect(request.getContextPath() + "/login");
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class UserRoleInterceptor implements HandlerInterceptor {
     if (user.getRole().equals(UserRoleEnum.STUDENT.getRole())) {
       if (Pattern.matches(teacher, url) || Pattern.matches(admin, url)) {
         try {
-          response.sendRedirect(request.getContextPath() + "/");
+          response.sendRedirect(request.getContextPath() + "/login");
           return false;
         } catch (IOException e) {
           e.printStackTrace();
@@ -75,7 +75,7 @@ public class UserRoleInterceptor implements HandlerInterceptor {
     if (user.getRole().equals(UserRoleEnum.DIRECTOR.getRole())) {
       if (Pattern.matches(admin, url)) {
         try {
-          response.sendRedirect(request.getContextPath() + "/");
+          response.sendRedirect(request.getContextPath() + "/login");
         } catch (IOException e) {
           e.printStackTrace();
         }

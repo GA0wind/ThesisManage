@@ -38,11 +38,10 @@
 
     function getProject(e) {
       var pno = $(e).attr('data-pno');
-      var dno = $(e).attr('data-dno');
       var filePath = $(e).attr('data-filePath');
       var isBlind = $(e).attr('data-isBlind');
 
-      $("#dno").val(dno);
+      $("#pno").val(pno);
       $("#filePath").val(filePath);
       $("#isBlind").val(isBlind);
 
@@ -101,9 +100,9 @@
 
     //获取开题报告记录
     function getOpenReportRecord(e) {
-      var openNo = $(e).attr('data-openNo');
+      var pno = $(e).attr('data-pno');
       $.ajax({
-        url: '/student/openReport/record?openNo=' + openNo,
+        url: '/student/openReport/record?pno=' + pno,
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
@@ -119,10 +118,11 @@
               $("#openReportRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
-                  + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>"
+                  +
                   isPass +
                   "<td>" + data.trialGrade + "</td>" +
-                  "<td>" + data.trialComment + "</td>" +
+                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -154,6 +154,23 @@
             $("#openReportRecordTable").empty();
           })
     });
+
+    function setModifiable(e) {
+      var pno = $(e).attr("data-pno");
+      $.ajax({
+        url: '/teacher/openReport/modifiable?pno=' + pno,
+        success: function (data) {
+          if (data.code == 200) {
+            alert("设置成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        }
+      })
+    }
   </script>
 </head>
 
@@ -176,7 +193,8 @@
       <div class="col-md-7 common view">
 
         <p class="title">开题报告</p>
-        <p>* 提交时间为 <span th:text="${projectPlan.openReportTime}"></span></p>
+        <p>* 提交时间为 <span th:if="${projectPlan != null}"
+                         th:text="${projectPlan.openReportTime}"></span></p>
 
         <hr>
         <div class="table-responsive view">
@@ -188,7 +206,7 @@
               <th>开题报告</th>
               <th>文档操作</th>
               <th>审核结果</th>
-              <th>操作</th>
+              <th style="width: 250px;">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -207,6 +225,7 @@
                    th:href="@{/readOnline(filePath=${openReport.document.filePath},fileType='openReport')}">在线浏览</a>
                 <a th:href="@{/download(filePath=${openReport.document.filePath},fileType='openReport')}">下载</a>
               </td>
+              <td th:if="${openReport.document} == null">未提交</td>
 
               <!--              审核结果-->
               <td th:if="${openReport.document} == null">未提交</td>
@@ -223,20 +242,26 @@
                 已回拒
               </td>
               <td>
-                <button class="btn btn-link" th:if="${openReport.document} != null" th:data-pno="${openReport.pno}"
-                   th:data-dno="${openReport.document.openNo}"
+                <a class="btn-link" role="button"
+                   th:if="${openReport.document} != null and ${openReport.document.isPass} ==2"
+                   th:data-pno="${openReport.document.pno}"
                    th:data-isBlind="${isBlind}?1:0"
                    th:data-filePath="${openReport.document.filePath}"
                    th:data-blindGrade="${openReport.document.blindTrialGrade}"
                    th:data-blindComment="${openReport.document.blindTrialComment}"
-                   onclick="getProject(this)">审核</button>
-                <button class="btn btn-link" th:if="${isBlind} == null and ${openReport.document} != null "
+                   onclick="getProject(this)">审核</a>
+                <a class="btn-link" role="button"
+                   th:if="${isBlind} == null and ${openReport.document} != null "
                    onclick="getOpenReportRecord(this)"
-                   th:data-openNo="${openReport.document.openNo}">历史审核</button>
-                <button class="btn btn-link" th:if="${isBlind} == null and ${openReport.document} != null "
+                   th:data-pno="${openReport.document.pno}">历史审核</a>
+                <a class="btn-link" role="button" onclick="setModifiable(this)"
+                   th:if="${openReport.document} != null and ${isBlind} == null and ${openReport.document.modifiable} == 0"
+                   th:data-pno="${openReport.document.pno}">允许修改</a>
+                <a class="btn-link" role="button"
+                   th:if="${isBlind} == null and ${openReport.document} != null "
                    onclick="getBlindVerify(this)"
                    th:data-blindGrade="${openReport.document.blindTrialGrade}"
-                   th:data-blindComment="${openReport.document.blindTrialComment}">盲审结果</button>
+                   th:data-blindComment="${openReport.document.blindTrialComment}">盲审结果</a>
               </td>
             </tr>
             </tbody>
@@ -261,10 +286,11 @@
       <div class="modal-body">
 
         <div class="col-md-12 common">
-          <form id="openReportVerifyForm" class="form-inline form" action="/teacher/openReport/verify"
+          <form id="openReportVerifyForm" class="form-inline form"
+                action="/teacher/openReport/verify"
                 method="post"
                 enctype="multipart/form-data">
-            <input type="text" class="hide" id="dno" name="dno">
+            <input type="text" class="hide" id="pno" name="pno">
             <input type="text" class="hide" id="isBlind" name="isBlind" th:if="${isBlind}"
                    th:value="${isBlind}">
             <input type="text" class="hide" id="filePath" name="filePath">
@@ -297,7 +323,7 @@
 
             <div class="row" th:if="!${isBlind}">
               <div class="col-md-12">
-                <label>通过&nbsp;&nbsp;</label>
+                <label>通过(通过后默认不允许修改, 需指导老师手动允许)&nbsp;&nbsp;</label>
 
                 <select class="form-control" name="isPass">
                   <option value="1">通过</option>

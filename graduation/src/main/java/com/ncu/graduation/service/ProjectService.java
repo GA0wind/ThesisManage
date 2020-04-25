@@ -41,6 +41,7 @@ import com.ncu.graduation.scheduler.SchedulerAllJob;
 import com.ncu.graduation.util.FileSave;
 import com.ncu.graduation.vo.ProjectApplyVO;
 import com.ncu.graduation.vo.ProjectInfoVO;
+import com.ncu.graduation.vo.ProjectProgressVO;
 import com.ncu.graduation.vo.UserVO;
 import java.io.File;
 import java.io.IOException;
@@ -107,6 +108,7 @@ public class ProjectService {
     for (ProjectApply projectApply : projectApplies) {
       ProjectApplyVO projectApplyVO = new ProjectApplyVO();
       projectApplyVO.setPno(projectApply.getPno());
+      projectApplyVO.setType(projectApply.getType());
       projectApplyVO.setPname(projectApply.getPname());
       projectApplyVO.setIsPass(projectApply.getIsPass());
       projectApplyVOS.add(projectApplyVO);
@@ -145,7 +147,7 @@ public class ProjectService {
   }
 
   /**
-   * 申请或修改已申请课题
+   * 申请或修改课题
    */
   @Transactional
   public void applyOrUpdate(ProjectApplyDTO projectApplyDTO, UserVO user) {
@@ -226,15 +228,28 @@ public class ProjectService {
    * 获取需要我审核的课题
    */
   public PaginationDTO<ProjectApplyVO> getVerifyProject(Integer page, Integer size, UserVO user) {
-
-    PaginationDTO<ProjectApplyVO> paginationDTO = new PaginationDTO<>();
-    //分页
-    ProjectApplyExample projectApplyExample = new ProjectApplyExample();
-    projectApplyExample.createCriteria().andBlindTrialNoEqualTo(user.getAccountNo())
-        .andSchoolYearEqualTo(user.getSchoolYear());
-    PageMethod.startPage(page, size);
-    List<ProjectApply> projectApplies = projectApplyMapper
-        .selectByExample(projectApplyExample);
+    PaginationDTO<ProjectApplyVO> paginationDTO;
+    List<ProjectApply> projectApplies;
+    //如果是主任, 复审课题
+    if (UserRoleEnum.DIRECTOR.getRole().equals(user.getRole())) {
+      paginationDTO = new PaginationDTO<>();
+      //分页
+      ProjectApplyExample projectApplyExample = new ProjectApplyExample();
+      projectApplyExample.createCriteria().andTrialNoEqualTo(user.getAccountNo())
+          .andSchoolYearEqualTo(user.getSchoolYear());
+      PageMethod.startPage(page, size);
+      projectApplies = projectApplyMapper
+          .selectByExample(projectApplyExample);
+    } else {
+      paginationDTO = new PaginationDTO<>();
+      //分页
+      ProjectApplyExample projectApplyExample = new ProjectApplyExample();
+      projectApplyExample.createCriteria().andBlindTrialNoEqualTo(user.getAccountNo())
+          .andSchoolYearEqualTo(user.getSchoolYear()).andIsDeleteEqualTo((byte)0);
+      PageMethod.startPage(page, size);
+      projectApplies = projectApplyMapper
+          .selectByExample(projectApplyExample);
+    }
     PageInfo<ProjectApply> pageInfo = new PageInfo<>(projectApplies);
     paginationDTO.setPagination((int) pageInfo.getTotal(), page, size);
 
@@ -259,7 +274,7 @@ public class ProjectService {
    */
   public void verifyProject(VerifyDocumentDTO verifyDocumentDTO, UserVO user) {
     ProjectApply projectApply = new ProjectApply();
-    projectApply.setPno(verifyDocumentDTO.getDno());
+    projectApply.setPno(verifyDocumentDTO.getPno());
     projectApply.setIsPass(verifyDocumentDTO.getIsPass());
     ProjectApplyExample projectApplyExample = new ProjectApplyExample();
 
@@ -278,6 +293,31 @@ public class ProjectService {
     int result = projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
     if (result != 1) {
       throw new CommonException(EmCommonError.UNKNOWN_ERROR);
+    }
+  }
+
+  /**
+   * 复审
+   */
+  public void review(String pno, UserVO user) {
+    //找到当前学年的学院主任
+    TeacherExample teacherExample = new TeacherExample();
+    teacherExample.createCriteria().andRoleEqualTo("director").andCollegeEqualTo(user.getCollege())
+        .andSchoolYearLike("%" + user.getSchoolYear() + "%");
+    List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
+    if (teachers == null || teachers.isEmpty()) {
+      throw new CommonException(EmProjectError.NOT_EXIST_DIRECTOR);
+    }
+    //修改数据
+    ProjectApply projectApply = new ProjectApply();
+    projectApply.setPno(pno);
+    projectApply.setTrialNo(teachers.get(0).getTno());
+    projectApply.setIsPass((byte)2);
+    ProjectApplyExample projectApplyExample = new ProjectApplyExample();
+    projectApplyExample.createCriteria().andPnoEqualTo(pno);
+    int i = projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
+    if (i != 1) {
+      throw new CommonException(EmCommonError.UNKNOWN_ERROR, "复审申请失败, 请检查参数");
     }
   }
 
@@ -379,8 +419,6 @@ public class ProjectService {
 
   /**
    * 管理员获取所有课题计划
-   * @return
-   *
    */
   public List<ProjectPlan> getProjectPlans() {
     ProjectPlanExample projectPlanExample = new ProjectPlanExample();
@@ -389,6 +427,9 @@ public class ProjectService {
     return projectPlans;
   }
 
+  /**
+   * 管理员获取当前学年课题计划
+   */
   public ProjectPlan getProjectPlan(String schoolYear) {
     ProjectPlanExample projectPlanExample = new ProjectPlanExample();
     projectPlanExample.createCriteria().andSchoolYearEqualTo(schoolYear);
@@ -457,24 +498,42 @@ public class ProjectService {
   }
 
   /**
-   * 复审
+   * 获取课题进度
+   * @param pno
+   * @return
    */
-  public void review(String pno, UserVO user) {
-    TeacherExample teacherExample = new TeacherExample();
-    teacherExample.createCriteria().andRoleEqualTo("director")
-        .andSchoolYearLike("%" + user.getSchoolYear() + "%");
-    List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
-    if (teachers == null || teachers.isEmpty()) {
-      throw new CommonException(EmProjectError.NOT_EXIST_DIRECTOR);
+  public ProjectProgressVO getProjectProgress(String pno) {
+    ProjectSelectResultExample projectSelectResultExample = new ProjectSelectResultExample();
+    projectSelectResultExample.createCriteria().andPnoEqualTo(pno);
+    List<ProjectSelectResult> selectResults = projectSelectResultMapper
+        .selectByExample(projectSelectResultExample);
+    TaskBookExample taskBookExample = new TaskBookExample();
+    taskBookExample.createCriteria().andPnoEqualTo(pno);
+    List<TaskBook> taskBooks = taskBookMapper.selectByExample(taskBookExample);
+    OpenReportExample openReportExample = new OpenReportExample();
+    List<OpenReport> openReports = openReportMapper.selectByExample(openReportExample);
+    ForeignLiteratureExample foreignLiteratureExample = new ForeignLiteratureExample();
+    foreignLiteratureExample.createCriteria().andPnoEqualTo(pno);
+    List<ForeignLiterature> foreignLiteratures = foreignLiteratureMapper
+        .selectByExample(foreignLiteratureExample);
+    ThesisExample thesisExample = new ThesisExample();
+    thesisExample.createCriteria().andPnoEqualTo(pno);
+    List<Thesis> theses = thesisMapper.selectByExample(thesisExample);
+    ProjectProgressVO projectProgressVO = new ProjectProgressVO();
+    projectProgressVO.setSelectResult(selectResults.get(0));
+
+    if (taskBooks != null && !taskBooks.isEmpty()){
+      projectProgressVO.setTaskBook(taskBooks.get(0));
     }
-    ProjectApply projectApply = new ProjectApply();
-    projectApply.setPno(pno);
-    projectApply.setTrialNo(teachers.get(0).getTno());
-    ProjectApplyExample projectApplyExample = new ProjectApplyExample();
-    projectApplyExample.createCriteria().andPnoEqualTo(pno);
-    int i = projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
-    if (i != 1) {
-      throw new CommonException(EmCommonError.UNKNOWN_ERROR, "复审申请失败, 请检查参数");
+    if (openReports != null && !openReports.isEmpty()){
+      projectProgressVO.setOpenReport(openReports.get(0));
     }
+    if (foreignLiteratures != null && !foreignLiteratures.isEmpty()){
+      projectProgressVO.setForeignLiterature(foreignLiteratures.get(0));
+    }
+    if (theses != null && !theses.isEmpty()){
+      projectProgressVO.setThesis(theses.get(0));
+    }
+    return projectProgressVO;
   }
 }

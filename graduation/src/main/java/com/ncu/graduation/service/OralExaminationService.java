@@ -6,6 +6,7 @@ import com.ncu.graduation.dto.OralExamSearchDTP;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmCommonError;
+import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.mapper.ExamGroupMapper;
 import com.ncu.graduation.mapper.OralExamScoreMapper;
@@ -184,6 +185,14 @@ public class OralExaminationService {
    * 老师给学生打分
    */
   public void scoreToStu(Integer score, String sno, UserVO user) {
+    //判断该学生是不是属于用户同一答辩小组
+    StudentExample studentExample = new StudentExample();
+    studentExample.createCriteria().andSnoEqualTo(sno);
+    List<Student> students = studentMapper.selectByExample(studentExample);
+    if (!students.get(0).getGroupNum().equals(user.getGroup())){
+      throw new CommonException(EmProjectError.USER_NOT_HAVE_THE_PROJECT);
+    }
+
     OralExamScore oralExamScore = new OralExamScore();
     oralExamScore.setTno(user.getAccountNo());
     oralExamScore.setSno(sno);
@@ -249,11 +258,12 @@ public class OralExaminationService {
     } else {
       scoreVO.setScore(BigDecimal.valueOf(stuThesis.getDocument().getTrialGrade()));
     }
-    if (stuThesis.getDocument().getTrialGrade() == null) {
+    if (stuThesis.getDocument().getBlindTrialGrade() == null) {
       scoreVO.setBlindScore(BigDecimal.valueOf(0));
     } else {
       scoreVO.setBlindScore(BigDecimal.valueOf(stuThesis.getDocument().getBlindTrialGrade()));
     }
+    //获取成绩组成
     ProjectPlanExample projectPlanExample = new ProjectPlanExample();
     projectPlanExample.createCriteria().andSchoolYearEqualTo(user.getSchoolYear());
     List<ProjectPlan> projectPlans = projectPlanMapper.selectByExample(projectPlanExample);

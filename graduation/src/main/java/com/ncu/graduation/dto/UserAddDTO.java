@@ -25,6 +25,7 @@ public class UserAddDTO {
   private String role;
   private Byte isModify;
   private Byte leadStudentNum;
+  private String title;
   private String major;
   private String groupNum;
   private String gradeClass;

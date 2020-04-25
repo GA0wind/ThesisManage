@@ -33,9 +33,9 @@
                 result = "<td class='text-warning'>待定</td>";
                 operate = "<button data-selectNo='" + data.selectNo + "' data-selectName='" +
                     data.selectName + "' data-pno='" + pno + "' data-pname='" + pname
-                    + "' onclick=confirmSelect(this) class='btn btn-link'>同意</button> / " +
+                    + "' onclick=confirmSelect(this) class='btn-link'>同意</button> / " +
                     "<button data-selectNo='" + data.selectNo + "' data-pno='" + pno
-                    + "' onclick=refuseSelect(this) class='btn btn-link'>回拒</button> / ";
+                    + "' onclick=refuseSelect(this) class='btn-link'>回拒</button>";
               } else if (data.result == 0) {
                 result = "<td class='text-danger'>回拒</td>";
               }
@@ -142,8 +142,8 @@
                 <td th:if="${projectApply.isSelect} == 2" class="text-warning">待定</td>
                 <td th:if="${projectApply.isSelect} == 0" class="text-info">待选</td>
                 <td>
-                  <button th:data-pno="${projectApply.pno}" th:data-pname="${projectApply.pname}" class="btn btn-link"
-                     onclick=getprojectSelect(this)>查看待选详情</button>
+                  <a th:data-pno="${projectApply.pno}" th:data-pname="${projectApply.pname}" class="btn-link" role="button"
+                     onclick=getprojectSelect(this)>查看待选详情</a>
                 </td>
               </tr>
               </tbody>

@@ -107,3 +107,5 @@ w
 Ggraduation/src/main/java/com/ncu/graduation/service/ProjectService.java,c\5\c552fbfdb2fcf302ff2ecbe2ce87da4549756d30
 q
 Agraduation/src/main/java/com/ncu/graduation/vo/ProjectInfoVO.java,8\2\825107e2e25b986f2757f176a3e791e1a4f805cc
+t
+Dgraduation/src/main/java/com/ncu/graduation/vo/ProjectAllInfoVO.java,2\8\28d82c1f618493a3a2504330b2ef10ab3c1dd125

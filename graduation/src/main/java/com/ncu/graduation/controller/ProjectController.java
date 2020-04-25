@@ -4,6 +4,9 @@ import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ProjectApplyDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.enums.CollegeEnum;
+import com.ncu.graduation.enums.ProjectTypeEnum;
+import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
@@ -11,6 +14,7 @@ import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.vo.ProjectApplyVO;
 import com.ncu.graduation.vo.ProjectInfoVO;
+import com.ncu.graduation.vo.ProjectProgressVO;
 import com.ncu.graduation.vo.UserVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,6 +58,8 @@ public class ProjectController {
     model.addAttribute("myProject", myApplyProject);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);
+    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("projectTypeList", ProjectTypeEnum.getProjectTypeList());
     return "/project/myProject";
   }
 
@@ -74,11 +80,13 @@ public class ProjectController {
    */
   @PostMapping("/project/apply")
   @ResponseBody
-  public ResultDTO applyProject(@Valid ProjectApplyDTO projectApplyDTO,
-      HttpSession session) {
+  public ResultDTO applyProject(HttpSession session,@Valid ProjectApplyDTO projectApplyDTO) {
     UserVO user = (UserVO) session.getAttribute("user");
     if (user == null) {
       throw new CommonException(EmUserOperatorError.USER_NOT_LOGIN);
+    }
+    if (!UserRoleEnum.STUDENT.getRole().equals(user.getRole()) && !UserRoleEnum.TEACHER.getRole().equals(user.getRole())){
+      throw new CommonException(EmUserOperatorError.ROLE_CANNOT_DO_THIS);
     }
     projectService.applyOrUpdate(projectApplyDTO, user);
     return ResultDTO.okOf();
@@ -111,7 +119,7 @@ public class ProjectController {
   @ResponseBody
   public ResultDTO reviewProject(@PathVariable("pno") String pno, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    projectService.review(pno,user);
+    projectService.review(pno, user);
     return ResultDTO.okOf();
   }
 
@@ -139,5 +147,17 @@ public class ProjectController {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
     projectService.verifyProject(verifyDocumentDTO, user);
     return ResultDTO.okOf();
+  }
+
+  /**
+   * 课题进度, 关于该毕设的所有信息
+   */
+
+  @GetMapping("/project/progress/{pno}")
+  public String getProjectAllInfo(@PathVariable("pno") String pno, HttpSession session,
+      Model model) {
+    ProjectProgressVO projectProgressVO = projectService.getProjectProgress(pno);
+    model.addAttribute("projectProgress",projectProgressVO);
+    return "project/projectProgress";
   }
 }
