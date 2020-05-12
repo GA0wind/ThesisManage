@@ -10,6 +10,7 @@ import com.ncu.graduation.enums.UserRoleEnum;
 
 import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmUserOperatorError;
+import com.ncu.graduation.model.College;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
@@ -23,7 +24,10 @@ import com.ncu.graduation.util.VerifyCode;
 import com.ncu.graduation.vo.ProjectPlanVO;
 import com.ncu.graduation.vo.ProjectProgressVO;
 import com.ncu.graduation.vo.UserVO;
-import java.time.LocalDate;
+import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -31,6 +35,7 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -71,7 +76,7 @@ public class UserController {
     if (UserRoleEnum.TEACHER.getRole().equals(user.getRole())) {
       Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
       List<ProjectSelectResult> selectResults = new ArrayList<>();
-      if (teaProject != null){
+      if (teaProject != null) {
         teaProject.forEach((k, l) -> {
           selectResults.add(l);
         });
@@ -81,7 +86,7 @@ public class UserController {
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       ProjectApply stuProject = projectService.getStuProject(user);
       ProjectProgressVO projectProgress = null;
-      if (stuProject != null){
+      if (stuProject != null) {
         projectProgress = projectService.getProjectProgress(stuProject.getPno());
       }
       model.addAttribute("projectProgress", projectProgress);
@@ -90,29 +95,31 @@ public class UserController {
     ProjectPlanVO projectPlanVO = new ProjectPlanVO();
     BeanUtils.copyProperties(projectPlan, projectPlanVO);
     //判断是否超时, 给前端判断展示
-    if (LocalDate.now()
-        .isAfter(LocalDate.parse(projectPlanVO.getProjectApplyTime().split(":")[1]))) {
-      projectPlanVO.setProjectApplyIsOver((byte)1);
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    if (LocalDateTime.now()
+        .isAfter(LocalDateTime.parse(projectPlanVO.getProjectApplyTime().split(",")[1], format))) {
+      projectPlanVO.setProjectApplyIsOver((byte) 1);
     }
-    if (LocalDate.now()
-        .isAfter(LocalDate.parse(projectPlanVO.getProjectSelectTime().split(":")[1]))) {
-      projectPlanVO.setProjectSelectIsOver((byte)1);
+    if (LocalDateTime.now()
+        .isAfter(LocalDateTime.parse(projectPlanVO.getProjectSelectTime().split(",")[1], format))) {
+      projectPlanVO.setProjectSelectIsOver((byte) 1);
     }
-    if (LocalDate.now()
-        .isAfter(LocalDate.parse(projectPlanVO.getTaskBookTime().split(":")[1]))) {
-      projectPlanVO.setTaskBookIsOver((byte)1);
+    if (LocalDateTime.now()
+        .isAfter(LocalDateTime.parse(projectPlanVO.getTaskBookTime().split(",")[1], format))) {
+      projectPlanVO.setTaskBookIsOver((byte) 1);
     }
-    if (LocalDate.now()
-        .isAfter(LocalDate.parse(projectPlanVO.getOpenReportTime().split(":")[1]))) {
-      projectPlanVO.setOpenReportIsOver((byte)1);
+    if (LocalDateTime.now()
+        .isAfter(LocalDateTime.parse(projectPlanVO.getOpenReportTime().split(",")[1], format))) {
+      projectPlanVO.setOpenReportIsOver((byte) 1);
     }
-    if (LocalDate.now()
-        .isAfter(LocalDate.parse(projectPlanVO.getForeignLiteratureTime().split(":")[1]))) {
-      projectPlanVO.setForeignLiteratureIsOver((byte)1);
+    if (LocalDateTime.now()
+        .isAfter(
+            LocalDateTime.parse(projectPlanVO.getForeignLiteratureTime().split(",")[1], format))) {
+      projectPlanVO.setForeignLiteratureIsOver((byte) 1);
     }
-    if (LocalDate.now()
-        .isAfter(LocalDate.parse(projectPlanVO.getThesisTime().split(":")[1]))) {
-      projectPlanVO.setThesisIsOver((byte)1);
+    if (LocalDateTime.now()
+        .isAfter(LocalDateTime.parse(projectPlanVO.getThesisTime().split(",")[1], format))) {
+      projectPlanVO.setThesisIsOver((byte) 1);
     }
     model.addAttribute("projectPlan", projectPlanVO);
     return "index";
@@ -132,10 +139,10 @@ public class UserController {
   public Object login(@Valid LoginDTO loginDTO,
       HttpServletRequest request) {
     String verifyCode = (String) request.getSession().getAttribute("code");
-//        if (!verifyCode.equals(loginDTO.getCode())){
-//            return ResultDTO.errorOf(EmUserOperatorError.PARAMETER_VALIDATION_ERROR.getErrCode(),"验证码不正确");
-//        }
-
+    if (!verifyCode.equals(loginDTO.getCode())) {
+      return ResultDTO
+          .errorOf(EmCommonError.PARAMETER_VALIDATION_ERROR.getErrCode(), "验证码不正确");
+    }
     UserVO userVO = new UserVO();
     if (UserRoleEnum.ADMIN.getRole().equals(loginDTO.getRole()) || UserRoleEnum.TEACHER.getRole()
         .equals(loginDTO.getRole())) {
@@ -155,7 +162,6 @@ public class UserController {
       request.getSession().setAttribute("user", userVO);
       projectService.getTeaProject(userVO);
       //判断是否已经在redis中, 如果是就更新存储时间, 不是就插入
-
     }
     if (UserRoleEnum.STUDENT.getRole().equals(loginDTO.getRole())) {
       Student student = (Student) userService.login(loginDTO);
@@ -204,6 +210,13 @@ public class UserController {
     return ResultDTO.okOf();
   }
 
+  /**
+   * 获取用户信息
+   * @param userNo
+   * @param role
+   * @param model
+   * @return
+   */
   @GetMapping("/user/info/{userNo}")
   public String getUserInfo(@PathVariable("userNo") String userNo,
       @RequestParam("role") String role, Model model) {
@@ -229,5 +242,25 @@ public class UserController {
     model.addAttribute("user", userVO);
 
     return "profile";
+  }
+
+  /**
+   * 获取学院信息
+   */
+  @ResponseBody
+  @GetMapping("/getCollege")
+  public ResultDTO getCollege(){
+    List<College> collegeList = userService.getCollege();
+    return ResultDTO.okOf(collegeList);
+  }
+
+  /**
+   * 获取对应学院专业信息
+   */
+  @ResponseBody
+  @GetMapping("/getMajor")
+  public ResultDTO getMajor(@RequestParam("parentNo") String parentNo){
+    List<College> collegeList = userService.getMajor(parentNo);
+    return ResultDTO.okOf(collegeList);
   }
 }

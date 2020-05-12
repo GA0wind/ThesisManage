@@ -10,21 +10,35 @@ import com.ncu.graduation.dto.UserSearchDTO;
 import com.ncu.graduation.enums.CollegeEnum;
 import com.ncu.graduation.enums.ProjectTypeEnum;
 import com.ncu.graduation.error.EmUserOperatorError;
+import com.ncu.graduation.model.College;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Student;
 import com.ncu.graduation.model.Teacher;
+import com.ncu.graduation.service.OralExaminationService;
 import com.ncu.graduation.service.ProjectSelectService;
 import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.service.UserService;
+import com.ncu.graduation.util.ExcelWriteOp;
+import com.ncu.graduation.vo.OralExamScoreVO;
 import com.ncu.graduation.vo.ProAndStuNumVO;
 import com.ncu.graduation.vo.ProjectSelectVO;
 import com.ncu.graduation.vo.UserVO;
+import com.sun.deploy.net.HttpResponse;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +71,9 @@ public class AdminController {
   @Autowired
   private ProjectSelectService projectSelectService;
 
+  @Autowired
+  private OralExaminationService oralExaminationService;
+
   /**
    * 学生列表
    */
@@ -65,11 +82,11 @@ public class AdminController {
       @RequestParam(name = "size", defaultValue = "10") Integer size, HttpSession session,
       Model model, UserSearchDTO userSearchDTO) {
     UserVO user = (UserVO) session.getAttribute("user");
-    model.addAttribute("search",userSearchDTO);
-    PaginationDTO<Student> paginationDTO = userService.stuList(page, size, user,userSearchDTO);
+    model.addAttribute("search", userSearchDTO);
+    PaginationDTO<Student> paginationDTO = userService.stuList(page, size, user, userSearchDTO);
     model.addAttribute("users", paginationDTO);
     model.addAttribute("role", "student");
-    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("collegeList", userService.getCollege());
     return "admin/userOp";
   }
 
@@ -81,7 +98,7 @@ public class AdminController {
   public ResultDTO getStu(@PathVariable String sno, Model model) {
     Student student = userService.getStu(sno);
     model.addAttribute("student", student);
-    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("collegeList", userService.getCollege());
     return ResultDTO.okOf(student);
   }
 
@@ -90,9 +107,9 @@ public class AdminController {
    */
   @ResponseBody
   @PostMapping("/admin/exlAddStu")
-  public ResultDTO addStuByExcel(@RequestParam("excel") MultipartFile excel,HttpSession session) {
+  public ResultDTO addStuByExcel(@RequestParam("excel") MultipartFile excel, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    userService.addStuByExcel(excel,user);
+    userService.addStuByExcel(excel, user);
     return ResultDTO.okOf();
   }
 
@@ -113,13 +130,13 @@ public class AdminController {
   @GetMapping("/admin/teaView")
   public String teaView(@RequestParam(name = "page", defaultValue = "1") Integer page,
       @RequestParam(name = "size", defaultValue = "10") Integer size, HttpSession session,
-      Model model,UserSearchDTO userSearchDTO) {
+      Model model, UserSearchDTO userSearchDTO) {
     UserVO user = (UserVO) session.getAttribute("user");
-    model.addAttribute("search",userSearchDTO);
-    PaginationDTO<Teacher> paginationDTO = userService.teaList(page, size, user,userSearchDTO);
+    model.addAttribute("search", userSearchDTO);
+    PaginationDTO<Teacher> paginationDTO = userService.teaList(page, size, user, userSearchDTO);
     model.addAttribute("users", paginationDTO);
     model.addAttribute("role", "teacher");
-    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("collegeList", userService.getCollege());
 
     return "admin/userOp";
   }
@@ -132,9 +149,9 @@ public class AdminController {
   public ResultDTO getTea(@PathVariable String tno, Model model) {
     Teacher teacher = userService.getTea(tno);
     model.addAttribute("teachers", teacher);
-    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("collegeList", userService.getCollege());
 
-    return  ResultDTO.okOf(teacher);
+    return ResultDTO.okOf(teacher);
   }
 
   /**
@@ -142,9 +159,9 @@ public class AdminController {
    */
   @ResponseBody
   @PostMapping("/admin/exlAddTea")
-  public ResultDTO addTeaByExcel(@RequestParam("excel") MultipartFile excel,HttpSession session) {
+  public ResultDTO addTeaByExcel(@RequestParam("excel") MultipartFile excel, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    userService.addTeaByExcel(excel,user);
+    userService.addTeaByExcel(excel, user);
     return ResultDTO.okOf();
   }
 
@@ -165,9 +182,9 @@ public class AdminController {
    */
   @ResponseBody
   @PostMapping("/admin/add")
-  public ResultDTO addOrUpdateUser(@Valid UserAddDTO userAddDTO,HttpSession session) {
+  public ResultDTO addOrUpdateUser(@Valid UserAddDTO userAddDTO, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
-    return userService.addOrUpdateUser(userAddDTO,user);
+    return userService.addOrUpdateUser(userAddDTO, user);
   }
 
 
@@ -180,9 +197,8 @@ public class AdminController {
     List<ProAndStuNumVO> stuAndProNum = projectSelectService
         .getStuAndProNum(user);
     model.addAttribute("stuAndProNum", stuAndProNum);
-    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("collegeList", userService.getCollege());
     model.addAttribute("projectTypeList", ProjectTypeEnum.getProjectTypeList());
-
     return "admin/projectOp";
   }
 
@@ -222,6 +238,7 @@ public class AdminController {
       model.addAttribute("newProjectPlan", projectPlans.get(0));
       projectPlans.remove(0);
     }
+    model.addAttribute("collegeList",userService.getCollege());
     model.addAttribute("projectPlans", projectPlans);
     return "admin/projectPlan";
   }
@@ -235,5 +252,43 @@ public class AdminController {
     List<ProjectSelectResult> undoneStu = projectService.getUndoneStu(user, type);
     model.addAttribute("undoneStu", undoneStu);
     return "admin/undoneStu";
+  }
+
+  @GetMapping("/admin/exportScoreToExl")
+  public ResultDTO exportScore(@RequestParam("college") String college,
+      @RequestParam("schoolYear") String schoolYear,
+      HttpServletResponse response) {
+    ProjectPlan projectPlan = projectService.getProjectPlan(schoolYear);
+    Workbook workbook = oralExaminationService.exportScore(college, projectPlan, schoolYear);
+    response.reset();
+    response.setContentType("application/octet-stream");
+    try {
+      response.setHeader("Content-Disposition",
+          "attachment;fileName=" + URLEncoder
+              .encode(schoolYear + "学年" + college + "学院学生成绩.xlsx", "utf8"));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    //输出流
+    OutputStream os = null;
+
+    try {
+      os = response.getOutputStream();
+      workbook.write(os);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (os != null) {
+          os.close();
+        }
+        if (workbook != null) {
+          workbook.close();
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+    return ResultDTO.okOf();
   }
 }

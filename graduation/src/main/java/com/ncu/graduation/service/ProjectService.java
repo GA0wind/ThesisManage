@@ -21,6 +21,7 @@ import com.ncu.graduation.mapper.ProjectSelectResultMapper;
 import com.ncu.graduation.mapper.TaskBookMapper;
 import com.ncu.graduation.mapper.TeacherMapper;
 import com.ncu.graduation.mapper.ThesisMapper;
+import com.ncu.graduation.model.College;
 import com.ncu.graduation.model.ForeignLiterature;
 import com.ncu.graduation.model.ForeignLiteratureExample;
 import com.ncu.graduation.model.OpenReport;
@@ -88,13 +89,14 @@ public class ProjectService {
   private ForeignLiteratureMapper foreignLiteratureMapper;
   @Autowired
   private ThesisMapper thesisMapper;
+  @Autowired
+  private UserService userService;
 
   /**
    * 获取我申请的课题
    */
   public PaginationDTO<ProjectApplyVO> getMyApplyProject(Integer page, Integer size, UserVO user) {
     PaginationDTO<ProjectApplyVO> paginationDTO = new PaginationDTO<>();
-
     ProjectApplyExample projectApplyExample = new ProjectApplyExample();
     projectApplyExample.createCriteria().andCreatorNoEqualTo(user.getAccountNo());
 
@@ -259,8 +261,10 @@ public class ProjectService {
       projectApplyVO.setPno(k.getPno());
       projectApplyVO.setPname(k.getPname());
       projectApplyVO.setIsPass(k.getIsPass());
-      projectApplyVO.setType(k.getType()
-      );
+      projectApplyVO.setType(k.getType());
+      projectApplyVO.setTrialGrade(k.getTrialGrade());
+      projectApplyVO.setBlindTrialGrade(k.getBlindTrialGrade());
+
       projectApplyVOS.add(projectApplyVO);
     });
 
@@ -494,6 +498,15 @@ public class ProjectService {
     selectResultExample.setOrderByClause("college desc");
     List<ProjectSelectResult> projectSelectResults = projectSelectResultMapper
         .selectByExample(selectResultExample);
+    List<College> collegeList = userService.getCollege();
+    //学院编号，学院名
+    Map<String,String> collegeMap = new HashMap<>();
+    collegeList.forEach(k->{
+      collegeMap.put(k.getCollegeNo(),k.getCollegeName());
+    });
+    projectSelectResults.forEach(k->{
+      k.setCollege(collegeMap.get(k.getCollege()));
+    });
     return projectSelectResults;
   }
 

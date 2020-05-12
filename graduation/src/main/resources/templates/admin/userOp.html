@@ -16,6 +16,7 @@
   <script src="/js/transition.min.js"></script>
 
   <script>
+    //清空数据回显遗留, 并展示框
     function addTea() {
       $("#tea-isModify").val(0);
       $("#tea-tno").val("");
@@ -31,6 +32,7 @@
       });
     }
 
+    //修改时的数据回显
     function getTea(e) {
       var tno = $(e).attr('data-tno');
       $("#tea-isModify").val(1);
@@ -76,6 +78,7 @@
       });
     }
 
+    //清空数据回显遗留, 并展示框
     function addStu() {
       $("#stu-isModify").val(0);
       $("#stu-sno").val("");
@@ -90,6 +93,7 @@
       });
     }
 
+    //修改时的数据回显
     function getStu(e) {
       var sno = $(e).attr('data-sno');
       $("#stu-isModify").val(1);
@@ -115,6 +119,7 @@
       })
     }
 
+    //修改学生提交
     function submitStu() {
       $('#modifyStuForm').ajaxSubmit({
         beforeSubmit: function () {
@@ -215,6 +220,26 @@
     function changeVal(e) {
       $(e).attr("value", $(e).val());
     }
+
+    //获取学院专业
+    function getMajor(e) {
+      var collegeNo = $(e).val();
+      $.ajax({
+        url: '/getMajor?parentNo=' + collegeNo,
+        dataType: 'json',
+        success: function (data) {
+          if (data.code == 200) {
+            $("#stu-major").empty();
+            $.each(data.data, function (i, data) {
+              $("#stu-major").append(
+                  "<option value=" + data.collegeNo + ">" + data.collegeName + "</option>");
+            });
+          } else {
+            alert(data.message);
+          }
+        },
+      })
+    }
   </script>
 </head>
 
@@ -302,7 +327,7 @@
 
                 <td>
                   <a class="btn-link" onclick="getTea(this)" role="button"
-                          th:data-tno="${teacher.tno}">修改
+                     th:data-tno="${teacher.tno}">修改
                   </a>
                 </td>
               </tr>
@@ -318,7 +343,7 @@
                 <td th:text="${student.groupNum}"></td>
                 <td>
                   <a class="btn-link" onclick="getStu(this)" role="button"
-                          th:data-sno="${student.sno}">修改
+                     th:data-sno="${student.sno}">修改
                   </a>
                 </td>
               </tr>
@@ -331,17 +356,17 @@
               首页
             </a>&nbsp;&nbsp;
             <a th:classappend="${users.page}>1?'':'disabled'" onclick="getUserList(this)"
-                    th:data-page="${users.page}-1" class="btn btn-link more"role="button">上一页
+               th:data-page="${users.page}-1" class="btn btn-link more" role="button">上一页
             </a>&nbsp;&nbsp;
             <input class="pagination-num" id="page" type="text" th:value="${users.page}"
                    size="2" name="page"
                    onmousedown="if(event.keyCode==13){getUserList()}">&nbsp;&nbsp;
             <a th:classappend="${users.page} < ${users.totalPage} ?'':'disabled'"
                onclick="getUserList(this)" th:data-page="${users.page}+1"
-                    class="btn btn-link more"role="button">下一页
+               class="btn btn-link more" role="button">下一页
             </a>&nbsp;&nbsp;
             <a onclick="getUserList(this)" th:data-page="${users.totalPage}"
-                    class="btn-link more"role="button">尾页
+               class="btn-link more" role="button">尾页
             </a>&nbsp;&nbsp;
           </div>
           <div class="pull-right">
@@ -407,7 +432,7 @@
               <div class="col-md-12">
                 <label>学院&nbsp;&nbsp;</label>
                 <select id="tea-college" class="form-control" name="college">
-                  <option th:each="college:${collegeList}" th:value="${college.collegeName}"
+                  <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
                           th:text="${college.collegeName}"></option>
                 </select>
               </div>
@@ -415,7 +440,6 @@
 
             <div class="row">
               <div class="col-md-12">
-                <label>角色&nbsp;&nbsp;</label>
                 <select class="form-control" id="tea-role" name="role">
                   <option value="admin">管理员</option>
                   <option value="teacher">指导老师</option>
@@ -481,7 +505,7 @@
             <input type="text" class="hide" id="role" name="role" value="student">
             <div class="row">
               <div class="col-md-12">
-                <label for="stu-sno">工号&nbsp;&nbsp;</label>
+                <label for="stu-sno">学号&nbsp;&nbsp;</label>
                 <input type="text" class="form-control" id="stu-sno" name="userNo">
               </div>
             </div>
@@ -501,8 +525,9 @@
             <div class="row">
               <div class="col-md-12">
                 <label>学院&nbsp;&nbsp;</label>
-                <select id="stu-college" class="form-control" name="college">
-                  <option th:each="college:${collegeList}" th:value="${college.collegeName}"
+                <select id="stu-college" class="form-control" name="college"
+                        onchange="getMajor(this)">
+                  <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
                           th:text="${college.collegeName}"></option>
                 </select>
               </div>
@@ -510,7 +535,9 @@
             <div class="row">
               <div class="col-md-12">
                 <label>专业&nbsp;&nbsp;</label>
-                <input type="text" class="form-control" id="stu-major" name="major">
+                <select id="stu-major" class="form-control" name="major">
+
+                </select>
               </div>
             </div>
             <div class="row">
@@ -557,9 +584,10 @@
               <div class="col-md-12">
                 <label for="user-excel">excel文件&nbsp;&nbsp;</label>
                 <input type="file" class="form-control" id="user-excel" name="excel">
-                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 密码 姓名 学院 角色 职称 指导人数
+                <p th:if="${role} == 'teacher'">*excel表格从左到右列对应为 工号 密码 姓名 学院编号 角色 职称 指导人数
                   (角色为admin或director或teacher) (第一行为列名不存数据)</p>
-                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 密码 姓名 学院 专业 班级(第一行为列名不存数据) </p>
+                <p th:if="${role} == 'student'">*excel表格从左到右列对应为 学号 密码 姓名 学院编号 专业
+                  班级(第一行为列名不存数据) </p>
               </div>
             </div>
           </form>
@@ -593,7 +621,7 @@
                 <label for="group-excel">excel文件&nbsp;&nbsp;</label>
                 <input type="file" class="form-control" id="group-excel" name="excel">
                 <p th:if="${role} == 'teacher'"> *excel表格从左到右列对应为 工号 组号 组内角色 (角色为member或leader)
-                  学院(第一行为列名不存数据)</p>
+                  学院编号 (第一行为列名不存数据)</p>
                 <p th:if="${role} == 'student'"> *excel表格从左到右列对应为 学号 组号 (第一行为列名不存数据)</p>
               </div>
             </div>

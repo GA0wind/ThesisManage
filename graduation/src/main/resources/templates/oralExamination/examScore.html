@@ -31,50 +31,84 @@
     <div th:insert="leftMenu::leftMenuOralExam">
 
     </div>
-    <!-- 学生成绩 -->
-    <div class="row">
-      <div class="col-md-7 common view">
+    <div class="col-md-7">
 
-        <p class="title">我的成绩</p>
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">课题信息</p>
+          <hr>
+          <dl class="dl-horizontal">
+            <dt>课题名：</dt>
+            <dd>
+              <input class="form-control" style="margin-bottom: 5px" type="text"
+                     th:placeholder="${stuProject.pname}" readonly>
+            </dd>
+            <dt>课题内容：</dt>
+            <dd>
+            <textarea class="form-control" th:placeholder="${stuProject.content}"
+                      rows="3" readonly></textarea>
+            </dd>
+            <dt>课题类型：</dt>
+            <dd th:text="${stuProject.type}">
 
-        <hr>
-        <div class="table-responsive view">
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <th>答辩小组老师</th>
-              <th>答辩分数</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="score:${examScore.scores}">
-              <td th:text="${score.tname}"></td>
-              <td th:text="${score.score}"></td>
-            </tr>
-            </tbody>
-          </table>
+            </dd>
+            <dt>课题文件：</dt>
+            <dd>
+              <p>
+                <a th:href="@{/download(filePath=${stuProject.filePath},fileType='project')}"><span
+                    th:text="${#strings.arraySplit(stuProject.filePath,'#')[1]}"></span></a>
+                &nbsp;&nbsp;
+                <a th:href="@{/readOnline(filePath=${stuProject.filePath},fileType='project')}">在线浏览</a>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
 
-          <table class="table table-bordered">
-            <tbody>
-            <tr>
-              <td>答辩得分(平均分)</td>
-              <td>论文得分</td>
-              <td>论文盲审得分</td>
-              <td>总分</td>
-            </tr>
-            <tr>
-              <td th:text="${examScore.avg}"></td>
-              <td th:text="${examScore.score}"></td>
-              <td th:text="${examScore.blindScore}"></td>
-              <td th:text="${examScore.resultScore}"></td>
-            </tr>
-            </tbody>
-          </table>
+      <!-- 学生成绩 -->
+      <div class="row">
+        <div class="col-md-12 common view">
 
+          <p class="title">我的成绩</p>
+
+          <hr>
+          <div class="table-responsive view">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th>答辩小组老师</th>
+                <th>答辩分数</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="score:${examScore.scores}">
+                <td th:text="${score.tname}"></td>
+                <td th:text="${score.score}"></td>
+              </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-bordered">
+              <tbody>
+              <tr>
+                <td>答辩得分(平均分)</td>
+                <td>论文得分</td>
+                <td>论文盲审得分</td>
+                <td>总分</td>
+              </tr>
+              <tr>
+                <td th:text="${examScore.avg}"></td>
+                <td th:text="${examScore.score}"></td>
+                <td th:text="${examScore.blindScore}"></td>
+                <td th:text="${examScore.resultScore}"></td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
         </div>
       </div>
     </div>
-
 
   </div>
 </div>

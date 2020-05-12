@@ -46,22 +46,25 @@
             $("#project-pname").val(data.data.pname + "");
             $("#project-content").val(data.data.content + "");
             $("#project-type").val(data.data.type + "");
-            if (data.data.blindTrialGrade != null) {
+            if (data.data.blindTrialGrade != null) {   //判断是否已经盲审
               $("#blindVerify-grade").val(data.data.blindTrialGrade + "");
               $("#blindVerify-comment").val(data.data.blindTrialComment + "");
               $("#blindVerify-grade").attr('readonly', '');
               $("#blindVerify-comment").attr('readonly', '');
-              if (data.data.trialGrade != null) {
-                $("#verify-grade").val(data.data.trialGrade + "");
-                $("#verify-comment").val(data.data.trialComment + "");
-              }
+              $("#verifySubmit").remove();
+            }
+            if (data.data.trialGrade != null) {    //判断主任是否已经审了
+              $("#verify-grade").val(data.data.trialGrade + "");
+              $("#verify-comment").val(data.data.trialComment + "");
               $("#verify-grade").attr('readonly', '');
               $("#verify-comment").attr('readonly', '');
-              if (role == 'director') {
-                $("#verify-grade").removeAttr('readonly', '');
-                $("#verify-comment").removeAttr('readonly', '');
-              }
               $("#verifySubmit").remove();
+            } else if(role == 'teacher'){                 //主任没评的话不显示数据
+              $("#directorVerify").addClass('hidden');
+            }else if (role == 'director') {              //主任没评的话可以评分
+              $("#verify-grade").removeAttr('readonly', '');
+              $("#verify-comment").removeAttr('readonly', '');
+              $("#directorVerify").removeClass('hidden');
             }
 
             //如果文件有的话
@@ -143,16 +146,34 @@
               <tr th:each="project:${projects.data}">
                 <td th:text="${project.pname}"></td>
                 <td th:text="${project.type}">未知</td>
-                <td th:text="${project.isPass} == 2 ? '未审核':'已审核'"
-                    th:class="${project.isPass} == 2 ? 'text-warning':'text-success'"></td>
-                <td>
-                  <a th:if="${project.isPass} == 2" onclick="getProject(this)"
-                          class="btn-link" role="button"
-                          th:data-pno="${project.pno}" th:data-role="${session.user.role}">审核
+                <!--盲审判断-->
+                <td th:if="${session.user.role=='teacher'}"
+                    th:text="${project.blindTrialGrade} == null ? '未审核':'已审核'"
+                    th:class="${project.blindTrialGrade} == null ? 'text-warning':'text-success'"></td>
+                <!--主任复审判断-->
+                <td th:if="${session.user.role=='director'}"
+                    th:text="${project.tiralGrade} == null ? '未审核':'已审核'"
+                    th:class="${project.tiralGrade} == null ? 'text-warning':'text-success'"></td>
+                <!--盲审判断-->
+                <td th:if="${session.user.role=='teacher'}">
+                  <a th:if="${project.blindTrialGrade} == null" onclick="getProject(this)"
+                     class="btn-link" role="button"
+                     th:data-pno="${project.pno}" th:data-role="${session.user.role}">审核
                   </a>
-                  <a th:if="${project.isPass} != 2" onclick="getProject(this)"
-                          class="btn-link" role="button"
-                          th:data-pno="${project.pno}">查看
+                  <a th:if="${project.blindTrialGrade} != null" onclick="getProject(this)"
+                     class="btn-link" role="button"
+                     th:data-pno="${project.pno}">查看
+                  </a>
+                </td>
+                <!--主任复审判断-->
+                <td th:if="${session.user.role=='director'}">
+                  <a th:if="${project.tiralGrade} == null" onclick="getProject(this)"
+                     class="btn-link" role="button"
+                     th:data-pno="${project.pno}" th:data-role="${session.user.role}">审核
+                  </a>
+                  <a th:if="${project.tiralGrade} != null" onclick="getProject(this)"
+                     class="btn-link" role="button"
+                     th:data-pno="${project.pno}" th:data-role="${session.user.role}">查看
                   </a>
                 </td>
               </tr>
@@ -183,7 +204,7 @@
           <form id="projectApplyVerify" class="form-inline form" action="/project/verify"
                 method="post"
                 enctype="multipart/form-data">
-            <input type="text" class="hide" id="project-pno" name="dno">
+            <input type="text" class="hide" id="project-pno" name="pno">
             <div class="row">
               <div class="col-md-12">
                 <label for="project-pname">课题名称&nbsp;&nbsp;</label>
@@ -241,7 +262,6 @@
                   <input id="verify-grade" type="text" class="form-control" name="directorScore">
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-md-12">
                   <label>评语&nbsp;&nbsp;</label>

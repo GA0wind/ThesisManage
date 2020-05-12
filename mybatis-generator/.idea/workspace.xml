@@ -2,160 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f53fab-8b20-402e-adc6-3a774d105ac2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/GuidanceRecordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/enums/ProjectTypeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/GuidanceRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/GuidanceRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/GuidanceRecordExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Project.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/Md5Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectPlanVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectProgressVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project/projectProgress.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/8/2/825107e2e25b986f2757f176a3e791e1a4f805cc" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/8/2/825107e2e25b986f2757f176a3e791e1a4f805cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/a/7/a79f7be53cdc049367b3112b9aa96cb219c76053" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/a/7/a79f7be53cdc049367b3112b9aa96cb219c76053" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/c/5/c552fbfdb2fcf302ff2ecbe2ce87da4549756d30" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/c/5/c552fbfdb2fcf302ff2ecbe2ce87da4549756d30" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/CollegeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/College.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/ExcelWriteOp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/data/logs/springboot-user/druid-sql.log" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/data/logs/springboot-user/druid-sql.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/data/logs/springboot-user/springboot-user.log" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/data/logs/springboot-user/springboot-user.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/advice/CustomizeExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/advice/CustomizeExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/aop/OverTimeInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/aop/OverTimeInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/aop/RedisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/aop/RedisCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/BulletinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ForeignLiteratureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ForeignLiteratureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/OpenReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/OpenReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/GuidanceRecordController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/OralExaminationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/OralExaminationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ProjectSelectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/TaskBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/TaskBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ThesisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/ThesisController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/UserAddDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/UserAddDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/VerifyDocumentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/dto/VerifyDocumentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/enums/CollegeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/enums/CollegeEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmDocumentError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmDocumentError.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmProjectError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/error/EmUserOperatorError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/interceptor/UserInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/interceptor/UserInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/interceptor/UserRoleInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/interceptor/UserRoleInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/interceptor/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/interceptor/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ExamGroupMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ExamGroupMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ForeignLiteratureMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ForeignLiteratureMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ForeignRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ForeignRecordMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/OpenReportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/OpenReportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/OpenReportRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/OpenReportRecordMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/OralExamScoreMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/OralExamScoreMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/GuidanceRecordMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectApplyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectPlanMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectSelectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectSelectResultMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ProjectSelectResultMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/StudentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TaskBookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TaskBookMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/TeacherMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ThesisMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ThesisMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ThesisRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/mapper/ThesisRecordMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Bulletin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Bulletin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/BulletinExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/BulletinExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ExamGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ExamGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ExamGroupExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ExamGroupExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignLiterature.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignLiterature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignLiteratureExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignLiteratureExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignRecordExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ForeignRecordExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/MenuExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReportExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReportExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReportRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReportRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReportRecordExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OpenReportRecordExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OralExamScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OralExamScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OralExamScoreExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/OralExamScoreExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/GuidanceRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/GuidanceRecordExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/CollegeExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApply.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectApplyExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectPlanExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectResultExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ProjectSelectResultExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/StudentExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/StudentExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TaskBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TaskBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TaskBookExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TaskBookExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TeacherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/TeacherExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Thesis.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/Thesis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ThesisExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ThesisExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ThesisRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ThesisRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ThesisRecordExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/model/ThesisRecordExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/OpenReportBlindDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/OpenReportBlindDistribution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/ProjectApplyBlindDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/ProjectApplyBlindDistribution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/SchedulerAllJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/scheduler/SchedulerAllJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/BulletinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/BulletinService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ForeignLiteratureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ForeignLiteratureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/OpenReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/OpenReportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/OralExaminationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/OralExaminationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectSelectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectSelectService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ProjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/TaskBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/TaskBookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ThesisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/ThesisService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/ExcelOperate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/ExcelOperate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/StuAllVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/BulletinMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/BulletinMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ExamGroupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ExamGroupMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ForeignLiteratureMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ForeignLiteratureMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ForeignRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ForeignRecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/OpenReportMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/OpenReportMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/OpenReportRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/OpenReportRecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/OralExamScoreMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/OralExamScoreMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/BlindDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/BlindDistribution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/ExcelOperate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/util/ExcelReadOp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/OralExamScoreVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/OralExamScoreVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectApplyVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/java/com/ncu/graduation/vo/ProjectApplyVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/GuidanceRecordMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/CollegeMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectApplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectApplyMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectPlanMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectPlanMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectSelectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectSelectMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectSelectResultMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ProjectSelectResultMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TaskBookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TaskBookMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/TeacherMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ThesisMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ThesisMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ThesisRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/mapper/ThesisRecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/share.css" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/static/css/share.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/admin/projectOp.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/admin/projectOp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/admin/projectPlan.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/admin/projectPlan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/admin/userOp.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/admin/userOp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin/bulletin-publish.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin/bulletin-publish.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin/bulletinView.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/bulletin/bulletinView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/stuForeignLiterature.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/stuForeignLiterature.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/stuOpenReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/stuOpenReport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/stuThesis.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/stuThesis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaForeignLiterature.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaForeignLiterature.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaOpenReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaOpenReport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaTaskBook.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaTaskBook.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaThesis.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/document/teaThesis.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/error.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/head.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/leftMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/leftMenu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/oralExamination/examScore.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/oralExamination/examScore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/oralExamination/groupStu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/oralExamination/groupStu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project/myProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project/myProject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project/verifyProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/project/verifyProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/select/myProjectSelectState.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/select/myProjectSelectState.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/select/mySelectState.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/select/mySelectState.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graduation/src/main/resources/templates/select/project-select.html" beforeDir="false" afterPath="$PROJECT_DIR$/../graduation/src/main/resources/templates/select/project-select.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d63f65edd25f5c60196c99f6a7415a04cd704da3" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d63f65edd25f5c60196c99f6a7415a04cd704da3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/BulletinMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ExamGroupMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ExamGroupMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ForeignLiteratureMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ForeignLiteratureMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ForeignRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ForeignRecordMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/GuidanceRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/GuidanceRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/MenuMapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/OpenReportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/OpenReportMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/OpenReportRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/OpenReportRecordMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/OralExamScoreMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/OralExamScoreMapper.java" afterDir="false" />
@@ -176,8 +81,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ForeignLiteratureExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ForeignLiteratureExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ForeignRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ForeignRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ForeignRecordExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ForeignRecordExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/MenuExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/GuidanceRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/GuidanceRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/GuidanceRecordExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/GuidanceRecordExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/MenuExample.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/OpenReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/OpenReport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/OpenReportExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/OpenReportExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/OpenReportRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/OpenReportRecord.java" afterDir="false" />
@@ -207,7 +114,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ExamGroupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ExamGroupMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ForeignLiteratureMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ForeignLiteratureMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ForeignRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ForeignRecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/GuidanceRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GuidanceRecordMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OpenReportMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OpenReportMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OpenReportRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OpenReportRecordMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OralExamScoreMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OralExamScoreMapper.xml" afterDir="false" />
@@ -234,20 +142,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="53" column="85" selection-start-line="53" selection-start-column="85" selection-end-line="53" selection-end-column="85" />
+            <state relative-caret-position="653">
+              <caret line="52" column="70" selection-start-line="52" selection-start-column="70" selection-end-line="52" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -297,7 +196,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ThesisRecordExample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12198">
+            <state relative-caret-position="11818">
               <caret line="644" column="35" selection-start-line="644" selection-start-column="35" selection-end-line="644" selection-end-column="35" />
             </state>
           </provider>
@@ -362,9 +261,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="77" />
-    <option name="y" value="31" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="31" />
+    <option name="y" value="54" />
     <option name="width" value="1739" />
     <option name="height" value="1040" />
   </component>
@@ -374,6 +273,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -467,15 +368,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../graduation" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -555,16 +454,20 @@
       <workItem from="1587298961611" duration="826000" />
       <workItem from="1587351041669" duration="356000" />
       <workItem from="1587832981207" duration="161000" />
+      <workItem from="1588853335805" duration="167000" />
+      <workItem from="1588938172677" duration="1243000" />
+      <workItem from="1588953388071" duration="1488000" />
+      <workItem from="1589006456080" duration="77000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63378000" />
+    <option name="totallyTimeSpent" value="66353000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="31" y="54" width="1739" height="1040" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31449893" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36688504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
@@ -574,7 +477,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21517672" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21412803" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -591,7 +494,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.1705757" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.19058964" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="BPMNPalette" order="6" />
@@ -618,6 +521,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/CollegeExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/College.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="653">
+          <caret line="52" column="70" selection-start-line="52" selection-start-column="70" selection-end-line="52" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectSelectResultMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -650,7 +584,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/model/ThesisRecordExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12198">
+        <state relative-caret-position="11818">
           <caret line="644" column="35" selection-start-line="644" selection-start-column="35" selection-end-line="644" selection-end-column="35" />
         </state>
       </provider>
@@ -666,20 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ncu/graduation/mapper/ProjectSelectResultMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="53" column="85" selection-start-line="53" selection-start-column="85" selection-end-line="53" selection-end-column="85" />
         </state>
       </provider>
     </entry>

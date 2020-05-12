@@ -1,21 +1,21 @@
 
-n
-java:S1192×"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñıÿÿÿÿ8¸«é‘›.
 k
-java:S1192‘"NDefine a constant instead of duplicating this literal "trialComment" 12 times.(Ü¶“B8¸«é‘›.
-f
-java:S1192™"HDefine a constant instead of duplicating this literal "isPass" 10 times.(Â‚ò 8¸«é‘›.
-h
-java:S1192Ó"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©8¸«é‘›.
-j
-java:S1192Õ"LDefine a constant instead of duplicating this literal "trialGrade" 10 times.(™Æ”ö8¸«é‘›.
-h	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ8¸«é‘›.
-h	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºşÿÿÿÿ8¸«é‘›.
-b	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
-8¸«é‘›.
+java:S1192‘"NDefine a constant instead of duplicating this literal "trialComment" 12 times.(Ü¶“B8’ÒÁ¨Ÿ.
 Z
-java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s8¸«é‘›.
+java:S1155z">Use isEmpty() to check whether the collection is empty or not.(Á½¼s8’ÒÁ¨Ÿ.
+h	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ÔÁñÍøÿÿÿÿ8’ÒÁ¨Ÿ.
+j
+java:S1192Õ"LDefine a constant instead of duplicating this literal "trialGrade" 10 times.(™Æ”ö8’ÒÁ¨Ÿ.
+n
+java:S1192×"KDefine a constant instead of duplicating this literal "gmtCreate" 10 times.(Ç¤èñıÿÿÿÿ8’ÒÁ¨Ÿ.
+h	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(õÜ—ºşÿÿÿÿ8’ÒÁ¨Ÿ.
 a
-java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ8¸«é‘›.
+java:S1155¦">Use isEmpty() to check whether the collection is empty or not.(í´Õûüÿÿÿÿ8’ÒÁ¨Ÿ.
+b	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ìá¤
+8’ÒÁ¨Ÿ.
+f
+java:S1192™"HDefine a constant instead of duplicating this literal "isPass" 10 times.(Â‚ò 8’ÒÁ¨Ÿ.
+h
+java:S1192Ó"JDefine a constant instead of duplicating this literal "filePath" 12 times.(Œ£©8’ÒÁ¨Ÿ.
 ~
-java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì8¸«é‘›.
+java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(¶Õ¯ì8’ÒÁ¨Ÿ.

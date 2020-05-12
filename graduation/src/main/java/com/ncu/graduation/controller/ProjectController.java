@@ -12,6 +12,7 @@ import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.service.ProjectService;
+import com.ncu.graduation.service.UserService;
 import com.ncu.graduation.vo.ProjectApplyVO;
 import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.ProjectProgressVO;
@@ -43,6 +44,8 @@ public class ProjectController {
   @Autowired
   private ProjectService projectService;
 
+  @Autowired
+  private UserService userService;
 
   /**
    * 查看我申请的课题
@@ -58,7 +61,7 @@ public class ProjectController {
     model.addAttribute("myProject", myApplyProject);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);
-    model.addAttribute("collegeList", CollegeEnum.getCollegeList());
+    model.addAttribute("collegeList", userService.getCollege());
     model.addAttribute("projectTypeList", ProjectTypeEnum.getProjectTypeList());
     return "/project/myProject";
   }

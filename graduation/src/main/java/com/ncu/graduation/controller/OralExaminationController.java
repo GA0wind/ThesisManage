@@ -69,7 +69,7 @@ public class OralExaminationController {
       Model model, OralExamSearchDTP oralExamSearchDTP) {
     UserVO user = (UserVO) session.getAttribute("user");
     if (user.getGroup() == null){
-      throw new RedirectException(EmUserOperatorError.ORALEXAM_NOT_ARRANGE);
+      throw new RedirectException(EmProjectError.ORAL_EXAM_NOT_ARRANGE);
     }
     PaginationDTO<OralExamStuProjectVO> groupStus = oralExaminationService
         .getGroupStus(user, page, size,oralExamSearchDTP);
@@ -111,8 +111,12 @@ public class OralExaminationController {
     if (stuProject == null) {
       throw new RedirectException(EmProjectError.NO_PROJECT);
     }
+    if (user.getGroup() == null){
+      throw new RedirectException(EmProjectError.ORAL_EXAM_NOT_ARRANGE);
+    }
     scoreVO= oralExaminationService
         .getExamScore(user, stuProject);
+    model.addAttribute("stuProject",stuProject);
     model.addAttribute("examScore", scoreVO);
     return "oralExamination/examScore";
   }

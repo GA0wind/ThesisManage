@@ -80,5 +80,4 @@ public class OpenReportBlindDistribution implements Job {
       });
     }
   }
-
 }

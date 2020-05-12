@@ -164,7 +164,7 @@
               <div class="col-md-12">
                 <label for="project-college">所属学院&nbsp;&nbsp;</label>
                 <select id="project-college" class="form-control" name="college">
-                  <option th:each="college:${collegeList}" th:value="${college.collegeName}"
+                  <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
                           th:text="${college.collegeName}"></option>
                 </select>
               </div>

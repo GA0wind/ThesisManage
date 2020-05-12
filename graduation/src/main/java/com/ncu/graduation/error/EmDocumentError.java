@@ -12,6 +12,9 @@ public enum EmDocumentError implements CommonError {
   OPENREPORT_SUBMIT_IS_NOT_TIME(6002,"不在开题报告提交时间, 无法提交"),
   FOREIGNLITERATURE_SUBMIT_IS_NOT_TIME(6003,"不在外文资料提交时间, 无法提交"),
   THESIS_SUBMIT_IS_NOT_TIME(6004,"不在论文提交时间, 无法提交"),
+  GUIDANCERECORD_ID_NOT_EXIST(6005,"指导记录不存在"),
+  GUIDANCERECORD_SUBMIT_IS_NOT_TIME(6006,"不在指导记录提交时间, 无法提交"),
+
   ;
   private Integer errCode;
   private String errMsg;

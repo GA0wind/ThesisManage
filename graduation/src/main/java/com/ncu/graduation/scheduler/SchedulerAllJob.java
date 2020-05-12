@@ -56,15 +56,15 @@ public class SchedulerAllJob {
     String endOpeningReportTime;
     String endThesisTime;
     if (!StringUtils.isBlank(projectPlan.getProjectApplyTime())) {
-      endProjectApplyTime = projectPlan.getProjectApplyTime().split(":")[1];
+      endProjectApplyTime = projectPlan.getProjectApplyTime().split(",")[1];
       startScheduler(ProjectApplyBlindDistribution.class, endProjectApplyTime);
     }
     if (!StringUtils.isBlank(projectPlan.getOpenReportTime())) {
-      endOpeningReportTime = projectPlan.getOpenReportTime().split(":")[1];
+      endOpeningReportTime = projectPlan.getOpenReportTime().split(",")[1];
       startScheduler(OpenReportBlindDistribution.class, endOpeningReportTime);
     }
     if (!StringUtils.isBlank(projectPlan.getThesisTime())) {
-      endThesisTime = projectPlan.getThesisTime().split(":")[1];
+      endThesisTime = projectPlan.getThesisTime().split(",")[1];
       startScheduler(ThesisBlindDistribution.class, endThesisTime);
     }
   }
@@ -72,7 +72,7 @@ public class SchedulerAllJob {
   private void startScheduler(Class t, String endTime)
       throws SchedulerException {
     //设置时间
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     Date date = new Date();
     try {
       date = format.parse(endTime);

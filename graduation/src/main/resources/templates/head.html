@@ -47,7 +47,7 @@
             <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/taskBook">过程管理</a></li>
 
             <li><a th:if="${session.user.role} == 'admin'" href="/admin/projectPlan">毕设管理</a></li>
-            <li><a th:if="${session.user.role} == 'student'" href="/student/examScore">答辩</a></li>
+            <li><a th:if="${session.user.role} == 'student'" href="/student/thesis">答辩</a></li>
             <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/examGroupStu">答辩</a></li>
             <li><a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}">用户管理</a></li>
           </ul>

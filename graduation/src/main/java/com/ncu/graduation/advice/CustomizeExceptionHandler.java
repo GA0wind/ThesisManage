@@ -55,7 +55,6 @@ public class CustomizeExceptionHandler {
   @ExceptionHandler(value = RedirectException.class)
   public Object redirectExceptionHandler(Exception ex, Model model) {
 
-    ex.printStackTrace();
     //跳转错误页面
     if (ex instanceof RedirectException) {
       model.addAttribute("message", ((RedirectException) ex).getErrMsg());

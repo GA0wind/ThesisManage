@@ -61,6 +61,18 @@
 
       });
     }
+
+    function showExportScore(e) {
+      var schoolYear = $(e).attr("data-schoolYear");
+      $('#exportScore').modal({
+        keyboard: false
+      });
+      $("#schoolYear").val(schoolYear);
+    }
+
+    function exportScoreSubmit() {
+      $('#exportScoreForm').submit();
+    }
   </script>
 </head>
 
@@ -82,7 +94,11 @@
            th:if="${newProjectPlan} != null and ${newProjectPlan.schoolYear} == ${session.user.schoolYear}">
         <div class="col-md-12 common view">
           <p class="title" th:text="${newProjectPlan.schoolYear}"></p>
-          <button onclick="showNewProjectPlanModel()" class="pull-right btn btn-primary">建立新学年计划</button>
+          <button th:data-schoolYear="${newProjectPlan.schoolYear}"
+                  class="btn btn-primary pull-right" onclick="showExportScore(this)" style="margin-left: 10px">成绩导出
+          </button>
+          <button onclick="showNewProjectPlanModel()" class="pull-right btn btn-primary">建立新学年计划
+          </button>
           <hr>
           <form action="/admin/projectPlan" method="post" id="projectPlanForm">
             <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
@@ -162,6 +178,9 @@
       <div class="row" th:each="projectPlan:${projectPlans}">
         <div class="col-md-12 common view">
           <p class="title" th:text="${projectPlan.schoolYear}"></p>
+          <button th:data-schoolYear="${projectPlan.schoolYear}" class="btn btn-primary pull-right"
+                  onclick="showExportScore(this)">成绩导出
+          </button>
           <hr>
           <dl>
             <div class="col-md-3">
@@ -325,6 +344,44 @@
 </div><!-- /.modal -->
 
 
+<!--成绩导出学院选择框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="exportScore">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">学院选择</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common view">
+          <form action="/admin/exportScoreToExl" method="get" id="exportScoreForm">
+            <input type="text" id="schoolYear" class="hide" name="schoolYear">
+            <dl>
+              <div class="col-md-6">
+                <dt>学院</dt>
+                <dd class="col-md-12">
+                  <select id="stu-college" class="form-control" name="college">
+                    <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
+                            th:text="${college.collegeName}"></option>
+                  </select>
+                </dd>
+              </div>
+            </dl>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="exportScoreBtn" type="button" class="btn btn-primary"
+                onclick="exportScoreSubmit()">导出
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 </body>
 
 
@@ -332,10 +389,13 @@
   $(document).ready(function () {
     var options = {};
     options.autoApply = true;
+    options.timePicker = true;
+    options.timePicker24Hour = true;
+    options.timePickerSeconds = true;
     options.locale = {
       direction: 'ltr',
-      format: 'YYYY-MM-DD',
-      separator: ':',
+      format: 'YYYY-MM-DD HH:mm:ss',
+      separator: ',',
       applyLabel: '确定',
       cancelLabel: '取消',
       fromLabel: 'From',

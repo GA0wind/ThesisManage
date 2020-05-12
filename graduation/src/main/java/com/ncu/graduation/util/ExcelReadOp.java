@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class ExcelOperate {
+public class ExcelReadOp {
 
   private static Logger logger;
 //    Logger.getLogger(ExcelReader.class.getCreatorName()); // 日志打印类

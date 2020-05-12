@@ -1,5 +1,6 @@
 package com.ncu.graduation.vo;
 
+import com.ncu.graduation.model.ProjectSelectResult;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.Data;
 @Data
 public class OralExamScoreVO
 {
+  private ProjectSelectResult projectSelectResult;
   private List<Score> scores;
   private BigDecimal score;
   private BigDecimal blindScore;

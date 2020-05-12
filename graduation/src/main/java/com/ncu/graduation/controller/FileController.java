@@ -103,6 +103,7 @@ public class FileController {
 
     File file = new File(trueFileName);
     if (file.exists()) {
+      response.reset();
       response.setContentType("application/octet-stream");
       try {
         response.setHeader("Content-Disposition",
@@ -171,6 +172,7 @@ public class FileController {
         e.printStackTrace();
       }
     }
+    response.reset();
     response.setContentType("application/pdf");
     //输出流
     OutputStream os = null;

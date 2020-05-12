@@ -13,6 +13,7 @@ import com.ncu.graduation.mapper.ProjectApplyMapper;
 import com.ncu.graduation.mapper.ProjectSelectMapper;
 import com.ncu.graduation.mapper.ProjectSelectResultMapper;
 import com.ncu.graduation.mapper.StudentExtMapper;
+import com.ncu.graduation.model.College;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectApplyExample;
 import com.ncu.graduation.model.ProjectSelect;
@@ -56,6 +57,9 @@ public class ProjectSelectService {
 
   @Autowired
   private StudentExtMapper studentExtMapper;
+
+  @Autowired
+  private UserService userService;
 
   @Autowired
   private JedisOp jedis;
@@ -346,15 +350,30 @@ public class ProjectSelectService {
 
   }
 
-
+  /**
+   * 获取学院内学生数和课题数
+   * @param user
+   * @return
+   */
   public List<ProAndStuNumVO> getStuAndProNum(UserVO user) {
     // 查看学院可选课题
     List<ProAndStuNumVO> proNumVOS = projectApplyExtMapper
         .countByCollege(user.getSchoolYear());
     List<ProAndStuNumVO> stuNumVOS = studentExtMapper.countByCollege(user.getSchoolYear());
+    List<College> collegeList = userService.getCollege();
+    //学院编号，学院名
+    Map<String,String> collegeMap = new HashMap<>();
+    collegeList.forEach(k->{
+      collegeMap.put(k.getCollegeNo(),k.getCollegeName());
+    });
+    //以学生编号为key
     Map<String, Long> stuByCollege = new HashMap<>();
     stuNumVOS.forEach((k) -> stuByCollege.put(k.getCollege(), k.getStuNum()));
-    proNumVOS.forEach((k) -> k.setStuNum(stuByCollege.get(k.getCollege())));
+    proNumVOS.forEach((k) -> {
+      k.setStuNum(stuByCollege.get(k.getCollege()));
+      //学院编号姓名转化
+      k.setCollege(collegeMap.get(k.getCollege()));
+    });
     return proNumVOS;
   }
 }

@@ -7,13 +7,13 @@ import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.UserAddDTO;
 import com.ncu.graduation.dto.UserSearchDTO;
-import com.ncu.graduation.enums.CollegeEnum;
 import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmFileError;
 import com.ncu.graduation.error.EmUserOperatorError;
+import com.ncu.graduation.mapper.CollegeMapper;
 import com.ncu.graduation.mapper.ExamGroupMapper;
 import com.ncu.graduation.mapper.ProjectPlanMapper;
 import com.ncu.graduation.mapper.StudentExtMapper;
@@ -21,22 +21,18 @@ import com.ncu.graduation.mapper.StudentMapper;
 import com.ncu.graduation.mapper.TeacherExtMapper;
 import com.ncu.graduation.mapper.TeacherMapper;
 import com.ncu.graduation.model.*;
-import com.ncu.graduation.util.BlindDistribution.TeacherTwotuple;
-import com.ncu.graduation.util.ExcelOperate;
+import com.ncu.graduation.util.ExcelReadOp;
 import com.ncu.graduation.util.FileSave;
 import com.ncu.graduation.util.Md5Util;
 import com.ncu.graduation.vo.UserVO;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,9 +58,11 @@ public class UserService {
   @Autowired
   private ExamGroupMapper examGroupMapper;
 
+  @Autowired
+  private CollegeMapper collegeMapper;
+
   /**
    * 获取学年
-   * @return
    */
   public List<String> getSchoolYear() {
     ProjectPlanExample projectPlanExample = new ProjectPlanExample();
@@ -79,8 +77,6 @@ public class UserService {
 
   /**
    * 登录
-   * @param loginDTO
-   * @return
    */
   public Object login(LoginDTO loginDTO) {
     loginDTO.setAccountPwd(Md5Util.md5(loginDTO.getAccountPwd()));
@@ -167,13 +163,13 @@ public class UserService {
         result = teacherMapper.insert(teacher);
       } else {
         TeacherExample teacherExample = new TeacherExample();
-        teacherExample.createCriteria().andTnoEqualTo(teacher.getTno()).andSchoolYearLike("%"+user.getSchoolYear()+"%");
+        teacherExample.createCriteria().andTnoEqualTo(teacher.getTno())
+            .andSchoolYearLike("%" + user.getSchoolYear() + "%");
         List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
-        if (teachers == null || teachers.isEmpty()){
-          teacher.setSchoolYear(user.getSchoolYear()+",");
+        if (teachers == null || teachers.isEmpty()) {
+          teacher.setSchoolYear(user.getSchoolYear() + ",");
           result = teacherExtMapper.updateByTno(teacher);
-        }
-        else{
+        } else {
           teacher.setSchoolYear(null);
           result = teacherExtMapper.updateByTno(teacher);
         }
@@ -188,7 +184,7 @@ public class UserService {
   @Transactional
   public void addStuByExcel(MultipartFile excel, UserVO user) {
     String fileName = FileSave.fileSave(excel, FileTypeEnum.BULLETIN);
-    Map<String, Object> students = ExcelOperate.readExcel(fileName, "StuExl");
+    Map<String, Object> students = ExcelReadOp.readExcel(fileName, "StuExl");
     if (students == null || students.isEmpty()) {
       throw new CommonException(EmFileError.FILE_IS_EMPTY, "未从文件中取得数据");
     }
@@ -217,22 +213,22 @@ public class UserService {
   @Transactional
   public void addTeaByExcel(MultipartFile excel, UserVO user) {
     String fileName = FileSave.fileSave(excel, FileTypeEnum.BULLETIN);
-    Map<String, Object> teachers = ExcelOperate.readExcel(fileName, "TeaExl");
+    Map<String, Object> teachers = ExcelReadOp.readExcel(fileName, "TeaExl");
     if (teachers == null || teachers.isEmpty()) {
       throw new CommonException(EmFileError.FILE_IS_EMPTY, "未从文件中取得数据");
     }
     teachers.forEach((k, l) -> {
       Teacher teacher = (Teacher) l;
-      teacher.setSchoolYear(user.getSchoolYear()+",");
+      teacher.setSchoolYear(user.getSchoolYear() + ",");
       teacher.setPassword(Md5Util.md5(teacher.getPassword()));
       teacher.setGmtModified(new Date());
       TeacherExample teacherExample = new TeacherExample();
-      teacherExample.createCriteria().andTnoEqualTo(teacher.getTno()).andSchoolYearLike("%"+user.getSchoolYear()+"%");
+      teacherExample.createCriteria().andTnoEqualTo(teacher.getTno())
+          .andSchoolYearLike("%" + user.getSchoolYear() + "%");
       List<Teacher> teacherList = teacherMapper.selectByExample(teacherExample);
-      if (teacherList == null || teacherList.isEmpty()){
-        teacher.setSchoolYear(user.getSchoolYear()+",");
-      }
-      else{
+      if (teacherList == null || teacherList.isEmpty()) {
+        teacher.setSchoolYear(user.getSchoolYear() + ",");
+      } else {
         teacher.setSchoolYear(null);
       }
 
@@ -260,7 +256,7 @@ public class UserService {
   @Transactional
   public void setTeaGroup(MultipartFile excel, UserVO user) {
     String fileName = FileSave.fileSave(excel, FileTypeEnum.BULLETIN);
-    Map<String, Object> teachers = ExcelOperate.readExcel(fileName, "TeaGroupExl");
+    Map<String, Object> teachers = ExcelReadOp.readExcel(fileName, "TeaGroupExl");
     if (teachers == null || teachers.isEmpty()) {
       throw new CommonException(EmFileError.FILE_IS_EMPTY, "未从文件中取得数据");
     }
@@ -325,7 +321,7 @@ public class UserService {
   @Transactional
   public void setStuGroup(MultipartFile excel) {
     String fileName = FileSave.fileSave(excel, FileTypeEnum.BULLETIN);
-    Map<String, Object> students = ExcelOperate.readExcel(fileName, "StuGroupExl");
+    Map<String, Object> students = ExcelReadOp.readExcel(fileName, "StuGroupExl");
     if (students == null || students.isEmpty()) {
       throw new CommonException(EmFileError.FILE_IS_EMPTY, "未从文件中取得数据");
     }
@@ -352,45 +348,69 @@ public class UserService {
       UserSearchDTO userSearchDTO) {
     userSearchDTO.setRole(null);
     UserSearchDTO searchDTO = new UserSearchDTO();
-    if (!StringUtils.isBlank(userSearchDTO.getCollege())){
-      searchDTO.setCollege("%"+userSearchDTO.getCollege()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getCollege())) {
+      searchDTO.setCollege("%" + userSearchDTO.getCollege() + "%");
     }
-    if (!StringUtils.isBlank(userSearchDTO.getName())){
-      searchDTO.setName("%"+userSearchDTO.getName()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getName())) {
+      searchDTO.setName("%" + userSearchDTO.getName() + "%");
     }
-    if (!StringUtils.isBlank(userSearchDTO.getUserNo())){
-      searchDTO.setUserNo("%"+userSearchDTO.getUserNo()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getUserNo())) {
+      searchDTO.setUserNo("%" + userSearchDTO.getUserNo() + "%");
     }
     PaginationDTO<Student> paginationDTO = new PaginationDTO<>();
-    PageMethod.startPage(page,size);
-    List<Student> students = studentExtMapper.searchStuList(user.getSchoolYear(),searchDTO);
+    PageMethod.startPage(page, size);
+    List<Student> students = studentExtMapper.searchStuList(user.getSchoolYear(), searchDTO);
     PageInfo<Student> studentPageInfo = new PageInfo<>(students);
-    paginationDTO.setPagination((int)studentPageInfo.getTotal(),page,size);
+    paginationDTO.setPagination((int) studentPageInfo.getTotal(), page, size);
     paginationDTO.setData(students);
+    List<College> collegeList = getMajor(null);
+    //学院编号，学院名
+    Map<String, String> collegeMap = new HashMap<>();
+    collegeList.forEach(k -> {
+      collegeMap.put(k.getCollegeNo(), k.getCollegeName());
+    });
+    students.forEach(k -> {
+      k.setCollege(collegeMap.get(k.getCollege()));
+      k.setMajor(collegeMap.get(k.getMajor()));
+    });
     return paginationDTO;
   }
 
   public PaginationDTO<Teacher> teaList(int page, int size, UserVO user,
       UserSearchDTO userSearchDTO) {
     UserSearchDTO searchDTO = new UserSearchDTO();
-    if (!StringUtils.isBlank(userSearchDTO.getCollege())){
-      searchDTO.setCollege("%"+userSearchDTO.getCollege()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getCollege())) {
+      searchDTO.setCollege("%" + userSearchDTO.getCollege() + "%");
     }
-    if (!StringUtils.isBlank(userSearchDTO.getName())){
-      searchDTO.setName("%"+userSearchDTO.getName()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getName())) {
+      searchDTO.setName("%" + userSearchDTO.getName() + "%");
     }
-    if (!StringUtils.isBlank(userSearchDTO.getUserNo())){
-      searchDTO.setUserNo("%"+userSearchDTO.getUserNo()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getUserNo())) {
+      searchDTO.setUserNo("%" + userSearchDTO.getUserNo() + "%");
     }
-    if (!StringUtils.isBlank(userSearchDTO.getRole())){
-      searchDTO.setRole("%"+userSearchDTO.getRole()+"%");
+    if (!StringUtils.isBlank(userSearchDTO.getRole())) {
+      searchDTO.setRole("%" + userSearchDTO.getRole() + "%");
     }
     PaginationDTO<Teacher> paginationDTO = new PaginationDTO<>();
-    PageMethod.startPage(page,size);
-    List<Teacher> teachers = teacherExtMapper.searchTeaList("%"+user.getSchoolYear()+"%",searchDTO);
+    PageMethod.startPage(page, size);
+    List<Teacher> teachers = teacherExtMapper
+        .searchTeaList("%" + user.getSchoolYear() + "%", searchDTO);
     PageInfo<Teacher> studentPageInfo = new PageInfo<>(teachers);
-    paginationDTO.setPagination((int)studentPageInfo.getTotal(),page,size);
+    paginationDTO.setPagination((int) studentPageInfo.getTotal(), page, size);
     paginationDTO.setData(teachers);
+    List<College> collegeList = getCollege();
+    //学院编号，学院名
+    Map<String, String> collegeMap = new HashMap<>();
+    collegeList.forEach(k -> {
+      collegeMap.put(k.getCollegeNo(), k.getCollegeName());
+    });
+    teachers.forEach(k -> {
+      k.setCollege(collegeMap.get(k.getCollege()));
+    });
+    Map<String, String> roleMap = UserRoleEnum.RoleMap();
+    for (Teacher teacher : teachers) {
+      teacher.setRole(roleMap.get(teacher.getRole()));
+    }
     return paginationDTO;
   }
 
@@ -398,6 +418,15 @@ public class UserService {
     StudentExample studentExample = new StudentExample();
     studentExample.createCriteria().andSnoEqualTo(sno);
     List<Student> students = studentMapper.selectByExample(studentExample);
+    List<College> collegeList = getMajor(null);
+    //学院编号，学院名
+    Map<String, String> collegeMap = new HashMap<>();
+    collegeList.forEach(k -> {
+      collegeMap.put(k.getCollegeNo(), k.getCollegeName());
+    });
+    students.get(0).setCollege(collegeMap.get(students.get(0).getCollege()));
+    students.get(0).setMajor(collegeMap.get(students.get(0).getCollege()));
+
     return students.get(0);
   }
 
@@ -405,7 +434,31 @@ public class UserService {
     TeacherExample teacherExample = new TeacherExample();
     teacherExample.createCriteria().andTnoEqualTo(tno);
     List<Teacher> teachers = teacherMapper.selectByExample(teacherExample);
+    List<College> collegeList = getCollege();
+    //学院编号，学院名
+    Map<String, String> collegeMap = new HashMap<>();
+    collegeList.forEach(k -> {
+      collegeMap.put(k.getCollegeNo(), k.getCollegeName());
+    });
+    teachers.get(0).setCollege(collegeMap.get(teachers.get(0).getCollege()));
     return teachers.get(0);
   }
 
+  public List<College> getCollege() {
+    CollegeExample collegeExample = new CollegeExample();
+    collegeExample.createCriteria().andParentNoIsNull();
+    List<College> collegeList = collegeMapper.selectByExample(collegeExample);
+    return collegeList;
+  }
+
+  public List<College> getMajor(String parentNo) {
+    CollegeExample collegeExample = new CollegeExample();
+    //如果不为空, 则查找对应学院的专业, 如果为空, 则查找所有;
+    if (!StringUtils.isBlank(parentNo)) {
+      collegeExample.createCriteria().andParentNoEqualTo(parentNo);
+    }
+
+    List<College> collegeList = collegeMapper.selectByExample(collegeExample);
+    return collegeList;
+  }
 }

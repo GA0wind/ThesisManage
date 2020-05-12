@@ -12,8 +12,11 @@ import lombok.Data;
 
 @Data
 public class ProjectApplyVO {
+
   private String pno;
   private String pname;
   private String type;
   private Byte isPass;
+  private Byte blindTrialGrade;
+  private Byte trialGrade;
 }

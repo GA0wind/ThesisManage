@@ -12,13 +12,9 @@ public class PaginationDTO<T> {
     private Integer page;
     private Integer totalPage = 0;
 
-    public void setPagination(Integer totalCount, Integer page, Integer size) {
+    public void setPagination(Integer totalPage, Integer page, Integer size) {
 
-        if (totalCount % size == 0) {
-            totalPage = totalCount / size;
-        } else {
-            totalPage = totalCount / size + 1;
-        }
+        this.totalPage = totalPage;
         this.page = page;
     }
 }

@@ -52,8 +52,7 @@ public class RedisCache {
     //老师和学年作为key
     if (Boolean.TRUE.equals(jedisOp.exists(user.getAccountNo() + user.getSchoolYear()))) {
       projectMap = JSON.parseObject(jedisOp.get(user.getAccountNo() + user.getSchoolYear()),
-          new TypeReference<Map<String, ProjectSelectResult>>() {
-          });
+          new TypeReference<Map<String, ProjectSelectResult>>() {});
     } else {
       try {
         projectMap = (Map) jp.proceed();

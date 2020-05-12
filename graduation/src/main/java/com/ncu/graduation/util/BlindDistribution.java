@@ -44,7 +44,7 @@ public class BlindDistribution {
   }
 
 
-  //开题报告盲审
+  //根据指导人数盲审
   public List<ProjectTwotuple> distribution() {
     Random random = new Random();
     for (int i = 0; i < project.size(); i++) {
@@ -70,9 +70,14 @@ public class BlindDistribution {
         i = 0;
       }
       int index = random.nextInt(project.size());
-
+      int time = 0;
       while (project.get(index).getTno().equals(teacher.get(i).getTno())){
         index = random.nextInt(project.size());
+        time++;
+        if (time >= 4){
+          i++;
+          time = 0;
+        }
       }
       ProjectTwotuple projectTwotuple= project.get(index);
       projectTwotuple.setTno(teacher.get(i).getTno());

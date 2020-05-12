@@ -74,7 +74,8 @@ public class ProjectApplyBlindDistribution implements Job {
         projectApply.setPno(k.getPno());
         projectApply.setBlindTrialNo(k.getTno());
         ProjectApplyExample projectApplyExample = new ProjectApplyExample();
-        projectApplyExample.createCriteria().andPnoEqualTo(k.getPno());
+        projectApplyExample.createCriteria().andPnoEqualTo(k.getPno())
+            .andBlindTrialNoIsNull();  //已经审过的就不需要了
         projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
       });
     }
