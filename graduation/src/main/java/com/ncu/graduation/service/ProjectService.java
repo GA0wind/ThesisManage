@@ -96,10 +96,11 @@ public class ProjectService {
    * 获取我申请的课题
    */
   public PaginationDTO<ProjectApplyVO> getMyApplyProject(Integer page, Integer size, UserVO user) {
+
     PaginationDTO<ProjectApplyVO> paginationDTO = new PaginationDTO<>();
     ProjectApplyExample projectApplyExample = new ProjectApplyExample();
-    projectApplyExample.createCriteria().andCreatorNoEqualTo(user.getAccountNo());
-
+    projectApplyExample.createCriteria().andCreatorNoEqualTo(user.getAccountNo())
+        .andSchoolYearEqualTo(user.getSchoolYear());
     PageMethod.startPage(page, size);
     List<ProjectApply> projectApplies = projectApplyMapper
         .selectByExample(projectApplyExample);
@@ -247,7 +248,7 @@ public class ProjectService {
       //分页
       ProjectApplyExample projectApplyExample = new ProjectApplyExample();
       projectApplyExample.createCriteria().andBlindTrialNoEqualTo(user.getAccountNo())
-          .andSchoolYearEqualTo(user.getSchoolYear()).andIsDeleteEqualTo((byte)0);
+          .andSchoolYearEqualTo(user.getSchoolYear()).andIsDeleteEqualTo((byte) 0);
       PageMethod.startPage(page, size);
       projectApplies = projectApplyMapper
           .selectByExample(projectApplyExample);
@@ -316,7 +317,7 @@ public class ProjectService {
     ProjectApply projectApply = new ProjectApply();
     projectApply.setPno(pno);
     projectApply.setTrialNo(teachers.get(0).getTno());
-    projectApply.setIsPass((byte)2);
+    projectApply.setIsPass((byte) 2);
     ProjectApplyExample projectApplyExample = new ProjectApplyExample();
     projectApplyExample.createCriteria().andPnoEqualTo(pno);
     int i = projectApplyMapper.updateByExampleSelective(projectApply, projectApplyExample);
@@ -500,11 +501,11 @@ public class ProjectService {
         .selectByExample(selectResultExample);
     List<College> collegeList = userService.getCollege();
     //学院编号，学院名
-    Map<String,String> collegeMap = new HashMap<>();
-    collegeList.forEach(k->{
-      collegeMap.put(k.getCollegeNo(),k.getCollegeName());
+    Map<String, String> collegeMap = new HashMap<>();
+    collegeList.forEach(k -> {
+      collegeMap.put(k.getCollegeNo(), k.getCollegeName());
     });
-    projectSelectResults.forEach(k->{
+    projectSelectResults.forEach(k -> {
       k.setCollege(collegeMap.get(k.getCollege()));
     });
     return projectSelectResults;
@@ -512,8 +513,6 @@ public class ProjectService {
 
   /**
    * 获取课题进度
-   * @param pno
-   * @return
    */
   public ProjectProgressVO getProjectProgress(String pno) {
     ProjectSelectResultExample projectSelectResultExample = new ProjectSelectResultExample();
@@ -535,16 +534,16 @@ public class ProjectService {
     ProjectProgressVO projectProgressVO = new ProjectProgressVO();
     projectProgressVO.setSelectResult(selectResults.get(0));
 
-    if (taskBooks != null && !taskBooks.isEmpty()){
+    if (taskBooks != null && !taskBooks.isEmpty()) {
       projectProgressVO.setTaskBook(taskBooks.get(0));
     }
-    if (openReports != null && !openReports.isEmpty()){
+    if (openReports != null && !openReports.isEmpty()) {
       projectProgressVO.setOpenReport(openReports.get(0));
     }
-    if (foreignLiteratures != null && !foreignLiteratures.isEmpty()){
+    if (foreignLiteratures != null && !foreignLiteratures.isEmpty()) {
       projectProgressVO.setForeignLiterature(foreignLiteratures.get(0));
     }
-    if (theses != null && !theses.isEmpty()){
+    if (theses != null && !theses.isEmpty()) {
       projectProgressVO.setThesis(theses.get(0));
     }
     return projectProgressVO;

@@ -134,7 +134,7 @@
                    role="button"
                    size="2" name="page"
                    onmousedown="if(event.keyCode==13){getProjectList()}">&nbsp;&nbsp;
-            <a th:classappend="${projects.page} > ${projects.totalPage} ?'':'disabled'"
+            <a th:classappend="${projects.page} >= ${projects.totalPage} ?'':'disabled'"
                role="button"
                onclick="getProjectList(this)" th:data-page="${projects.page}+1"
                class="more btn btn-link">下一页

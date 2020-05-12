@@ -10,6 +10,7 @@ import com.ncu.graduation.service.ProjectService;
 import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.vo.UserVO;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.http.HttpSession;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -35,6 +36,7 @@ public class OverTimeInterceptor {
   @Autowired
   private ProjectService projectService;
 
+  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
   @Around("execution(* com.ncu.graduation.controller.ProjectController.applyProject(..))")
   @ResponseBody
@@ -51,8 +53,8 @@ public class OverTimeInterceptor {
     String endTime = time[1];
     String startTime = time[0];
 
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime))) {
+    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
+        .isBefore(LocalDateTime.parse(startTime,formatter))) {
       return ResultDTO.errorOf(EmProjectError.PROJECT_APPLY_IS_NOT_TIME);
     } else {
       try {
@@ -78,8 +80,8 @@ public class OverTimeInterceptor {
     String[] time = projectPlan.getProjectSelectTime().split(",");
     String endTime = time[1];
     String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime))) {
+    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
+        .isBefore(LocalDateTime.parse(startTime,formatter))) {
       return ResultDTO.errorOf(EmProjectError.PROJECT_SELECT_IS_NOT_TIME);
     } else {
       try {
@@ -105,8 +107,8 @@ public class OverTimeInterceptor {
     String[] time = projectPlan.getTaskBookTime().split(",");
     String endTime = time[1];
     String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime))) {
+    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
+        .isBefore(LocalDateTime.parse(startTime,formatter))) {
       return ResultDTO.errorOf(EmDocumentError.TASK_SUBMIT_IS_NOT_TIME);
     } else {
       try {
@@ -132,8 +134,8 @@ public class OverTimeInterceptor {
     String[] time = projectPlan.getOpenReportTime().split(",");
     String endTime = time[1];
     String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime))) {
+    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
+        .isBefore(LocalDateTime.parse(startTime,formatter))) {
       return ResultDTO.errorOf(EmDocumentError.OPENREPORT_SUBMIT_IS_NOT_TIME);
     } else {
       try {
@@ -159,8 +161,8 @@ public class OverTimeInterceptor {
     String[] time = projectPlan.getForeignLiteratureTime().split(",");
     String endTime = time[1];
     String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime))) {
+    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
+        .isBefore(LocalDateTime.parse(startTime,formatter))) {
       return ResultDTO.errorOf(EmDocumentError.FOREIGNLITERATURE_SUBMIT_IS_NOT_TIME);
     } else {
       try {
@@ -186,8 +188,8 @@ public class OverTimeInterceptor {
     String[] time = projectPlan.getThesisTime().split(",");
     String endTime = time[1];
     String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime))) {
+    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
+        .isBefore(LocalDateTime.parse(startTime,formatter))) {
       return ResultDTO.errorOf(EmDocumentError.THESIS_SUBMIT_IS_NOT_TIME);
     } else {
       try {
