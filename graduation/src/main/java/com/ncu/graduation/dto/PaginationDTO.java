@@ -13,8 +13,13 @@ public class PaginationDTO<T> {
     private Integer totalPage = 0;
 
     public void setPagination(Integer totalPage, Integer page, Integer size) {
-
+        if (page>totalPage){
+            this.page = totalPage;
+        }else if (page <= 0){
+            this.page = 1;
+        } else{
+            this.page = page;
+        }
         this.totalPage = totalPage;
-        this.page = page;
     }
 }

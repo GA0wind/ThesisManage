@@ -5,7 +5,7 @@
 <configuration debug="true">
   <!-- 下面这几个变量，可以在项目启动时通过其它的方式初始化，并且也给了一个默认值，就是 “:-” 后面的部分 -->
   <!-- log.name 为日志文件的名称，即默认最终的日志文件名为 springboot-user.log -->
-  <Property name="log.name" value="${log.name:-springboot-user}" />
+  <Property name="log.name" value="${log.name:-graduation-manage}" />
   <!-- log.path 为日志的路径，即默认生成到当前目录下的 ./data/logs 的目录下 -->
   <Property name="log.path" value="${log.path:-./data/logs}" />
   <!-- log.level 为日志的打印级别，以下日志输出优先级由低到高（trace < debug < info < warn < error），例如级别为 info 时，info、warn 和 error 日志都会打印，以此类推 -->

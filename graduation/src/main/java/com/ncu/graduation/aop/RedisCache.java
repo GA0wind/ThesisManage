@@ -2,6 +2,7 @@ package com.ncu.graduation.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.dto.ProjectPlanDTO;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmCommonError;
@@ -13,6 +14,7 @@ import com.ncu.graduation.model.ProjectPlan;
 import com.ncu.graduation.model.ProjectPlanExample;
 import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.util.JedisOp;
+import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +46,7 @@ public class RedisCache {
   /**
    * 将老师所拥有的有效课题存入redis
    */
-  @Around("execution(* com.ncu.graduation.service.ProjectService.getTeaProject(..))")
+  @Around("execution(* com.ncu.graduation.service.impl.ProjectServiceImpl.getTeaProject(..))")
   public Object beforeGetTeaProject(ProceedingJoinPoint jp) {
     Object[] args = jp.getArgs();
     UserVO user = (UserVO) args[0];
@@ -52,7 +54,7 @@ public class RedisCache {
     //老师和学年作为key
     if (Boolean.TRUE.equals(jedisOp.exists(user.getAccountNo() + user.getSchoolYear()))) {
       projectMap = JSON.parseObject(jedisOp.get(user.getAccountNo() + user.getSchoolYear()),
-          new TypeReference<Map<String, ProjectSelectResult>>() {});
+          new TypeReference<Map<String, ProjectSelectResultBO>>() {});
     } else {
       try {
         projectMap = (Map) jp.proceed();
@@ -69,16 +71,16 @@ public class RedisCache {
   /**
    * 将学生所拥有的课题存入redis
    */
-  @Around("execution(* com.ncu.graduation.service.ProjectService.getStuProject(..))")
+  @Around("execution(* com.ncu.graduation.service.impl.ProjectServiceImpl.getStuProject(..))")
   public Object beforeGetStuProject(ProceedingJoinPoint jp) {
     Object[] args = jp.getArgs();
     UserVO user = (UserVO) args[0];
-    ProjectApply stuProject = new ProjectApply();
+    ProjectInfoVO stuProject = new ProjectInfoVO();
     if (Boolean.TRUE.equals(jedisOp.exists(user.getAccountNo()))) {
-      stuProject = JSON.parseObject(jedisOp.get(user.getAccountNo()), ProjectApply.class);
+      stuProject = JSON.parseObject(jedisOp.get(user.getAccountNo()), ProjectInfoVO.class);
     } else {
       try {
-        stuProject = (ProjectApply) jp.proceed();
+        stuProject = (ProjectInfoVO) jp.proceed();
         if (stuProject != null) {
           jedisOp.setex(user.getAccountNo(), JSON.toJSONString(stuProject));
         }
@@ -92,7 +94,7 @@ public class RedisCache {
   /**
    * 存课题计划进入redis便于查找
    */
-  @Around("execution(* com.ncu.graduation.service.ProjectService.getProjectPlan(..))")
+  @Around("execution(* com.ncu.graduation.service.impl.ProjectServiceImpl.getProjectPlan(..))")
   public Object beforeGetProjectPlan(ProceedingJoinPoint jp) {
     Object[] args = jp.getArgs();
     String schoolYear = (String) args[0];
@@ -116,7 +118,7 @@ public class RedisCache {
   /**
    * 更新毕设计划后, 将数据存一份到redis中
    */
-  @Around("execution(* com.ncu.graduation.service.ProjectService.setProjectPlan(..))")
+  @Around("execution(* com.ncu.graduation.service.impl.ProjectServiceImpl.setProjectPlan(..))")
   public void beforeSetProjectPlan(ProceedingJoinPoint jp) {
     try {
       jp.proceed();

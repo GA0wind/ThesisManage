@@ -1,7 +1,7 @@
 package com.ncu.graduation.vo;
 
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.model.ProjectApply;
-import com.ncu.graduation.model.ProjectSelectResult;
 import lombok.Data;
 
 /**
@@ -15,5 +15,5 @@ import lombok.Data;
 @Data
 public class ProjectInfoVO {
   private ProjectApply projectApply;
-  private ProjectSelectResult projectSelectResult;
+  private ProjectSelectResultBO projectSelectResult;
 }

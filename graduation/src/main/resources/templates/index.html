@@ -19,75 +19,79 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
-  <div class="row">
+  <div class="row col-md-12">
     <div class="row">
       <div class="col-md-offset-1 col-md-9 common view">
         <p class="title">当前进度</p>
         <hr>
         <div class="progress">
-          <div th:classappend="${projectPlan.projectApplyIsOver}==1? 'over-time':''"
-               class="progress-bar" style="width: 13%;">
-            <span class="sr-only"></span>课题申报<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.projectApplyTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
+          <div th:classappend="${projectPlan.projectApplyIsOver}"
+               class="progress-bar" style="width: 15%;">
+            <span class="sr-only"></span><span class="font">课题申报</span><br>
+            <span class="visible-lg-inline font">
+              <span
+                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.projectApplyTime,',')[0],' ')[0]}"></span> 至
+              <span
                   th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.projectApplyTime,',')[1],' ')[0]}"></span>
+            </span>
           </div>
-          <div th:classappend="${projectPlan.projectSelectIsOver}==1? 'over-time':''"
-               class="progress-bar" style="width: 13%;">
-            <span class="sr-only"></span>师生互选<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.projectSelectTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
+          <div th:classappend="${projectPlan.projectSelectIsOver}"
+               class="progress-bar" style="width: 15%;">
+            <span class="sr-only"></span><span class="font">师生互选</span><br>
+            <span class="visible-lg-inline font">
+              <span
+                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.projectSelectTime,',')[0],' ')[0]}"></span> 至
+              <span
                   th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.projectSelectTime,',')[1],' ')[0]}"></span>
+            </span>
           </div>
-          <div th:classappend="${projectPlan.taskBookIsOver}==1? 'over-time':''"
+          <div th:classappend="${projectPlan.taskBookIsOver}"
                class="progress-bar"
-               style="width: 13%;">
-            <span class="sr-only"></span>任务书<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.taskBookTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
+               style="width: 15%;">
+            <span class="sr-only"></span><span class="font">任务书</span><br>
+            <span class="visible-lg-inline font">
+              <span
+                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.taskBookTime,',')[0],' ')[0]}"></span> 至
+              <span
                   th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.taskBookTime,',')[1],' ')[0]}"></span>
+            </span>
           </div>
-          <div th:classappend="${projectPlan.openReportIsOver}==1? 'over-time':''"
-               class="progress-bar" style="width: 13%;">
-            <span class="sr-only"></span>开题报告<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.openReportTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
+          <div th:classappend="${projectPlan.openReportIsOver}"
+               class="progress-bar" style="width: 15%;">
+            <span class="sr-only"></span><span class="font">开题报告</span><br>
+            <span class="visible-lg-inline font">
+              <span
+                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.openReportTime,',')[0],' ')[0]}"></span> 至
+              <span
                   th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.openReportTime,',')[1],' ')[0]}"></span>
+            </span>
           </div>
-          <div th:classappend="${projectPlan.foreignLiteratureIsOver}==1? 'over-time':''"
-               class="progress-bar" style="width: 13%;">
-            <span class="sr-only"></span>外文资料<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.foreignLiteratureTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
+          <div th:classappend="${projectPlan.foreignLiteratureIsOver}"
+               class="progress-bar" style="width: 15%;">
+            <span class="sr-only"></span><span class="font">外文资料</span><br>
+            <span class="visible-lg-inline font">
+              <span
+                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.foreignLiteratureTime,',')[0],' ')[0]}"></span> 至
+              <span
                   th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.foreignLiteratureTime,',')[1],' ')[0]}"></span>
+            </span>
           </div>
-          <div th:classappend="${projectPlan.thesisIsOver}==1? 'over-time':''" class="progress-bar"
-               style="width: 13%;">
-            <span class="sr-only"></span>论文<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.thesisTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.thesisTime,',')[1],' ')[0]}"></span>
-          </div>
-          <div th:classappend="${projectPlan.oralExaminationIsOver}==1? 'over-time':''"
-               class="progress-bar" style="width: 13%;">
-            <span class="sr-only"></span>答辩<br>
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.oralExaminationTime,',')[0],' ')[0]}"></span>至
-            <span class="hidden-xs"
-                  th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.oralExaminationTime,',')[1],' ')[0]}"></span>
+          <div th:classappend="${projectPlan.thesisIsOver}" class="progress-bar"
+               style="width: 15%;">
+            <span class="sr-only"></span><span class="font">论文</span><br>
+            <span class="visible-lg-inline font">
+              <span
+                    th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.thesisTime,',')[0],' ')[0]}"></span> 至
+              <span
+                    th:text="${#strings.arraySplit(#strings.arraySplit(projectPlan.thesisTime,',')[1],' ')[0]}"></span>
+            </span>
           </div>
         </div>
-        <p>*绿色为已进行项目，蓝色为正在进行或未开始项目</p>
+        <p>* 灰色为已结束项目, 橙色为正在进行, 蓝色为未开始项目</p>
       </div>
     </div>
     <div th:if="${session.user.role} == 'teacher'" class="row">

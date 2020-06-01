@@ -20,7 +20,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -46,7 +46,7 @@
               <thead>
               <tr>
                 <th>学院</th>
-                <th>课题</th>
+                <th class="project-name">课题</th>
                 <th>学生</th>
                 <th>学号</th>
                 <th>教师</th>
@@ -55,12 +55,12 @@
               </thead>
               <tbody>
               <tr th:each="project:${undoneStu}">
-                <td th:text="${project.college}"></td>
-                <td th:text="${project.pname}"></td>
-                <td th:text="${project.sname}"></td>
-                <td th:text="${project.sno}"></td>
-                <td th:text="${project.tname}"></td>
-                <td th:text="${project.tno}"></td>
+                <td th:text="${project.college}" th:title="${project.college}"></td>
+                <td th:text="${project.pname}" th:title="${project.pname}"></td>
+                <td th:text="${project.sname}" th:title="${project.sname}"></td>
+                <td th:text="${project.sno}" th:title="${project.sno}"></td>
+                <td th:text="${project.tname}" th:title="${project.tname}"></td>
+                <td th:text="${project.tno}" th:title="${project.tno}"></td>
               </tr>
               </tbody>
             </table>

@@ -50,7 +50,7 @@
 <body>
 <div class="container-fluid main">
   <!--  顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -101,7 +101,7 @@
             <table class="table">
               <thead>
               <tr>
-                <th>课题名</th>
+                <th class="project-name">课题名</th>
                 <th>题目类型</th>
                 <th th:text="${session.user.role} == 'student' ? '指导老师':'学生'"></th>
                 <th>操作</th>
@@ -109,9 +109,16 @@
               </thead>
               <tbody>
               <tr th:each="project:${projects.data}">
-                <td th:text="${project.pname}"></td>
+                <td th:text="${project.pname}" th:title="${project.pname}"></td>
                 <td th:text="${project.type}">未知</td>
-                <td th:text="${project.creatorName}"></td>
+                <td>
+                  <a th:if="${session.user.role} == 'student'" th:href="@{'/user/info/'+${project.creatorNo}+'?role=teacher'}"
+                       th:text="${project.creatorName}" th:title="${project.creatorName}">
+                  </a>
+                  <a th:if="${session.user.role} == 'teacher'" th:href="@{'/user/info/'+${project.creatorNo}+'?role=student'}"
+                     th:text="${project.creatorName}" th:title="${project.creatorName}">
+                  </a>
+                </td>
                 <td>
                   <a th:href="@{'/project/'+${project.pno}}">查看详情</a>
                   <a class="btn-link" th:data-pno="${project.pno}" role="button"
@@ -134,7 +141,7 @@
                    role="button"
                    size="2" name="page"
                    onmousedown="if(event.keyCode==13){getProjectList()}">&nbsp;&nbsp;
-            <a th:classappend="${projects.page} >= ${projects.totalPage} ?'':'disabled'"
+            <a th:classappend="${projects.page} >= ${projects.totalPage} ?'disabled':''"
                role="button"
                onclick="getProjectList(this)" th:data-page="${projects.page}+1"
                class="more btn btn-link">下一页

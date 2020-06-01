@@ -15,6 +15,12 @@
 </head>
 
 <script>
+  //修改验证码
+  function changeCode() {
+    $("#code_img").attr('src', '/verifyCode?change='+Math.random());
+  }
+
+  //判断角色, 如果是管理员或者老师添加学年选项
   $(document).ready(function () {
     $('input[type=radio][name=role]').change(function () {
       var role = $("input[name='role']:checked").val();
@@ -26,6 +32,7 @@
     });
   });
 
+  //登录
   function login() {
     $('#loginForm').ajaxSubmit({
       beforeSubmit: function () {
@@ -55,18 +62,19 @@
         <img src="/images/nculogo.png"/>
         <h2>南昌大学</h2>
       </div>
-      <h1 class="system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
-      <h1 class="system-name visible-xs-block">毕业设计管理系统</h1>
+      <h1 class="login-system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
+      <h1 class="login-system-name visible-xs-block">毕业设计管理系统</h1>
+
     </div>
   </div>
   <!-- 第二行   左边公告, 右边登录 -->
   <div class="row">
     <!-- 公告 -->
-    <div class="col-md-7  col-xs-12 hidden-xs bulletin">
+    <div class="col-md-8  col-xs-12 hidden-xs bulletin">
       <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">
-          <span class="title">最新公告</span> <a href="/bulletin" class="more-bulletin">更多公告&gt;&gt;</a>
+          <span class="title">最新公告</span>
         </div>
         <!-- List group -->
         <ul class="list-group" th:each="bulletin:${bulletins.data}">
@@ -79,7 +87,7 @@
 
     </div>
     <!-- 表單 -->
-    <div class="col-md-4  col-xs-12 login-form">
+    <div class="col-md-3  col-xs-12 login-form">
       <h4 class="title">登录</h4>
       <hr>
       <form class="form-horizontal" action="/login" method="post" id="loginForm">
@@ -100,10 +108,10 @@
         <div class="form-group">
           <label for="code" class="col-sm-3 control-label">验证码</label>
           <div class="col-sm-6">
-            <input type="password" class="form-control" id="code" name="code" placeholder="验证码">
+            <input type="text" class="form-control" id="code" name="code" placeholder="验证码">
           </div>
           <div class="col-sm-3 code">
-            <img src="/verifyCode" class="code" id="code_img">
+            <img  src="/verifyCode" class="code" id="code_img" onclick="changeCode()">
           </div>
         </div>
         <div class="form-group">
@@ -140,9 +148,6 @@
 
 
     </div>
-  </div>
-  <div class="row visible-xs-block ">
-    <a href="# " class="more-bulletin ">最新公告</a>
   </div>
 </div>
 </body>

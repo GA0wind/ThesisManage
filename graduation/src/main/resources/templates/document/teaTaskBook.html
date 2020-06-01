@@ -58,7 +58,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -89,10 +89,11 @@
             </thead>
             <tbody>
             <tr th:each="taskBook:${teaTaskBook}">
-              <td th:text="${taskBook.pname}"></td>
-              <td th:text="${taskBook.sname}"></td>
+              <td th:text="${taskBook.pname}" th:title="${taskBook.pname}"></td>
+              <td th:text="${taskBook.sname}" th:title="${taskBook.sname}"></td>
               <td th:if="${taskBook.document} != null"><a
                   th:text="${#strings.arraySplit(taskBook.document.filePath,'#')[1]}"
+                  th:title="${#strings.arraySplit(taskBook.document.filePath,'#')[1]}"
                   th:href="@{/download(filePath=${taskBook.document.filePath},fileType='taskBook')}"></a>
               </td>
               <td th:if="${taskBook.document} == null">待提交

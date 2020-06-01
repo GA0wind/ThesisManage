@@ -22,9 +22,6 @@ public class VerifyDocumentDTO {
   @Max(value = 100,message = "分数不能大于100")
   @Min(value = 0,message = "分数不能小于0")
   private String score;
-  //审核时的文件, 存下来记录
-  private String filePath;
-  private String translationFile;
   private String comment;
 
   public Byte getScore() {

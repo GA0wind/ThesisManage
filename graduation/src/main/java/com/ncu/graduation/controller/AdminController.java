@@ -1,46 +1,32 @@
 package com.ncu.graduation.controller;
 
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.dto.PaginationDTO;
-import com.ncu.graduation.dto.ProjectApplyDTO;
 import com.ncu.graduation.dto.ProjectPlanDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.SelectiveProjectDTO;
 import com.ncu.graduation.dto.UserAddDTO;
 import com.ncu.graduation.dto.UserSearchDTO;
-import com.ncu.graduation.enums.CollegeEnum;
+import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.enums.ProjectTypeEnum;
-import com.ncu.graduation.error.EmUserOperatorError;
-import com.ncu.graduation.model.College;
-import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Student;
 import com.ncu.graduation.model.Teacher;
-import com.ncu.graduation.service.OralExaminationService;
-import com.ncu.graduation.service.ProjectSelectService;
-import com.ncu.graduation.service.ProjectService;
-import com.ncu.graduation.service.UserService;
-import com.ncu.graduation.util.ExcelWriteOp;
-import com.ncu.graduation.vo.OralExamScoreVO;
+import com.ncu.graduation.service.impl.OralExaminationServiceImpl;
+import com.ncu.graduation.service.impl.ProjectSelectServiceImpl;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
+import com.ncu.graduation.service.impl.UserServiceImpl;
 import com.ncu.graduation.vo.ProAndStuNumVO;
-import com.ncu.graduation.vo.ProjectSelectVO;
 import com.ncu.graduation.vo.UserVO;
-import com.sun.deploy.net.HttpResponse;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,16 +49,16 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminController {
 
   @Autowired
-  private UserService userService;
+  private UserServiceImpl userService;
 
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
 
   @Autowired
-  private ProjectSelectService projectSelectService;
+  private ProjectSelectServiceImpl projectSelectService;
 
   @Autowired
-  private OralExaminationService oralExaminationService;
+  private OralExaminationServiceImpl oralExaminationService;
 
   /**
    * 学生列表
@@ -109,6 +95,7 @@ public class AdminController {
   @PostMapping("/admin/exlAddStu")
   public ResultDTO addStuByExcel(@RequestParam("excel") MultipartFile excel, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
+    FileTypeEnum.checkExcelFile(excel.getOriginalFilename());
     userService.addStuByExcel(excel, user);
     return ResultDTO.okOf();
   }
@@ -119,6 +106,7 @@ public class AdminController {
   @ResponseBody
   @PostMapping("/admin/setStuGroupByExcel")
   public ResultDTO setStuGroupByExcel(@RequestParam("excel") MultipartFile excel) {
+    FileTypeEnum.checkExcelFile(excel.getOriginalFilename());
     userService.setStuGroup(excel);
     return ResultDTO.okOf();
   }
@@ -161,6 +149,7 @@ public class AdminController {
   @PostMapping("/admin/exlAddTea")
   public ResultDTO addTeaByExcel(@RequestParam("excel") MultipartFile excel, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
+    FileTypeEnum.checkExcelFile(excel.getOriginalFilename());
     userService.addTeaByExcel(excel, user);
     return ResultDTO.okOf();
   }
@@ -173,6 +162,7 @@ public class AdminController {
   public ResultDTO setTeaGroupByExcel(@RequestParam("excel") MultipartFile excel,
       HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
+    FileTypeEnum.checkExcelFile(excel.getOriginalFilename());
     userService.setTeaGroup(excel, user);
     return ResultDTO.okOf();
   }
@@ -249,11 +239,18 @@ public class AdminController {
   @GetMapping("/admin/undoneStu/{type}")
   public String getUndoneStu(@PathVariable String type, HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    List<ProjectSelectResult> undoneStu = projectService.getUndoneStu(user, type);
+    List<ProjectSelectResultBO> undoneStu = projectService.getUndoneStu(user, type);
     model.addAttribute("undoneStu", undoneStu);
     return "admin/undoneStu";
   }
 
+  /**
+   * 导出成绩
+   * @param college
+   * @param schoolYear
+   * @param response
+   * @return
+   */
   @GetMapping("/admin/exportScoreToExl")
   public ResultDTO exportScore(@RequestParam("college") String college,
       @RequestParam("schoolYear") String schoolYear,

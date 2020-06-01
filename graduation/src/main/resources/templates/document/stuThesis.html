@@ -68,10 +68,11 @@
               $("#thesisRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
-                  + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  + "&fileType=thesis' title='" + data.filePath.toString().split('#')[1] + "'>"
+                  + data.filePath.toString().split('#')[1] + "</a></td>" +
                   isPass +
                   "<td>" + data.trialGrade + "</td>" +
-                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
+                  "<td title='" + data.trialComment + "'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -101,7 +102,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -174,7 +175,8 @@
 
 
           </dl>
-          <a th:if="${stuThesis.document} == null and ${session.user.role} == 'student'" type="button" class="btn btn-primary"
+          <a th:if="${stuThesis.document} == null and ${session.user.role} == 'student'"
+             type="button" class="btn btn-primary"
              onclick="showThesisModel(0)">提交
           </a>
           <a th:if="${stuThesis.document} != null and ${session.user.role} == 'student'"
@@ -235,8 +237,8 @@
 </div><!-- /.modal -->
 
 
-<div class="modal fade" tabindex="-1" role="dialog" id="thesisRecordModel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="thesisRecordModel">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -244,15 +246,15 @@
         <h4 class="modal-title">历史审核</h4>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 common">
+        <div class="col-md-12 common table-responsive">
           <table class="table" id="thesisRecord">
             <thead>
             <tr>
               <th>文件</th>
-              <th>审核结果</th>
-              <th>审核分数</th>
-              <th>审核评语</th>
-              <th>审核时间</th>
+              <th class="short">结果</th>
+              <th class="short">分数</th>
+              <th class="trialComment">评语</th>
+              <th class="middle">时间</th>
             </tr>
             </thead>
             <tbody id="thesisRecordTable">

@@ -1,6 +1,6 @@
 package com.ncu.graduation.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.dto.LoginDTO;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
@@ -11,22 +11,19 @@ import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.College;
-import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Student;
 import com.ncu.graduation.model.Teacher;
-import com.ncu.graduation.service.BulletinService;
-import com.ncu.graduation.service.ProjectService;
-import com.ncu.graduation.service.UserService;
+import com.ncu.graduation.service.impl.BulletinServiceImpl;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
+import com.ncu.graduation.service.impl.UserServiceImpl;
+import com.ncu.graduation.util.DateUtil;
 import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.util.VerifyCode;
+import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.ProjectPlanVO;
 import com.ncu.graduation.vo.ProjectProgressVO;
 import com.ncu.graduation.vo.UserVO;
-import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
@@ -35,7 +32,6 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,11 +46,11 @@ import java.util.List;
 public class UserController {
 
   @Autowired
-  private UserService userService;
+  private UserServiceImpl userService;
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
   @Autowired
-  private BulletinService bulletinService;
+  private BulletinServiceImpl bulletinService;
   @Autowired
   private JedisOp jedis;
 
@@ -74,8 +70,8 @@ public class UserController {
   public String index(Model model, HttpSession session) {
     UserVO user = (UserVO) session.getAttribute("user");
     if (UserRoleEnum.TEACHER.getRole().equals(user.getRole())) {
-      Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
-      List<ProjectSelectResult> selectResults = new ArrayList<>();
+      Map<String, ProjectSelectResultBO> teaProject = projectService.getTeaProject(user);
+      List<ProjectSelectResultBO> selectResults = new ArrayList<>();
       if (teaProject != null) {
         teaProject.forEach((k, l) -> {
           selectResults.add(l);
@@ -84,10 +80,10 @@ public class UserController {
       model.addAttribute("projects", selectResults);
     }
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
-      ProjectApply stuProject = projectService.getStuProject(user);
+      ProjectInfoVO stuProject = projectService.getStuProject(user);
       ProjectProgressVO projectProgress = null;
       if (stuProject != null) {
-        projectProgress = projectService.getProjectProgress(stuProject.getPno());
+        projectProgress = projectService.getProjectProgress(stuProject.getProjectApply().getPno());
       }
       model.addAttribute("projectProgress", projectProgress);
     }
@@ -96,31 +92,13 @@ public class UserController {
     BeanUtils.copyProperties(projectPlan, projectPlanVO);
     //判断是否超时, 给前端判断展示
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    if (LocalDateTime.now()
-        .isAfter(LocalDateTime.parse(projectPlanVO.getProjectApplyTime().split(",")[1], format))) {
-      projectPlanVO.setProjectApplyIsOver((byte) 1);
-    }
-    if (LocalDateTime.now()
-        .isAfter(LocalDateTime.parse(projectPlanVO.getProjectSelectTime().split(",")[1], format))) {
-      projectPlanVO.setProjectSelectIsOver((byte) 1);
-    }
-    if (LocalDateTime.now()
-        .isAfter(LocalDateTime.parse(projectPlanVO.getTaskBookTime().split(",")[1], format))) {
-      projectPlanVO.setTaskBookIsOver((byte) 1);
-    }
-    if (LocalDateTime.now()
-        .isAfter(LocalDateTime.parse(projectPlanVO.getOpenReportTime().split(",")[1], format))) {
-      projectPlanVO.setOpenReportIsOver((byte) 1);
-    }
-    if (LocalDateTime.now()
-        .isAfter(
-            LocalDateTime.parse(projectPlanVO.getForeignLiteratureTime().split(",")[1], format))) {
-      projectPlanVO.setForeignLiteratureIsOver((byte) 1);
-    }
-    if (LocalDateTime.now()
-        .isAfter(LocalDateTime.parse(projectPlanVO.getThesisTime().split(",")[1], format))) {
-      projectPlanVO.setThesisIsOver((byte) 1);
-    }
+    projectPlanVO.setProjectApplyIsOver( DateUtil.nowIsOver(projectPlan.getProjectApplyTime()));
+    projectPlanVO.setProjectSelectIsOver( DateUtil.nowIsOver(projectPlan.getProjectSelectTime()));
+    projectPlanVO.setTaskBookIsOver( DateUtil.nowIsOver(projectPlan.getTaskBookTime()));
+    projectPlanVO.setOpenReportIsOver( DateUtil.nowIsOver(projectPlan.getOpenReportTime()));
+    projectPlanVO.setForeignLiteratureIsOver( DateUtil.nowIsOver(projectPlan.getForeignLiteratureTime()));
+    projectPlanVO.setThesisIsOver( DateUtil.nowIsOver(projectPlan.getThesisTime()));
+
     model.addAttribute("projectPlan", projectPlanVO);
     return "index";
   }

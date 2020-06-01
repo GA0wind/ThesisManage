@@ -67,7 +67,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -89,13 +89,13 @@
           <input id="hide-page" type="text" class="hide" name="page">
           <div class="form-group">
             <label for="pname">课题</label>
-            <input id="pname" type="text" name="pname" th:value="${oralExamSearchDTP.pname}"
+            <input id="pname" type="text" name="pname" th:value="${oralExamSearchDTO.pname}"
                    onclick="changeVal(this)">
           </div>
           <div class="form-group">
             <label for="sname">学生姓名</label>
             <input id="sname" type="text" name="sname"
-                   th:value="${oralExamSearchDTP.sname}" onclick="changeVal(this)">
+                   th:value="${oralExamSearchDTO.sname}" onclick="changeVal(this)">
           </div>
           <div class="form-group">
             <button class="btn btn-primary" type="button" onclick="getOralExamList()">搜索</button>
@@ -115,11 +115,12 @@
             </thead>
             <tbody>
             <tr th:each="project:${groupStus.data}">
-              <td th:text="${project.pname}">
-              <td th:text="${project.sname}"></td>
+              <td th:text="${project.pname}" th:title="${project.pname}">
+              <td th:text="${project.sname}" th:title="${project.sname}"></td>
               <td>
                 <a th:if="${project.thesis} != null"
                    th:text="${#strings.arraySplit(project.thesis,'#')[1]}"
+                   th:title="${#strings.arraySplit(project.thesis,'#')[1]}"
                    th:href="@{/download(filePath=${project.thesis},fileType='thesis')}">
                 </a>
               </td>
@@ -137,13 +138,13 @@
           </table>
         </div>
         <div class="pull-left" th:if="${groupStus.totalPage} > 1">
-          <a onclick="getOralExamList(this)" th:data-page="1" class="more"  role="button">首页</a>&nbsp;&nbsp;
+          <a onclick="getOralExamList(this)" th:data-page="1" class="more btn btn-link"  role="button">首页</a>&nbsp;&nbsp;
           <a th:classappend="${groupStus.page} > 1 ?'':'disabled'" onclick="getOralExamList(this)" role="button"
              th:data-page="${groupStus.page}-1" class="more btn btn-link">上一页</a>&nbsp;&nbsp;
           <input class="pagination-num" id="page" type="text" th:value="${groupStus.page}"
                  size="2" name="page"
                  onmousedown="if(event.keyCode==13){getOralExamList()}">&nbsp;&nbsp;
-          <a th:classappend="${groupStus.page} < ${groupStus.totalPage} ?'':'disabled'" role="button"
+          <a th:classappend="${groupStus.page} >= ${groupStus.totalPage} ?'disabled':''" role="button"
              onclick="getOralExamList(this)" th:data-page="${groupStus.page}+1"
              class="more btn-link btn">下一页</a>&nbsp;&nbsp;
           <a onclick="getOralExamList(this)" th:data-page="${groupStus.totalPage}" role="button"

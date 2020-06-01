@@ -71,10 +71,11 @@
               $("#openReportRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
-                  + "&fileType=openReport'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  + "&fileType=openReport' title='" + data.filePath.toString().split('#')[1] + "'>"
+                  + data.filePath.toString().split('#')[1] + "</a></td>" +
                   isPass +
                   "<td>" + data.trialGrade + "</td>" +
-                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
+                  "<td title='" + data.trialComment + "'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -103,7 +104,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -177,11 +178,13 @@
 
 
           </dl>
-          <a th:if="${stuOpenReport.document} == null and ${session.user.role} == 'student'" type="button" class="btn btn-primary"
-                  onclick="showOpenReportModel(0)">提交
+          <a th:if="${stuOpenReport.document} == null and ${session.user.role} == 'student'"
+             type="button" class="btn btn-primary"
+             onclick="showOpenReportModel(0)">提交
           </a>
           <a
-              th:if="${stuOpenReport.document} != null and ${session.user.role} == 'student'" th:classappend="${stuOpenReport.document.modifiable} == 1 ? '':'disabled'"
+              th:if="${stuOpenReport.document} != null and ${session.user.role} == 'student'"
+              th:classappend="${stuOpenReport.document.modifiable} == 1 ? '':'disabled'"
               type="button" class="btn btn-primary"
               onclick="showOpenReportModel(1)">重新提交
           </a>
@@ -199,7 +202,7 @@
 
 
 <!-- 提交开题报告表单 -->
-<div class="modal fade" tabindex="-1" role="dialog" id="openReportModel">
+<div class="modal fade " tabindex="-1" role="dialog" id="openReportModel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -237,9 +240,9 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
-<div class="modal fade" tabindex="-1" role="dialog" id="openReportRecordModel">
-  <div class="modal-dialog" role="document">
+<!--审核记录-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="openReportRecordModel">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -247,15 +250,15 @@
         <h4 class="modal-title">历史审核</h4>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 common">
+        <div class="col-md-12 common table-responsive">
           <table class="table" id="openReportRecord">
             <thead>
             <tr>
               <th>文件</th>
-              <th>审核结果</th>
-              <th>审核分数</th>
-              <th>审核评语</th>
-              <th>审核时间</th>
+              <th class="short">结果</th>
+              <th class="short">分数</th>
+              <th class="trialComment">评语</th>
+              <th class="middle">时间</th>
             </tr>
             </thead>
             <tbody id="openReportRecordTable">

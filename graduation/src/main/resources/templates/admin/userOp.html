@@ -246,7 +246,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -273,8 +273,11 @@
             </div>
             <div class="form-group">
               <label for="search-college">学院</label>
-              <input class="form-control" id="search-college" type="text" name="college"
-                     th:value="${userSearchDTO.college}" onchange="changeVal(this)">
+              <select id="search-college" class="form-control" name="college">
+                <option></option>
+                <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
+                        th:text="${college.collegeName}"></option>
+              </select>
             </div>
             <div class="form-group">
               <label for="search-name">姓名</label>
@@ -283,10 +286,14 @@
                      onchange="changeVal(this)">
             </div>
             <div class="form-group">
-              <label th:if="${role}=='teacher'" for="search-role">角色(teacher,admin,director)</label>
-              <input class="form-control" th:if="${role}=='teacher'" id="search-role" type="text"
-                     name="role"
-                     th:value="${userSearchDTO.role}">
+              <label th:if="${role}=='teacher'" for="search-role">角色</label>
+              <select class="form-control" th:if="${role}=='teacher'" id="search-role" type="text"
+                      name="role" th:value="${userSearchDTO.role}">
+                <option value="teacher">指导老师</option>
+                <option value="director">主任</option>
+                <option value="admin">管理员</option>
+              </select>
+
             </div>
             <div class="form-group">
               <button class="btn btn-primary" type="button" onclick="getUserList()">搜索
@@ -317,9 +324,7 @@
                 <td th:text="${teacher.tno}"></td>
                 <td th:text="${teacher.tname}"></td>
                 <td th:text="${teacher.college}"></td>
-                <td th:if="${teacher.role}=='admin'">管理员</td>
-                <td th:if="${teacher.role}=='director'">主任</td>
-                <td th:if="${teacher.role}=='teacher'">指导老师</td>
+                <td th:text="${teacher.role}"></td>
                 <td th:text="${teacher.title}"></td>
                 <td th:text="${teacher.leadStudentNum}"></td>
                 <td th:text="${teacher.groupNum}"></td>
@@ -335,12 +340,12 @@
               </tbody>
               <tbody th:if="${role} == 'student'">
               <tr th:each="student:${users.data}">
-                <td th:text="${student.sno}"></td>
-                <td th:text="${student.sname}"></td>
-                <td th:text="${student.college}"></td>
-                <td th:text="${student.major}"></td>
-                <td th:text="${student.gradeClass}"></td>
-                <td th:text="${student.groupNum}"></td>
+                <td th:text="${student.sno}" th:title="${student.sno}"></td>
+                <td th:text="${student.sname}" th:title="${student.sname}"></td>
+                <td th:text="${student.college}" th:title="${student.college}"></td>
+                <td th:text="${student.major}" th:title="${student.major}"></td>
+                <td th:text="${student.gradeClass}" th:title="${student.gradeClass}"></td>
+                <td th:text="${student.groupNum}" th:title="${student.groupNum}"></td>
                 <td>
                   <a class="btn-link" onclick="getStu(this)" role="button"
                      th:data-sno="${student.sno}">修改
@@ -470,7 +475,10 @@
             <div class="row">
               <div class="col-md-12">
                 <label>小组角色&nbsp;&nbsp;</label>
-                <input id="tea-groupRole" type="text" class="form-control" name="groupRole">
+                <select id="tea-groupRole" type="text" class="form-control" name="groupRole">
+                  <option value="member">小组组员</option>
+                  <option value="leader">小组组长</option>
+                </select>
               </div>
             </div>
 

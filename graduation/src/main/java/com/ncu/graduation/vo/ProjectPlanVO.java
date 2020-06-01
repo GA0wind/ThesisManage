@@ -15,24 +15,25 @@ public class ProjectPlanVO {
   private Long id;
 
   private String projectApplyTime;
-  private Byte projectApplyIsOver;
+  private String projectApplyIsOver;
+
   private String projectSelectTime;
-  private Byte projectSelectIsOver;
+  private String projectSelectIsOver;
 
   private String taskBookTime;
-  private Byte taskBookIsOver;
+  private String taskBookIsOver;
 
   private String openReportTime;
-  private Byte openReportIsOver;
+  private String openReportIsOver;
 
   private String foreignLiteratureTime;
-  private Byte foreignLiteratureIsOver;
+  private String foreignLiteratureIsOver;
 
   private String oralExaminationTime;
-  private Byte oralExaminationIsOver;
+  private String oralExaminationIsOver;
 
   private String thesisTime;
-  private Byte thesisIsOver;
+  private String thesisIsOver;
 
   private String schoolYear;
 

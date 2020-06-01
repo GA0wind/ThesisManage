@@ -21,7 +21,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -32,12 +32,10 @@
         <p class="title">公告</p>
         <a class="pull-right view-publish btn btn-primary" th:if="${session.user.role == 'admin'}"
            href="/bulletin/publish">发布公告</a>
-
-
         <hr>
         <ul class="list-group">
           <li class="list-group-item" th:each="bulletin : ${pagination.data}">
-            <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}"></a>
+            <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}" th:title="${bulletin.title}"></a>
             <span class="view-time">
               <span th:text="${bulletin.gmtModified}"></span>&nbsp;&nbsp;
               <span th:if="${session.user.role == 'admin'}">
@@ -47,12 +45,13 @@
             </span>
           </li>
         </ul>
-        <div th:if="${pagination.totalPage} > 1">
-          <a href="/bulletin?page=1" class="more">首页</a>&nbsp;&nbsp;
-          <a th:href="@{/bulletin(page=pagination.page-1)}" class="more">上一页</a>&nbsp;&nbsp;
-          <input class="pagination-num" type="text" value="1" size="2">&nbsp;&nbsp;
-          <a th:href="@{/templates/bulletin(page=pagination.page+1)}" class="more">下一页</a>&nbsp;&nbsp;
-          <a th:href="@{/bulletin(page=pagination.totalPage)}" class="more">尾页</a>&nbsp;&nbsp;
+        <div th:if="${pagination.totalPage} > 1" class="pull-left">
+          <a href="/bulletin?page=1" class="more" role="button">首页</a>&nbsp;&nbsp;
+          <a th:classappend="${pagination.page} > 1 ?'':'disabled'" role="button"
+             th:href="@{/bulletin(page=${pagination.page-1})}" class="more">上一页</a>&nbsp;&nbsp;
+          <a th:classappend="${pagination.page} >= ${pagination.totalPage} ?'disabled':''"
+             role="button" th:href="@{/bulletin(page=${pagination.page+1})}" class="more">下一页</a>&nbsp;&nbsp;
+          <a role="button" th:href="@{/bulletin(page=${pagination.totalPage})}" class="more">尾页</a>&nbsp;&nbsp;
         </div>
       </div>
     </div>

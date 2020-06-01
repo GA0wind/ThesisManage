@@ -48,7 +48,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -65,53 +65,56 @@
         <div class="col-md-12 common view">
           <p class="title">个人信息</p>
           <hr>
-          <dl class="dl-horizontal">
-            <dt>学号：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.accountNo}" readonly></dd>
-            <dt>姓名：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.name}" readonly></dd>
-            <dt>学院：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.college}" readonly></dd>
-            <dt>专业：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.major}" readonly></dd>
-            <dt>班级：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.gradeClass}" readonly></dd>
-          </dl>
+          <div class="col-md-offset-3 col-md-5" style="min-width: 400px">
+            <dl class="dl-horizontal">
+              <dt>学号：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.accountNo}" readonly></dd>
+              <dt>姓名：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.name}" readonly></dd>
+              <dt>学院：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.college}" readonly></dd>
+              <dt>专业：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.major}" readonly></dd>
+              <dt>班级：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.gradeClass}" readonly></dd>
+            </dl>
+          </div>
         </div>
         <button type="button" class="btn btn-default" onclick="showModifyModel()">修改密码</button>
       </div>
     </div>
-    <!--  课题详情信息  -->
+    <!--  个人信息  -->
     <div class="col-md-7" th:if="${user.role} != 'student'">
       <div class="row">
         <div class="col-md-12 common view">
           <p class="title">个人信息</p>
           <hr>
-          <dl class="dl-horizontal">
-            <dt>工号：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.accountNo}" readonly></dd>
-            <dt>姓名：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.name}" readonly></dd>
-            <dt>学院：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.college}" readonly></dd>
-            <dt>职称：</dt>
-            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${user.title}" readonly></dd>
+          <div class="col-md-offset-3 col-md-5" style="min-width: 400px">
+            <dl class="dl-horizontal">
+              <dt>工号：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.accountNo}" readonly></dd>
+              <dt>姓名：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.name}" readonly></dd>
+              <dt>学院：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.college}" readonly></dd>
+              <dt>职称：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.title}" readonly></dd>
 
-          </dl>
+            </dl>
+          </div>
         </div>
         <button type="button" class="btn btn-default" onclick="showModifyModel()">修改密码</button>
       </div>
     </div>
-
 
 
   </div>
@@ -145,7 +148,8 @@
             <div class="row">
               <div class="col-md-12">
                 <label for="user-confirmNewPwd">确认新密码&nbsp;&nbsp;</label>
-                <input type="password" class="form-control" id="user-confirmNewPwd" name="confirmNewPwd">
+                <input type="password" class="form-control" id="user-confirmNewPwd"
+                       name="confirmNewPwd">
               </div>
             </div>
           </form>

@@ -38,52 +38,70 @@
 
     function getProject(e) {
       var pno = $(e).attr('data-pno');
-      var filePath = $(e).attr('data-filePath');
       var isBlind = $(e).attr('data-isBlind');
 
       $("#pno").val(pno);
-      $("#filePath").val(filePath);
       $("#isBlind").val(isBlind);
 
       $.ajax({
         url: '/project/simple/' + pno,
         dataType: 'json',
         success: function (data) {
-
-          $("#project-pno").val(data.data.pno + "");
-          $("#project-pname").val(data.data.pname + "");
-          $("#project-content").val(data.data.content + "");
-          $("#project-type").val(data.data.type + "");
-          var filePath = data.data.filePath + "";
-          $("#oldFilePath").val(filePath + "");
-          var filePathUrl = filePath.replace("#", "%23");
-          $("#old-file").removeClass("hide");
-          $("#old-file").append(
-              "<input class='hide' type='text' id='oldFilePath' name='oldFilePath' value='"
-              + filePath + "'>"
-              + " <p>\n"
-              + "&nbsp;&nbsp;课题文档\n"
-              + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
-              + filePath.split('#')[1] + "</span></a>\n"
-              + "&nbsp;&nbsp;\n"
-              + "<a href=\"/readOnline?filePath=" + filePathUrl
-              + "&fileType=project\">在线浏览</a>\n"
-              + "\n"
-              + "</p>");
-
-          if (isBlind == 1 && $(e).attr('data-blindGrade') != null) {
-            $("#verify-grade").val($(e).attr('data-blindGrade'));
-            $("#verify-comment").val($(e).attr('data-blindComment'));
-            $("#verify-grade").attr('readonly', '');
-            $("#verify-comment").attr('readonly', '');
-            $("#verifySubmit").remove();
+          if (data.code == 200) {
+            $("#project-pno").val(data.data.pno + "");
+            $("#project-pname").val(data.data.pname + "");
+            $("#project-content").val(data.data.content + "");
+            $("#project-type").val(data.data.type + "");
+            var filePath = data.data.filePath + "";
+            var filePathUrl = filePath.replace("#", "%23");
+            $("#old-file").append(
+                "<input class='hide' type='text' id='oldFilePath' name='oldFilePath' value='"
+                + filePath + "'>"
+                + " <p>\n"
+                + "&nbsp;&nbsp;课题文档\n"
+                + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
+                + filePath.split('#')[1] + "</span></a>\n"
+                + "&nbsp;&nbsp;\n"
+                + "<a href=\"/readOnline?filePath=" + filePathUrl
+                + "&fileType=project\">在线浏览</a>\n"
+                + "\n"
+                + "</p>");
+            $('#myModal').modal({
+              keyboard: false
+            });
+          } else {
+            alert(data.message)
           }
-          $('#myModal').modal({
-            keyboard: false
-          });
-        },
-        error: function (data) {
-          alert(data.message)
+
+        }
+      })
+    }
+
+    //盲审打分回显
+    function getThesisScore(e) {
+      var pno = $(e).attr('data-pno');
+      var isBlind = $(e).attr('data-isBlind');
+
+      $("#pno").val(pno);
+      $("#isBlind").val(isBlind);
+      $.ajax({
+        url: '/project/simple/' + pno,
+        dataType: 'json',
+        success: function (data) {
+          if (data.code == 200) {
+            if (isBlind == 1 && data.data.blindTrialGrade != null) {
+              $("#verify-grade").val(data.data.blindTrialGrade);
+              $("#verify-comment").val(data.data.blindTrialComment);
+              $("#verify-grade").attr('readonly', '');
+              $("#verify-comment").attr('readonly', '');
+              $("#verifySubmit").remove();
+            }
+            $('#verifyScore').modal({
+              keyboard: false
+            });
+          } else {
+            alert(data.message)
+          }
         }
       })
     }
@@ -117,10 +135,10 @@
               $("#thesisRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
-                  + "&fileType=thesis'>" + data.filePath.toString().split('#')[1] + "</a></td>" +
-                  isPass +
-                  "<td>" + data.trialGrade + "</td>" +
-                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
+                  + "&fileType=thesis' title='" + data.filePath.toString().split('#')[1] + "'>"
+                  + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  isPass + "<td>" + data.trialGrade + "</td>" +
+                  "<td title='" + data.trialComment + "'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -171,7 +189,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -197,18 +215,20 @@
               <th class="project-name">课题名</th>
               <th th:if="${isBlind} == null">学生</th>
               <th>论文</th>
-              <th>文档操作</th>
-              <th>审核结果</th>
+              <th style="width: 150px;">文档操作</th>
+              <th class="short">审核结果</th>
               <th style="width: 250px;">操作</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="thesis:${teaThesis}">
-              <td th:text="${thesis.pname}"></td>
-              <td th:if="${isBlind} == null" th:text="${thesis.sname}"></td>
+              <td th:text="${thesis.pname}" th:title="${thesis.pname}"></td>
+              <td th:if="${isBlind} == null" th:text="${thesis.sname}"
+                  th:title="${thesis.sname}"></td>
               <!--              文档-->
               <td th:if="${thesis.document} != null">
                 <a th:text="${#strings.arraySplit(thesis.document.filePath,'#')[1]}"
+                   th:title="${#strings.arraySplit(thesis.document.filePath,'#')[1]}"
                    th:href="@{/download(filePath=${thesis.document.filePath},fileType='thesis')}"></a>
               </td>
               <td th:if="${thesis.document} == null">未提交</td>
@@ -221,24 +241,39 @@
 
               <!--              审核结果-->
               <td th:if="${thesis.document} == null">未提交</td>
-              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 1"
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 1 and ${isBlind} == null"
                   class="text-success">已通过
               </td>
-              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 2"
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 1 and ${isBlind} != null"
+                  class="text-success">已审核
+              </td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 2 and ${isBlind} == null"
                   class="text-warning">待审核
               </td>
-              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 0"
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 2 and ${isBlind} != null"
+                  class="text-warning">待审核
+              </td>
+              <td th:if="${thesis.document} != null and ${thesis.document.isPass} == 0 and ${isBlind} == null"
                   class="text-danger">已回拒
               </td>
               <td>
+                <!--盲审情况-->
                 <a class="btn-link" role="button"
-                   th:if="${thesis.document} != null and ${thesis.document.isPass} ==2"
-                   th:data-pno="${thesis.pno}"
+                   th:if="${thesis.document} != null and ${isBlind} != null"
+                   th:data-pno="${thesis.document.pno}"
                    th:data-isBlind="${isBlind}?1:0"
-                   th:data-filePath="${thesis.document.filePath}"
-                   th:data-blindGrade="${thesis.document.blindTrialGrade}"
-                   th:data-blindComment="${thesis.document.blindTrialComment}"
-                   onclick="getProject(this)">审核</a>
+                   onclick="getThesisScore(this)">审核</a>
+                <a class="btn-link" role="button"
+                   th:if="${thesis.document} != null and ${isBlind} != null"
+                   th:data-pno="${thesis.document.pno}"
+                   th:data-isBlind="${isBlind}?1:0"
+                   onclick="getProject(this)">查看课题</a>
+                <!--非盲审情况-->
+                <a class="btn-link" role="button"
+                   th:if="${thesis.document} != null and ${thesis.document.isPass} ==2 and ${isBlind} == null"
+                   th:data-pno="${thesis.document.pno}"
+                   th:data-isBlind="${isBlind}?1:0"
+                   onclick="getThesisScore(this)">审核</a>
                 <a class="btn-link" role="button"
                    th:if="${isBlind} == null and ${thesis.document} != null "
                    onclick="getThesisRecord(this)"
@@ -273,16 +308,8 @@
         <h4 class="modal-title">课题信息</h4>
       </div>
       <div class="modal-body">
-
         <div class="col-md-12 common">
-          <form id="thesisVerifyForm" class="form-inline form" action="/teacher/thesis/verify"
-                method="post"
-                enctype="multipart/form-data">
-            <input type="text" class="hide" id="pno" name="pno">
-            <input type="text" class="hide" id="isBlind" name="isBlind" th:if="${isBlind}"
-                   th:value="${isBlind}">
-            <input type="text" class="hide" id="filePath" name="filePath">
-
+          <form id="projectInfoForm" class="form-inline form">
             <div class="row">
               <div class="col-md-12">
                 <label for="project-pname">课题名称&nbsp;&nbsp;</label>
@@ -304,11 +331,38 @@
             </div>
 
             <div class="row">
-              <div class="col-md-12 hide" id="old-file">
-                <input class="hide" type="text" id="oldFilePath" name="oldFilePath">
+              <div class="col-md-12" id="old-file">
               </div>
             </div>
 
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--评分框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="verifyScore">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">评分</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <form id="thesisVerifyForm" class="form-inline form" action="/teacher/thesis/verify"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" id="pno" name="pno">
+            <input type="text" class="hide" id="isBlind" name="isBlind" th:if="${isBlind}"
+                   th:value="${isBlind}">
             <div class="row" th:if="!${isBlind}">
               <div class="col-md-12">
                 <label>通过(通过后默认不允许修改, 需指导老师手动允许)&nbsp;&nbsp;</label>
@@ -341,15 +395,18 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success" onclick="thesisVerify()">提交</button>
+        <button id="verifySubmit" type="button" class="btn btn-primary"
+                onclick="thesisVerify()">提交
+        </button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
 <!--历史审核记录-->
-<div class="modal fade" tabindex="-1" role="dialog" id="thesisRecordModel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="thesisRecordModel">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -357,15 +414,15 @@
         <h4 class="modal-title">历史审核</h4>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 common">
+        <div class="col-md-12 common table-responsive">
           <table class="table" id="thesisRecord">
             <thead>
             <tr>
               <th>文件</th>
-              <th>结果</th>
-              <th>分数</th>
-              <th>评语</th>
-              <th>时间</th>
+              <th class="short">结果</th>
+              <th class="short">分数</th>
+              <th class="trialComment">评语</th>
+              <th class="middle">时间</th>
             </tr>
             </thead>
             <tbody id="thesisRecordTable">

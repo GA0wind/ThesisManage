@@ -16,6 +16,8 @@
   <script src="/js/transition.min.js"></script>
 
   <script>
+
+    //审核课题
     function projectApplyVerify() {
       $('#projectApplyVerify').ajaxSubmit({
         beforeSubmit: function () {
@@ -34,6 +36,7 @@
       });
     }
 
+    //获取课题
     function getProject(e) {
       var pno = $(e).attr('data-pno');
       var role = $(e).attr('data-role');
@@ -42,40 +45,15 @@
         dataType: 'json',
         success: function (data) {
           if (data.code == 200) {
-            $("#project-pno").val(data.data.pno + "");
             $("#project-pname").val(data.data.pname + "");
             $("#project-content").val(data.data.content + "");
             $("#project-type").val(data.data.type + "");
-            if (data.data.blindTrialGrade != null) {   //判断是否已经盲审
-              $("#blindVerify-grade").val(data.data.blindTrialGrade + "");
-              $("#blindVerify-comment").val(data.data.blindTrialComment + "");
-              $("#blindVerify-grade").attr('readonly', '');
-              $("#blindVerify-comment").attr('readonly', '');
-              $("#verifySubmit").remove();
-            }
-            if (data.data.trialGrade != null) {    //判断主任是否已经审了
-              $("#verify-grade").val(data.data.trialGrade + "");
-              $("#verify-comment").val(data.data.trialComment + "");
-              $("#verify-grade").attr('readonly', '');
-              $("#verify-comment").attr('readonly', '');
-              $("#verifySubmit").remove();
-            } else if(role == 'teacher'){                 //主任没评的话不显示数据
-              $("#directorVerify").addClass('hidden');
-            }else if (role == 'director') {              //主任没评的话可以评分
-              $("#verify-grade").removeAttr('readonly', '');
-              $("#verify-comment").removeAttr('readonly', '');
-              $("#directorVerify").removeClass('hidden');
-            }
 
-            //如果文件有的话
             var filePath = data.data.filePath + "";
             $("#oldFilePath").val(filePath + "");
             var filePathUrl = filePath.replace("#", "%23");
-            $("#old-file").removeClass("hide");
             $("#old-file").append(
-                "<input class='hide' type='text' id='oldFilePath' name='oldFilePath' value='"
-                + filePath + "'>"
-                + " <p>\n"
+                " <p>\n"
                 + "&nbsp;&nbsp;已提交附件\n"
                 + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
                 + filePath.split('#')[1] + "</span></a>\n"
@@ -91,19 +69,80 @@
           } else {
             alert(data.message)
           }
-
         },
-        error: function (data) {
-          alert(data.message)
-        }
       })
     }
+
+    //获取课题评分
+    function getProjectScore(e) {
+      var pno = $(e).attr('data-pno');
+      var role = $(e).attr('data-role');
+      $.ajax({
+        url: '/project/simple/' + pno,
+        dataType: 'json',
+        success: function (data) {
+          $("#project-pno").val(pno);
+          if (data.code == 200) {
+            if (data.data.blindTrialGrade == undefined){
+              data.data.blindTrialGrade = "";
+            }
+            if (data.data.blindTrialComment == undefined){
+              data.data.blindTrialComment = "";
+            }
+            if (data.data.trialGrade == undefined){
+              data.data.trialGrade = "";
+            }
+            if (data.data.trialComment == undefined){
+              data.data.trialComment = "";
+            }
+
+            $("#blindVerify-grade").val(data.data.blindTrialGrade + "");
+            $("#blindVerify-comment").val(data.data.blindTrialComment + "");
+            if (data.data.blindTrialGrade != null && data.data.blindTrialGrade != ""){
+              $("#blindVerify-grade").attr('readonly', '');
+              $("#blindVerify-comment").attr('readonly', '');
+              if (role == 'teacher'){
+                $("#verifySubmit").remove();
+                if (data.data.trialGrade == null || data.data.trialGrade == "" ){
+                  $("#directorVerify").addClass('hidden');
+                }
+              }
+            }
+
+            $("#verify-grade").val(data.data.trialGrade + "");
+            $("#verify-comment").val(data.data.trialComment + "");
+            if (data.data.trialGrade != null && data.data.trialGrade != ""){
+              $("#verify-grade").attr('readonly', '');
+              $("#verify-comment").attr('readonly', '');
+              $("#verifySubmit").remove();
+            }
+            $('#ProjectScore').modal({
+              keyboard: false
+            });
+          } else {
+            alert(data.message)
+          }
+        },
+      })
+    }
+
+
+
+
+
 
     //移除添加数据数据
     $(function () {
       $('#myModal').on('hide.bs.modal',
           function () {
-            $("#old-file").addClass("hide");
+            $("#old-file").empty();
+            $("#directorVerify").removeClass('hidden');
+          })
+    });
+    //移除添加数据数据
+    $(function () {
+      $('#ProjectScore').on('hide.bs.modal',
+          function () {
             $("#old-file").empty();
           })
     });
@@ -113,7 +152,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -144,7 +183,7 @@
               </thead>
               <tbody>
               <tr th:each="project:${projects.data}">
-                <td th:text="${project.pname}"></td>
+                <td th:text="${project.pname}" th:title="${project.pname}"></td>
                 <td th:text="${project.type}">未知</td>
                 <!--盲审判断-->
                 <td th:if="${session.user.role=='teacher'}"
@@ -152,28 +191,16 @@
                     th:class="${project.blindTrialGrade} == null ? 'text-warning':'text-success'"></td>
                 <!--主任复审判断-->
                 <td th:if="${session.user.role=='director'}"
-                    th:text="${project.tiralGrade} == null ? '未审核':'已审核'"
-                    th:class="${project.tiralGrade} == null ? 'text-warning':'text-success'"></td>
-                <!--盲审判断-->
-                <td th:if="${session.user.role=='teacher'}">
-                  <a th:if="${project.blindTrialGrade} == null" onclick="getProject(this)"
-                     class="btn-link" role="button"
+                    th:text="${project.trialGrade} == null ? '未审核':'已审核'"
+                    th:class="${project.trialGrade} == null ? 'text-warning':'text-success'"></td>
+
+                <!--相关操作-->
+                <td>
+                  <a onclick="getProjectScore(this)" class="btn-link" role="button"
                      th:data-pno="${project.pno}" th:data-role="${session.user.role}">审核
                   </a>
-                  <a th:if="${project.blindTrialGrade} != null" onclick="getProject(this)"
-                     class="btn-link" role="button"
-                     th:data-pno="${project.pno}">查看
-                  </a>
-                </td>
-                <!--主任复审判断-->
-                <td th:if="${session.user.role=='director'}">
-                  <a th:if="${project.tiralGrade} == null" onclick="getProject(this)"
-                     class="btn-link" role="button"
-                     th:data-pno="${project.pno}" th:data-role="${session.user.role}">审核
-                  </a>
-                  <a th:if="${project.tiralGrade} != null" onclick="getProject(this)"
-                     class="btn-link" role="button"
-                     th:data-pno="${project.pno}" th:data-role="${session.user.role}">查看
+                  <a onclick="getProject(this)"
+                     class="btn-link" role="button" th:data-pno="${project.pno}">查看课题
                   </a>
                 </td>
               </tr>
@@ -184,8 +211,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
 
@@ -198,13 +223,9 @@
             aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">课题信息</h4>
       </div>
-      <div class="modal-body">
-
+      <div class="modal-body clearfix">
         <div class="col-md-12 common">
-          <form id="projectApplyVerify" class="form-inline form" action="/project/verify"
-                method="post"
-                enctype="multipart/form-data">
-            <input type="text" class="hide" id="project-pno" name="pno">
+          <form id="projectInfo" class="form-inline form">
             <div class="row">
               <div class="col-md-12">
                 <label for="project-pname">课题名称&nbsp;&nbsp;</label>
@@ -226,11 +247,32 @@
             </div>
 
             <div class="row">
-              <div class="col-md-12 hide" id="old-file">
-
+              <div class="col-md-12" id="old-file">
               </div>
             </div>
+          </form>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
+
+<!-- 课题信息弹出框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="ProjectScore">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">评分</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <form id="projectApplyVerify" class="form-inline form" action="/project/verify"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" id="project-pno" name="pno">
             <div class="row">
               <div class="col-md-12">
                 <label>通过&nbsp;&nbsp;</label>
@@ -241,18 +283,17 @@
               </div>
             </div>
 
-
             <div class="row">
               <div class="col-md-12">
                 <label>盲评评分&nbsp;&nbsp;</label>
-                <input id="blindVerify-grade" type="text" class="form-control" name="score">
+                <input id="blindVerify-grade" type="text" class="form-control" name="blindScore">
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-12">
                 <label>盲评评语&nbsp;&nbsp;</label>
-                <input id="blindVerify-comment" type="text" class="form-control" name="comment">
+                <input id="blindVerify-comment" type="text" class="form-control" name="blindComment">
               </div>
             </div>
             <div id="directorVerify">
@@ -282,7 +323,6 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 </body>
 

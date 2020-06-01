@@ -1,0 +1,2995 @@
+[DEBUG] [graduation-manage] 2020-05-28 18:17:01.804 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20000} created. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:17:01.813 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:17:01.813 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:17:01.962 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 149.8754 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:17:01.977 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.077 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20001} created. SELECT count(0) FROM bulletin WHERE (school_year = ?)
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.079 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20001} Parameters : [2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.079 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20001} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.106 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20001} executed. 27.2767 millis. SELECT count(0) FROM bulletin WHERE (school_year = ?)
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.107 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20001} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.119 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20002} created. select
+     
+     
+    
+    id, title, file_path, creator_no, school_year, gmt_create, gmt_modified
+   
+    from bulletin
+     
+       
+    
+     WHERE (  school_year = ? ) 
+   
+     
+     
+      order by gmt_modified desc LIMIT ? 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.120 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20002} Parameters : [2019-2020, 10]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.120 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20002} Types : [VARCHAR, INTEGER]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.123 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20002} executed. 2.9656 millis. select
+     
+     
+    
+    id, title, file_path, creator_no, school_year, gmt_create, gmt_modified
+   
+    from bulletin
+     
+       
+    
+     WHERE (  school_year = ? ) 
+   
+     
+     
+      order by gmt_modified desc LIMIT ? 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:02.128 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20002} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.750 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.750 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.752 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 1.8997 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.753 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.755 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20001} Parameters : [2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.756 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20001} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.757 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20001} executed. 1.2282 millis. SELECT count(0) FROM bulletin WHERE (school_year = ?)
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.757 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20001} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.758 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20002} Parameters : [2019-2020, 10]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.758 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20002} Types : [VARCHAR, INTEGER]
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.759 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20002} executed. 1.3819 millis. select
+     
+     
+    
+    id, title, file_path, creator_no, school_year, gmt_create, gmt_modified
+   
+    from bulletin
+     
+       
+    
+     WHERE (  school_year = ? ) 
+   
+     
+     
+      order by gmt_modified desc LIMIT ? 
+[DEBUG] [graduation-manage] 2020-05-28 18:17:04.760 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20002} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.194 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20003} created. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ?
+                
+            
+              
+                  and password = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.194 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20003} Parameters : [8000117, 5b808a388d2ef80ba88c792856095d7f]
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.194 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20003} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.228 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20003} executed. 34.0712 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ?
+                
+            
+              
+                  and password = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.229 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20003} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.409 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20004} created. SELECT psr.pno AS pno,pa.pname AS pname, psr.tno AS tno, psr.sno AS sno, s.sname AS sname
+    FROM project_select_result psr LEFT JOIN project_apply pa ON psr.pno = pa.pno LEFT JOIN student s ON psr.sno = s.sno
+    WHERE psr.tno = ? AND pa.school_year = ?;
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.409 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20004} Parameters : [8000117, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.409 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20004} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.440 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20004} executed. 30.3722 millis. SELECT psr.pno AS pno,pa.pname AS pname, psr.tno AS tno, psr.sno AS sno, s.sname AS sname
+    FROM project_select_result psr LEFT JOIN project_apply pa ON psr.pno = pa.pno LEFT JOIN student s ON psr.sno = s.sno
+    WHERE psr.tno = ? AND pa.school_year = ?;
+[DEBUG] [graduation-manage] 2020-05-28 18:18:19.440 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20004} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.869 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20005} created. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.869 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20005} Parameters : [8000117]
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.869 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20005} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.870 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20005} executed. 1.356999 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.871 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20005} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.874 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20006} created. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.874 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.874 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.909 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 34.2064 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:19.910 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.827 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.827 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.831 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 2.100999 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.832 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.834 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.834 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.835 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.714401 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:20.836 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.903 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20005} Parameters : [8000117]
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.903 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20005} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.905 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20005} executed. 2.0006 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.906 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20005} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.908 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.908 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.910 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.879701 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:21:21.911 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.814 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20005} Parameters : [8000117]
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.814 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20005} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.816 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20005} executed. 1.6727 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.835 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20005} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.835 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.836 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.837 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.654701 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:18.838 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.711 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20005} Parameters : [8000117]
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.711 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20005} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.713 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20005} executed. 1.7419 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.714 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20005} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.716 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.716 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.717 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.616899 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:23.718 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.578 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20005} Parameters : [8000117]
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.578 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20005} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.582 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20005} executed. 3.542399 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.583 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20005} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.584 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.584 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.585 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.384 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:44.589 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.499 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.499 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.500 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 1.555 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.501 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.502 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.503 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.504 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.6446 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:23:46.505 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.973 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.973 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.974 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 1.4638 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.976 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.976 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.977 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.978 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.4686 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:06.979 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.650 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.650 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.651 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 1.615401 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.652 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.653 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.653 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.655 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.6365 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:12.656 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.148 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20007} created. update project_plan
+     SET id = ?,
+      
+      
+        project_apply_time = ?,
+      
+      
+        project_select_time = ?,
+      
+      
+        task_book_time = ?,
+      
+      
+        open_report_time = ?,
+      
+      
+        foreign_literature_time = ?,
+      
+      
+        oral_examination_time = ?,
+      
+      
+        thesis_time = ?,
+      
+      
+        school_year = ?,
+      
+      
+        score_composition = ? 
+     
+       
+    
+     WHERE (  id = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.150 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20007} Parameters : [1, 2020-05-30 22:01:03,2020-05-31 22:59:59, 2020-04-19 00:00:00,2020-05-23 23:59:59, 2020-05-24 00:00:00,2020-05-25 23:59:59, 2020-05-16 00:00:00,2020-05-31 23:59:59, 2020-05-14 00:00:00,2020-05-31 23:59:59, 2020-04-17 00:00:00,2020-04-30 23:59:59, 2020-05-22 00:00:00,2020-05-31 23:59:59, 2019-2020, 30%,30%,40%, 1]
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.150 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20007} Types : [BIGINT, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, BIGINT]
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.213 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20007} executed. 63.900601 millis. update project_plan
+     SET id = ?,
+      
+      
+        project_apply_time = ?,
+      
+      
+        project_select_time = ?,
+      
+      
+        task_book_time = ?,
+      
+      
+        open_report_time = ?,
+      
+      
+        foreign_literature_time = ?,
+      
+      
+        oral_examination_time = ?,
+      
+      
+        thesis_time = ?,
+      
+      
+        school_year = ?,
+      
+      
+        score_composition = ? 
+     
+       
+    
+     WHERE (  id = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.213 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20007} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.274 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20008} created. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+     WHERE (  school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.274 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20008} Parameters : [2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.274 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20008} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.275 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20008} executed. 1.3574 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+     WHERE (  school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:27.276 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20008} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.334 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.335 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.337 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 2.240499 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.338 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.339 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20006} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.340 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20006} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.342 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20006} executed. 1.9336 millis. select
+     
+     
+    
+    id, college_no, college_name, college_manager_no, college_manager_name, parent_no
+   
+    from college
+     
+       
+    
+     WHERE (  parent_no is null )
+[DEBUG] [graduation-manage] 2020-05-28 18:27:30.342 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20006} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.547 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} Parameters : []
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.548 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} Types : []
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.586 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} executed. 38.5358 millis. select
+     
+     
+    
+    id, project_apply_time, project_select_time, task_book_time, open_report_time, foreign_literature_time, 
+    oral_examination_time, thesis_time, school_year, score_composition, guidance_record_time
+   
+    from project_plan
+     
+       
+    
+      
+   
+     
+     
+      order by id
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.606 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20000} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.623 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20001} Parameters : [2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.624 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20001} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.629 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20001} executed. 5.5156 millis. SELECT count(0) FROM bulletin WHERE (school_year = ?)
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.630 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20001} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.633 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20002} Parameters : [2019-2020, 10]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.633 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20002} Types : [VARCHAR, INTEGER]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.636 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20002} executed. 3.6776 millis. select
+     
+     
+    
+    id, title, file_path, creator_no, school_year, gmt_create, gmt_modified
+   
+    from bulletin
+     
+       
+    
+     WHERE (  school_year = ? ) 
+   
+     
+     
+      order by gmt_modified desc LIMIT ? 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:38.640 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20002} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.733 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20003} Parameters : [8000116, 5b808a388d2ef80ba88c792856095d7f]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.733 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20003} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.736 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20003} executed. 3.0528 millis. select
+     
+     
+    
+    id, tno, tname, password, college, role, title, lead_student_num, group_num, group_role, 
+    school_year, gmt_create, gmt_modified
+   
+    from teacher
+     
+       
+    
+     WHERE (  tno = ?
+                
+            
+              
+                  and password = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.737 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20003} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.888 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20004} Parameters : [8000116, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.888 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20004} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.980 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20004} executed. 91.9931 millis. SELECT psr.pno AS pno,pa.pname AS pname, psr.tno AS tno, psr.sno AS sno, s.sname AS sname
+    FROM project_select_result psr LEFT JOIN project_apply pa ON psr.pno = pa.pno LEFT JOIN student s ON psr.sno = s.sno
+    WHERE psr.tno = ? AND pa.school_year = ?;
+[DEBUG] [graduation-manage] 2020-05-28 21:12:56.982 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20004} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:12:59.732 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20009} created. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:12:59.733 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20009} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:59.733 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20009} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:12:59.797 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20009} executed. 64.0413 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:12:59.798 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20009} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:02.597 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20010} created. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:02.597 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:02.597 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:02.644 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 46.4572 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:02.645 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:06.105 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} created. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:06.106 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:06.106 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:06.150 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 44.1774 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:06.153 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.405 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} created. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.405 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.406 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.407 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.9499 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.408 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.414 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} created. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.415 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.415 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.449 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 33.9602 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:08.451 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:09.610 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:09.610 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:09.612 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.4765 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:09.613 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:10.996 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:10.997 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:10.998 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.6173 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:10.999 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:15.840 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:15.840 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:15.841 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.2553 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:15.842 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:17.727 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:17.727 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:17.728 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2419 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:17.728 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:40.097 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:40.097 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:40.098 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.6102 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:40.099 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:42.239 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:42.240 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:42.241 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2992 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:42.242 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.282 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.282 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.285 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 3.5549 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.286 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.288 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.288 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.290 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.7781 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:44.290 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:46.190 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:46.190 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:46.192 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.412 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:46.192 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:47.182 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:47.183 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:47.184 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.1062 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:47.184 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.327 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.327 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.328 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.1649 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.329 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.330 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.330 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.332 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.92 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:13:48.333 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.107 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.107 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.108 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.2921 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.109 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.111 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.111 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.113 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 2.2781 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:15.114 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.586 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.587 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.589 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.3203 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.590 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.591 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.591 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.593 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.3462 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:17.594 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.765 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.765 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.767 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.5472 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.772 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.774 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.774 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.775 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 0.9825 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:19.775 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:24.831 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:24.831 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:24.833 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.3036 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:24.834 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:27.613 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:27.613 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:27.614 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2912 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:27.615 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:30.046 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:30.046 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:30.048 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.5825 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:30.049 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:16:32.694 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:32.695 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:16:32.696 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.1074 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:16:32.696 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:08.800 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:08.800 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:08.801 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.4046 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:08.803 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:11.211 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:11.211 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:11.213 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.9337 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:11.214 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:19.242 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:19.242 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:19.243 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.0432 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:19.244 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:28.306 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:28.306 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:28.307 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.1636 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:28.308 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:29.924 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:29.961 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:29.963 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 39.0457 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:29.964 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:41.949 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:41.949 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:41.950 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 0.9904 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:41.950 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.017 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.018 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.020 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.5149 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.021 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.022 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.022 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.023 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.0107 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:20:43.024 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.458 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.459 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.460 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.583 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.461 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.482 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.482 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.483 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.0666 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:21:30.483 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:22:00.545 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} created. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:22:00.545 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:00.545 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:00.594 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 48.2848 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:22:00.595 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.311 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.311 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.312 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.5723 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.313 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.314 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.314 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.316 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.1922 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:22:44.316 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:22:49.344 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:49.344 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:49.345 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.4685 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:22:49.346 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:22:59.930 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:59.930 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:22:59.931 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 1.1956 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:22:59.932 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:23:35.968 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:35.968 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:35.974 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 2.1299 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:23:35.975 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:23:38.086 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:38.087 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:38.088 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 1.8607 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:23:38.089 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:23:40.000 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:40.000 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:40.001 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 1.4545 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:23:40.002 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.113 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.114 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.115 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.6045 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.116 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.117 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.117 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.119 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.6439 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:23:44.120 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.943 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.943 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.945 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.9781 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.946 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.947 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.947 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.948 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.4622 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:14.949 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.478 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.478 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.480 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.5893 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.481 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.483 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.483 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.485 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 2.8587 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:18.487 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.183 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.184 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.186 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.0706 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.186 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.188 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.188 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.189 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.493 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:31.191 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.763 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.763 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.765 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.4834 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.765 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.766 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.767 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.768 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.5577 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:33.769 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.253 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.253 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.254 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.1569 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.255 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.256 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.256 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.258 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 2.0386 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:24:36.259 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.445 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.445 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.446 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.22 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.447 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.450 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.450 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.451 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.4772 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:00.458 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.765 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.765 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.768 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.8447 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.769 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.771 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.771 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.774 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 3.0934 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:02.775 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.863 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.863 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.866 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.4145 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.866 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.868 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.868 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.869 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.566 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:05.870 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.725 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.725 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.727 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.4013 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.728 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.729 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.729 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.730 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.5578 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:09.731 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:37.882 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:37.882 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:37.883 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.3204 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:37.884 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.554 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.554 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.556 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.9956 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.557 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.558 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.558 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.559 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.1522 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:47.560 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:49.114 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:49.114 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:49.115 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 0.9688 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:49.116 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.149 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.149 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.151 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.8038 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.151 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.152 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.152 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.154 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.2453 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:25:50.154 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:13.582 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:13.582 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:13.583 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 0.9321 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:13.583 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:37.771 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:37.772 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:37.773 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.0694 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:37.773 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:41.563 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:41.563 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:41.564 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2168 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:41.565 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:51.913 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:51.913 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:51.914 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.3949 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:51.915 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:54.955 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:54.955 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:54.956 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.3726 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:54.957 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.330 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.330 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.331 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.2056 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.333 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.334 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.334 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.335 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.2636 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:57.336 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:26:59.719 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:59.719 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:26:59.721 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.5726 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:26:59.721 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:27:01.692 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:01.692 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:01.693 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2348 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:27:01.694 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.736 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.736 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.738 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 2.0922 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.739 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.740 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.740 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.742 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.8869 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:27:04.743 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:27:55.382 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:55.382 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:27:55.383 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2467 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:27:55.384 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:38.775 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:38.775 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:38.776 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.3216 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:38.778 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:41.938 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:41.938 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:41.939 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.6299 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:41.940 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.806 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.806 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.807 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.3308 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.809 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.810 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.810 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.811 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.2964 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:48.812 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:51.076 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:51.076 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:51.077 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 1.3524 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:51.078 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:53.283 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:53.283 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:53.284 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.4495 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:53.285 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:54.580 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:54.581 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:54.582 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.2437 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:54.582 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.960 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.960 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.962 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.7849 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.963 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.964 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.964 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.966 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 2.0604 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:28:59.967 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:29:00.951 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20014} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:00.952 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20014} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:00.953 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20014} executed. 2.4405 millis. select
+     
+     
+    
+    id, pno, is_pass, foreign_file, translation_file, trial_grade, trial_comment, gmt_create, 
+    gmt_modified, modifiable
+   
+    from foreign_literature
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:00.978 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20014} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:29:02.068 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:02.068 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:02.070 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.5947 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:02.071 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:29:03.448 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20009} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:03.448 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20009} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:03.449 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20009} executed. 1.5983 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:03.450 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20009} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.737 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} created. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.737 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.737 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.738 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} executed. 1.0766 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.739 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.741 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.741 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.742 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.4715 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:10.743 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:29:22.286 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} created. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    ,
+     
+    
+    content
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:22.286 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} Parameters : [d37d853cb5a8427da91a4ba01557f00f]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:22.286 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:29:22.294 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} executed. 7.2152 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    ,
+     
+    
+    content
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:29:22.294 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.953 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20015} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.953 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20015} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.955 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20015} executed. 1.599 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.955 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20015} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.957 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.957 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.958 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.2058 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:31:54.959 [http-nio-8888-exec-5][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.407 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.407 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.408 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} executed. 1.1866 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.409 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.410 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.410 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.412 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.9842 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:31:57.414 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.743 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.743 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.744 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} executed. 1.0776 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from thesis
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.744 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20015} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.745 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.745 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.746 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.1391 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:31:59.747 [http-nio-8888-exec-8][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:02.764 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} Parameters : [d37d853cb5a8427da91a4ba01557f00f]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:02.764 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:02.765 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} executed. 1.107 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    ,
+     
+    
+    content
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:02.766 [http-nio-8888-exec-4][] druid.sql.Statement - {conn-10001, pstmt-20016} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:04.512 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20016} Parameters : [d37d853cb5a8427da91a4ba01557f00f]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:04.512 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20016} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:04.514 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20016} executed. 1.8005 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    ,
+     
+    
+    content
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:04.515 [http-nio-8888-exec-2][] druid.sql.Statement - {conn-10001, pstmt-20016} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:06.985 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20017} created. SELECT count(0) FROM project_select_result psr LEFT JOIN student s ON psr.sno = s.sno LEFT JOIN project_apply pa ON psr.pno = pa.pno LEFT JOIN thesis ON psr.pno = thesis.pno LEFT JOIN oral_exam_score oes ON s.sno = oes.sno WHERE s.group_num = ? AND s.school_year = ? AND s.college = ?
+[DEBUG] [graduation-manage] 2020-05-28 21:32:06.986 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20017} Parameters : [1, 2019-2020, 2000]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:06.986 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20017} Types : [INTEGER, VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.095 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20017} executed. 109.3137 millis. SELECT count(0) FROM project_select_result psr LEFT JOIN student s ON psr.sno = s.sno LEFT JOIN project_apply pa ON psr.pno = pa.pno LEFT JOIN thesis ON psr.pno = thesis.pno LEFT JOIN oral_exam_score oes ON s.sno = oes.sno WHERE s.group_num = ? AND s.school_year = ? AND s.college = ?
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.096 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20017} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.098 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20018} created. SELECT pa.pno AS pno, pa.pname AS pname, s.sno AS sno, s.sname AS sname, thesis.file_path AS
+        file_path, oes.score AS score
+    FROM project_select_result psr LEFT JOIN student s ON psr.sno = s.sno LEFT JOIN project_apply pa
+        ON psr.pno = pa.pno LEFT JOIN thesis ON psr.pno = thesis.pno LEFT JOIN oral_exam_score oes ON s.sno = oes.sno
+    WHERE s.group_num = ? AND s.school_year = ? AND s.college = ? LIMIT ? 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.099 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20018} Parameters : [1, 2019-2020, 2000, 10]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.099 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20018} Types : [INTEGER, VARCHAR, VARCHAR, INTEGER]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.100 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20018} executed. 1.421 millis. SELECT pa.pno AS pno, pa.pname AS pname, s.sno AS sno, s.sname AS sname, thesis.file_path AS
+        file_path, oes.score AS score
+    FROM project_select_result psr LEFT JOIN student s ON psr.sno = s.sno LEFT JOIN project_apply pa
+        ON psr.pno = pa.pno LEFT JOIN thesis ON psr.pno = thesis.pno LEFT JOIN oral_exam_score oes ON s.sno = oes.sno
+    WHERE s.group_num = ? AND s.school_year = ? AND s.college = ? LIMIT ? 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:07.101 [http-nio-8888-exec-9][] druid.sql.Statement - {conn-10001, pstmt-20018} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:30.425 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20010} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:30.425 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20010} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:30.426 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20010} executed. 1.2345 millis. select
+     
+     
+    
+    id, pno, file_path, gmt_create, gmt_modified
+   
+    from task_book
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:30.447 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20010} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:32.925 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:32.925 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:32.925 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 0.7882 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:32.926 [http-nio-8888-exec-10][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.207 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} Parameters : [8000116]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.207 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} Types : [VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.208 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} executed. 1.3858 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  blind_trial_no = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.209 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20012} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.210 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} Parameters : [d37d853cb5a8427da91a4ba01557f00f, 2019-2020]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.210 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.211 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} executed. 1.2587 millis. select
+     
+     
+    
+    id, pno, pname, file_path, type, tags, college, creator_no, is_pass, is_select, blind_trial_no, 
+    blind_trial_grade, blind_trial_comment, trial_no, trial_grade, trial_comment, school_year, 
+    gmt_create, gmt_modified, is_delete
+   
+    from project_apply
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  )
+                
+            
+              
+                  and school_year = ? )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:37.212 [http-nio-8888-exec-1][] druid.sql.Statement - {conn-10001, pstmt-20013} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:32:38.407 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:38.407 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:32:38.408 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.1311 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:32:38.409 [http-nio-8888-exec-7][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:33:09.557 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:33:09.558 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:33:09.559 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.3562 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:33:09.559 [http-nio-8888-exec-6][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 
+[DEBUG] [graduation-manage] 2020-05-28 21:33:11.815 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Parameters : [d37d853cb5a8427da91a4ba01557f00f, e33f3d1809ea48508d6e885335f2e76f]
+[DEBUG] [graduation-manage] 2020-05-28 21:33:11.815 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} Types : [VARCHAR, VARCHAR]
+[DEBUG] [graduation-manage] 2020-05-28 21:33:11.817 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} executed. 1.1917 millis. select
+     
+     
+    
+    id, pno, file_path, is_pass, trial_grade, trial_comment, blind_trial_no, blind_trial_grade, 
+    blind_trial_comment, gmt_create, gmt_modified, modifiable
+   
+    from open_report
+     
+       
+    
+     WHERE (  pno in
+                  (
+                    ?
+                  ,
+                    ?
+                  ) )
+[DEBUG] [graduation-manage] 2020-05-28 21:33:11.817 [http-nio-8888-exec-3][] druid.sql.Statement - {conn-10001, pstmt-20011} clearParameters. 

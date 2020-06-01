@@ -40,8 +40,6 @@
     //评分弹出框
     function getProject(e) {
       $("#pno").val($(e).attr('data-pno'));
-      $("#foreignFile").val($(e).attr('data-foreignFile'));
-      $("#translationFile").val($(e).attr('data-translationFile'));
       $('#myModal').modal({
         keyboard: false
       });
@@ -67,15 +65,14 @@
               $("#foreignLiteratureRecordTable").append(
                   "<tr>" +
                   "<td> <a href='/download?filePath=" + data.foreignFile.toString().replace('#',
-                  "%23") + "&fileType=foreignFile'>" + data.foreignFile.toString().split('#')[1]
-                  + "</a></td>" +
+                  "%23") + "&fileType=foreignFile' title='" + data.foreignFile.toString().split(
+                  '#')[1] + "'>" + data.foreignFile.toString().split('#')[1] + "</a></td>" +
                   "<td> <a href='/download?filePath=" + data.translationFile.toString().replace('#',
-                  "%23") + "&fileType=translationFile'>" + data.translationFile.toString().split(
-                  '#')[1]
-                  + "</a></td>" +
-                  isPass +
-                  "<td>" + data.trialGrade + "</td>" +
-                  "<td title='"+data.trialComment+"'>" + data.trialComment + "</td>" +
+                  "%23") + "&fileType=translationFile' title='"
+                  + data.translationFile.toString().split('#')[1] + "'>"
+                  + data.translationFile.toString().split(
+                  '#')[1] + "</a></td>" + isPass + "<td>" + data.trialGrade + "</td>" +
+                  "<td title='" + data.trialComment + "'>" + data.trialComment + "</td>" +
                   "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
                   "</tr>");
             });
@@ -119,7 +116,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -146,28 +143,33 @@
               <th>学生</th>
               <th>外文原文</th>
               <th>外文译文</th>
-              <th>审核结果</th>
+              <th style="width: 150px;">文档操作</th>
+              <th class="short">审核结果</th>
               <th style="width: 200px;">操作</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="foreignLiterature:${teaForeignLiterature}">
-              <td th:text="${foreignLiterature.pname}"></td>
+              <td th:text="${foreignLiterature.pname}" th:title="${foreignLiterature.pname}"></td>
 
-              <td th:text="${foreignLiterature.sname}"></td>
+              <td th:text="${foreignLiterature.sname}" th:title="${foreignLiterature.sname}"></td>
 
               <td th:if="${foreignLiterature.document} != null">
                 <a th:text="${#strings.arraySplit(foreignLiterature.document.foreignFile,'#')[1]}"
+                   th:title="${#strings.arraySplit(foreignLiterature.document.foreignFile,'#')[1]}"
                    th:href="@{/download(filePath=${foreignLiterature.document.foreignFile},fileType='foreignLiterature')}"></a>
-                <a th:if="${foreignLiterature.document} != null"
-                   th:href="@{/readOnline(filePath=${foreignLiterature.document.foreignFile},fileType='foreignLiterature')}">在线浏览</a>
               </td>
               <td th:if="${foreignLiterature.document} == null">未提交</td>
               <td th:if="${foreignLiterature.document} != null">
                 <a th:text="${#strings.arraySplit(foreignLiterature.document.translationFile,'#')[1]}"
+                   th:title="${#strings.arraySplit(foreignLiterature.document.translationFile,'#')[1]}"
                    th:href="@{/download(filePath=${foreignLiterature.document.translationFile},fileType='foreignLiterature')}"></a>
+              </td>
+              <td>
                 <a th:if="${foreignLiterature.document} != null"
-                   th:href="@{/readOnline(filePath=${foreignLiterature.document.translationFile},fileType='foreignLiterature')}">在线浏览</a>
+                   th:href="@{/readOnline(filePath=${foreignLiterature.document.foreignFile},fileType='foreignLiterature')}">原文浏览</a>
+                <a th:if="${foreignLiterature.document} != null"
+                   th:href="@{/readOnline(filePath=${foreignLiterature.document.translationFile},fileType='foreignLiterature')}">译文浏览</a>
               </td>
               <td th:if="${foreignLiterature.document} == null">未提交</td>
 
@@ -189,10 +191,9 @@
 
               <td>
 
-                <a class="btn-link" role="button" th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} ==2"
+                <a class="btn-link" role="button"
+                   th:if="${foreignLiterature.document} != null and ${foreignLiterature.document.isPass} ==2"
                    th:data-pno="${foreignLiterature.document.pno}"
-                   th:data-foreignFile="${foreignLiterature.document.foreignFile}"
-                   th:data-translationFile="${foreignLiterature.document.translationFile}"
                    onclick="getProject(this)">审核</a>
                 <a class="btn-link" role="button" onclick="getForeignLiteratureRecord(this)"
                    th:if="${foreignLiterature.document} != null"
@@ -228,8 +229,6 @@
                 action="/teacher/foreignLiterature/verify" method="post"
                 enctype="multipart/form-data">
             <input type="text" class="hide" id="pno" name="pno">
-            <input type="text" class="hide" id="foreignFile" name="filePath">
-            <input type="text" class="hide" id="translationFile" name="translationFile">
 
             <div class="row">
               <div class="col-md-12">
@@ -268,8 +267,9 @@
 </div><!-- /.modal -->
 
 <!--历史审核记录-->
-<div class="modal fade" tabindex="-1" role="dialog" id="foreignLiteratureRecordModel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+     id="foreignLiteratureRecordModel">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -277,16 +277,16 @@
         <h4 class="modal-title">历史审核</h4>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 common">
+        <div class="col-md-12 common table-responsive">
           <table class="table" id="foreignLiteratureRecord">
             <thead>
             <tr>
               <th>原文</th>
               <th>译文</th>
-              <th>结果</th>
-              <th>分数</th>
-              <th>评语</th>
-              <th>时间</th>
+              <th class="short">结果</th>
+              <th class="short">分数</th>
+              <th class="trialComment">评语</th>
+              <th class="middle">时间</th>
             </tr>
             </thead>
             <tbody id="foreignLiteratureRecordTable">

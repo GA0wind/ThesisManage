@@ -14,21 +14,13 @@ body {
   margin-bottom: 20px;
 }
 
-.login-logo img {
-  vertical-align: middle;
-  height: 80px
-}
 
-.login-logo h2 {
-  font-family: 楷体;
-  display: inline;
-  vertical-align: middle;
-}
 
 .login-form {
   background: #fff;
   padding-top: 30px;
   border-radius: 5px;
+  min-width: 355px;
 }
 
 .login-form .title {
@@ -67,16 +59,18 @@ body {
 }
 
 @media (min-width: 768px) {
-  .index-logo img {
-    width: 80px;
-    height: 80px;
+  .login-logo img {
+    vertical-align: middle;
+    height: 80px
   }
-  .index-logo h2 {
-    margin-left: 10px;
-    font-size: 50px;
-    font-weight: 1000;
+
+  .login-logo h2 {
+    font-family: 楷体;
+    display: inline;
+    vertical-align: middle;
   }
-  .system-name {
+
+  .login-system-name {
     font-size: 36px;
   }
   .more-bulletin {
@@ -92,16 +86,19 @@ body {
 }
 
 @media (max-width: 768px) {
-  .index-logo img {
-    width: 50px;
-    height: 50px;
+
+  .login-logo img {
+    vertical-align: middle;
+    height: 50px
   }
-  .index-logo h2 {
-    margin-left: 5px;
-    font-size: 30px;
-    font-weight: 500;
+
+  .login-logo h2 {
+    font-family: 楷体;
+    display: inline;
+    vertical-align: middle;
   }
-  .system-name {
+
+  .login-system-name {
     font-size: 23px;
   }
   .more-bulletin {

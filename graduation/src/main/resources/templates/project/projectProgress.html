@@ -20,7 +20,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -31,7 +31,7 @@
         <hr>
         <dl class="dl-horizontal">
           <dt>课题名：</dt>
-          <dd th:text="${projectProgress.selectResult.pname}"></dd>
+          <dd th:text="${projectProgress.selectResult.pname}" th:title="${projectProgress.selectResult.pname}"></dd>
           <dt>指导老师：</dt>
           <dd th:text="${projectProgress.selectResult.tname}"></dd>
           <dt>学生：</dt>
@@ -48,7 +48,7 @@
             <tr style="text-align: center;">
               <td>任务书</td>
               <td th:text="${projectProgress.taskBook} == null ? '未提交':'已提交'"></td>
-              <td th:text="${projectProgress.taskBook} == null ? '未通过':'已通过'"></td>
+              <td th:text="${projectProgress.taskBook} == null ? '':''"></td>
               <td><a th:if="${projectProgress.taskBook} != null" th:href="@{/student/taskBook(pno=${projectProgress.taskBook.pno})}">查看详情</a>
               </td>
             </tr>

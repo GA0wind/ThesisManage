@@ -1,21 +1,18 @@
 package com.ncu.graduation.controller;
 
-import com.ncu.graduation.dto.ProjectSearchDTO;
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.error.RedirectException;
-import com.ncu.graduation.model.OpenReport;
-import com.ncu.graduation.model.OpenReportRecord;
-import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.model.ProjectSelectResult;
 import com.ncu.graduation.model.Thesis;
 import com.ncu.graduation.model.ThesisRecord;
-import com.ncu.graduation.service.ProjectService;
-import com.ncu.graduation.service.ThesisService;
-import com.ncu.graduation.util.JedisOp;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
+import com.ncu.graduation.service.impl.ThesisServiceImpl;
+import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
@@ -45,10 +42,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class ThesisController {
 
   @Autowired
-  private ThesisService thesisService;
+  private ThesisServiceImpl thesisService;
 
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
 
   /**
    * 教师论文页面, 获取我的课题的论文
@@ -57,7 +54,7 @@ public class ThesisController {
   public String getTeaThesis(HttpSession session,
       Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+    Map<String, ProjectSelectResultBO> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<Thesis>> myThesis = thesisService
         .getTeaThesis(teaProject);
     model.addAttribute("teaThesis", myThesis);
@@ -108,8 +105,9 @@ public class ThesisController {
   public ResultDTO submitThesis(HttpSession session, @RequestParam("thesis") MultipartFile file,
       @RequestParam(value = "id",required = false) String id) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply projectApply = projectService.getStuProject(user);
-    thesisService.submitThesis(user, file, id, projectApply.getPno());
+    FileTypeEnum.checkFileType(file.getOriginalFilename());
+    ProjectInfoVO projectApply = projectService.getStuProject(user);
+    thesisService.submitThesis(user, file, id, projectApply.getProjectApply().getPno());
     return ResultDTO.okOf();
   }
 
@@ -121,11 +119,11 @@ public class ThesisController {
       HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    ProjectApply stuProject;
+    ProjectInfoVO stuProject;
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       stuProject = projectService.getStuProject(user);
     } else {
-      stuProject = projectService.getProject(pno);
+      stuProject = projectService.getStuProject(pno);
     }
     if (stuProject == null) {
       throw new RedirectException(EmProjectError.NO_PROJECT);

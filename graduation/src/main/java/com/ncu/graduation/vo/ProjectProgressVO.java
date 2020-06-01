@@ -1,5 +1,6 @@
 package com.ncu.graduation.vo;
 
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.model.ForeignLiterature;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.ProjectSelectResult;
@@ -17,7 +18,7 @@ import lombok.Data;
 @Data
 public class ProjectProgressVO {
 
-  private ProjectSelectResult selectResult;
+  private ProjectSelectResultBO selectResult;
   private TaskBook taskBook;
   private OpenReport openReport;
   private ForeignLiterature foreignLiterature;

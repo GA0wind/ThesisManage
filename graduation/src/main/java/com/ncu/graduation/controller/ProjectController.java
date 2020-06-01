@@ -2,17 +2,18 @@ package com.ncu.graduation.controller;
 
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ProjectApplyDTO;
+import com.ncu.graduation.dto.ProjectVerifyDTO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
-import com.ncu.graduation.enums.CollegeEnum;
+import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.enums.ProjectTypeEnum;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.service.ProjectService;
-import com.ncu.graduation.service.UserService;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
+import com.ncu.graduation.service.impl.UserServiceImpl;
 import com.ncu.graduation.vo.ProjectApplyVO;
 import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.ProjectProgressVO;
@@ -20,7 +21,6 @@ import com.ncu.graduation.vo.UserVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,10 +42,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProjectController {
 
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
 
   @Autowired
-  private UserService userService;
+  private UserServiceImpl userService;
 
   /**
    * 查看我申请的课题
@@ -91,6 +91,7 @@ public class ProjectController {
     if (!UserRoleEnum.STUDENT.getRole().equals(user.getRole()) && !UserRoleEnum.TEACHER.getRole().equals(user.getRole())){
       throw new CommonException(EmUserOperatorError.ROLE_CANNOT_DO_THIS);
     }
+    FileTypeEnum.checkFileType(projectApplyDTO.getFile().getOriginalFilename());
     projectService.applyOrUpdate(projectApplyDTO, user);
     return ResultDTO.okOf();
   }
@@ -145,7 +146,7 @@ public class ProjectController {
    */
   @ResponseBody
   @PostMapping("/project/verify")
-  public ResultDTO verifyProjectApply(@Validated VerifyDocumentDTO verifyDocumentDTO,
+  public ResultDTO verifyProjectApply(@Validated ProjectVerifyDTO verifyDocumentDTO,
       HttpServletRequest request) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
     projectService.verifyProject(verifyDocumentDTO, user);

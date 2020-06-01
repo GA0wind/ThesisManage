@@ -1,26 +1,20 @@
 package com.ncu.graduation.controller;
 
-import com.ncu.graduation.dto.OralExamSearchDTP;
+import com.ncu.graduation.dto.OralExamSearchDTO;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ResultDTO;
-import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.error.RedirectException;
-import com.ncu.graduation.model.ProjectApply;
-import com.ncu.graduation.model.ProjectSelectResult;
-import com.ncu.graduation.model.Thesis;
-import com.ncu.graduation.model.ThesisExample;
-import com.ncu.graduation.service.OralExaminationService;
-import com.ncu.graduation.service.ProjectService;
-import com.ncu.graduation.service.ThesisService;
+import com.ncu.graduation.service.impl.OralExaminationServiceImpl;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
 import com.ncu.graduation.vo.OralExamScoreVO;
-import com.ncu.graduation.vo.OralExamStuProjectVO;
+import com.ncu.graduation.bo.OralExamStuProjectBO;
+import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +35,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class OralExaminationController {
 
   @Autowired
-  private OralExaminationService oralExaminationService;
+  private OralExaminationServiceImpl oralExaminationService;
 
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
 
   /**
    * 获取答辩小组成员信息
@@ -66,14 +60,14 @@ public class OralExaminationController {
   @GetMapping("/teacher/examGroupStu")
   public String getGroupStu(@RequestParam(name = "page", defaultValue = "1") Integer page,
       @RequestParam(name = "size", defaultValue = "10") Integer size, HttpSession session,
-      Model model, OralExamSearchDTP oralExamSearchDTP) {
+      Model model, OralExamSearchDTO oralExamSearchDTO) {
     UserVO user = (UserVO) session.getAttribute("user");
     if (user.getGroup() == null){
       throw new RedirectException(EmProjectError.ORAL_EXAM_NOT_ARRANGE);
     }
-    PaginationDTO<OralExamStuProjectVO> groupStus = oralExaminationService
-        .getGroupStus(user, page, size,oralExamSearchDTP);
-    model.addAttribute(",oralExamSearchDTP",oralExamSearchDTP);
+    PaginationDTO<OralExamStuProjectBO> groupStus = oralExaminationService
+        .getGroupStus(user, page, size, oralExamSearchDTO);
+    model.addAttribute(",oralExamSearchDTP", oralExamSearchDTO);
     model.addAttribute("groupStus", groupStus);
     return "oralExamination/groupStu";
   }
@@ -106,17 +100,16 @@ public class OralExaminationController {
   @GetMapping("/student/examScore")
   public String getExamScore(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply stuProject = projectService.getStuProject(user);
-    OralExamScoreVO scoreVO = new OralExamScoreVO();
+    ProjectInfoVO stuProject = projectService.getStuProject(user);
+    OralExamScoreVO scoreVO ;
     if (stuProject == null) {
       throw new RedirectException(EmProjectError.NO_PROJECT);
     }
     if (user.getGroup() == null){
       throw new RedirectException(EmProjectError.ORAL_EXAM_NOT_ARRANGE);
     }
-    scoreVO= oralExaminationService
-        .getExamScore(user, stuProject);
-    model.addAttribute("stuProject",stuProject);
+    scoreVO= oralExaminationService.getExamScore(user, stuProject);
+    model.addAttribute("stuProject",stuProject.getProjectApply());
     model.addAttribute("examScore", scoreVO);
     return "oralExamination/examScore";
   }

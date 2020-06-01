@@ -1,4 +1,4 @@
-package com.ncu.graduation.vo;
+package com.ncu.graduation.bo;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class OralExamStuProjectVO {
+public class OralExamStuProjectBO {
   private String pno;
   private String pname;
   private String sno;

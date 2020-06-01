@@ -14,9 +14,9 @@
         <img src="/images/nculogo.png" alt="" class="logo">
         <span class="ncu hidden-xs">南昌大学</span>
         <span class="user col-md-offset-7">
-          <span th:text="${session.user.name}">甘容辉</span>
+          <span th:text="${session.user.name}"></span>
           <span class="hidden-xs">
-          (<span th:text="${session.user.accountNo}">8000116251</span>)
+          (<span th:text="${session.user.accountNo}"></span>)
           </span> &nbsp;&nbsp;&nbsp;
           <a href="/logout">注销</a>
          </span>
@@ -47,8 +47,8 @@
             <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/taskBook">过程管理</a></li>
 
             <li><a th:if="${session.user.role} == 'admin'" href="/admin/projectPlan">毕设管理</a></li>
-            <li><a th:if="${session.user.role} == 'student'" href="/student/thesis">答辩</a></li>
-            <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/examGroupStu">答辩</a></li>
+            <li><a th:if="${session.user.role} == 'student'" href="/student/thesis">论文/答辩</a></li>
+            <li><a th:if="${session.user.role} == 'teacher'" href="/teacher/thesis">论文/答辩</a></li>
             <li><a th:href="@{'/user/info/' +${session.user.accountNo}(role=${session.user.role})}">用户管理</a></li>
           </ul>
         </div>

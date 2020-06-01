@@ -6,11 +6,11 @@ import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmDocumentError;
 import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.service.ProjectService;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
+import com.ncu.graduation.util.DateUtil;
 import com.ncu.graduation.util.JedisOp;
 import com.ncu.graduation.vo.UserVO;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -34,9 +34,7 @@ public class OverTimeInterceptor {
   private JedisOp jedisOp;
 
   @Autowired
-  private ProjectService projectService;
-
-  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+  private ProjectServiceImpl projectService;
 
   @Around("execution(* com.ncu.graduation.controller.ProjectController.applyProject(..))")
   @ResponseBody
@@ -50,11 +48,10 @@ public class OverTimeInterceptor {
       jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
     String[] time = projectPlan.getProjectApplyTime().split(",");
-    String endTime = time[1];
-    String startTime = time[0];
+    Date endTime = DateUtil.stringToDate(time[1],DateUtil.DATETIME_PATTERN);
+    Date startTime = DateUtil.stringToDate(time[0],DateUtil.DATETIME_PATTERN);
 
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime,formatter))) {
+    if (endTime.before(new Date()) || startTime.after(new Date())) {
       return ResultDTO.errorOf(EmProjectError.PROJECT_APPLY_IS_NOT_TIME);
     } else {
       try {
@@ -78,10 +75,10 @@ public class OverTimeInterceptor {
       jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
     String[] time = projectPlan.getProjectSelectTime().split(",");
-    String endTime = time[1];
-    String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime,formatter))) {
+    Date endTime = DateUtil.stringToDate(time[1],DateUtil.DATETIME_PATTERN);
+    Date startTime = DateUtil.stringToDate(time[0],DateUtil.DATETIME_PATTERN);
+
+    if (endTime.before(new Date()) || startTime.after(new Date())) {
       return ResultDTO.errorOf(EmProjectError.PROJECT_SELECT_IS_NOT_TIME);
     } else {
       try {
@@ -105,10 +102,10 @@ public class OverTimeInterceptor {
       jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
     String[] time = projectPlan.getTaskBookTime().split(",");
-    String endTime = time[1];
-    String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime,formatter))) {
+    Date endTime = DateUtil.stringToDate(time[1],DateUtil.DATETIME_PATTERN);
+    Date startTime = DateUtil.stringToDate(time[0],DateUtil.DATETIME_PATTERN);
+
+    if (endTime.before(new Date()) || startTime.after(new Date())) {
       return ResultDTO.errorOf(EmDocumentError.TASK_SUBMIT_IS_NOT_TIME);
     } else {
       try {
@@ -132,10 +129,10 @@ public class OverTimeInterceptor {
       jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
     String[] time = projectPlan.getOpenReportTime().split(",");
-    String endTime = time[1];
-    String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime,formatter))) {
+    Date endTime = DateUtil.stringToDate(time[1],DateUtil.DATETIME_PATTERN);
+    Date startTime = DateUtil.stringToDate(time[0],DateUtil.DATETIME_PATTERN);
+
+    if (endTime.before(new Date()) || startTime.after(new Date())) {
       return ResultDTO.errorOf(EmDocumentError.OPENREPORT_SUBMIT_IS_NOT_TIME);
     } else {
       try {
@@ -159,10 +156,10 @@ public class OverTimeInterceptor {
       jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
     String[] time = projectPlan.getForeignLiteratureTime().split(",");
-    String endTime = time[1];
-    String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime,formatter))) {
+    Date endTime = DateUtil.stringToDate(time[1],DateUtil.DATETIME_PATTERN);
+    Date startTime = DateUtil.stringToDate(time[0],DateUtil.DATETIME_PATTERN);
+
+    if (endTime.before(new Date()) || startTime.after(new Date())) {
       return ResultDTO.errorOf(EmDocumentError.FOREIGNLITERATURE_SUBMIT_IS_NOT_TIME);
     } else {
       try {
@@ -186,10 +183,10 @@ public class OverTimeInterceptor {
       jedisOp.set(user.getSchoolYear(), JSON.toJSONString(projectPlan));
     }
     String[] time = projectPlan.getThesisTime().split(",");
-    String endTime = time[1];
-    String startTime = time[0];
-    if (LocalDateTime.now().isAfter(LocalDateTime.parse(endTime,formatter)) || LocalDateTime.now()
-        .isBefore(LocalDateTime.parse(startTime,formatter))) {
+    Date endTime = DateUtil.stringToDate(time[1],DateUtil.DATETIME_PATTERN);
+    Date startTime = DateUtil.stringToDate(time[0],DateUtil.DATETIME_PATTERN);
+
+    if (endTime.before(new Date()) || startTime.after(new Date())) {
       return ResultDTO.errorOf(EmDocumentError.THESIS_SUBMIT_IS_NOT_TIME);
     } else {
       try {

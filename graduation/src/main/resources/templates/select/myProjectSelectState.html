@@ -42,7 +42,7 @@
 
               $("#selectState").append(
                   "<tr>" +
-                  "<td>" + data.selectName + "</td>" +
+                  "<td><a href='/user/info/"+data.selectNo+"'>" + data.selectName + "</a></td>" +
                   "<td>" + data.selectNo + "</td>" +
                   result +
                   "<td>" + operate + "</td>" +
@@ -104,7 +104,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -135,7 +135,7 @@
               </thead>
               <tbody>
               <tr th:each="projectApply:${projectApplys}">
-                <td th:text="${projectApply.pname}"></td>
+                <td th:text="${projectApply.pname}" th:title="${projectApply.pname}"></td>
                 <td th:text="${projectApply.type}"></td>
                 <td th:if="${projectApply.isSelect} == 1" class="text-success">已定</td>
                 <td th:if="${projectApply.isSelect} == 2" class="text-warning">待定</td>
@@ -166,7 +166,7 @@
       </div>
       <div class="modal-body">
 
-        <div class="col-md-12 common">
+        <div class="col-md-12 common table-responsive">
           <table class="table">
             <thead>
             <tr>

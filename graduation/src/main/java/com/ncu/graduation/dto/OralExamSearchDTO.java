@@ -10,7 +10,7 @@ import lombok.Data;
  * @version: 0.0.1
  */
 @Data
-public class OralExamSearchDTP {
+public class OralExamSearchDTO {
   private String pname;
   private String sname;
 }

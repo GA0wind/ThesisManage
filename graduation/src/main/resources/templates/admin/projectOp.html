@@ -51,7 +51,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -79,9 +79,9 @@
               </thead>
               <tbody>
               <tr th:each="project:${stuAndProNum}">
-                <td th:text="${project.college}"></td>
-                <td th:text="${project.proNum}"></td>
-                <td th:text="${project.stuNum}"></td>
+                <td th:text="${project.college}" th:title="${project.college}"></td>
+                <td th:text="${project.proNum}" th:title="${project.proNum}"></td>
+                <td th:text="${project.stuNum}" th:title="${project.stuNum}"></td>
               </tr>
               </tbody>
               <tfoot>
@@ -145,12 +145,6 @@
               <div class="col-md-12">
                 <label for="project-type">创建者工号/学号&nbsp;&nbsp;</label>
                 <input type="text" class="form-control" id="project-creator" name="creatorNo">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label for="project-type">创建者姓名&nbsp;&nbsp;</label>
-                <input type="text" class="form-control" id="project-creatorName" name="creatorName">
               </div>
             </div>
             <div class="row">

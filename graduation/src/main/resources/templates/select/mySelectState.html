@@ -21,7 +21,7 @@
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -46,17 +46,22 @@
             <thead>
             <tr>
               <th class="project-name">课题名</th>
-              <th>课题类型</th>
               <th th:text="${session.user.role} == 'student' ? '指导老师':'学生'"></th>
-              <th>选题结果</th>
+              <th >选题结果</th>
               <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="projectSelect:${projectSelects}">
-              <td th:text="${projectSelect.pname}"></td>
-              <td th:text="${projectSelect.type}"></td>
-              <td th:text="${projectSelect.creatorName}"></td>
+              <td th:text="${projectSelect.pname}" th:title="${projectSelect.pname}"></td>
+              <td>
+                <a th:if="${session.user.role} == 'student'" th:href="@{'/user/info/'+${projectSelect.creatorNo}+'?role=teacher'}"
+                   th:text="${projectSelect.creatorName}" th:title="${projectSelect.creatorName}">
+                </a>
+                <a th:if="${session.user.role} == 'teacher'" th:href="@{'/user/info/'+${projectSelect.creatorNo}+'?role=student'}"
+                   th:text="${projectSelect.creatorName}" th:title="${projectSelect.creatorName}">
+                </a>
+              </td>
               <td th:if="${projectSelect.result} == 1" class="text-success">已通过</td>
               <td th:if="${projectSelect.result} == 2" class="text-warning">待审核</td>
               <td th:if="${projectSelect.result} == 0" class="text-danger">被拒绝</td>

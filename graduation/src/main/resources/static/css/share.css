@@ -20,27 +20,40 @@
 }
 
 
-.will-time{
-  background-color: #bdbdbd;
+
+.after-time{
+  background-color: #777;
   color: black;
   box-shadow:inset 0 1px 0 rgba(0,0,0,.15)
 }
-.over-time{
-  background-color: forestgreen;
-  color: white;
+.on-time{
+  background-color: #fd8d00;
+  color: black;
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.15)
+}
+.pre-time{
+  background-color: #337ab7;
+  color: black;
   box-shadow:inset 0 1px 0 rgba(0,0,0,.15)
 }
 
 .progress{
-  height: 40px;
+  height: 65px;
   overflow: visible;
   padding-left: 1%;
   border: none;
   box-shadow: none;
   background: white;
 }
+.progress .progress-bar .font{
+  line-height: 25px;
+  font-weight: 600;
+  color: white;
+}
 .progress-bar{
   margin-right: 1%;
+  font-size: 16px;
+  padding-top: 7px;
 }
 
 .dl-horizontal{
@@ -51,6 +64,12 @@
   margin-bottom: 10px;
 }
 
+.projectPlan dt{
+  margin: 10px auto;
+}
+.projectPlan input{
+  margin-left: -15px;
+}
 
 @media (min-width: 768px) {
 
@@ -165,8 +184,20 @@
   }
 
 
+  .table thead tr .middle {
+    width: 110px;
+  }
+  .table thead tr th {
+    width: 80px;
+  }
+  .table thead tr .short {
+    width: 80px;
+  }
   .common .view .table thead tr .project-name {
-    width: 350px;
+    width: 280px;
+  }
+  .table thead tr .trialComment {
+    width: 300px;
   }
 }
 

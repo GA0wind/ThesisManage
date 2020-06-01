@@ -80,43 +80,45 @@
           $("#project-content").val(data.data.content + "");
           $("#project-type").val(data.data.type + "");
 
-          //如果文件有的话
-          if (data.data.filePath != 'null') {
-            var filePath = data.data.filePath + "";
-            $("#oldFilePath").val(filePath + "");
-            var filePathUrl = filePath.replace("#", "%23");
-            $("#old-file").removeClass("hide");
-            $("#old-file").append(" <p>\n"
-                + "&nbsp;&nbsp;已提交附件\n"
-                + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
-                + filePath.split('#')[1] + "</span></a>\n"
-                + "&nbsp;&nbsp;\n"
-                + "<a href=\"/readOnline?filePath=" + filePathUrl
-                + "&fileType=project\">在线浏览</a>\n"
-                + "\n"
-                + "</p>");
-          }
+          var filePath = data.data.filePath + "";
+          $("#oldFilePath").val(filePath + "");
+          var filePathUrl = filePath.replace("#", "%23");
+          $("#old-file").removeClass("hide");
+          $("#old-file").append(" <p>\n"
+              + "&nbsp;&nbsp;已提交附件\n"
+              + "<a href=\"/download?filePath=" + filePathUrl + "&fileType=project\"><span>"
+              + filePath.split('#')[1] + "</span></a>\n"
+              + "&nbsp;&nbsp;\n"
+              + "<a href=\"/readOnline?filePath=" + filePathUrl
+              + "&fileType=project\">在线浏览</a>\n"
+              + "\n"
+              + "</p>");
 
           $('#myModal').modal({
             keyboard: false
           });
         },
-        error: function (data) {
-          alert(data.message)
-        }
       })
     }
 
-    function removeFile() {
-      $("#old-file").empty();
-    }
+    $(function () {
+      $('#myModal').on('hide.bs.modal',
+          function () {
+            $("#project-pno").val("");
+            $("#project-pname").val("");
+            $("#project-content").val("");
+            $("#project-type").val("");
+            $("#old-file").addClass("hide");
+            $("#old-file").empty();
+          })
+    });
   </script>
 </head>
 
 <body>
 <div class="container-fluid main">
   <!--顶部-->
-  <div th:insert="head::head">
+  <div th:replace="head::head">
 
   </div>
 
@@ -141,14 +143,14 @@
               <thead>
               <tr>
                 <th class="project-name">课题名</th>
-                <th>题目类型</th>
-                <th>审核状态</th>
+                <th >题目类型</th>
+                <th >审核状态</th>
                 <th>操作</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="project:${myProject.data}">
-                <td th:text="${project.pname}"></td>
+                <td th:text="${project.pname}" th:title="${project.pname}"></td>
                 <td th:text="${project.type}">未知</td>
                 <td th:if="${project.isPass}==0" class="text-danger">未通过</td>
                 <td th:if="${project.isPass}==1" class="text-success">已通过</td>
@@ -156,10 +158,10 @@
                 <td>
                   <a th:href="@{'/project/'+${project.pno}}" role="button">查看详情</a>
                   <a class="btn-link" onclick="getProject(this)" th:data-pno="${project.pno}"
-                     th:if="${project.isPass}==2" role="button">修改</a>
-                  <a class="btn-link" th:if="${project.isPass}==2" th:data-pno="${project.pno}"
+                     th:if="${project.isPass}==2 and ${project.blindTrialGrade} == null" role="button">修改</a>
+                  <a class="btn-link" th:if="${project.isPass}==2 and ${project.blindTrialGrade} == null" th:data-pno="${project.pno}"
                      onclick="revokeProject(this)" role="button">撤销</a>
-                  <a class="btn-link" th:if="${project.isPass}==0 and ${project.trialNo} == null" th:data-pno="${project.pno}"
+                  <a class="btn-link" th:if="${project.isPass}==0 and ${project.trialGrade} == null" th:data-pno="${project.pno}"
                      onclick="reviewProject(this)" role="button">复核</a>
                 </td>
               </tr>
@@ -228,9 +230,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeFile()">
-          取消
-        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" onclick="projectApply()">提交</button>
       </div>
     </div><!-- /.modal-content -->

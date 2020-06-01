@@ -1,5 +1,8 @@
 package com.ncu.graduation.controller;
 
+import com.ncu.graduation.bo.MyProjectSelectStateBO;
+import com.ncu.graduation.bo.MySelectStateBO;
+import com.ncu.graduation.bo.SelectiveProjectBO;
 import com.ncu.graduation.dto.PaginationDTO;
 import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.dto.ResultDTO;
@@ -8,11 +11,8 @@ import com.ncu.graduation.error.CommonException;
 import com.ncu.graduation.error.EmUserOperatorError;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.model.ProjectSelect;
-import com.ncu.graduation.service.ProjectSelectService;
-import com.ncu.graduation.service.ProjectService;
-import com.ncu.graduation.util.JedisOp;
-import com.ncu.graduation.vo.ProjectSelectVO;
+import com.ncu.graduation.service.impl.ProjectSelectServiceImpl;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
 import com.ncu.graduation.vo.UserVO;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -35,10 +35,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProjectSelectController {
 
   @Autowired
-  private ProjectSelectService projectSelectService;
+  private ProjectSelectServiceImpl projectSelectService;
 
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
 
 
   /**
@@ -51,8 +51,8 @@ public class ProjectSelectController {
       ProjectSearchDTO projectSearchDTO) {
     UserVO user = (UserVO) session.getAttribute("user");
     model.addAttribute("search",projectSearchDTO);
-    PaginationDTO<ProjectSelectVO> selectiveProject = projectSelectService
-        .getSelectiveProject(page, size, user,projectSearchDTO);
+    PaginationDTO<SelectiveProjectBO> selectiveProject = projectSelectService
+        .getSelectiveProject(page, size, user, projectSearchDTO);
     model.addAttribute("projects", selectiveProject);
     ProjectPlan projectPlan = projectService.getProjectPlan(user.getSchoolYear());
     model.addAttribute("projectPlan", projectPlan);
@@ -79,7 +79,7 @@ public class ProjectSelectController {
   @GetMapping("/project/mySelectState")
   public String mySelectState(HttpSession session, Model model) {
     UserVO user = (UserVO) session.getAttribute("user");
-    List<ProjectSelectVO> mySelectState = projectSelectService.getMySelectState(user);
+    List<MySelectStateBO> mySelectState = projectSelectService.getMySelectState(user);
     model.addAttribute("projectSelects", mySelectState);
     return "select/mySelectState";
   }
@@ -103,9 +103,10 @@ public class ProjectSelectController {
    */
   @ResponseBody
   @GetMapping("/project/myProjectSelectState/{pno}")
-  public ResultDTO getProjectSelectState(@PathVariable("pno") String pno) {
-    List<ProjectSelectVO> projectSelectState = projectSelectService
-        .getProjectSelectState(pno);
+  public ResultDTO getProjectSelectState(@PathVariable("pno") String pno,HttpSession session) {
+    UserVO user = (UserVO) session.getAttribute("user");
+    List<MyProjectSelectStateBO> projectSelectState = projectSelectService
+        .getProjectSelectState(pno, user);
 
     return ResultDTO.okOf(projectSelectState);
   }

@@ -1,19 +1,18 @@
 package com.ncu.graduation.controller;
 
+import com.ncu.graduation.bo.ProjectSelectResultBO;
 import com.ncu.graduation.dto.ResultDTO;
 import com.ncu.graduation.dto.VerifyDocumentDTO;
+import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.enums.UserRoleEnum;
 import com.ncu.graduation.error.EmProjectError;
 import com.ncu.graduation.error.RedirectException;
-import com.ncu.graduation.mapper.OpenReportRecordMapper;
 import com.ncu.graduation.model.OpenReport;
 import com.ncu.graduation.model.OpenReportRecord;
-import com.ncu.graduation.model.OpenReportRecordExample;
-import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectPlan;
-import com.ncu.graduation.model.ProjectSelectResult;
-import com.ncu.graduation.service.OpenReportService;
-import com.ncu.graduation.service.ProjectService;
+import com.ncu.graduation.service.impl.OpenReportServiceImpl;
+import com.ncu.graduation.service.impl.ProjectServiceImpl;
+import com.ncu.graduation.vo.ProjectInfoVO;
 import com.ncu.graduation.vo.StuProjectDocumentVO;
 import com.ncu.graduation.vo.TeaProjectDocumentVO;
 import com.ncu.graduation.vo.UserVO;
@@ -26,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,9 +42,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class OpenReportController {
 
   @Autowired
-  private OpenReportService openReportService;
+  private OpenReportServiceImpl openReportService;
   @Autowired
-  private ProjectService projectService;
+  private ProjectServiceImpl projectService;
 
   /**
    * 教师开题报告页面, 获取我的开题报告
@@ -55,7 +53,7 @@ public class OpenReportController {
   public String getTeaOpenReport(HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    Map<String, ProjectSelectResult> teaProject = projectService.getTeaProject(user);
+    Map<String, ProjectSelectResultBO> teaProject = projectService.getTeaProject(user);
     List<TeaProjectDocumentVO<OpenReport>> myOpenReport = openReportService
         .getTeaOpenReport(teaProject);
     model.addAttribute("teaOpenReport", myOpenReport);
@@ -108,8 +106,10 @@ public class OpenReportController {
       @RequestParam("openReport") MultipartFile file,
       @RequestParam(value = "id",required = false) String id) {
     UserVO user = (UserVO) session.getAttribute("user");
-    ProjectApply projectApply = projectService.getStuProject(user);
-    openReportService.submitOpenReport(file, id, user, projectApply.getPno());
+    FileTypeEnum.checkFileType(file.getOriginalFilename());
+
+    ProjectInfoVO stuProject = projectService.getStuProject(user);
+    openReportService.submitOpenReport(file, id, user, stuProject.getProjectApply().getPno());
     return ResultDTO.okOf();
   }
 
@@ -121,11 +121,11 @@ public class OpenReportController {
       HttpServletRequest request,
       Model model) {
     UserVO user = (UserVO) request.getSession().getAttribute("user");
-    ProjectApply stuProject;
+    ProjectInfoVO stuProject;
     if (UserRoleEnum.STUDENT.getRole().equals(user.getRole())) {
       stuProject = projectService.getStuProject(user);
     } else {
-      stuProject = projectService.getProject(pno);
+      stuProject = projectService.getStuProject(pno);
     }
     if (stuProject == null) {
       throw new RedirectException(EmProjectError.NO_PROJECT);

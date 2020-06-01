@@ -1,5 +1,6 @@
 package com.ncu.graduation.mapper;
 
+import com.ncu.graduation.bo.SelectiveProjectBO;
 import com.ncu.graduation.dto.ProjectSearchDTO;
 import com.ncu.graduation.model.ProjectApply;
 import com.ncu.graduation.model.ProjectApplyExample;
@@ -11,11 +12,11 @@ import org.apache.ibatis.session.RowBounds;
 
 public interface ProjectApplyExtMapper {
 
-  List<ProjectApply> getSelectiveProjectByStu(@Param("reg") String reg,
+  List<SelectiveProjectBO> getSelectiveProjectByStu(@Param("reg") String reg,
       @Param("schoolYear") String schoolYear, @Param("college") String college,
       @Param("projectSearchDTO") ProjectSearchDTO projectSearchDTO);
 
-  List<ProjectApply> getSelectiveProjectByTea(@Param("reg") String reg,
+  List<SelectiveProjectBO> getSelectiveProjectByTea(@Param("reg") String reg,
       @Param("schoolYear") String schoolYear, @Param("college") String college,
       @Param("projectSearchDTO") ProjectSearchDTO projectSearchDTO);
 
