@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>开题报告</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+  <script src="/js/moment.min.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+
+  <script>
+    //显示提交框, 并设置oldfile, 判断是否是第一次提交
+    function showOpenReportModel(e) {
+      if (e == 1) {
+        $("#openReport-oldFile").val(1);
+        $('#openReportModel').modal({
+          keyboard: false
+        });
+      } else {
+        $('#openReportModel').modal({
+          keyboard: false
+        });
+      }
+    }
+
+    //提交开题报告
+    function openReportSubmit() {
+      $('#openReportForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("提交成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    //获取开题报告记录
+    function getOpenReportRecord(e) {
+      var pno = $(e).attr('data-pno');
+      $.ajax({
+        url: '/student/openReport/record?pno=' + pno,
+        dataType: 'json',
+        success: function (data) {
+          if (data.code == 200) {
+            $.each(data.data, function (i, data) {
+              var isPass;
+              if (data.isPass == 1) {
+                isPass = "<td class='text-success'>通过</td>";
+              } else if (data.isPass == 2) {
+                isPass = "<td class='text-danger'>待审</td>";
+              } else if (data.isPass == 0) {
+                isPass = "<td class='text-danger'>回拒</td>";
+              }
+              $("#openReportRecordTable").append(
+                  "<tr>" +
+                  "<td> <a href='/download?filePath=" + data.filePath.toString().replace('#', "%23")
+                  + "&fileType=openReport' title='" + data.filePath.toString().split('#')[1] + "'>"
+                  + data.filePath.toString().split('#')[1] + "</a></td>" +
+                  isPass +
+                  "<td>" + data.trialGrade + "</td>" +
+                  "<td title='" + data.trialComment + "'>" + data.trialComment + "</td>" +
+                  "<td>" + moment(data.gmtCreate).format('YYYY-MM-DD') + "</td>" +
+                  "</tr>");
+            });
+          } else {
+            alert(data.message)
+          }
+        }
+      })
+
+      $('#openReportRecordModel').modal({
+        keyboard: false
+      });
+    }
+
+    //移除添加的数据
+    $(function () {
+      $('#openReportRecordModel').on('hide.bs.modal',
+          function () {
+            $("#openReportRecordTable").empty();
+          })
+    });
+  </script>
+
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+
+  <div class="row">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuDocument">
+
+    </div>
+    <!--  学生开题报告  -->
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">课题信息</p>
+          <hr>
+          <dl class="dl-horizontal">
+            <dt>课题名：</dt>
+            <dd>
+              <input class="form-control" style="margin-bottom: 5px" type="text"
+                     th:placeholder="${stuOpenReport.project.pname}" readonly>
+            </dd>
+            <dt>课题内容：</dt>
+            <dd>
+            <textarea class="form-control" th:placeholder="${stuOpenReport.project.content}"
+                      rows="3" readonly></textarea>
+            </dd>
+            <dt>课题类型：</dt>
+            <dd th:text="${stuOpenReport.project.type}">
+
+            </dd>
+            <dt>课题文件：</dt>
+            <dd>
+              <p>
+                <a th:href="@{/download(filePath=${stuOpenReport.project.filePath},fileType='project')}"><span
+                    th:text="${#strings.arraySplit(stuOpenReport.project.filePath,'#')[1]}"></span></a>
+                &nbsp;&nbsp;
+                <a th:href="@{/readOnline(filePath=${stuOpenReport.project.filePath},fileType='project')}">在线浏览</a>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">开题报告</p>
+          <p>* 提交时间为 <span th:text="${projectPlan.openReportTime}"></span></p>
+
+          <hr>
+          <dl class="dl-horizontal" th:if="${stuOpenReport.document} != null">
+            <dt>开题报告：</dt>
+            <dd>
+              <p>
+                <a th:href="@{/download(filePath=${stuOpenReport.document.filePath},fileType='openReport')}"><span
+                    th:text="${#strings.arraySplit(stuOpenReport.document.filePath,'#')[1]}"></span></a>
+                &nbsp;&nbsp;
+                <a th:href="@{/readOnline(filePath=${stuOpenReport.document.filePath},fileType='openReport')}">在线浏览</a>
+              </p>
+            </dd>
+            <dt>审核状态：</dt>
+            <dd th:if="${stuOpenReport.document.isPass} == 0 " class="text-danger">未通过</dd>
+            <dd th:if="${stuOpenReport.document.isPass} == 1" class="text-success">已通过</dd>
+            <dd th:if="${stuOpenReport.document.isPass} == 2" class="text-warning">待审核</dd>
+            <dt>审核评分：</dt>
+            <dd th:text="${stuOpenReport.document.isPass}!= 2 ? ${stuOpenReport.document.trialGrade}:'未审核'"></dd>
+            <dt>审核评语：</dt>
+            <dd th:text="${stuOpenReport.document.isPass}!= 2 ? ${stuOpenReport.document.trialComment}:'未审核'"></dd>
+            <dt>盲审评分：</dt>
+            <dd th:text="${stuOpenReport.document.blindTrialGrade} != null ? ${stuOpenReport.document.blindTrialGrade}:'未审核'"></dd>
+            <dt>盲审评语：</dt>
+            <dd th:text="${stuOpenReport.document.blindTrialGrade} != null ? ${stuOpenReport.document.blindTrialComment}:'未审核'"></dd>
+
+
+          </dl>
+          <a th:if="${stuOpenReport.document} == null and ${session.user.role} == 'student'"
+             type="button" class="btn btn-primary"
+             onclick="showOpenReportModel(0)">提交
+          </a>
+          <a
+              th:if="${stuOpenReport.document} != null and ${session.user.role} == 'student'"
+              th:classappend="${stuOpenReport.document.modifiable} == 1 ? '':'disabled'"
+              type="button" class="btn btn-primary"
+              onclick="showOpenReportModel(1)">重新提交
+          </a>
+          <button th:if="${stuOpenReport.document} != null" type="button" class="btn btn-primary"
+                  th:data-pno="${stuOpenReport.document.pno}"
+                  onclick="getOpenReportRecord(this)">查看历史审核
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- 提交开题报告表单 -->
+<div class="modal fade " tabindex="-1" role="dialog" id="openReportModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">提交开题报告</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="openReportForm" class="form-inline form" action="/student/openReport/submit"
+                method="post"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" id="document-id" name="id"
+                   th:if="${stuOpenReport.document}" th:value="${stuOpenReport.document.id}">
+            <input type="text" class="hide" id="openReport-oldFile" name="oldFile">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="openReport">开题报告&nbsp;&nbsp;</label>
+                <input type="file" class="form-control" id="openReport" name="openReport">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          取消
+        </button>
+        <button id="openReportBtn" type="button" class="btn btn-primary"
+                onclick="openReportSubmit()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--审核记录-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="openReportRecordModel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">历史审核</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common table-responsive">
+          <table class="table" id="openReportRecord">
+            <thead>
+            <tr>
+              <th>文件</th>
+              <th class="short">结果</th>
+              <th class="short">分数</th>
+              <th class="trialComment">评语</th>
+              <th class="middle">时间</th>
+            </tr>
+            </thead>
+            <tbody id="openReportRecordTable">
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          确定
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+
+</html>

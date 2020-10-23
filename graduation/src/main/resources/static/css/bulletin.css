@@ -1,0 +1,17 @@
+
+.view-publish{
+    font-size: 14px;
+}
+
+.view-time{
+    float: right;
+    color: #7e7e7e;
+}
+
+.bulletin-title{
+    text-align: center;
+}
+
+.bulletin-publish{
+    background-color: rgb(79, 76, 219);
+}

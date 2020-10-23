@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+      connectionURL="jdbc:mysql://localhost:3306/graduation?serverTimezone=GMT%2B8"
+      userId="root"
+      password="54456153">
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.ncu.graduation.model" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true"/>
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ncu.graduation.mapper"
+      targetProject="src/main/java">
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+
+    <table schema="graduation" tableName="student" domainObjectName="Student"></table>
+    <table schema="graduation" tableName="teacher" domainObjectName="Teacher"></table>
+    <table schema="graduation" tableName="project_select_result" domainObjectName="ProjectSelectResult"></table>
+    <table schema="graduation" tableName="project_apply" domainObjectName="ProjectApply"></table>
+    <table schema="graduation" tableName="project_select" domainObjectName="ProjectSelect"></table>
+    <table schema="graduation" tableName="project_plan" domainObjectName="ProjectPlan"></table>
+    <table schema="graduation" tableName="bulletin" domainObjectName="Bulletin"></table>
+    <table schema="graduation" tableName="task_book" domainObjectName="TaskBook"></table>
+    <table schema="graduation" tableName="thesis" domainObjectName="Thesis"></table>
+    <table schema="graduation" tableName="thesis_record" domainObjectName="ThesisRecord"></table>
+    <table schema="graduation" tableName="open_report" domainObjectName="OpenReport"></table>
+    <table schema="graduation" tableName="open_report_record" domainObjectName="OpenReportRecord"></table>
+    <table schema="graduation" tableName="foreign_literature" domainObjectName="ForeignLiterature"></table>
+    <table schema="graduation" tableName="foreign_record" domainObjectName="ForeignRecord"></table>
+    <table schema="graduation" tableName="oral_exam_score" domainObjectName="OralExamScore"></table>
+    <table schema="graduation" tableName="exam_group" domainObjectName="ExamGroup"></table>
+    <table schema="graduation" tableName="college" domainObjectName="College"></table>
+
+
+  </context>
+</generatorConfiguration>

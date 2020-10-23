@@ -1,0 +1,280 @@
+
+.ncu {
+  color: black;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 楷体;
+  vertical-align: middle;
+}
+
+.left-navigation .col-md-3 .list-group > .active {
+  background-color: #143270;
+}
+
+/*.big-main {*/
+/*  padding-left: 60px;*/
+/*}*/
+
+.search input {
+  margin-right: 10px;
+}
+
+
+
+.after-time{
+  background-color: #777;
+  color: black;
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.15)
+}
+.on-time{
+  background-color: #fd8d00;
+  color: black;
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.15)
+}
+.pre-time{
+  background-color: #337ab7;
+  color: black;
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.15)
+}
+
+.progress{
+  height: 65px;
+  overflow: visible;
+  padding-left: 1%;
+  border: none;
+  box-shadow: none;
+  background: white;
+}
+.progress .progress-bar .font{
+  line-height: 25px;
+  font-weight: 600;
+  color: white;
+}
+.progress-bar{
+  margin-right: 1%;
+  font-size: 16px;
+  padding-top: 7px;
+}
+
+.dl-horizontal{
+  font-size: 16px;
+}
+
+.dl-horizontal>dd{
+  margin-bottom: 10px;
+}
+
+.projectPlan dt{
+  margin: 10px auto;
+}
+.projectPlan input{
+  margin-left: -15px;
+}
+
+@media (min-width: 768px) {
+
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+  }
+
+  .system-name {
+    color: black;
+    margin-left: 30px;
+    vertical-align: middle;
+    font-size: 24px;
+  }
+
+  .user {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 18px;
+    color: black;
+  }
+
+  .user a {
+    margin-left: 10px;
+  }
+
+  .navbar-default {
+    border: none;
+    padding-left: 130px;
+    background-color: #143270;
+    border-radius: 0;
+  }
+
+  .navbar-default .navbar-header .navbar-brand {
+    display: none;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a {
+    color: white;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a:hover {
+    background-color: #9d7702;
+    color: black;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > .active > a {
+    color: black;
+  }
+
+  .subMenu-title {
+    font-weight: 800;
+  }
+
+  .common {
+    padding: 10px 20px;
+    border: 1px solid #cecece;
+    margin-bottom: 20px;
+  }
+
+  .common .title {
+    font-size: 20px;
+    font-weight: 800;
+    display: inline-block;
+  }
+
+  .table {
+    font-size: 14px;
+    table-layout: fixed;
+  }
+
+  .common .view .table .pass {
+    color: #17eb10;
+  }
+
+  .common .view .table .no-pass {
+    color: red;
+  }
+
+  .common .form-inline .row {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .common .form-inline .form-group {
+    margin-right: 20px;
+  }
+
+
+  .common .form-inline .form-control {
+    width: 100%;
+  }
+
+  .common .form-inline textarea {
+    min-width: 491px;
+    max-width: 491px;
+  }
+
+  .common .form .btn {
+    margin-top: 25px;
+    width: 100px;
+  }
+
+
+  tr td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 100px;
+  }
+
+
+  .table thead tr .middle {
+    width: 110px;
+  }
+  .table thead tr th {
+    width: 80px;
+  }
+  .table thead tr .short {
+    width: 80px;
+  }
+  .common .view .table thead tr .project-name {
+    width: 280px;
+  }
+  .table thead tr .trialComment {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user {
+    float: right;
+    font-size: 14px;
+    text-align: right;
+    color: black;
+    margin-top: 10px;
+  }
+
+  .user a {
+    font-size: 14px;
+  }
+
+  .system-name {
+    color: black;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+
+  .navbar-default {
+    border: none;
+    padding-left: 5px;
+    background-color: #143270;
+  }
+
+  .navbar-default .navbar-header .navbar-toggle span {
+    color: white;
+  }
+
+  .navbar-default .navbar-header .navbar-brand {
+    color: white;
+  }
+
+  .navbar-default .navbar-header .navbar-brand:hover {
+    color: #c2c2c2;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a {
+    color: white;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > li > a:hover {
+    background-color: #9d7702;
+    color: black;
+  }
+
+  .navbar-default .navbar-collapse .navbar-nav > .active > a {
+    color: black;
+  }
+
+  .common {
+    padding: 10px 20px;
+    border: 1px solid #cecece;
+    margin-bottom: 20px;
+  }
+
+  .common .title {
+    font-size: 18px;
+    font-weight: 800;
+    display: inline-block;
+  }
+
+  tr td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 100px;
+  }
+
+}

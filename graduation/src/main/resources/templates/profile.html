@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>个人页面</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+  <script>
+    function showModifyModel(e) {
+      $('#modifyPwdModel').modal({
+        keyboard: false
+      });
+    }
+
+    function modifyPwd() {
+      $('#modifyPwdForm').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            setTimeout(function () {
+              window.location.reload();
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+  </script>
+
+
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+
+  <div class="row">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuUserOp">
+
+    </div>
+
+    <!--  课题详情信息  -->
+    <div class="col-md-7" th:if="${user.role} == 'student'">
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">个人信息</p>
+          <hr>
+          <div class="col-md-offset-3 col-md-5" style="min-width: 400px">
+            <dl class="dl-horizontal">
+              <dt>学号：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.accountNo}" readonly></dd>
+              <dt>姓名：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.name}" readonly></dd>
+              <dt>学院：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.college}" readonly></dd>
+              <dt>专业：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.major}" readonly></dd>
+              <dt>班级：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.gradeClass}" readonly></dd>
+            </dl>
+          </div>
+        </div>
+        <button type="button" class="btn btn-default" onclick="showModifyModel()">修改密码</button>
+      </div>
+    </div>
+    <!--  个人信息  -->
+    <div class="col-md-7" th:if="${user.role} != 'student'">
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">个人信息</p>
+          <hr>
+          <div class="col-md-offset-3 col-md-5" style="min-width: 400px">
+            <dl class="dl-horizontal">
+              <dt>工号：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.accountNo}" readonly></dd>
+              <dt>姓名：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.name}" readonly></dd>
+              <dt>学院：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.college}" readonly></dd>
+              <dt>职称：</dt>
+              <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                         th:placeholder="${user.title}" readonly></dd>
+
+            </dl>
+          </div>
+        </div>
+        <button type="button" class="btn btn-default" onclick="showModifyModel()">修改密码</button>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modifyPwdModel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">修改密码</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 common">
+          <form id="modifyPwdForm" class="form-inline form" method="post" action="/user/modify"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" th:value="${user.accountNo}" name="userNo">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="user-oldPwd">旧密码&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="user-oldPwd" name="oldPwd">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="user-newPwd">新密码&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="user-newPwd" name="newPwd">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="user-confirmNewPwd">确认新密码&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="user-confirmNewPwd"
+                       name="confirmNewPwd">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success"
+                onclick="modifyPwd()">提交
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+
+</html>

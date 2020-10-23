@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>任务书</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+  <script>
+    function setId(e) {
+      var id = $(e).attr('data-id');
+      $("#id").val(id);
+      $('#myModal').modal({
+        keyboard: false
+      });
+    }
+
+    function taskBookSubmit() {
+      $('#taskBookSubmit').ajaxSubmit({
+        beforeSubmit: function () {
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            alert("提交成功");
+            setTimeout(function () {
+              window.location.href = "/teaTaskBook";
+            }, 500);
+          } else {
+            alert(data.message);
+          }
+        },
+
+      });
+    }
+
+    function modify(e) {
+      var id = $(e).attr('data-id');
+      $("#id").val(id);
+      var pno = $(e).attr('data-pno');
+      $("#pno").val(pno);
+      $('#myModal').modal({
+        keyboard: false
+      });
+    }
+
+  </script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+
+  <div class="row">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuDocument">
+
+    </div>
+
+    <!-- 任务书 -->
+    <div class="row">
+      <div class="col-md-7 common view">
+
+        <p class="title">任务书</p>
+        <p>* 提交时间为 <span th:text="${projectPlan.taskBookTime}"></span></p>
+
+        <hr>
+        <div class="table-responsive view">
+          <table class="table">
+            <thead>
+            <tr>
+              <th class="project-name">课题名</th>
+              <th>学生</th>
+              <th>任务书</th>
+              <th style="width: 200px;">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="taskBook:${teaTaskBook}">
+              <td th:text="${taskBook.pname}" th:title="${taskBook.pname}"></td>
+              <td th:text="${taskBook.sname}" th:title="${taskBook.sname}"></td>
+              <td th:if="${taskBook.document} != null"><a
+                  th:text="${#strings.arraySplit(taskBook.document.filePath,'#')[1]}"
+                  th:title="${#strings.arraySplit(taskBook.document.filePath,'#')[1]}"
+                  th:href="@{/download(filePath=${taskBook.document.filePath},fileType='taskBook')}"></a>
+              </td>
+              <td th:if="${taskBook.document} == null">待提交
+              </td>
+              <td>
+                <a th:if="${taskBook.document} != null"
+                   th:href="@{/readOnline(filePath=${taskBook.document.filePath},fileType='taskBook')}">在线浏览</a>
+                <a class="btn-link" role="button" th:if="${taskBook.document} == null" th:data-pno="${taskBook.pno}"
+                   onclick="setId(this)">提交</a>
+                <a class="btn-link" role="button" th:if="${taskBook.document} != null" th:data-pno="${taskBook.pno}"
+                   th:data-id="${taskBook.document.id}"
+                   onclick="modify(this)">修改</a>
+              </td>
+            </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- 任务书提交弹出框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">提交任务书</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common">
+          <form id="taskBookSubmit" class="form-inline form" action="/teacher/taskBook/submit" method="post"
+                enctype="multipart/form-data">
+            <input type="text" class="hide" id="id" name="id">
+            <input type="text" class="hide" id="pno" name="pno">
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="taskBook">提交文件&nbsp;&nbsp;</label>
+                <input type="file" class="form-control" id="taskBook" name="taskBook" readonly>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="taskBookSubmit()">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+
+</html>

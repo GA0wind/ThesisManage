@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+  <script>
+
+    function getprojectSelect(e) {
+      var pno = $(e).attr('data-pno');
+      var pname = $(e).attr('data-pname');
+      $.ajax({
+        url: '/project/myProjectSelectState/' + pno,
+        success: function (data) {
+          if (data.code == 200) {
+            $.each(data.data, function (i, data) {
+              var result;
+              var operate = "";
+              if (data.result == 1) {
+                result = "<td class='text-success'>已定</td>";
+              } else if (data.result == 2) {
+                result = "<td class='text-warning'>待定</td>";
+                operate = "<button data-selectNo='" + data.selectNo + "' data-selectName='" +
+                    data.selectName + "' data-pno='" + pno + "' data-pname='" + pname
+                    + "' onclick=confirmSelect(this) class='btn-link'>同意</button> / " +
+                    "<button data-selectNo='" + data.selectNo + "' data-pno='" + pno
+                    + "' onclick=refuseSelect(this) class='btn-link'>回拒</button>";
+              } else if (data.result == 0) {
+                result = "<td class='text-danger'>回拒</td>";
+              }
+
+              $("#selectState").append(
+                  "<tr>" +
+                  "<td><a href='/user/info/"+data.selectNo+"'>" + data.selectName + "</a></td>" +
+                  "<td>" + data.selectNo + "</td>" +
+                  result +
+                  "<td>" + operate + "</td>" +
+                  "</tr>");
+            });
+            $('#myModal').modal('show');
+          } else {
+            alert(data.message);
+          }
+        }
+      })
+    }
+
+    function confirmSelect(e) {
+      var selectNo = $(e).attr('data-selectNo');
+      var selectName = $(e).attr('data-selectName');
+      var pno = $(e).attr('data-pno');
+      var pname = $(e).attr('data-pname');
+      $.ajax({
+        url: '/project/select/confirm?pno=' + pno + '&pname=' + pname + '&selectNo=' + selectNo
+            + '&selectName=' + selectName,
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            window.location.reload();
+          } else {
+            alert(data.message);
+          }
+        }
+      })
+    }
+
+    function refuseSelect(e) {
+      var selectNo = $(e).attr('selectNo');
+      var pno = $(e).attr('data-pno');
+      $.ajax({
+        url: '/project/select/refuse?pno=' + pno + '&selectNo=' + selectNo,
+        success: function (data) {
+          if (data.code == 200) {
+            alert("操作成功");
+            window.location.reload();
+          } else {
+            alert(data.message);
+          }
+        }
+      })
+    }
+
+    //移除添加数据数据
+    $(function () {
+      $('#myModal').on('hide.bs.modal',
+          function () {
+            $("#selectState").empty();
+          })
+    });
+  </script>
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+
+  <div class="row">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuSelect">
+
+    </div>
+
+    <!-- 我的课题选题情况 -->
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12 common view">
+
+          <p class="title">我的课题选题情况</p>
+
+          <hr>
+          <div class="table-responsive view">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="project-name">课题名</th>
+                <th>课题类型</th>
+                <th>被选情况</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="projectApply:${projectApplys}">
+                <td th:text="${projectApply.pname}" th:title="${projectApply.pname}"></td>
+                <td th:text="${projectApply.type}"></td>
+                <td th:if="${projectApply.isSelect} == 1" class="text-success">已定</td>
+                <td th:if="${projectApply.isSelect} == 2" class="text-warning">待定</td>
+                <td th:if="${projectApply.isSelect} == 0" class="text-info">待选</td>
+                <td>
+                  <a th:data-pno="${projectApply.pno}" th:data-pname="${projectApply.pname}" class="btn-link" role="button"
+                     onclick=getprojectSelect(this)>查看待选详情</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 课题被选信息 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">被选情况</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 common table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>选题人</th>
+              <th>学号</th>
+              <th>结果</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="selectState">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+
+</html>

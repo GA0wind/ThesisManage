@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>公告</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/bulletin.css">
+  <link rel="stylesheet" href="/css/editormd.min.css">
+  <link rel="stylesheet" href="/css/editormd.preview.min.css">
+
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/moment.min.js" type="application/javascript"></script>
+  <script src="/js/editormd.min.js" type="application/javascript"></script>
+  <script src="/js/lib/marked.min.js" type="application/javascript"></script>
+  <script src="/js/lib/prettify.min.js" type="application/javascript"></script>
+  <script src="/js/transition.min.js"></script>
+
+</head>
+
+<script>
+  function download(e) {
+    var dataUrl = $(e).attr('data-filePath');
+    $.ajax({
+      url: '/download?filePath=' + dataUrl + '&fileType='+'bulletin',
+      success:function () {
+        
+      },
+      error:function (data) {
+        alert(data.message)
+      }
+    })
+  }
+
+
+
+</script>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+  <div class="row col-md-12">
+    <!-- 公告 -->
+    <div class="row">
+      <div class="col-md-offset-1 col-md-9 common form">
+        <div>
+          <div class="bulletin-title">
+            <h3 th:text="${bulletin.title}"></h3>
+            <span>发布时间：<span
+                th:text="${#dates.format(bulletin.gmtModified,'yyyy-MM-dd')}"></span></span>
+          </div>
+          <hr>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="bulletin-view" th:utext="${bulletin.content}">
+          </div>
+          <div>
+            <p>
+              &nbsp;&nbsp;附件
+              <a th:href="@{/download(filePath=${bulletin.filePath},fileType='bulletin')}"><span th:text="${#strings.arraySplit(bulletin.filePath,'#')[1]}"></span></a>
+              &nbsp;&nbsp;
+              <a th:href="@{/readOnline(filePath=${bulletin.filePath},fileType='bulletin')}">在线浏览</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

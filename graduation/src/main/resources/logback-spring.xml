@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+<!-- 当此属性设置为 true 时，将打印出 logback 内部日志信息，实时查看 logback 运行状态。 -->
+<!-- 详细可见官方文档 https://logback.qos.ch/manual/ -->
+<configuration debug="true">
+  <!-- 下面这几个变量，可以在项目启动时通过其它的方式初始化，并且也给了一个默认值，就是 “:-” 后面的部分 -->
+  <!-- log.name 为日志文件的名称，即默认最终的日志文件名为 springboot-user.log -->
+  <Property name="log.name" value="${log.name:-graduation-manage}" />
+  <!-- log.path 为日志的路径，即默认生成到当前目录下的 ./data/logs 的目录下 -->
+  <Property name="log.path" value="${log.path:-./data/logs}" />
+  <!-- log.level 为日志的打印级别，以下日志输出优先级由低到高（trace < debug < info < warn < error），例如级别为 info 时，info、warn 和 error 日志都会打印，以此类推 -->
+  <Property name="log.level" value="${log.level:-info}" />
+  <!-- maxHistory 为日志历史保留的期限 -->
+  <property name="maxHistory" value="60" />
+  <property name="maxFileSize" value="15MB" />
+
+
+  <contextName>${log.name}</contextName>
+  <!-- 日志输出格式：%-5level：级别从左显示5个字符宽度 %logger{50}，%contextName表示上线文名称，%d表示日期时间，%thread表示线程名，表示logger名字最长50个字符，否则按照句点分割。 %msg：日志消息，%n是换行符 -->
+  <Property name="patternTemplate"
+    value="[%-5level] [%contextName] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%X{traceId}] %logger{50} - %msg%n" />
+  <jmxConfigurator />
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
+
+  <!-- 控制台输出日志 -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${patternTemplate}</pattern>
+    </encoder>
+  </appender>
+
+  <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${log.path}/${log.name}/${log.name}.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!-- rollover daily -->
+      <FileNamePattern>${log.path}/${log.name}-log-%d{yyyy-MM-dd}.%i.zip</FileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>${maxFileSize}</maxFileSize><!-- or whenever the file size reaches 15MB -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${patternTemplate}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!-- Druid 日志的输出 -->
+  <appender name="druidSqlRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${log.path}/${log.name}/druid-sql.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!-- rollover daily -->
+      <FileNamePattern>${log.path}/druid-sql-log-%d{yyyy-MM-dd}.%i.zip</FileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>${maxFileSize}</maxFileSize><!-- or whenever the file size reaches 15MB -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${patternTemplate}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!-- 异步输出 -->
+  <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+    <!-- 不丢失日志。默认如果队列的 80% 已满，则会丢弃 TRACT、DEBUG、INFO 级别的日志 -->
+    <discardingThreshold>20</discardingThreshold>
+    <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+    <queueSize>2048</queueSize>
+    <includeCallerData>true</includeCallerData>
+    <neverBlock>true</neverBlock>
+    <!-- 停应用时最多等待多少毫秒处理 queue 中日志,暂定 10 秒 -->
+    <maxFlushTime>10000</maxFlushTime>
+    <!-- 添加附加的 appender，最多只能添加一个 -->
+    <appender-ref ref="FILE" />
+  </appender>
+
+  <!-- 日志打印的优先级由低到高：trace < debug < info < warn < error -->
+  <!-- 根logger的level和appender会被所有logger继承，所以根 logger 的 level 和 appender 比较重要 -->
+  <!-- level：如目前该值默认为 info，会打印 info、warn 和 error 级别日志 -->
+  <!-- appender：(STDOUT 打印至控制台、ASYNC 异步打印至文件) -->
+  <root level="${log.level}">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="ASYNC" />
+  </root>
+
+
+
+  <!-- 自定义 logger 的日志级别 -->
+  <!-- 没有设置日志级别，默认继承他的上级日志级别 -->
+  <!-- 没有设置 addtivity，默认为 true，将此 loger 的打印信息向上级传递 -->
+  <!-- 特别注意，此处的 com.gorge4j 根据实际项目情况进行修改，一般对应到公司的一级域名处 -->
+  <logger name="com.ncu" additivity="true" level="info" />
+  <!-- 将 DAO 层的日志输出级别改为 DEBUG 可以输出 SQL 的日志，MyBatis 版本生效 -->
+  <!-- <logger name="com.gorge4j.user.dao" additivity="true" level="debug" /> -->
+  <logger name="org.springframework.core.env" additivity="true" level="info" />
+  <logger name="org.springframework.beans.factory.support" additivity="true" level="info" />
+  <!-- MyBatis 已集成，开启日志 -->
+  <logger name="org.apache.ibatis.logging" additivity="true" level="info" />
+  <logger name="org.apache.tomcat.util.net" additivity="true" level="error" />
+  <!-- 关闭 Dubbo 协议日志的输出 -->
+  <logger name="com.alibaba.dubbo.rpc.protocol.dubbo" additivity="false" level="OFF" />
+  <!-- Druid 的 SQL 日志的输出，level改成debug时可输出日志 -->
+  <logger name="druid.sql.Statement" additivity="false" level="debug">
+    <appender-ref ref="druidSqlRollingFile" />
+  </logger>
+
+</configuration>

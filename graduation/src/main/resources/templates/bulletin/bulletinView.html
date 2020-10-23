@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>公告</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/bulletin.css">
+
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+  <div class="row">
+    <div class="row">
+      <!-- 已提交的课题 -->
+      <div class="col-md-offset-1 col-md-9 common view">
+        <p class="title">公告</p>
+        <a class="pull-right view-publish btn btn-primary" th:if="${session.user.role == 'admin'}"
+           href="/bulletin/publish">发布公告</a>
+        <hr>
+        <ul class="list-group">
+          <li class="list-group-item" th:each="bulletin : ${pagination.data}">
+            <a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}" th:title="${bulletin.title}"></a>
+            <span class="view-time">
+              <span th:text="${bulletin.gmtModified}"></span>&nbsp;&nbsp;
+              <span th:if="${session.user.role == 'admin'}">
+                <a th:href="@{'/bulletin/delete/'+${bulletin.id}}">删除</a>&nbsp;/&nbsp;
+                <a th:href="@{'/bulletin/modify/'+${bulletin.id}}">修改</a>
+              </span>
+            </span>
+          </li>
+        </ul>
+        <div th:if="${pagination.totalPage} > 1" class="pull-left">
+          <a href="/bulletin?page=1" class="more" role="button">首页</a>&nbsp;&nbsp;
+          <a th:classappend="${pagination.page} > 1 ?'':'disabled'" role="button"
+             th:href="@{/bulletin(page=${pagination.page-1})}" class="more">上一页</a>&nbsp;&nbsp;
+          <a th:classappend="${pagination.page} >= ${pagination.totalPage} ?'disabled':''"
+             role="button" th:href="@{/bulletin(page=${pagination.page+1})}" class="more">下一页</a>&nbsp;&nbsp;
+          <a role="button" th:href="@{/bulletin(page=${pagination.totalPage})}" class="more">尾页</a>&nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

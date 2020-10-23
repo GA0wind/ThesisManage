@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8"/>
+  <title>登录</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/login.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/jqueryForm.js"></script>
+
+</head>
+
+<script>
+  //修改验证码
+  function changeCode() {
+    $("#code_img").attr('src', '/verifyCode?change='+Math.random());
+  }
+
+  //判断角色, 如果是管理员或者老师添加学年选项
+  $(document).ready(function () {
+    $('input[type=radio][name=role]').change(function () {
+      var role = $("input[name='role']:checked").val();
+      if (role != null && role != 'student') {
+        $("#schoolYear").removeClass("hide");
+      } else {
+        $("#schoolYear").addClass("hide");
+      }
+    });
+  });
+
+  //登录
+  function login() {
+    $('#loginForm').ajaxSubmit({
+      beforeSubmit: function () {
+      },
+      success: function (data) {
+        if (data.code == 200) {
+          setTimeout(function () {
+            window.location.href = '/';
+          }, 500);
+        } else {
+          alert(data.message);
+        }
+      },
+
+    });
+  }
+
+</script>
+
+
+<body>
+<div class="container-fluid main">
+  <!-- 第一行   系统logo -->
+  <div class="row">
+    <div class="login-logo col-md-9 col-xs-12">
+      <div>
+        <img src="/images/nculogo.png"/>
+        <h2>南昌大学</h2>
+      </div>
+      <h1 class="login-system-name hidden-xs">大学生毕业设计（论文）管理系统</h1>
+      <h1 class="login-system-name visible-xs-block">毕业设计管理系统</h1>
+
+    </div>
+  </div>
+  <!-- 第二行   左边公告, 右边登录 -->
+  <div class="row">
+    <!-- 公告 -->
+    <div class="col-md-8  col-xs-12 hidden-xs bulletin">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          <span class="title">最新公告</span>
+        </div>
+        <!-- List group -->
+        <ul class="list-group" th:each="bulletin:${bulletins.data}">
+          <li class="list-group-item"><a th:href="@{'/bulletin/'+${bulletin.id}}" th:text="${bulletin.title}">毕业设计计划已发布</a>
+            <span class="time" th:text="${bulletin.gmtModified}"></span>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+    <!-- 表單 -->
+    <div class="col-md-3  col-xs-12 login-form">
+      <h4 class="title">登录</h4>
+      <hr>
+      <form class="form-horizontal" action="/login" method="post" id="loginForm">
+        <div class="form-group">
+          <label for="account_no" class="col-sm-3 control-label">账号</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" id="account_no" name="accountNo"
+                   placeholder="学号/工号">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="account_pwd" class="col-sm-3 control-label">密码</label>
+          <div class="col-sm-7">
+            <input type="password" class="form-control" id="account_pwd" name="accountPwd"
+                   placeholder="密码">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-3 control-label">验证码</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="code" name="code" placeholder="验证码">
+          </div>
+          <div class="col-sm-3 code">
+            <img  src="/verifyCode" class="code" id="code_img" onclick="changeCode()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">账号角色</label>
+          <div class="col-sm-9">
+            <label class="radio-inline">
+              <input type="radio" name="role" id="student" value="student">学生
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="role" id="teacher" value="teacher"/>教师
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="role" id="admin" value="admin"/>管理员
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group hide" id="schoolYear">
+          <label class="col-sm-3 control-label">学年</label>
+          <div class="col-sm-7">
+            <select class="form-control" name="schoolYear">
+              <option th:each="schoolYear : ${schoolYears}" th:text="${schoolYear}"
+                      th:value="${schoolYear}"></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="login">
+            <button type="button" class="btn btn-primary" onclick="login()">登录</button>
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

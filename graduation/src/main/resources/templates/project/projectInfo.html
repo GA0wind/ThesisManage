@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="UTF-8">
+  <title>课题信息</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/share.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/transition.min.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid main">
+  <!--顶部-->
+  <div th:replace="head::head">
+
+  </div>
+
+
+  <div class="row">
+    <!-- 左侧菜单 -->
+    <div th:insert="leftMenu::leftMenuSelect">
+
+    </div>
+
+<!--  课题详情信息  -->
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">课题信息</p>
+          <hr>
+          <dl class="dl-horizontal">
+            <dt>课题名：</dt>
+            <dd><input class="form-control" style="margin-bottom: 5px" type="text"
+                       th:placeholder="${project.projectApply.pname}" readonly></dd>
+            <dt>课题内容：</dt>
+            <dd><textarea class="form-control" th:placeholder="${project.projectApply.content}"
+                          rows="3"
+                          readonly style="margin-bottom: 5px"></textarea></dd>
+            <div th:if="${project.projectSelectResult != null}">
+              <dt>指导老师：</dt>
+              <dd th:text="${project.projectSelectResult.tname}" style="margin-bottom: 5px"></dd>
+              <dt>学生：</dt>
+              <dd th:text="${project.projectSelectResult.sname}" style="margin-bottom: 5px"></dd>
+            </div>
+            <dt>课题类型：</dt>
+            <dd th:text="${project.projectApply.type}" style="margin-bottom: 5px"></dd>
+            <dt>课题文件：</dt>
+            <dd>
+              <p>
+                <a th:href="@{/download(filePath=${project.projectApply.filePath},fileType='project')}"><span
+                    th:text="${#strings.arraySplit(project.projectApply.filePath,'#')[1]}"></span></a>
+                &nbsp;&nbsp;
+                <a th:href="@{/readOnline(filePath=${project.projectApply.filePath},fileType='project')}">在线浏览</a>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 common view">
+          <p class="title">审核情况</p>
+          <hr>
+          <dl class="dl-horizontal" th:if="${project.projectApply} != null">
+            <dt>审核状态：</dt>
+            <dd th:if="${project.projectApply.isPass}==0" class="text-danger">未通过</dd>
+            <dd th:if="${project.projectApply.isPass}==1" class="text-success">已通过</dd>
+            <dd th:if="${project.projectApply.isPass}==2" class="text-warning">审核中</dd>
+            <dt>盲审评分：</dt>
+            <dd th:text="${project.projectApply.blindTrialGrade} != null ? ${project.projectApply.blindTrialGrade}:'未审核'"></dd>
+            <dt>盲审评语：</dt>
+            <dd th:text="${project.projectApply.blindTrialComment} != null ? ${project.projectApply.blindTrialComment}:'无'"></dd>
+            <div th:if="${project.projectApply.trialComment} != null">
+              <dt>审核评语：</dt>
+              <dd th:text="${project.projectApply.trialComment}"></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+</html>
