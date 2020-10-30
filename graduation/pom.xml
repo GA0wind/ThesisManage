@@ -85,7 +85,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid-spring-boot-starter</artifactId>
-      <version>1.1.21</version>
+      <version>1.1.23</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
     <dependency>
@@ -100,41 +100,41 @@
     </dependency>
 
 
-    <dependency>
-      <groupId>org.jodconverter</groupId>
-      <artifactId>jodconverter-local</artifactId>
-      <version>4.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jodconverter</groupId>
-      <artifactId>jodconverter-spring-boot-starter</artifactId>
-      <version>4.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>juh</artifactId>
-      <version>4.1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>jurt</artifactId>
-      <version>4.1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>ridl</artifactId>
-      <version>4.1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>unoil</artifactId>
-      <version>4.1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openoffice</groupId>
-      <artifactId>officebean</artifactId>
-      <version>4.1.2</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.jodconverter</groupId>-->
+<!--      <artifactId>jodconverter-local</artifactId>-->
+<!--      <version>4.3.0</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.jodconverter</groupId>-->
+<!--      <artifactId>jodconverter-spring-boot-starter</artifactId>-->
+<!--      <version>4.3.0</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.openoffice</groupId>-->
+<!--      <artifactId>juh</artifactId>-->
+<!--      <version>4.1.2</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.openoffice</groupId>-->
+<!--      <artifactId>jurt</artifactId>-->
+<!--      <version>4.1.2</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.openoffice</groupId>-->
+<!--      <artifactId>ridl</artifactId>-->
+<!--      <version>4.1.2</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.openoffice</groupId>-->
+<!--      <artifactId>unoil</artifactId>-->
+<!--      <version>4.1.2</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.openoffice</groupId>-->
+<!--      <artifactId>officebean</artifactId>-->
+<!--      <version>4.1.2</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

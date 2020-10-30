@@ -259,9 +259,11 @@
     <div class="col-md-7">
       <div class="row">
         <div class="col-md-12 common view clearfix" style="margin-bottom: 40px">
+   <!--    标题      -->
           <p class="title" th:if="${role} == 'student'">学生列表</p>
           <p class="title" th:if="${role} == 'teacher'">职工列表</p>
           <hr>
+<!--      搜索框    -->
           <form th:data-role="${role}" id="getUserView" method="get" class="form-inline form"
                 style="margin-bottom: 10px">
             <input id="hide-page" type="text" class="hide" name="page">
@@ -300,6 +302,7 @@
               </button>
             </div>
           </form>
+<!--    信息展示      -->
           <div class="table-responsive view">
             <table class="table">
               <thead>

@@ -4,560 +4,580 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
-  <meta charset="UTF-8">
-  <title>毕设计划</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="/css/share.css">
-  <link rel="stylesheet" href="/css/index.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" media="all" href="/css/daterangepicker.css"/>
-  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="/js/jqueryForm.js"></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/js/share.js"></script>
-  <script type="text/javascript" src="/js/moment.min.js"></script>
-  <script type="text/javascript" src="/js/daterangepicker.js"></script>
-  <script src="/js/transition.min.js"></script>
+    <meta charset="UTF-8">
+    <title>毕设计划</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/share.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/css/daterangepicker.css"/>
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/js/jqueryForm.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/share.js"></script>
+    <script type="text/javascript" src="/js/moment.min.js"></script>
+    <script type="text/javascript" src="/js/daterangepicker.js"></script>
+    <script src="/js/transition.min.js"></script>
 
 
-  <script>
-    function sumbitProjectPlan() {
-      $('#projectPlanForm').ajaxSubmit({
-        beforeSubmit: function () {
-        },
-        success: function (data) {
-          if (data.code == 200) {
-            alert("提交成功");
-            setTimeout(function () {
-              window.location.reload();
-            }, 500);
-          } else {
-            alert(data.message);
-          }
-        },
+    <script>
+        function sumbitProjectPlan() {
+            $('#projectPlanForm').ajaxSubmit({
+                beforeSubmit: function () {
+                },
+                success: function (data) {
+                    if (data.code == 200) {
+                        alert("提交成功");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 500);
+                    } else {
+                        alert(data.message);
+                    }
+                },
 
-      });
-    }
+            });
+        }
 
-    function showNewProjectPlanModel() {
-      $('#myModal').modal({
-        keyboard: false
-      });
-    }
+        function showNewProjectPlanModel() {
+            $('#myModal').modal({
+                keyboard: false
+            });
+        }
 
-    function newFormSubmit() {
-      $('#setNewProjectPlanForm').ajaxSubmit({
-        beforeSubmit: function () {
-        },
-        success: function (data) {
-          if (data.code == 200) {
-            alert("提交成功");
-            setTimeout(function () {
-              window.location.reload();
-            }, 500);
-          } else {
-            alert(data.message);
-          }
-        },
+        function newFormSubmit() {
+            $('#setNewProjectPlanForm').ajaxSubmit({
+                beforeSubmit: function () {
+                },
+                success: function (data) {
+                    if (data.code == 200) {
+                        alert("提交成功");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 500);
+                    } else {
+                        alert(data.message);
+                    }
+                },
 
-      });
-    }
+            });
+        }
 
-    function showExportScore(e) {
-      var schoolYear = $(e).attr("data-schoolYear");
-      $('#exportScore').modal({
-        keyboard: false
-      });
-      $("#schoolYear").val(schoolYear);
-    }
+        function showExportScore(e) {
+            var schoolYear = $(e).attr("data-schoolYear");
+            $('#exportScore').modal({
+                keyboard: false
+            });
+            $("#schoolYear").val(schoolYear);
+        }
 
-    function exportScoreSubmit() {
-      $('#exportScoreForm').submit();
-    }
-  </script>
+        function exportScoreSubmit() {
+            $('#exportScoreForm').submit();
+        }
+    </script>
 </head>
 
 <body>
 <div class="container-fluid main" style="margin-bottom: 20px">
-  <!--  顶部-->
-  <div th:replace="head::head">
+    <!--  顶部-->
+    <div th:replace="head::head">
 
-  </div>
-
-  <div class="row">
-    <!-- 左侧菜单 -->
-    <div th:insert="leftMenu::leftMenuProjectOp">
     </div>
 
-    <!--    毕设计划-->
-    <div class="col-md-7">
-      <div class="row"
-           th:if="${newProjectPlan} != null and ${newProjectPlan.schoolYear} == ${session.user.schoolYear}">
-        <div class="col-md-12 common view">
-
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a class="title collapsed" th:text="${newProjectPlan.schoolYear}" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                  <form action="/admin/projectPlan" method="post" id="projectPlanForm">
-                    <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
-                    <input type="text" class="hide" name="schoolYear"
-                           th:value="${newProjectPlan.schoolYear}">
-                    <dl class="projectPlan">
-                      <div class="col-md-6">
-                        <dt>课题申报起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.projectApplyTime}"
-                                 name="projectApplyTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>师生互选起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.projectSelectTime}"
-                                 name="projectSelectTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>任务书起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.taskBookTime}"
-                                 name="taskBookTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>开题报告起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.openReportTime}"
-                                 name="openReportTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>外文资料起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.foreignLiteratureTime}"
-                                 name="foreignLiteratureTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>论文起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.ThesisTime}" name="ThesisTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>答辩起止时间：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control date" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.oralExaminationTime}"
-                                 name="oralExaminationTime">
-                        </dd>
-                      </div>
-                      <div class="col-md-6">
-                        <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
-                        <dd class="col-md-12">
-                          <input class="form-control" style="margin-bottom: 5px" type="text"
-                                 th:value="${newProjectPlan.scoreComposition}"
-                                 name="scoreComposition">
-                        </dd>
-                      </div>
-                    </dl>
-                    <button class="btn btn-primary pull-right" type="button" onclick="sumbitProjectPlan()" style="margin-left: 10px">
-                      更改计划
-                    </button>
-                    <button type="button" th:data-schoolYear="${newProjectPlan.schoolYear}"
-                            class="btn btn-primary pull-right" onclick="showExportScore(this)" style="margin-left: 10px">成绩导出
-                    </button>
-                    <button type="button" onclick="showNewProjectPlanModel()" class="pull-right btn btn-primary" >建立新学年计划
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel panel-default" th:each="projectPlan:${projectPlans}">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="title collapsed" th:text="${projectPlan.schoolYear}" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  <dl class="projectPlan">
-                    <div class="col-md-6">
-                      <dt>课题申报起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.projectApplyTime}"
-                               name="projectApplyTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>师生互选起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.projectSelectTime}"
-                               name="projectSelectTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>任务书起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.taskBookTime}"
-                               name="taskBookTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>开题报告起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.openReportTime}"
-                               name="openReportTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>外文资料起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.foreignLiteratureTime}"
-                               name="foreignLiteratureTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>论文起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.ThesisTime}" name="ThesisTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>答辩起止时间：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.oralExaminationTime}"
-                               name="oralExaminationTime" readonly>
-                      </dd>
-                    </div>
-                    <div class="col-md-6">
-                      <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
-                      <dd class="col-md-12">
-                        <input class="form-control" style="margin-bottom: 5px" type="text"
-                               th:placeholder="${projectPlan.scoreComposition}"
-                               name="scoreComposition" readonly>
-                      </dd>
-                    </div>
-                    <button th:data-schoolYear="${projectPlan.schoolYear}" class="btn btn-primary pull-right"
-                            onclick="showExportScore(this)">成绩导出
-                    </button>
-                  </dl>
-                </div>
-              </div>
-            </div>
-          </div>
-<!--
-          <p class="title" th:text="${newProjectPlan.schoolYear}"></p>
-          <button th:data-schoolYear="${newProjectPlan.schoolYear}"
-                  class="btn btn-primary pull-right" onclick="showExportScore(this)" style="margin-left: 10px">成绩导出
-          </button>
-          <button onclick="showNewProjectPlanModel()" class="pull-right btn btn-primary">建立新学年计划
-          </button>
-          <hr>
-          <form action="/admin/projectPlan" method="post" id="projectPlanForm">
-            <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
-            <input type="text" class="hide" name="schoolYear"
-                   th:value="${newProjectPlan.schoolYear}">
-            <dl class="projectPlan">
-              <div class="col-md-6">
-                <dt>课题申报起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.projectApplyTime}"
-                         name="projectApplyTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>师生互选起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.projectSelectTime}"
-                         name="projectSelectTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>任务书起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.taskBookTime}"
-                         name="taskBookTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>开题报告起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.openReportTime}"
-                         name="openReportTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>外文资料起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.foreignLiteratureTime}"
-                         name="foreignLiteratureTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>论文起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.ThesisTime}" name="ThesisTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>答辩起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.oralExaminationTime}"
-                         name="oralExaminationTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control" style="margin-bottom: 5px" type="text"
-                         th:value="${newProjectPlan.scoreComposition}"
-                         name="scoreComposition">
-                </dd>
-              </div>
-            </dl>
-            <button class="btn btn-primary pull-right" type="button" onclick="sumbitProjectPlan()">
-              提交
-            </button>
-          </form>
-          -->
+    <div class="row">
+        <!-- 左侧菜单 -->
+        <div th:insert="leftMenu::leftMenuProjectOp">
         </div>
-      </div>
-      <!-- <div class="row" th:each="projectPlan:${projectPlans}">
-        <div class="col-md-12 common view">
-          <p class="title" th:text="${projectPlan.schoolYear}"></p>
-          <button th:data-schoolYear="${projectPlan.schoolYear}" class="btn btn-primary pull-right"
-                  onclick="showExportScore(this)">成绩导出
-          </button>
-          <hr>
-          <dl class="projectPlan">
-            <div class="col-md-6">
-              <dt>课题申报起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.projectApplyTime}"
-                       name="projectApplyTime" readonly>
-              </dd>
+
+        <!--    毕设计划-->
+        <div class="col-md-7">
+            <div class="row"
+                 th:if="${newProjectPlan} != null and ${newProjectPlan.schoolYear} == ${session.user.schoolYear}">
+                <div class="col-md-12 common view">
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="title collapsed" th:text="${newProjectPlan.schoolYear}" role="button"
+                                       data-toggle="collapse"
+                                       data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                                       aria-controls="collapseOne">
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <form action="/admin/projectPlan" method="post" id="projectPlanForm">
+                                        <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
+                                        <input type="text" class="hide" name="schoolYear"
+                                               th:value="${newProjectPlan.schoolYear}">
+                                        <dl class="projectPlan">
+                                            <div class="col-md-6">
+                                                <dt>课题申报起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.projectApplyTime}"
+                                                           name="projectApplyTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>师生互选起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.projectSelectTime}"
+                                                           name="projectSelectTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>任务书起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.taskBookTime}"
+                                                           name="taskBookTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>开题报告起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.openReportTime}"
+                                                           name="openReportTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>外文资料起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.foreignLiteratureTime}"
+                                                           name="foreignLiteratureTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>论文起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.ThesisTime}" name="ThesisTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>答辩起止时间：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control date" style="margin-bottom: 5px"
+                                                           type="text"
+                                                           th:value="${newProjectPlan.oralExaminationTime}"
+                                                           name="oralExaminationTime">
+                                                </dd>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
+                                                <dd class="col-md-12">
+                                                    <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                           th:value="${newProjectPlan.scoreComposition}"
+                                                           name="scoreComposition">
+                                                </dd>
+                                            </div>
+                                        </dl>
+                                        <button class="btn btn-primary pull-right" type="button"
+                                                onclick="sumbitProjectPlan()" style="margin-left: 10px">
+                                            更改计划
+                                        </button>
+                                        <button type="button" th:data-schoolYear="${newProjectPlan.schoolYear}"
+                                                class="btn btn-primary pull-right" onclick="showExportScore(this)"
+                                                style="margin-left: 10px">成绩导出
+                                        </button>
+                                        <button type="button" onclick="showNewProjectPlanModel()"
+                                                class="pull-right btn btn-primary">建立新学年计划
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default" th:each="projectPlan,projectPlanStat:${projectPlans}">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="title collapsed" th:text="${projectPlan.schoolYear}" role="button"
+                                       data-toggle="collapse" data-parent="#accordion"
+                                       th:href="'#collapse'+${projectPlanStat.index}" aria-expanded="false"
+                                       aria-controls="collapseTwo">
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div th:id="'collapse'+${projectPlanStat.index}" class="panel-collapse collapse"
+                                 role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <dl class="projectPlan">
+                                        <div class="col-md-6">
+                                            <dt>课题申报起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.projectApplyTime}"
+                                                       name="projectApplyTime" readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>师生互选起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.projectSelectTime}"
+                                                       name="projectSelectTime" readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>任务书起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.taskBookTime}"
+                                                       name="taskBookTime" readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>开题报告起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.openReportTime}"
+                                                       name="openReportTime" readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>外文资料起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.foreignLiteratureTime}"
+                                                       name="foreignLiteratureTime" readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>论文起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.ThesisTime}" name="ThesisTime"
+                                                       readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>答辩起止时间：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.oralExaminationTime}"
+                                                       name="oralExaminationTime" readonly>
+                                            </dd>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
+                                            <dd class="col-md-12">
+                                                <input class="form-control" style="margin-bottom: 5px" type="text"
+                                                       th:placeholder="${projectPlan.scoreComposition}"
+                                                       name="scoreComposition" readonly>
+                                            </dd>
+                                        </div>
+                                        <button th:data-schoolYear="${projectPlan.schoolYear}"
+                                                class="btn btn-primary pull-right"
+                                                onclick="showExportScore(this)">成绩导出
+                                        </button>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                              <p class="title" th:text="${newProjectPlan.schoolYear}"></p>
+                              <button th:data-schoolYear="${newProjectPlan.schoolYear}"
+                                      class="btn btn-primary pull-right" onclick="showExportScore(this)" style="margin-left: 10px">成绩导出
+                              </button>
+                              <button onclick="showNewProjectPlanModel()" class="pull-right btn btn-primary">建立新学年计划
+                              </button>
+                              <hr>
+                              <form action="/admin/projectPlan" method="post" id="projectPlanForm">
+                                <input type="number" class="hide" name="id" th:value="${newProjectPlan.id}">
+                                <input type="text" class="hide" name="schoolYear"
+                                       th:value="${newProjectPlan.schoolYear}">
+                                <dl class="projectPlan">
+                                  <div class="col-md-6">
+                                    <dt>课题申报起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.projectApplyTime}"
+                                             name="projectApplyTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>师生互选起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.projectSelectTime}"
+                                             name="projectSelectTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>任务书起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.taskBookTime}"
+                                             name="taskBookTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>开题报告起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.openReportTime}"
+                                             name="openReportTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>外文资料起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.foreignLiteratureTime}"
+                                             name="foreignLiteratureTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>论文起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.ThesisTime}" name="ThesisTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>答辩起止时间：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.oralExaminationTime}"
+                                             name="oralExaminationTime">
+                                    </dd>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
+                                    <dd class="col-md-12">
+                                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                                             th:value="${newProjectPlan.scoreComposition}"
+                                             name="scoreComposition">
+                                    </dd>
+                                  </div>
+                                </dl>
+                                <button class="btn btn-primary pull-right" type="button" onclick="sumbitProjectPlan()">
+                                  提交
+                                </button>
+                              </form>
+                              -->
+                </div>
             </div>
-            <div class="col-md-6">
-              <dt>师生互选起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.projectSelectTime}"
-                       name="projectSelectTime" readonly>
-              </dd>
-            </div>
-            <div class="col-md-6">
-              <dt>任务书起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.taskBookTime}"
-                       name="taskBookTime" readonly>
-              </dd>
-            </div>
-            <div class="col-md-6">
-              <dt>开题报告起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.openReportTime}"
-                       name="openReportTime" readonly>
-              </dd>
-            </div>
-            <div class="col-md-6">
-              <dt>外文资料起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.foreignLiteratureTime}"
-                       name="foreignLiteratureTime" readonly>
-              </dd>
-            </div>
-            <div class="col-md-6">
-              <dt>论文起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.ThesisTime}" name="ThesisTime" readonly>
-              </dd>
-            </div>
-            <div class="col-md-6">
-              <dt>答辩起止时间：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.oralExaminationTime}"
-                       name="oralExaminationTime" readonly>
-              </dd>
-            </div>
-            <div class="col-md-6">
-              <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
-              <dd class="col-md-12">
-                <input class="form-control" style="margin-bottom: 5px" type="text"
-                       th:placeholder="${projectPlan.scoreComposition}"
-                       name="scoreComposition" readonly>
-              </dd>
-            </div>
-          </dl>
-        </div> -->
-      </div>
-  </div>
+            <!-- <div class="row" th:each="projectPlan:${projectPlans}">
+              <div class="col-md-12 common view">
+                <p class="title" th:text="${projectPlan.schoolYear}"></p>
+                <button th:data-schoolYear="${projectPlan.schoolYear}" class="btn btn-primary pull-right"
+                        onclick="showExportScore(this)">成绩导出
+                </button>
+                <hr>
+                <dl class="projectPlan">
+                  <div class="col-md-6">
+                    <dt>课题申报起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.projectApplyTime}"
+                             name="projectApplyTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>师生互选起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.projectSelectTime}"
+                             name="projectSelectTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>任务书起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.taskBookTime}"
+                             name="taskBookTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>开题报告起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.openReportTime}"
+                             name="openReportTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>外文资料起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.foreignLiteratureTime}"
+                             name="foreignLiteratureTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>论文起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.ThesisTime}" name="ThesisTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>答辩起止时间：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.oralExaminationTime}"
+                             name="oralExaminationTime" readonly>
+                    </dd>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
+                    <dd class="col-md-12">
+                      <input class="form-control" style="margin-bottom: 5px" type="text"
+                             th:placeholder="${projectPlan.scoreComposition}"
+                             name="scoreComposition" readonly>
+                    </dd>
+                  </div>
+                </dl>
+              </div> -->
+        </div>
+    </div>
 </div>
 
 <!-- 新学年弹出框 -->
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">新学年计划</h4>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 common view">
-          <form action="/admin/projectPlan" method="post" id="setNewProjectPlanForm">
-            <dl>
-              <div class="col-md-6">
-                <dt>学年(YYYY-YYYY)：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control" style="margin-bottom: 5px" type="text"
-                         name="schoolYear">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>课题申报起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="projectApplyTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>师生互选起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="projectSelectTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>任务书起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="taskBookTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>开题报告起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="openReportTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>外文资料起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="foreignLiteratureTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>论文起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="thesisTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>答辩起止时间：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control date" style="margin-bottom: 5px" type="text"
-                         name="oralExaminationTime">
-                </dd>
-              </div>
-              <div class="col-md-6">
-                <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
-                <dd class="col-md-12">
-                  <input class="form-control" style="margin-bottom: 5px" type="text"
-                         name="scoreComposition">
-                </dd>
-              </div>
-            </dl>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button id="verifySubmit" type="button" class="btn btn-primary"
-                onclick="newFormSubmit()">提交
-        </button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新学年计划</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 common view">
+                    <form action="/admin/projectPlan" method="post" id="setNewProjectPlanForm">
+                        <dl>
+                            <div class="col-md-6">
+                                <dt>学年(YYYY-YYYY)：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control" style="margin-bottom: 5px" type="text"
+                                           name="schoolYear">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>课题申报起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="projectApplyTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>师生互选起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="projectSelectTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>任务书起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="taskBookTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>开题报告起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="openReportTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>外文资料起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="foreignLiteratureTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>论文起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="thesisTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>答辩起止时间：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control date" style="margin-bottom: 5px" type="text"
+                                           name="oralExaminationTime">
+                                </dd>
+                            </div>
+                            <div class="col-md-6">
+                                <dt>成绩组成(逗号隔开，分别对应指导老师占比，盲审占比，答辩占比)：</dt>
+                                <dd class="col-md-12">
+                                    <input class="form-control" style="margin-bottom: 5px" type="text"
+                                           name="scoreComposition">
+                                </dd>
+                            </div>
+                        </dl>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="verifySubmit" type="button" class="btn btn-primary"
+                        onclick="newFormSubmit()">提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
 <!--成绩导出学院选择框-->
 <div class="modal fade" tabindex="-1" role="dialog" id="exportScore">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">学院选择</h4>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 common view">
-          <form action="/admin/exportScoreToExl" method="get" id="exportScoreForm">
-            <input type="text" id="schoolYear" class="hide" name="schoolYear">
-            <dl>
-              <div class="col-md-6">
-                <dt>学院</dt>
-                <dd class="col-md-12">
-                  <select id="stu-college" class="form-control" name="college">
-                    <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
-                            th:text="${college.collegeName}"></option>
-                  </select>
-                </dd>
-              </div>
-            </dl>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button id="exportScoreBtn" type="button" class="btn btn-primary"
-                onclick="exportScoreSubmit()">导出
-        </button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">学院选择</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 common view">
+                    <form action="/admin/exportScoreToExl" method="get" id="exportScoreForm">
+                        <input type="text" id="schoolYear" class="hide" name="schoolYear">
+                        <dl>
+                            <div class="col-md-6">
+                                <dt>学院</dt>
+                                <dd class="col-md-12">
+                                    <select id="stu-college" class="form-control" name="college">
+                                        <option th:each="college:${collegeList}" th:value="${college.collegeNo}"
+                                                th:text="${college.collegeName}"></option>
+                                    </select>
+                                </dd>
+                            </div>
+                        </dl>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="exportScoreBtn" type="button" class="btn btn-primary"
+                        onclick="exportScoreSubmit()">导出
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
@@ -565,30 +585,30 @@
 
 
 <script>
-  $(document).ready(function () {
-    var options = {};
-    options.autoApply = true;
-    options.timePicker = true;
-    options.timePicker24Hour = true;
-    options.timePickerSeconds = true;
-    options.locale = {
-      direction: 'ltr',
-      format: 'YYYY-MM-DD HH:mm:ss',
-      separator: ',',
-      applyLabel: '确定',
-      cancelLabel: '取消',
-      fromLabel: 'From',
-      toLabel: 'To',
-      customRangeLabel: 'Custom',
-      daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
-      monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-      firstDay: 1
-    };
-    $('.date').daterangepicker(options, function (start, end, label) {
-      console.log(
-          "New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-    });
-  })
+    $(document).ready(function () {
+        var options = {};
+        options.autoApply = true;
+        options.timePicker = true;
+        options.timePicker24Hour = true;
+        options.timePickerSeconds = true;
+        options.locale = {
+            direction: 'ltr',
+            format: 'YYYY-MM-DD HH:mm:ss',
+            separator: ',',
+            applyLabel: '确定',
+            cancelLabel: '取消',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+            monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            firstDay: 1
+        };
+        $('.date').daterangepicker(options, function (start, end, label) {
+            console.log(
+                "New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+    })
 </script>
 
 </html>

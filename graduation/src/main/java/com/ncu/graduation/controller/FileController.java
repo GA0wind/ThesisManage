@@ -7,7 +7,7 @@ import com.ncu.graduation.enums.FileTypeEnum;
 import com.ncu.graduation.error.EmBulletinError;
 import com.ncu.graduation.error.EmCommonError;
 import com.ncu.graduation.error.EmFileError;
-import com.ncu.graduation.util.ConverstPDF;
+//import com.ncu.graduation.util.ConverstPDF;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -38,8 +38,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FileController {
 
-  @Autowired
-  private ConverstPDF converstPDF;
+//  @Autowired
+//  private ConverstPDF converstPDF;
 
   @RequestMapping(value = "/img/upload", method = RequestMethod.GET)
   @ResponseBody
@@ -140,63 +140,63 @@ public class FileController {
     return ResultDTO.errorOf(EmCommonError.UNKNOWN_ERROR.getErrCode(), "下载失败");
   }
 
-  @ResponseBody
-  @GetMapping("/readOnline")
-  public Object readonline(@RequestParam("filePath") String fileName, String fileType,
-      HttpServletResponse response) {
-    //获取文件真实路径, 获取文件
-    FileTypeEnum emfileType = FileTypeEnum.judgeType(fileType);
-    if (emfileType == null) {
-      return ResultDTO.errorOf(EmFileError.FILE_TYPE_IS_EMPTY);
-    }
-    String trueFileName = emfileType.getPreUrl() + fileName;
-    File file = new File(trueFileName);
-    if (!file.exists()) {
-      return ResultDTO.errorOf(EmFileError.FILE_IS_NOT_EXIST);
-    }
-
-    ByteArrayOutputStream baos = null;
-    //如果文件不以pdf结尾, 则转化, 否则直接返回
-    if (!trueFileName.endsWith(".pdf")) {
-      baos = converstPDF.officeToPDF(file);
-    } else {
-      //将文件转入baos流
-      try (FileInputStream fis = new FileInputStream(file);) {
-        baos = new ByteArrayOutputStream();
-        byte[] buff = new byte[1024];
-        int len = -1;
-        while ((len = fis.read(buff)) != -1) {
-          baos.write(buff, 0, len);
-        }
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-    response.reset();
-    response.setContentType("application/pdf");
-    //输出流
-    OutputStream os = null;
-    try {
-      os = response.getOutputStream();
-      if (baos != null) {
-        os.write(baos.toByteArray());
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (os != null) {
-          os.close();
-        }
-        if (baos != null) {
-          baos.close();
-        }
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-    return new ModelAndView("/pdf");
-  }
+//  @ResponseBody
+//  @GetMapping("/readOnline")
+//  public Object readonline(@RequestParam("filePath") String fileName, String fileType,
+//      HttpServletResponse response) {
+//    //获取文件真实路径, 获取文件
+//    FileTypeEnum emfileType = FileTypeEnum.judgeType(fileType);
+//    if (emfileType == null) {
+//      return ResultDTO.errorOf(EmFileError.FILE_TYPE_IS_EMPTY);
+//    }
+//    String trueFileName = emfileType.getPreUrl() + fileName;
+//    File file = new File(trueFileName);
+//    if (!file.exists()) {
+//      return ResultDTO.errorOf(EmFileError.FILE_IS_NOT_EXIST);
+//    }
+//
+//    ByteArrayOutputStream baos = null;
+//    //如果文件不以pdf结尾, 则转化, 否则直接返回
+//    if (!trueFileName.endsWith(".pdf")) {
+//      baos = converstPDF.officeToPDF(file);
+//    } else {
+//      //将文件转入baos流
+//      try (FileInputStream fis = new FileInputStream(file);) {
+//        baos = new ByteArrayOutputStream();
+//        byte[] buff = new byte[1024];
+//        int len = -1;
+//        while ((len = fis.read(buff)) != -1) {
+//          baos.write(buff, 0, len);
+//        }
+//      } catch (IOException e) {
+//        e.printStackTrace();
+//      }
+//    }
+//    response.reset();
+//    response.setContentType("application/pdf");
+//    //输出流
+//    OutputStream os = null;
+//    try {
+//      os = response.getOutputStream();
+//      if (baos != null) {
+//        os.write(baos.toByteArray());
+//      }
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//    } finally {
+//      try {
+//        if (os != null) {
+//          os.close();
+//        }
+//        if (baos != null) {
+//          baos.close();
+//        }
+//      } catch (IOException e) {
+//        e.printStackTrace();
+//      }
+//    }
+//    return new ModelAndView("/pdf");
+//  }
 
 
 }
